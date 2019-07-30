@@ -1,0 +1,44 @@
+.dropzone {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-weight: 200;
+	height: 300px;
+	border: 2px solid  rgb(68, 197, 242);
+	border-radius: 5px;
+	background: white;
+	margin: 5em 0 10px 0;
+
+    &.hovering {
+    	border: 2px solid #f16624;
+    	color: #dadada !important;
+    }
+    
+    .file-label {
+    	font-size: 1.2em;
+    }
+	
+}
+
+
+
+progress::-webkit-progress-value {
+	transition: width 0.1s ease;
+}
+
+/*img {
+	width: 250px;
+}*/
+
+.btn-finish-edit{
+    color: white;
+    background-color:  rgb(68, 197, 242);
+    border-radius: .5em;
+    margin-top: 1em;
+    width: 100%;
+    font-size: 1.2em;
+    padding: .3em;
+    font-family: Century Gothic, sans-serif;
+}
+

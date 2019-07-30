@@ -1,0 +1,300 @@
+.map-container{
+    border: 1px solid #d3d3d3;
+    padding: .8em;
+    border-radius: .5em;
+    -moz-box-shadow: 0px 0px 10px 0px #7A7A7A;
+    -webkit-box-shadow: 0px 0px 10px 0px #7A7A7A;
+     box-shadow: 0px 0px 10px 0px #7A7A7A;
+     margin-top: 2em;
+}
+
+.btn-dropdown{
+    width: 80%;
+    text-align: left;
+    margin-top: .2em;
+    
+}
+
+.dropdown-toggle{
+    margin-left: -1em;
+}
+
+.dropdown-toggle::after {
+    text-align: right;
+    float: right;
+    /*Chrome IE fix*/
+    margin-top: 10px;
+}
+
+.verification-page-title {
+    font-size: 2.3em;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 600;
+    margin-top: 2em;
+    text-align: center;
+    color: #7E7E7E;
+}
+
+.label-property{
+    font-family: Century Gothic, sans-serif;
+	font-size: 1.5em;
+	font-weight: 600;
+	color: rgb(68, 197, 242);
+    line-height: 1.2em;
+    margin-top:.5em;
+}
+
+.label-question{
+    margin-top: .4em;
+    font-family: Century Gothic, sans-serif;
+	font-size: 1.3em;
+	font-weight: 300;
+}
+
+.label-property-result{
+	font-family: Century Gothic, sans-serif;
+	font-size: 1.3em;
+	font-weight: 400;
+	line-height: 1.2em;
+}
+
+agm-map {
+  height: 400px;
+}
+
+.badge {
+     border-radius: 50%;
+  /* remove if you don't care about IE8 */
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #666;
+  color: #000;
+  text-align: center;
+  font: .8em 'Nunito', sans-serif;
+}
+
+.information-title{
+    margin-top: 3em;
+    font-size: 2em;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 600;
+    color: #7E7E7E;
+    line-height: 1.2em;
+}
+
+.information-subtitle {
+    font-size: 1em;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 300;
+    color: #7E7E7E;
+}
+
+.create-account{
+    cursor: pointer;
+    text-align: center;
+    font-size: 2em;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 600;
+    color: #939393;
+}
+
+::placeholder{
+    text-align: left;
+    font-size: .9em;
+    padding-right: .3em;
+    font-family: Century Gothic, sans-serif;
+    color: #7E7E7E;
+}
+
+.btn-finish-edit{
+    color: white;
+    background-color:  rgb(68, 197, 242);
+    border-radius: .5em;
+    margin-top: 1em;
+    width: 100%;
+    font-size: 1.2em;
+    padding: .3em;
+    font-family: Century Gothic, sans-serif;
+}
+
+.question-mark{
+    font-family: Raleway, sans-serif;
+    font-weight: 400;
+}
+
+.question-mark-circle{
+    font-family: Raleway, sans-serif;
+    font-weight: 400;
+    background-color: #eaeaea;
+    padding: 0em .4em;
+    font-size: .7em;
+    margin-left: .3em;
+    vertical-align: top; /* here */
+    color: rgb(68, 197, 242);
+    cursor: pointer;
+}
+
+
+.btn-result{
+    padding: .5em 0em;
+    border-radius:.5em;
+    text-align: center;
+    margin-right: .2em;
+}
+
+.btn-row-margin-left{
+    margin-left: .0em;
+}
+
+.btn-result:hover {
+    background-color: rgb(68, 197, 242);
+    color:white;
+    cursor: pointer;
+}
+
+.btn-result-clicked{
+    background-color: rgb(68, 197, 242);
+    color:white;
+}
+
+.icon-container {
+    text-align:center; 
+    padding:.5em;
+}
+
+.icon-label {
+    /*cursor: pointer;*/
+}
+
+.btn-create-account{
+    background-color: rgb(68, 197, 242);
+    color:white;
+    margin: 0 auto;
+    font-size: 2.5em;
+    border-radius: 3em;
+    padding: .3em .5em;
+    font-weight: 600;
+}
+
+.create-account-subtitle{
+    font-size: 1em;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 300;
+    color: #7E7E7E;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.option-selection{
+    cursor: pointer;
+}
+
+.dropdown{
+    margin-left: 1em;
+    width: 100%;
+}
+
+
+.btn{
+    background-color: rgb(68, 197, 242);
+    color: white;
+}
+
+.btn-container{
+    width: 100%;
+    text-align: end;
+}
+
+.btn-next{
+    margin-top: 0em;
+    color: white;
+    background-color: rgb(68, 197, 242);
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+    padding: .5em 1.5em;
+    outline: none;
+    box-shadow: 2px 2px 5px 0px #888;
+}
+
+.label-hint{
+    font-size: .9em;
+    font-style: italic;
+    margin-top: .4em;
+    line-height: 1em;
+}
+
+.label-hint-above-buttons{
+    /*margin-top: -.2em;
+    margin-bottom: .4em;*/
+}
+
+@media only screen and (max-width: 576px) {
+    
+    .label-property{
+        font-size: 1em;
+        line-height: 1.2em;
+        margin-top:.5em;
+    }
+
+    .label-property-result{
+        font-size: .8em;
+        line-height: 1.2em;
+    }
+
+    .verification-page-title {
+        font-size: 1.2em;
+        margin-top: 6em;
+    }
+
+    .information-title{
+        margin-top: 1em;
+        font-size: 1.5em;
+    }
+
+    .information-subtitle {
+        font-size: .8em;
+    }
+
+    .icon-container {
+        padding: 0em;
+    }
+
+    .property-row{
+        margin-top: 1em;
+    }
+
+    .dropdown{
+        margin-left: 1em;
+    }
+
+    .dropdown-toggle {
+        /*margin: 0 auto;*/
+       /* padding-left: 2em;
+        padding-right: 2em;*/
+        padding-top: .2em;
+        padding-bottom: .2em;
+        font-size: .9em;
+    }
+
+    .label-question {
+        font-size: 1em;
+    }
+
+    .btn-create-account{
+        font-size: 1.5em;
+        border-radius: 3em;
+        padding: .3em .5em;
+        font-weight: 600;
+    }
+
+    .map-container{
+        height: 12em;
+    }
+
+    agm-map{
+        height: 10em;
+    }
+}

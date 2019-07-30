@@ -1,0 +1,60 @@
+.offer-container{
+  background-color: #f2f2f2;
+  padding: 0em 1em;
+  margin-top: 1em;
+  border-radius: 1em;
+}
+
+.house-circle{
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    background: #fff;
+    color: #FFFFFF;
+    font-family: Century Gothic, sans-serif;
+    font-size: 1.8em;
+    font-weight: 400;
+    background-color: red;    
+}
+
+.offer-amount{
+  color: rgb(68, 197, 242);
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.offer-properties-container{
+  padding-left: 0em;
+}
+
+.buyer-type{
+  color: gray;
+  font-size: 1em;
+  font-weight: 300;
+}
+
+.offer-profile-img{
+  width: 6.5em;
+  height: 6.5em;
+  margin: 1em 0em;
+}
+
+.star_filled{
+  color: yellow;
+  background-color: yellow;
+}
+
+.star-rating-good{
+  color: #ff9933;
+  width: 1em;
+}
+
+.star-rating-bad{
+  color: gray;
+  width: 1em;
+}
+
+.star-rating-row{
+  padding: 0em; 
+  margin-top: .4em
+}

@@ -1,0 +1,53 @@
+<div class="container-fluid">
+	<div class="row" style="height: 30em">
+		<div class="col-2 left-panel">
+			<div class="row">
+				<div id="left-panel-inbox" class="left-panel-item left-panel-item-selected" (click)="selectLeftPanelItem(1)">Inbox</div>
+			</div>
+			<div class="row">
+				<div id="left-panel-deleted" class="left-panel-item" (click)="selectLeftPanelItem(2)">Deleted</div>
+			</div>
+		</div>
+		<div class="col-10">
+			<div class="row">
+				<div class="col-12" style="padding: 0">
+					<div class="all-messages">
+						All Messages (3)
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-5 recent-contact-list">
+					<app-inbox-message [name]="name1" [selected]="name1Selected" (click)="selectRecentContact(0)"></app-inbox-message>
+					<app-inbox-message [name]="name2" [selected]="name2Selected" (click)="selectRecentContact(1)"></app-inbox-message>
+					<app-inbox-message [name]="name3" [selected]="name3Selected" (click)="selectRecentContact(2)"></app-inbox-message>
+				</div>
+				<div class="col-7">
+					<div class="row">
+						<div class="col-2" style="padding: 0em; text-align: end">
+							<img class="contact-image" src="../../../assets/img/avatar.png" />
+						</div>
+						<div class="col-9">
+							<div class="contact-name">
+								{{selectedContactName}}
+							</div>
+						</div>
+					</div>
+					<div class="row chat-section">
+						
+					</div>
+					<div class="row message-section">
+						<div class="col-10 offset-1">
+							<textarea class="message-text-box" placeholder="Message"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4 offset-7">
+							<button class="btn-send">Send</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

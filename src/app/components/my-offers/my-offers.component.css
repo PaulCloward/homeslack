@@ -1,0 +1,59 @@
+.closing-countdown-container{
+	  text-align: center;
+    width: 100%;
+    top: 5%;
+    position: absolute;
+    z-index: 20;
+    border-radius: 1em;
+    padding-top: 1.3em;
+    padding-bottom: 1.3em;
+    background:rgba(0,0,0,0.3);
+}
+
+.closing-label{
+  	text-align: center;
+  	font-size: 1.8em;
+  	color:white;
+  	width: 100%;
+    margin-bottom: .5em;
+}
+
+.countdown-time-label{
+  	color: white;
+  	font-size: .9em;
+    margin-top: .3em;
+    width: 100%;
+}
+
+.time-circle{
+    border-radius: 50%;
+    width: 2.3em;
+    height: 2.3em;
+    background: #fff;
+    color: #FFFFFF;
+    font-family: Century Gothic, sans-serif;
+    font-size: 2em;
+    font-weight: 400;
+    background-color: red;    
+}
+
+.offers-label{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 2em;
+}
+
+.offers-label-1 {
+  color: gray;
+}
+
+.offers-label-2 {
+  color: rgb(68, 197, 242);
+}
+
+.offers-sub-label {
+  color: gray;
+  border-bottom: .05em solid gray;
+  padding-bottom: .3em;
+}
+

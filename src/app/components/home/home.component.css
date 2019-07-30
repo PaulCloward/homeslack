@@ -1,0 +1,367 @@
+.home-page-container{
+  padding: 0em;
+}
+
+.img-under-nav-container {
+  padding: 0px; 
+  border-bottom: 2em solid rgb(68, 197, 242);
+}
+
+
+.img-under-nav {
+  filter: brightness(50%);
+  z-index: 1;
+}
+
+.top-header{
+  text-align: center;
+  width: 100%;
+  top: 25%;
+  position: absolute;
+  z-index: 2;
+  /*TEXT*/
+  font-size: 3em; 
+}
+
+.company-logo{
+  max-height: 1.4em;
+}
+
+.top-header-xs {
+  text-align: center;
+  width: 100%;
+  top: 30%;
+  height: 0;
+  line-height: 0;
+  position: absolute;
+  z-index: 2;
+  /*TEXT*/
+  font-size: 1.5em;
+  
+}
+
+.top-header-input{
+  width: 100%;
+  top: 41%;
+  height: 0;
+  line-height: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.top-header-oval-row{
+  width: 100%;
+  top: 60%;
+  position: absolute;
+  z-index: 2;
+}
+
+.top-header-logo{
+    max-width: 40%;
+    margin-bottom: 2em;
+}
+
+.container-init{
+  display: none;
+}
+
+.view-more{
+    /*padding: .5em .2em .5em 0em; */
+    padding-top: .5em;
+    border-top: 1px solid #d3d3d3;
+    font-weight: bold;
+    color: #d3d3d3;
+    font-size: .8em;
+}
+
+.view-more-xs{
+
+}
+
+.search-bar-input{
+  font-size: .5em; 
+  font-family: 'Nunito'
+}
+
+.search-bar-bottom-label{
+  color: white;
+  font-size: .4em;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+
+.bottomborder {
+   border-top: 2px solid #d3d3d3;
+   width: 100%;
+   height: 1px;
+   margin-top: .5em;
+}
+
+.home-info-circle {
+  font-family: Century Gothic, sans-serif;
+  width: 180px;
+  height: 180px;
+  background-color: rgb(68, 197, 242);
+}
+
+.home-info-circle-img{
+  width: 1em;
+}
+
+.circle-label{
+  color: white;
+  font-size:.25em;
+  margin-top: .5em;
+  line-height: 1em;
+  font-weight: bold;
+}
+
+.circleBase {
+    border-radius: 50%;
+    margin: 0 auto;
+    padding-top: .5em;
+}
+
+.home-offer-instruction-column{
+    font-family: Century Gothic, sans-serif;
+}
+
+.home-offer-instruction-row{
+     /*border-bottom: 1px solid #d3d3d3;*/
+     background: white;
+     margin-top: 2em;
+     border-radius: .1em;
+     min-height: 8em !important;
+     line-height: 1.5em;
+     padding: 1em;
+     font-family: Century Gothic, sans-serif;
+     font-size: .9em;
+     color: black;
+     font-weight: 300;
+     cursor: pointer;
+}
+
+.home-offer-instruction-row:hover {
+    /*box-shadow: 0px 0px 2px 0px #7A7A7A;*/
+    box-shadow: 1px 1px 5px 0px #888888;
+}
+
+.home-offer-title {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.home-offer-instruction{
+   font-weight: 300;
+   font-size: 1em;
+}
+
+.badge {
+  border-radius: 50%;
+  width: 1.8em;
+  height: 1.8em;
+  background: #fff;
+  color: #FFFFFF;
+  font-family: Century Gothic, sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  background-color: rgb(68, 197, 242);
+  margin: 0 auto;
+}
+
+#space{
+    height: 20em;
+    width: 100%;
+}
+
+#space1{
+    height: 20em;
+    width: 100%;
+}
+
+.home-sub-title{
+    font-family: Century Gothic, sans-serif;
+    font-size: 2em;
+    font-weight: 600;
+    border-bottom: 1px solid lightgray;
+    padding-left: 0em;
+    padding-bottom: .3em;
+    
+}
+
+.label-address {
+    font-family: Century Gothic, sans-serif;
+    font-size: 1em;
+}
+
+.form-control {
+    border: .5px solid gray;
+    border-radius: .5em;
+    padding-left: .5em;
+    outline-color: red !important;
+    outline: none;
+    font-family: Century Gothic, sans-serif;
+    color: #7E8084;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: rgb(68, 197, 242);
+}
+
+.input-group-text{
+    background: rgb(68, 197, 242);
+    cursor: pointer;
+    margin-left:.3em;
+    border: .1em solid rgb(68, 197, 242);
+    border-radius: 1em;
+}
+
+.go-arrow{
+    font-size:2em;
+    color:white;
+}
+
+::placeholder{
+    text-align: left;
+    font-size: .8em;
+    padding-right: .3em;
+    font-family: Century Gothic, sans-serif;
+    color: #dbdbdb;
+}
+
+
+
+.bottom-title {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.bottom-item {
+    font-size: .8em;
+    font-weight: bold;
+    color: #d3d3d3;
+    margin-top: .4em;
+    cursor: pointer;
+}
+
+.bottom-phone {
+    font-weight: bold;
+    font-size: .8em;
+    margin-top: .6em;
+}
+
+.btn-modal-close{
+  background-color: rgb(68, 197, 242);
+  color: white;
+  border: 1px solid white;
+  /*box-shadow: 3px 3px 3px 1px #d2d2d2;*/
+}
+
+.btn-modal-continue-anyway{
+  background-color: #00e500;
+  color: white;
+  border: 1px solid white;
+ /* box-shadow: 3px 3px 3px 1px #d2d2d2;*/
+}
+
+.modal-title, .modal-body{
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.modal-body{
+  text-align: center;
+}
+
+.modal-footer{
+  display: inline-block;
+  text-align: center;
+}
+
+.modal-content{
+  background-color: rgb(68, 197, 242);
+  color:#fff;
+  border: 1px solid white;
+}
+
+.modal-icon-close{
+  color: white;
+}
+
+.image-tip-list{
+  margin-top: 1em;
+  margin-left: 3em;
+}
+
+.have-questions{
+  text-align: center;
+  color: #949697;
+  margin: 1em auto;
+  font-family: Nunito, sans-serif;
+  font-size: 1.84em;
+  font-weight: 400;
+  color: rgb(128, 128, 128);
+}
+
+.btn-contact {
+  text-align: center;
+  color: white; 
+  background-color: #43C5E4;
+  margin: 0 auto;
+  padding: 1em 5em;
+  border-radius: 1.5em;
+  cursor: pointer;
+  -moz-box-shadow:    5px 5px 10px 0px #d3d3d3;
+  -webkit-box-shadow: 5px 5px 10px 0px #d3d3d3;
+   box-shadow:         5px 5px 10px 0px #d3d3d3;
+}
+
+.btn-contact:focus { 
+  outline-style: none; 
+}
+
+/*bootstrap sm screen size and smaller*/
+@media only screen and (max-width: 576px) {
+    
+    .go-arrow{
+        font-size: 1.5em;
+    }
+    
+    .search-bar-bottom-label{
+      font-size: .3em;
+    }
+
+    .home-sub-title{
+        font-size: 1em;
+        text-align: center;
+    }  
+}
+
+/* Medium devices only(desktops, 992px) */
+@media (min-width: 576px) and (max-width: 992px)  { 
+
+  .top-header{
+    top: 8%;
+  }ls
+
+  .home-info-circle {
+    width: 140px;
+    height: 140px;
+  }
+
+  .home-info-circle-img{
+    width: .8em;
+  }
+
+  .circle-label{
+    margin-top: .2em;
+  }
+
+  .circleBase {
+    padding-top: .4em;
+  }
+
+
+}

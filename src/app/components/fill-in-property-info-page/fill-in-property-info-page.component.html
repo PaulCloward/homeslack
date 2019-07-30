@@ -1,0 +1,668 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_verify_b.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">PROPERTY </span> <span class="top-header-title-light">DETAILS</span></div>
+          </div>
+          <div class="row top-header-time-frame-icons-container d-none d-sm-block">
+            <div class="col-8 offset-2">
+            <div class="row">
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_time_grey.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_camera_grey.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_grey.png" />
+                </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="row top-header-time-frame-icons-container d-flex d-sm-none">
+              <div class="col-10 offset-1">
+                <div class="row">
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                  </div>
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                  </div>
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_time_grey.png" />
+                  </div>
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_camera_grey.png" />
+                  </div>
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_grey.png" />
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row d-none d-sm-block" style="margin-top: 5em">
+        <div class="col-12">
+            <div class="fill-in-page-title">
+                Let's Fill Out Your <span class="company-color">Home Information!</span>
+            </div>
+        </div>
+    </div>
+    <div class="row d-block d-sm-none" style="margin-top: 2em">
+        <div class="col-12">
+            <div class="fill-in-page-title">
+                Let's Fill Out Your <span class="company-color">Home Information!</span>
+            </div>
+        </div>
+    </div>
+    <div class="row d-none d-sm-block">
+        <div class="col-8 offset-2">
+            <div class="row">
+                <div class="col-7">
+                    <div class="label-property">
+                        Street Address
+                    </div>
+                    <input class="input-edit-property" type="text" [(ngModel)]="home.addressInfo.street" maxlength="30" />
+                </div>
+                <div class="col-5">
+                    <div class="label-property">Suite #</div>
+                    <input class="input-edit-property" type="text" pattern="\d*" maxlength="5" [(ngModel)]="apartmentNumber"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="label-property">City</div>
+                    <input class="input-edit-property" type="text" maxlength="12" [(ngModel)]="home.addressInfo.city" />
+                </div>
+                <div class="col">
+                    <div class="label-property">State</div>
+                    <input class="input-edit-property" type="text" maxlength="12" [(ngModel)]="home.addressInfo.state" />
+                </div>
+                <div class="col">
+                    <div class="label-property">Zip Code</div>
+                    <input class="input-edit-property" type="text" maxlength="6"  [(ngModel)]="home.addressInfo.zipCode" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-block d-sm-none">
+        <div class="col-10 offset-1">
+            <div class="row">
+                <div class="col-7">
+                    <div class="label-property">
+                                Street Address
+                    </div>
+                    <input class="input-edit-property" type="text" maxlength="30" [(ngModel)]="home.addressInfo.street" />
+                </div>
+                <div class="col-5">
+                    <div class="label-property">Suite #</div>
+                    <input class="input-edit-property" type="text" maxlength="4" [(ngModel)]="apartmentNumber" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="label-property">City</div>
+                    <input class="input-edit-property" type="text" maxlength="12" [(ngModel)]="home.addressInfo.city" />
+                </div>
+                <div class="col">
+                    <div class="label-property">State</div>
+                    <input class="input-edit-property" type="text" maxlength="12" [(ngModel)]="home.addressInfo.state" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="label-property">Zip Code</div>
+                    <input class="input-edit-property" type="text" maxlength="6" [(ngModel)]="home.addressInfo.zipCode" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-10 offset-1 information-title">
+            Property Details:
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1"  style="border-top: 1px solid #7E7E7E; padding-top: 1em">
+            <div class="row d-none d-md-flex">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/total_living_area.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{totalLivingAreaHint}}"/></div>
+                        <div class="col-9">
+                           <div class="label-property">
+                                Total Living Area
+                            </div>
+                            <div class="label-hint">Livable Sqft # in Home?</div>
+                            <input class="input-edit-property" type="number" [(ngModel)]="home.homeDetails.livingSquareFootage" maxlength="6" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/year_built.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{yearBuildHint}}"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Year Build 
+                            </div>
+                            <div class="label-hint">Year the House was Built?</div>
+                            <input class="input-edit-property" [(ngModel)]="home.homeDetails.yearBuild" type="text" maxlength="4"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/lot_size.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{lotSizeHint}}"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Lot Size
+                            </div>
+                            <div class="label-hint">Total Size of Lot in Sqft or Acres</div>
+                            <input *ngIf="home.homeDetails.lotSizeSelectedType == 0" class="input-edit-property" [(ngModel)]="home.homeDetails.lotSizeSqFt" type="number" maxlength="6"/>
+                            <input *ngIf="home.homeDetails.lotSizeSelectedType == 1" class="input-edit-property" [(ngModel)]="home.homeDetails.lotSizeAcres" type="number" maxlength="6"/>
+                            <div class="row" style="margin-top: 1em; margin-left: .2em">
+                                <div (click)="home.homeDetails.lotSizeSelectedType = 0" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.lotSizeSelectedType == 0}">
+                                    Sqft
+                                </div>
+                                <div (click)="home.homeDetails.lotSizeSelectedType = 1" class="col-3 label-property-result btn-result" 
+                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.lotSizeSelectedType == 1}">
+                                    Acres
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Second Row-->
+            <div class="row mt-4 d-none d-md-flex">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Bedrooms.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{bedroomsHint}}"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Bedrooms
+                            </div>
+                            <div class="label-hint">Finished Bedrooms in Home?</div>
+                            <div class="dropdown">
+                          <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBedroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: -1em;">
+                            1
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBedroom">
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomOne()">1</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomTwo()">2</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomThree()">3</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomFour()">4</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomFive()">5</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomSix()">6</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomSeven()">7</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomEight()">8</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomNine()">9</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomTen()">10</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBedroomOther()">Other</a>
+                          </div>
+                          
+
+                        </div>
+                        <div class="row" *ngIf="home.homeDetails.numBeds == -2">
+                            <div class="col-12">
+                               <input  class="input-edit-property" [(ngModel)]="bedroomDisplayNumber" placeholder="# of Bedrooms..." type="number" maxlength="3"/> 
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/bathroom.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{bathroomsHint}}"/></div>
+                        <div class="col-9">
+                        <div class="label-property">
+                            Bathrooms
+                        </div>
+                        <div class="label-hint">Finished Bathrooms in Home?</div>
+                        <div class="dropdown">
+                          <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBathroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: -1em;">
+                            1
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBathroom">
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomOne()">1</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomOneHalf()">1.5</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomOne3Quarters()">1.75</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomTwo()">2</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomTwoHalf()">2.5</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomTwo3Quarters()">2.75</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomThree()">3</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomThreeHalf()">3.5</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomThree3Quarters()">3.75</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomFour()">4</a>
+                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomOther()">Other</a>
+                          </div>
+                        </div>
+                        <input *ngIf="home.homeDetails.numBaths == -2" class="input-edit-property" [(ngModel)]="numBathroomsDisplay" placeholder="# of Bathrooms..." type="number" maxlength="100"/> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Basement.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{basementHint}}"/>
+                        </div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Basement
+                            </div>
+                            <div class="label-hint">Existing Basement? % Finished?</div>
+                            <div class="row mt-2 btn-row-margin-left">
+                                <div (click)="displayBasement = 'No'" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : displayBasement == 'No'}">
+                                    No
+                                </div>
+                                <div (click)="displayBasement = 'Yes'" class="col-3 label-property-result btn-result" 
+                                    [ngClass]="{'btn-result-clicked' : displayBasement == 'Yes'}">
+                                    Yes
+                                </div>
+                                <div class="dropdown" *ngIf="displayBasement == 'Yes'">
+                                  <button class="btn dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{basementPercentageFinished}}
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBasement">
+                                    <a class="dropdown-item" (click)="onClickBasementMakeSelection()">Percentage Finished?</a>
+                                    <a class="dropdown-item" (click)="onClickBasement10()">10%</a>
+                                    <a class="dropdown-item" (click)="onClickBasement25()">25%</a>
+                                    <a class="dropdown-item" (click)="onClickBasement50()">50%</a>
+                                    <a class="dropdown-item" (click)="onClickBasement75()">75%</a>
+                                    <a class="dropdown-item" (click)="onClickBasement90()">90%</a>
+                                    <a class="dropdown-item" (click)="onClickBasement100()">100%</a>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Third Row-->
+            <div class="row mt-4 d-none d-md-flex">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Garage.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{garageHint}}"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Garage
+                            </div>
+                            <div class="label-hint">
+                                Max # of Cars that Fit in Garage?
+                            </div>
+                            <!-- <input class="input-edit-property" [(ngModel)]="home.carGarage" type="text"/> -->
+                            <div class="dropdown">
+                              <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonGarage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left: -1em;">
+                                1
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonGarage">
+                                <a class="dropdown-item" (click)="onClickDropdownOptionGarageOneSpots()">1</a>
+                                <a class="dropdown-item" (click)="onClickDropdownOptionGarageTwoSpots()">2</a>
+                                <a class="dropdown-item" (click)="onClickDropdownOptionGarageThreeSpots()">3</a>
+                                <a class="dropdown-item" (click)="onClickDropdownOptionGarageFourSpots()">4</a>
+                                <a class="dropdown-item" (click)="onClickDropdownOptionGarageMoreThanFour()">Other</a>
+                                </div>
+                            </div>
+                            <input *ngIf="garageOther == true" class="input-edit-property" [(ngModel)]="garageSpots" placeholder="Garage Spots..." type="number" maxlength="100"/> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Pool.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{poolHint}}"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Pool 
+                            </div>
+                            <div class="label-hint">Does House have Pool?</div>
+                           <div class="row mt-2 btn-row-margin-left">
+                                <div (click)="onClickPoolNo()" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : displayPool == 'No'}">
+                                    No
+                                </div>
+                                <div (click)="onClickPoolYes()" class="col-3 label-property-result btn-result" 
+                                    [ngClass]="{'btn-result-clicked' : displayPool == 'Yes'}">
+                                    Yes
+                                </div>
+                                <div *ngIf="displayPool == 'Yes'" style="width: 100%">
+                                    <textarea class="input-edit-property" [(ngModel)]="poolCondition" placeholder="Describe Pool condition..." style="resize: none" type="text" maxlength="100"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/hot_tub.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{hotTubHint}}"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Hot Tub
+                            </div>
+                           <div class="label-hint">In-Ground Hot Tub?</div>
+                            <div class="row mt-2 btn-row-margin-left">
+                                <div (click)="onClickHotTubNo()" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : displayHotTub == 'No'}">
+                                    No
+                                </div>
+                                <div (click)="onClickHotTubYes()" class="col-3 label-property-result btn-result" 
+                                    [ngClass]="{'btn-result-clicked' : displayHotTub == 'Yes'}">
+                                    Yes
+                                </div>
+                                <div *ngIf="displayHotTub == 'Yes'" style="width: 100%">
+                                    <textarea class="input-edit-property" [(ngModel)]="hotTubCondition" placeholder="Describe Hot Tub condition..." style="resize: none" type="text" maxlength="100"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+             
+            <!--Fourth Row-->
+            <div class="row mt-4 d-none d-md-flex">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Cooling.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{coolingHint}}"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Cooling
+                            </div>
+                            <div class="label-hint">Home Cooling System Type?</div>
+                            <div class="dropdown">
+                              <button class="btn dropdown-toggle"  style="margin-top: .3em; margin-left: -1em;" type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Central HVAC
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCooling">
+                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionOne()">Central HVAC</a>
+                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionTwo()">Furnace & Swamp Cooler</a>
+                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionThree()">Swamp Cooler Only</a>
+                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionFour()">Window Unit(s)</a>
+                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionFive()">Furnace Only</a>
+                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionSix()">None</a>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- First Row md, xs -->
+            <div class="row d-flex d-md-none">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/total_living_area.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                           <div class="label-property">
+                                Total Living Area
+                            </div>
+                            <input class="input-edit-property" type="text" [(ngModel)]="home.homeDetails.livingSquareFootage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/year_built.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Year Build 
+                            </div>
+                       
+                            <input class="input-edit-property" [(ngModel)]="home.homeDetails.yearBuild" type="number" maxlength="4"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Second Row md, xs-->
+            <div class="row mt-4 d-flex d-md-none">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/lot_size.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Lot Size
+                            </div>
+                            
+                            <input *ngIf="home.homeDetails.lotSizeSelectedType == 0" class="input-edit-property" [(ngModel)]="home.homeDetails.lotSizeSqFt" type="number" maxlength="6"/>
+                            <input *ngIf="home.homeDetails.lotSizeSelectedType == 1" class="input-edit-property" [(ngModel)]="home.homeDetails.lotSizeAcres" type="number" maxlength="6"/>
+
+                            <div class="row" style="margin-top: 1em; margin-left: .2em">
+                                <div (click)="home.homeDetails.lotSizeSelectedType = 0" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.lotSizeSelectedType == 0}">
+                                    Sqft
+                                </div>
+                                <div (click)="home.homeDetails.lotSizeSelectedType = 1" class="col-3 label-property-result btn-result" 
+                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.lotSizeSelectedType == 1}">
+                                    Acres
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Bedrooms.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Bedrooms
+                            </div>
+                            
+                            <input class="input-edit-property" [(ngModel)]="home.homeDetails.numBeds" type="text"/>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!--Third Row md, xs-->
+            <div class="row mt-4 d-flex d-md-none">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/bathroom.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                        <div class="label-property">
+                            Bathrooms
+                        </div>
+                       
+                        <!-- <input class="input-edit-property" [(ngModel)]="home.numBaths" type="text"/> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Basement.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Basement
+                            </div>
+                            
+                            <input class="input-edit-property" [(ngModel)]="home.homeDetails.basement" type="text"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fourth Row md, xs -->
+            <div class="row mt-4 d-flex d-md-none">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Garage.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Garage
+                            </div>
+                            
+                            <input class="input-edit-property" [(ngModel)]="home.homeDetails.carGarage" type="text"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Pool.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Pool 
+                            </div>
+                            
+                           <div class="row mt-2 btn-row-margin-left">
+                                <div (click)="displayPool = 'No'" class="col label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : displayPool == 'No'}">
+                                    No
+                                </div>
+                                <div (click)="displayPool = 'Yes'" class="col label-property-result btn-result" 
+                                    [ngClass]="{'btn-result-clicked' : displayPool == 'Yes'}">
+                                    Yes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fifth Row md, xs -->
+            <div class="row mt-4 d-flex d-md-none">
+                
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/hot_tub.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Hot Tub
+                            </div>
+                           
+                            <div class="row mt-2 btn-row-margin-left">
+                                <div (click)="onClickHotTubNo()" class="col label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : displayHotTub == 'No'}">
+                                    No
+                                </div>
+                                <div (click)="onClickHotTubYes()" class="col label-property-result btn-result" 
+                                    [ngClass]="{'btn-result-clicked' : displayHotTub == 'Yes'}">
+                                    Yes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Cooling.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="Tooltip on top"/></div>
+                        <div class="col-9">
+                            <div class="label-property">
+                                Cooling
+                            </div>
+                            
+                            <div class="row mt-2 btn-row-margin-left">
+                                <div  (click)="displayCooling = 'No'" class="col label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : displayCooling == 'No'}">
+                                    No
+                                </div>
+                                <div (click)="displayCooling = 'Yes'" class="col label-property-result btn-result" 
+                                    [ngClass]="{'btn-result-clicked' : displayCooling == 'Yes'}">
+                                    Yes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            
+            <div class="row" style="margin-top: 1em; padding-top: 1em; border-top: 1px solid #7E7E7E">
+                <div class="col-12">
+                    <div class="label-question">About How Old is the Roof<span class="question-mark">?</span></div>
+                    <div class="dropdown">
+                      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButtonRoof" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        1-3 Years
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="onClickDropdownOptionRoofOne()">1-3 Years</a>
+                        <a class="dropdown-item" (click)="onClickDropdownOptionRoofTwo()">4-6 Years</a>
+                        <a class="dropdown-item" (click)="onClickDropdownOptionRoofThree()">7-10 Years</a>
+                        <a class="dropdown-item" (click)="onClickDropdownOptionRoofFour()">11-15 Years</a>
+                        <a class="dropdown-item" (click)="onClickDropdownOptionRoofFive()">16+ Years</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" >
+                <div class="col-12">
+                    <div class="label-question">Any HVAC, Plumbing, Electrical, or Roofing Issues we should know about<span class="question-mark">?</span></div>
+
+                    <textarea class="input-edit-property" [(ngModel)]="home.concerns.hperIssues" placeholder="HVAC, Plumbing, Electrical, or Roofing Issues..." style="resize: none" type="text" maxlength="300"></textarea>
+                </div>
+            </div>
+           
+            
+            <div class="row" style="padding-bottom: 1em">
+                <div class="col-12">
+                    <div class="label-question">Any other concerns you can tell us about<span class="question-mark">?</span></div>
+
+                    <textarea class="input-edit-property" [(ngModel)]="home.concerns.otherConcerns" placeholder="Other concerns..." style="resize: none" type="text" maxlength="300"></textarea>
+                </div>
+            </div>
+            
+            <div *ngIf="!loggedIn" class="row" class="create-account-subtitle" style="padding-top: 1em; border-top: 1px solid #7E7E7E">
+                Create a Homeface account to save your information and to start the process selling your home.
+            </div>
+            <div *ngIf="!loggedIn" class="row" style="margin-top: 1em;">
+                <button class="btn btn-create-account" (click)="onClickCreateAccount()">Create Account</button>
+            </div>
+            
+            <div *ngIf="loggedIn" class="row">
+                <div class="col-12">
+                    <div class="btn-container">
+                        <button class="btn-next" (click)="onClickNext()">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" class="create-account-subtitle">
+                Need help? Call: 888-888-9999 to reach our hotline with questions.
+            </div>
+
+        </div>
+    </div>
+    <br><br>
+</div>
+<div class="row">
+  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
+    <div class="container-fluid">
+      <div class="row">
+         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 address">
+          HomeSupervisor@homeslack.com<br>
+          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

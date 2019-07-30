@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
+# Pauls edit on how to run angular on cloud 9
+
+ng serve --host 0.0.0.0 --port 8080 --disableHostCheck
+# Then preview running application
+
+# Ive had to get the latest version of node when reopening project. Did it with 
+# nvm install 8.11.1
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

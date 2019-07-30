@@ -1,0 +1,114 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_image_upload.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">IMAGE</span> <span class="top-header-title-light"> UPLOADS</span></div>
+          </div>
+        </div>
+
+        <div class="row top-header-time-frame-icons-container">
+            <div class="col-8 offset-2">
+            <div class="row">
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../verify-info-page']" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../time-frame']" src="../../../assets/img/ic_time_frame_time_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_camera_blue.png"/>
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_grey.png" />
+                </div>
+                </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <p class="image-upload-description col-8 offset-2">
+              Now that you have chosen your time frame, it's time to upload pictures of your home! These will be the pictures that investors will use to assess the condition of your property. Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.
+        </p>
+    </div> 
+    <div class="row" style="margin-top: 0em;">
+        <div class="header-tips col-8 offset-2">
+            Here's a few tips to help improve the quality of your photos:
+        </div>
+        <ol class="tip-list col-8 offset-2">
+            <li class="tip-item">Hold your camera steady</li>
+            <li class="tip-item">Good lighting</li>
+            <li class="tip-item">Take horizontal photos (landscape) </li>
+            <li class="tip-item">Minimum of 20 photos</li>
+        </ol>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="dropzone" 
+                 appDropZone
+                 (hovered)="toggleHover($event)"
+                 (dropped)="startUpload($event)"
+                 [class.hovering]="isHovering">
+
+                <div class="upload-label">Drag and drop a file to upload</div>
+                <br>
+                <input id="imageUploadInputTag" class="file-input" type="file" (change)="startUpload($event.target.files)" style="display:none">
+                <div class="image-upload-icon">
+                <img  src="../../../assets/img/camera-image-upload.png" (click)="clickImageUploadIcon()"  />
+                </div>
+                <div class="upload-label">or click the icon</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 offset-2">
+        <div *ngIf="percentage | async as pct">
+          <progress class="progress is-info" 
+                    [value]="pct" 
+                    max="100">        
+          </progress>
+          {{ pct | number }}%
+        </div>
+        <div *ngIf="(snapshot | async) as snap">
+          {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }} 
+        	<div *ngIf="downloadURL | async as url">
+        	  <h3>Results!</h3>
+        	  <img class="img-result" [src]="url"><br>
+        	  <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+        	</div> 
+        	<hr>
+        	<button (click)="task.pause()" class="button is-warning" [disabled]="!isActive(snap)">Pause</button>
+        	<button (click)="task.cancel()" class="button is-danger" [disabled]="!isActive(snap)">Cancel</button>
+        	<button (click)="task.resume()" class="button is-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
+        </div>
+        <button class="btn btn-next" (click)="clickNextPage()">Next</button>
+    </div>
+    
+    <br><br><br>
+</div>
+<div class="row">
+  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
+    <div class="container-fluid">
+      <div class="row">
+         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 address">
+          HomeSupervisor@homeslack.com<br>
+          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

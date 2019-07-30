@@ -1,0 +1,81 @@
+*{
+    font-family: Century Gothic, sans-serif;
+}
+
+.list-title {
+    margin-top: 1em;
+    color: rgb(68, 197, 242);
+    font-weight: bold;
+     font-size: 1em;
+    font-family: Century Gothic, sans-serif;
+}
+
+.list-item{
+    font-size: .8em;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 300;
+}
+
+.description{
+    font-size: 1em;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 300;
+}
+
+.right-side {
+    padding: 0em 2em 0em 2em;
+}
+
+.left-side {
+    padding: 0em 4em;
+    border-right: 1px solid #d3d3d3;
+}
+
+.contact-input {
+    width: 100%;
+    border-radius: .5em;
+    border: .5px solid gray;
+    outline: none;
+    margin-top: 1em;
+    color: #464646;
+    font-size: 1em;
+    font-family: Century Gothic, sans-serif;
+    padding: .4em 1em;
+}
+
+::placeholder{
+    
+    font-size: 1em;
+    font-family: Century Gothic, sans-serif;
+    color: #d3d3d3;
+}
+
+.text-area{
+    padding: .4em 1em;
+    width: 100%;
+    resize: none;
+    margin-top: 1em;
+    border-radius: .5em;
+    border: .5px solid gray;
+    outline: none;
+    color: #464646;
+    font-size: 1em;
+    font-family: Century Gothic, sans-serif;
+}
+
+.btn-container{
+    width: 100%;
+    text-align: end;
+}
+
+.btn-send{
+    margin-top: 1em;
+    color: white;
+    background-color: rgb(68, 197, 242);
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+    padding: .5em 1.5em;
+    outline: none;
+    box-shadow: 2px 2px 5px 0px #888;
+}

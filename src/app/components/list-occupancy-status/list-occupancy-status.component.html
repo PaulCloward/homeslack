@@ -1,0 +1,301 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_image_upload.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">LISTING AND</span> <span class="top-header-title-light"> OCCUPANCY STATUS</span></div>
+          </div>
+        </div>
+
+        <div class="row top-header-time-frame-icons-container">
+            <div class="col-8 offset-2">
+            <div class="row">
+                <div class="col-2 top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                </div>
+                <div class="col-2 top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../verify-info-page']" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                </div>
+                <div class="col-2 top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_time_blue.png" />
+                </div>
+                <div class="col-2 top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../listing-occupancy']" src="../../../assets/img/ic_document_blue.png" />
+                </div>
+                <div class="col-2 top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_camera_grey.png"/>
+                </div>
+                <div class="col-2 top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_grey.png" />
+                </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top: 4em;">
+  <div class="row">
+      <div class="col-6 offset-3 question">
+          Is your home managed by a property management company?
+      </div>
+  </div>
+    <div class="row" style="margin-bottom: 1em">
+      <div class="col-6 offset-3">
+          <div class="form-group">
+          <div class="form-control checkmark-container">
+              <div class="form-check">
+              <label class="container">Yes, I have a property manager in place
+              <input type="radio" value="yes" name="homeManagedByCompany" [(ngModel)]="homeManagedByCompany" (click)="setIsHomeManagedByCompany(true)">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+              <div class="form-check">
+              <label class="container">No, I manage the rental myself
+              <input type="radio" value="no" name="homeManagedByCompany" [(ngModel)]="homeManagedByCompany" (click)="setIsHomeManagedByCompany(false)">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+            </div>
+          </div>
+      </div>
+    </div> 
+  	<!-- <div class="row">
+    	<div class="col-6 offset-3 question">
+      	  Is this property currently listed with a realtor?
+    </div>
+ 	</div>
+  	<div class="row" style="margin-bottom: 1em">
+    	<div class="col-6 offset-3">
+          <div class="form-group">
+	        <div class="form-control checkmark-container">
+	            <div class="form-check">
+	            <label class="container">Yes
+	            <input type="radio" value="yes" name="listedWithRealtor" [(ngModel)]="listedWithRealtor" (click)="isListedWithRealtor()">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	            <div class="form-check">
+	            <label class="container">No
+	            <input type="radio" value="no" name="listedWithRealtor" [(ngModel)]="listedWithRealtor" (click)="isNotListedWithRealtor()">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	          </div>
+	        </div>
+	    </div>
+  	</div> -->
+
+  	<!-- <div class="row" *ngIf="realtorProperty">
+    	<div class="col-6 offset-3 question">
+      	  Do you understand that you will be required to pay any and all fees that you are contractually obligated to pay at the time of closing to your realtor or broker?
+    	</div>
+ 	</div>
+  	<div class="row" style="margin-bottom: 1em" *ngIf="realtorProperty">
+    	<div class="col-6 offset-3">
+          <div class="form-group">
+	        <div class="form-control checkmark-container">
+	            <div class="form-check">
+	            <label class="container">Yes
+	            <input type="radio" value="yes" name="payTimeOfClosing" [(ngModel)]="payTimeOfClosing" >
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	            <div class="form-check">
+	            <label class="container">No
+	            <input type="radio" value="no" name="payTimeOfClosing" [(ngModel)]="payTimeOfClosing">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	          </div>
+	        </div>
+	    </div>
+  	</div> -->
+
+  	<!-- <div class="row" *ngIf="realtorProperty">
+    	<div class="col-6 offset-3 question">
+      	  I understand and agree to pay all fees I am under contract to pay to a realtor or broker.
+    	</div>
+ 	</div>
+  	<div class="row" style="margin-bottom: 1em" *ngIf="realtorProperty">
+    	<div class="col-6 offset-3">
+          <div class="form-group">
+	        <div class="form-control checkmark-container">
+	            <div class="form-check">
+	            <label class="container">Yes
+	            <input type="radio" value="yes" name="payFeesRealtorBroker" [(ngModel)]="payFeesRealtorBroker">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	            <div class="form-check">
+	            <label class="container">No
+	            <input type="radio" value="no" name="payFeesRealtorBroker" [(ngModel)]="payFeesRealtorBroker">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	          </div>
+	        </div>
+	    </div>
+  	</div> -->
+
+  	<div class="row" *ngIf="realtorProperty">
+    	<div class="col-6 offset-3 question">
+      	  Is your property currently rented out?
+    	</div>
+ 	  </div>
+  	<div class="row" style="margin-bottom: 1em" *ngIf="realtorProperty">
+    	<div class="col-6 offset-3">
+          <div class="form-group">
+	        <div class="form-control checkmark-container">
+	            <div class="form-check">
+	            <label class="container">Yes
+	            <input type="radio" value="yes" name="propertyRentedOut" [(ngModel)]="propertyRentedOut">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	            <div class="form-check">
+	            <label class="container">No
+	            <input type="radio" value="no" name="propertyRentedOut" [(ngModel)]="propertyRentedOut">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	          </div>
+	        </div>
+	    </div>
+  	</div>
+
+  	<div class="row" *ngIf="!realtorProperty && listedWithRealtor">
+    	<div class="col-6 offset-3 question">
+      	  Are you contracted with a property management company?
+    	</div>
+ 	</div>
+  	<div class="row" style="margin-bottom: 1em" *ngIf="!realtorProperty && listedWithRealtor">
+    	<div class="col-6 offset-3">
+          <div class="form-group">
+	        <div class="form-control checkmark-container">
+	            <div class="form-check">
+	            <label class="container">Yes
+	            <input type="radio" value="yes" name="contractPropertyManagement" [(ngModel)]="contractPropertyManagement">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	            <div class="form-check">
+	            <label class="container">No
+	            <input type="radio" value="no" name="contractPropertyManagement" [(ngModel)]="contractPropertyManagement">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	          </div>
+	        </div>
+	    </div>
+  	</div>
+
+  	<div class="row" *ngIf="homeManagedByCompany">
+    	<div class="col-6 offset-3 question">
+      	  When does your agreement with the property manager expire?
+    	</div>
+ 	  </div>
+    <div class="row" *ngIf="homeManagedByCompany">
+      <div class="col-12 datepicker-container">
+        <ngb-datepicker id="datePropertyManagementAgreementExpiration" [displayMonths]="2" (navigate)="date = $event.next"></ngb-datepicker>
+      </div>
+    </div>
+  	
+  	<div class="row" *ngIf="homeManagedByCompany">
+    	<div class="col-6 offset-3 question">
+      	  Upload your property management agreement here.
+    	</div>
+ 	  </div>
+    <div class="row" *ngIf="homeManagedByCompany">
+      <div class="col-6 offset-3">
+        <button class="btn-choose-file">Choose File</button>
+      </div>
+    </div>
+  
+  	<div class="row" *ngIf="!homeManagedByCompany">
+    	<div class="col-6 offset-3 question">
+      	  When does your rental agreement expire?
+    	</div>
+ 	  </div>
+    <div class="row" *ngIf="!homeManagedByCompany">
+      <div class="col-12 datepicker-container">
+        <ngb-datepicker id="dateRentalAgreementExpiration" [displayMonths]="2" (navigate)="date = $event.next"></ngb-datepicker>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!homeManagedByCompany">
+      <div class="col-6 offset-3 question">
+          Upload your rental agreement here.
+      </div>
+    </div>
+
+    <div class="row" *ngIf="!homeManagedByCompany">
+      <div class="col-6 offset-3">
+        <button class="btn-choose-file">Choose File</button>
+      </div>
+    </div>
+  	
+  	<div class="row">
+    	<div class="col-6 offset-3 question">
+      	  What amount is your tenant contractually obligated to pay each month?
+    	</div>
+ 	  </div>
+
+    <div class="row">
+      <div class="col-6 offset-3">
+        <input class="money-input" placeholder="$$$" />
+      </div>
+    </div>
+
+
+ 	<div class="row">
+    	<div class="col-6 offset-3 question">
+      	  Do you have a security or cleaning deposit?
+    	</div>
+ 	</div>
+  	<div class="row">
+    	<div class="col-6 offset-3">
+          <div class="form-group">
+	        <div class="form-control checkmark-container">
+	            <div class="form-check">
+	            <label class="container">Yes
+	            <input type="radio" value="yes" name="securityCleaningDeposit" [(ngModel)]="securityCleaningDeposit">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	            <div class="form-check">
+	            <label class="container">No
+	            <input type="radio" value="no" name="securityCleaningDeposit" [(ngModel)]="securityCleaningDeposit">
+	            <span class="checkmark"></span>
+	          </label>
+	          </div>
+	          </div>
+	        </div>
+	    </div>
+  	</div>
+
+    <div class="row">
+      <div class="col-6 offset-3 question">
+          Deposit Amount?
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 offset-3">
+        <input class="money-input" placeholder="$$$" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 offset-3" style="padding:0em;">
+          <div class="btn-container">
+              <button class="btn-next" (click)="onClickNext()">Next</button>
+          </div>
+      </div>
+    </div>
+  	
+    
+
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+</div>

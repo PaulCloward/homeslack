@@ -1,0 +1,204 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_why_us.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">WHY</span> <span class="top-header-title-light"> US?</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="container-fluid bottom-container d-none d-md-block">
+    <div class="row">
+        <div class="col-6 offset-3 header">
+            <span class="header-description">It's Simple... </span><span class="header-company">Homeslack </span><span class="header-description">Eliminates:</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3 list-container">
+            <ul>
+                <li>
+                    <div class="row why-row" (click)="toggleContainer1()">
+                    <div class="col-2 align-self-center" style="padding: 0;">
+                      <div class="badge d-flex justify-content-center">
+                        <div class="align-self-center">1</div>
+                      </div>
+                    </div>
+                    <div class="col-8 why-column align-self-center">
+                      <div class="list-item-title">Spending thousands on a realtor</div>
+                      <div *ngIf="viewMoreClicked1" class="bottomborder"></div>
+                    </div>
+                    <div *ngIf="!viewMoreClicked1" class="col-2 d-flex justify-content-end">
+                      <div class="view-more align-self-end" >View more</div>
+                    </div>
+                    <div id="container-1" class="container-init">
+                      <div class="row">
+                        <div class="offset-2 col-10 d-flex" style="padding-top: 1em">
+                          <span>Sure, you can list your home with a realtor, or you can keep thousands of dollars in your pocket. You decide. 
+                          <br><br>
+                          Traditional realtor fees are 6% and paid completely by the seller from the proceeds of the home. That is $12,000 on a $200,000 home that you could be keeping in your own pocket. That isn't even including your seller's closing costs! 
+                          <br><br>
+
+                          With Homeslack, you pay nothing to sell your home. It is completely free. Sound too good to be true? It's not. All costs associated with the selling and buying of your home (think closing costs, title, renovations, etc.) are paid by our qualified investors.
+                          </span>
+                        </div>
+                        <!-- <div class="col-3 d-flex"><img class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/family.jpg" /></div> -->
+                        <div *ngIf="viewMoreClicked1" class="offset-10 col-2 d-flex justify-content-end">
+                          <div class="view-more align-self-end">View less</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <div class="row why-row" (click)="toggleContainer2()">
+                    <div class="col-2 align-self-center" style="padding: 0;">
+                      <div class="badge d-flex justify-content-center">
+                        <div class="align-self-center">2</div>
+                      </div>
+                    </div>
+                    <div class="col-8 why-column align-self-center">
+                      <div class="list-item-title">Time and hassle of selling your home</div>
+                      <div *ngIf="viewMoreClicked2" class="bottomborder"></div>
+                    </div>
+                    <div *ngIf="!viewMoreClicked2" class="col-2 d-flex justify-content-end">
+                      <div class="view-more align-self-end" >View more</div>
+                    </div>
+                    <div id="container-2" class="container-init">
+                      <div class="row">
+                        <div class="offset-2 col-10 d-flex" style="padding-top: 1em">
+                          <span>With Homeslack, there are no showings or open houses and you don't need to make any changes, updates or improvements to your home. Our qualified investors will like it just the way it is.  
+                          <br><br>
+                          Avoid the hassles of selling by taking as little as 20 minutes to create your homeslack profile and start receiving offers!
+                          </span>
+                        </div>
+                        <!-- <div class="col-3 d-flex"><img class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/family.jpg" /></div> -->
+                        <div *ngIf="viewMoreClicked2" class="offset-10 col-2 d-flex justify-content-end">
+                          <div class="view-more align-self-end">View less</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <div class="row why-row" (click)="toggleContainer3()">
+                    <div class="col-2 align-self-center" style="padding: 0;">
+                      <div class="badge d-flex justify-content-center">
+                        <div class="align-self-center">3</div>
+                      </div>
+                    </div>
+                    <div class="col-8 why-column align-self-center">
+                      <div class="list-item-title">Haggling with a low balling buyer</div>
+                      <div *ngIf="viewMoreClicked3" class="bottomborder"></div>
+                    </div>
+                    <div *ngIf="!viewMoreClicked3" class="col-2 d-flex justify-content-end">
+                      <div class="view-more align-self-end" >View more</div>
+                    </div>
+                    <div id="container-3" class="container-init">
+                      <div class="row">
+                      <div class="offset-2 col-10 d-flex" style="padding-top: 1em">
+                        <span>With decades of experience in real estate, Homeslack knows what it is like to be low-balled. That’s why we found a way to bring hundreds of qualified investors to one place. Take advantage of our experience and avoid haggling with a single investor or company. By bringing hundreds of qualified investors directly to you, the ball is in your court!
+                        </span>
+                      </div>
+                      <!-- <div class="col-3 d-flex"><img class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/family.jpg" /></div> -->
+                      <div *ngIf="viewMoreClicked3" class="offset-10 col-2 d-flex justify-content-end">
+                        <div class="view-more align-self-end">View less</div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-12 bottom-page-container">
+          <div class="container-fluid">
+            <div class="row">
+               <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 address">
+                HomeSupervisor@homeslack.com<br>
+                Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+</div>
+
+<div class="container-fluid bottom-container d-block d-md-none">
+    <div class="row">
+        <div class="col-10 offset-1 header-xs">
+            <span class="header-description">It's Simple... </span><span class="header-company">Homeslack </span><span class="header-description">Eliminates:</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1 list-container">
+            <ul>
+                <li class="list-item d-flex">
+                    <div class="list-item-oval-xs align-self-center d-inline-flex justify-content-center">
+                        <div class="align-self-center">1</div>
+                    </div>
+                    <div class="list-item-title-xs d-inline-flex align-self-center">
+                        <div class="align-self-center">Spending thousands on a realtor</div>
+                    </div>
+                    <div class="view-more-xs align-self-end ml-auto">
+                        View more
+                    </div>
+                </li>
+                <li class="list-item d-flex">
+                    <div class="list-item-oval-xs align-self-center d-inline-flex justify-content-center">
+                        <div class="align-self-center">2</div>
+                    </div>
+                    <div class="list-item-title-xs d-inline-flex align-self-center">
+                        <div class="align-self-center">Time and hassle of selling your home</div>
+                    </div>
+                    <div class="view-more-xs align-self-end ml-auto">
+                        View more
+                    </div>
+                </li>
+                <li class="list-item d-flex">
+                    <div class="list-item-oval-xs align-self-center d-inline-flex justify-content-center">
+                        <div class="align-self-center">3</div>
+                    </div>
+                    <div class="list-item-title-xs d-inline-flex align-self-center">
+                        <div class="align-self-cente">Haggling with a low balling buyer</div>
+                    </div>
+                    <div class="view-more-xs align-self-end ml-auto">
+                        View more
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+      <div class="col-12 bottom-page-container">
+        <div class="container-fluid">
+          <div class="row">
+             <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 address">
+              HomeSupervisor@homeslack.com<br>
+              Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>

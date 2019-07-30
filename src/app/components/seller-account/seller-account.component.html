@@ -1,0 +1,53 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_seller_account.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container-profile-image">
+            <div class="profile-image-container rounded-circle">
+              <img src="../../../assets/img/avatar.png" class="profile-image"/>
+            </div>
+            <div class="top-header-title">
+              <span class="top-header-title-bold">{{mUser.firstName}}&nbsp;</span> 
+              <span class="top-header-title-light">{{mUser.lastName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6 offset-3 header">
+      My Listed <span class="properties">Properties</span>
+      <div class="line-divider"></div>
+    </div>
+    <div class="col-6 offset-3">
+      <app-seller-listed-property [home]="home" (click)="onClickListedProperty()"></app-seller-listed-property>
+      
+      <!-- <div class="line-divider"></div> -->
+      <br><br><br><br><br>
+      <!-- <div *ngFor="let h of home">
+        {{h}}
+      </div> -->
+    </div>
+    
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
+    <div class="container-fluid">
+      <div class="row">
+         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 address">
+          HomeSupervisor@homeslack.com<br>
+          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.flashMessage{
+    position: absolute;
+    top: 5em;
+    left: 5%; 
+    width: 90%;
+    z-index: 1000000;
+    pointer-events: none;
+    background: #FF4D4D;
+    text-align: center;
+    padding: 1em 1em;
+    border-radius: 5px;
+    color: #fff;
+    font-size:14px;
+}
+
+.animateCss{
+    -webkit-transition: opacity 1000ms ease-in-out,margin-left 500ms ease-in-out;
+    -moz-transition: opacity 1000ms ease-in-out,margin-left 500ms ease-in-out;
+    -ms-transition: opacity 1000ms ease-in-out,margin-left 500ms ease-in-out ;
+    -o-transition: opacity 1000ms ease-in-out,margin-left 500ms ease-in-out;
+    transition: opacity 1000ms ease-in-out,margin-left 500ms ease-in-out;
+    opacity: 0;
+}
+.showFlashmessage{
+    opacity: 2;
+}

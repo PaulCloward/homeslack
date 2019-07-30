@@ -1,0 +1,60 @@
+.property-listing-container{
+    background-color: #ededed;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.house-img{
+    height: 8em;
+    width: 8em;
+}
+
+.address-line-one{
+    margin-top: 1em;
+    font-size: 1.7em;
+    font-weight: 600;
+    line-height: 1em;
+}
+
+.address-line-two{
+    font-size: 1.3em;
+}
+
+.investors-viewed{
+    margin-top: 1.5em;
+    font-size: 1.1em;
+}
+
+.investors-viewed-number {
+    background-color: rgb(68, 197, 242);
+    padding: .0em .4em;
+    border-radius: .3em;
+    margin-right: .2em;
+    color: white;
+}
+
+.closing-label {
+    margin-top: .5em;
+    font-size: 2.3em;
+    text-align: center;
+}
+
+.countdown-circle{
+    background-color: rgb(68, 197, 242);
+    height: 5em;
+    width: 5em;
+    border-radius: 5em;
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+}
+
+.countdown-circle-number{
+    font-size: 2em;
+}
+
+.countdown-label{
+    margin-top: .5em;
+    text-align: center;
+
+}

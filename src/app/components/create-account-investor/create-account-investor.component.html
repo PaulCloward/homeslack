@@ -1,0 +1,185 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_create_account.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">CREATE</span> <span class="top-header-title-light"> ACCOUNT</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- <app-flash-message [message]='alertMessage'></app-flash-message> -->
+<div class="col-6 offset-3 d-none d-md-block" style="padding: 4em 0em 0em 0em; text-align: center">
+	<label class="title">Welcome to <span class="title-company">Homeface</span></label>
+	<input class="input-login" type="text" placeholder="Company Name (Entity)" [(ngModel)]="firstName">
+	<input class="input-login" type="text" placeholder="Contact Name: (First, Last)"  [(ngModel)]="lastName">
+	<input class="input-login" type="text" placeholder="Phone"  [(ngModel)]="phone">
+	
+	<input class="input-login" type="text" placeholder="Street Address / PO BOX" [(ngModel)]="streetAddress" />
+	<input class="input-login" type="text" placeholder="Suite #" [(ngModel)]="suiteNumber" />
+	<input class="input-login" type="text" placeholder="City" [(ngModel)]="city" />
+	<input class="input-login" type="text" placeholder="Zip" [(ngModel)]="zip" />
+	<input class="input-login" type="text" placeholder="EIN # or Social Security #" [(ngModel)]="ein" />
+  <div class="row">
+    <div class="col-12">
+  	 <div class="dropdown">
+        <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBedroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{selectedCompanyType}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBedroom">
+          <a class="dropdown-item" (click)="onClickCompanyType(SOLE_PROPRIETORSHIP,
+          'Sole Proprietorship')">Sole Proprietorship</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(GENERAL_PARTNERSHIP,'General Partnership')">General Partnership</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(LIMITED_PARNERSHIP,'Limited Partnership')">Limited Partnership</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(LIMITED_LIABILITY_PARTNERSHIP,'Limited Liability Partnership (LLP)')">Limited Liability Partnership (LLP)</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(LIMITED_LIABILITY_LIMITED_PARTNERSHIP,'Limited Liability Limited Partnership (LLLP)')">Limited Liability Limited Partnership (LLLP)</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(CORPORATION,'Corporation')">Corporation</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(NON_PROFIT_CORPORATION,'Non-profit Corporation')">Non-profit Corporation</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(LIMITED_LIABILITY_CORPORATION,'Limited Liability Company (LLC)')">Limited Liability Company (LLC)</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(MASSACHUSETTS_TRUSTS,'Massachusetts Trust')">Massachusetts Trust</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(TRUST,'Trust')">Trust</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(JOINT_VENTURE,'Joint Venture')">Joint Venture</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(TENANTS_IN_COMMON,'Tenants in Common')">Tenants in Common</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(MUNICIPALITY,'Municipality')">Municipality</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(ASSOCIATION,'Association')">Association</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-11 offset-1" style="text-align: left !important; margin-top: .5em; margin-bottom: .5em">
+      <span class="color-secondary">Why does Homeslack need</span><span class="color-primary"> this?</span>
+    </div>
+  </div>
+	<input class="input-login" type="email" placeholder="Email/login" [(ngModel)]="email" />
+	<input class="input-login" type="password" placeholder="Password" [(ngModel)]="password">
+	<input class="input-login" type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+	
+
+  <div class="form-group">
+    <div class="form-control checkmark-container">
+      <div class="form-check">
+	    <label class="container">I want to receive status updates via text
+		  <input type="checkbox" checked="checked">
+		  <span class="checkmark"></span>
+		</label>
+	  </div>
+      <div class="form-check">
+	    <label class="container">I want to receive status updates via email
+		  <input type="checkbox" checked="checked">
+		  <span class="checkmark"></span>
+		</label>
+	  </div>
+    </div>
+  </div>
+    
+	
+	<div class="company-terms">By creating an account you are agreeing with the Homeface <a class="terms-link">Terms</a></div>
+	
+	<input type="submit" value="Create" class="btn btn-light" placeholder="Login"  /> 
+	
+	
+	<div class="line-divider" style="margin-top:3.4em;"></div>
+	<div class="already-have-account-div">Already have a Homeface account? 
+		<a class="sign-in-link" [routerLink]="['/login']">Sign In</a>
+	</div>
+	<!-- <div class="line-divider" style="margin-bottom: 0em"></div> -->
+</div>
+
+<div class="col-8 offset-2 d-block d-md-none" style="padding: 4em 0em 0em 0em; text-align: center">
+  <label class="title">Welcome to <span class="title-company">Homeface</span></label>
+  <input class="input-login" type="text" placeholder="Company Name (Entity)" [(ngModel)]="firstName">
+  <input class="input-login" type="text" placeholder="Contact Name: (First, Last)"  [(ngModel)]="lastName">
+  <input class="input-login" type="text" placeholder="Phone"  [(ngModel)]="phone">
+  
+  <input class="input-login" type="text" placeholder="Street Address / PO BOX" [(ngModel)]="streetAddress" />
+  <input class="input-login" type="text" placeholder="Suite #" [(ngModel)]="suiteNumber" />
+  <input class="input-login" type="text" placeholder="City" [(ngModel)]="city" />
+  <input class="input-login" type="text" placeholder="Zip" [(ngModel)]="zip" />
+  <input class="input-login" type="text" placeholder="EIN # or Social Security #" [(ngModel)]="ein" />
+  <div class="row">
+    <div class="col-12">
+     <div class="dropdown">
+        <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBedroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{selectedCompanyType}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBedroom">
+          <a class="dropdown-item" (click)="onClickCompanyType(SOLE_PROPRIETORSHIP,
+          'Sole Proprietorship')">Sole Proprietorship</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(GENERAL_PARTNERSHIP,'General Partnership')">General Partnership</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(LIMITED_PARNERSHIP,'Limited Partnership')">Limited Partnership</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(LIMITED_LIABILITY_PARTNERSHIP,'Limited Liability Partnership (LLP)')">Limited Liability Partnership (LLP)</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(LIMITED_LIABILITY_LIMITED_PARTNERSHIP,'Limited Liability Limited Partnership (LLLP)')">Limited Liability Limited Partnership (LLLP)</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(CORPORATION,'Corporation')">Corporation</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(NON_PROFIT_CORPORATION,'Non-profit Corporation')">Non-profit Corporation</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(LIMITED_LIABILITY_CORPORATION,'Limited Liability Company (LLC)')">Limited Liability Company (LLC)</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(MASSACHUSETTS_TRUSTS,'Massachusetts Trust')">Massachusetts Trust</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(TRUST,'Trust')">Trust</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(JOINT_VENTURE,'Joint Venture')">Joint Venture</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(TENANTS_IN_COMMON,'Tenants in Common')">Tenants in Common</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(MUNICIPALITY,'Municipality')">Municipality</a>
+          <a class="dropdown-item" (click)="onClickCompanyType(ASSOCIATION,'Association')">Association</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-11 offset-1" style="text-align: left !important; margin-top: .5em; margin-bottom: .5em">
+      <span class="color-secondary">Why does Homeslack need</span><span class="color-primary"> this?</span>
+    </div>
+  </div>
+  <input class="input-login" type="email" placeholder="Email/login" [(ngModel)]="email" />
+  <input class="input-login" type="password" placeholder="Password" [(ngModel)]="password">
+  <input class="input-login" type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+  
+
+  <div class="form-group">
+    <div class="form-control checkmark-container">
+      <div class="form-check">
+      <label class="container">I want to receive status updates via text
+      <input type="checkbox" checked="checked">
+      <span class="checkmark"></span>
+    </label>
+    </div>
+      <div class="form-check">
+      <label class="container">I want to receive status updates via email
+      <input type="checkbox" checked="checked">
+      <span class="checkmark"></span>
+    </label>
+    </div>
+    </div>
+  </div>
+    
+  
+  <div class="company-terms">By creating an account you are agreeing with the Homeface <a class="terms-link">Terms</a></div>
+  
+  <input type="submit" value="Create" class="btn btn-light" placeholder="Login"  /> 
+  
+  
+  <div class="line-divider" style="margin-top:3.4em;"></div>
+  <div class="already-have-account-div">Already have a Homeface account? 
+    <a class="sign-in-link" [routerLink]="['/login']">Sign In</a>
+  </div>
+  <!-- <div class="line-divider" style="margin-bottom: 0em"></div> -->
+</div>
+
+
+<div class="row">
+  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
+    <div class="container-fluid">
+      <div class="row">
+         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 address">
+          HomeSupervisor@homeslack.com<br>
+          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

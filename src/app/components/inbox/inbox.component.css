@@ -1,0 +1,91 @@
+.left-panel{
+	background-color: gray;
+	box-shadow: 0px 2px 3px rgb(0,0,0,.5);
+}
+
+.left-panel-item{
+	text-align: center;
+	padding: .4em;
+	width: 100%;
+	color:white;
+	font-weight: bold;
+}
+
+.left-panel-item:hover{
+	background-color: lightgray;
+	cursor: pointer;
+}
+
+.left-panel-item-selected{
+	background-color: lightgray !important;
+}
+
+.all-messages{
+	font-weight: bold;
+	color:gray;
+	padding: 1em;
+	border-bottom: 3px solid gray;
+}
+
+.contact-image{
+	width: 70%;
+	margin-top: .3em;
+}
+
+.recent-contact-list{
+	padding: 0;
+	background-color: #eaeaea;
+}
+
+.recent-contact-list{
+	height: 30em;
+}
+
+.contact-name{
+	font-weight: bold;
+	font-size: 1.6em;
+	 margin-top: 1em;
+}
+
+.chat-section{
+	height: 20em;
+	background-color: lightblue;
+}
+
+.message-section{
+	padding: 2em 0;
+	background-color: white;
+}
+
+.message-text-box{
+	background-color: #eaeaea;
+	resize: none;
+	height: 8em;
+	width: 100%;
+	outline: none;
+	border: none;
+	border-radius: .1em;
+	font-weight: 400;
+	padding: .75em 2em; 
+	font-size: 1em;
+	color: gray;
+	box-shadow: 0px 2px 3px rgb(0,0,0,.3);
+}
+
+::placeholder{
+	font-weight: bold;
+	font-size: 1.3em;
+	color: #000;
+}
+
+.btn-send{
+	width: 100%;
+	color:white;
+	font-weight: bold;
+	border:none;
+	margin-bottom: 5em;
+	background-color: rgb(68, 197, 242);
+	padding-top: .3em;
+	padding-bottom: .3em; 
+	border-radius: .1em;
+}

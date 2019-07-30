@@ -1,0 +1,250 @@
+<div class="container-fluid top-image-container">
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_verify_b.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">SUBMIT </span> <span class="top-header-title-light">LISTING</span></div>
+          </div>
+        </div>
+
+        <div class="row top-header-time-frame-icons-container">
+            <div class="col-8 offset-2">
+            <div class="row">
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../verify-info-page']" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../time-frame']" src="../../../assets/img/ic_time_frame_time_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../image-upload']" src="../../../assets/img/ic_time_frame_camera_blue.png"/>
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_blue.png" />
+                </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="padding: 0em">
+
+    <div class="row house-row">
+        <div class="col-10 offset-2"> 
+
+            <div class="row house-image-container">
+                <div class="col-7 main-property-column">
+                    <img  class="img-fluid" src="../../../assets/img/property1.1.jpg"/>
+                </div>
+                <div class="col-3">
+                    <img  class="img-fluid property-right" src="../../../assets/img/property1.2.jpg"/>
+                    <img  class="img-fluid property-right" src="../../../assets/img/property1.3.jpg"/>
+                    <img  class="img-fluid property-right property-more" src="../../../assets/img/property1.4.jpg"/>
+                </div>
+            </div>
+        </div>
+
+ 
+        <div class="col-10 offset-2" >
+            <div class="street-address">
+                {{home.addressInfo.street}}
+            </div>
+            <div class="city-state-address">
+                {{home.addressInfo.city}},&nbsp;{{home.addressInfo.state}}&nbsp; {{home.addressInfo.zipCode}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row property-details-row">
+    
+    
+        <div class="col-8 offset-2 information-title">
+            Property Details:
+        </div>
+        
+
+        <div class="col-8 offset-2"  style="border-top: 1px solid #7E7E7E; padding-top: 1em">
+            <div class="row">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/total_living_area.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                           <div class="label-property">
+                                Total Living Area
+                            </div>
+                            <div class="label-property-result">{{home.homeDetails.livingSquareFootage}} Square Feet</div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/year_built.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                            <div class="label-property">
+                                Year Build 
+                            </div>
+                            <div class="label-property-result">{{home.homeDetails.yearBuild}}</div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/lot_size.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                            <div class="label-property">
+                                Lot Size
+                            </div>
+                            <div class="label-property-result">{{home.homeDetails.lotSizeAcres}} Acres</div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Second Row-->
+            <div class="row mt-4">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/Bedrooms.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                            <div class="label-property">
+                                Bedrooms 
+                            </div>
+                            <div class="label-property-result">{{home.homeDetails.numBeds}}</div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/bathroom.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                        <div class="label-property">
+                            Bathrooms 
+                        </div>
+                        <div class="label-property-result">{{home.homeDetails.numBaths}}</div>
+                       
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/Basement.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                            <div class="label-property">
+                                Basement 
+                            </div>
+                            <div *ngIf="home.homeDetails.basement == false" class="label-property-result">None</div>
+                            <div *ngIf="home.homeDetails.basement == true" class="label-property-result">Yes</div>
+                            <div *ngIf="home.homeDetails.basement != true" class="label-property-result">{{home.homeDetails.basement}}&nbsp;Finished</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Third Row-->
+            <div class="row mt-4">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/Garage.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                            <div class="label-property">
+                                Garage 
+                            </div>
+                            <div class="label-property-result">{{home.homeDetails.carGarage}} Car</div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/Pool.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                            <div class="label-property">
+                                Pool 
+                            </div>
+                            <div *ngIf="home.homeDetails.pool == true" class="label-property-result">Yes</div>
+                            <div *ngIf="home.homeDetails.pool == false" class="label-property-result">No</div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/hot_tub.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                            <div class="label-property">
+                                Hot Tub 
+                            </div>
+                            <div *ngIf="home.homeDetails.hotTub == true" class="label-property-result">Yes</div>
+                            <div *ngIf="home.homeDetails.hotTub == false" class="label-property-result">No</div>
+                            
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Fourth Row-->
+            <div class="row mt-4">
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2 icon-container d-flex justify-content-center"><img src="../../../assets/img/Cooling.png" class="icon-label align-self-center img-fluid"/></div>
+                        <div class="col-10">
+                            <div class="label-property">
+                                Cooling 
+                            </div>
+                             <div class="label-property-result">
+                                {{displayCooling}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="col-4">
+                   
+                </div>
+                <div class="col-4">
+                   
+                </div>
+            </div>
+           
+            
+            
+            <div class="row" class="confirm-listing-subtitle">
+                By clicking submit, you are listing your home for sale on HomeSlack
+            </div>
+            <div class="row">
+                
+                <button class="btn btn-confirm-listing" style="padding-left: 1.5em; padding-right: 1.5em; margin-top: 0em; margin-bottom: 0em" (click)="onSubmitHomeListing()">Submit</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
+    <div class="container-fluid">
+      <div class="row">
+         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 address">
+          HomeSupervisor@homeslack.com<br>
+          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

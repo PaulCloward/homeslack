@@ -1,0 +1,447 @@
+<!-- The Modal -->
+<div class="modal" id="myModal" data-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Property Not Found</h4>
+        <button type="button" class="close modal-icon-close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Close and search again
+         <br>
+         <span style="color: #d2d2d2">or</span> 
+         <br> Continue anyway and fill in your property details
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Home Page Container -->
+<div class="container-fluid home-page-container">
+  
+ <!--  <app-flash-message [message]="alertMessage"></app-flash-message> -->
+  <div class="container-fluid img-under-nav-container">
+    <div class="row">
+      <div class="col-12">
+        <img src="../../../assets/img/landing_page.jpg" class="img-under-nav" />
+        
+        <div class="row">
+          <div class="col-8 offset-2 top-header d-block">
+            <img class="img-fluid company-logo" src="../../../assets/img/home_slack_logo_white.png" />
+
+            <div class="row">
+                <div class="input-group d-none d-md-flex" style="height: .8em; margin: .3em 1em;">
+                      <input placeholder="Enter Your Address Here" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+                      #search [formControl]="searchControl" style="font-size: .5em; font-family: 'Nunito'">
+                     
+                  <div class="input-group-append">
+                    <span class="input-group-text" (click)="onClickSearchArrow()">
+                      <i class="material-icons go-arrow">arrow_forward_ios</i>
+                    </span>
+                  </div>
+                </div>
+                <div class="input-group d-flex d-md-none" style="height: .8em; margin: .3em 0em;">
+                      <input placeholder="Enter Your Address Here" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control search-bar-input"
+                      #search [formControl]="searchControl">
+                     
+                  <div class="input-group-append">
+                    <span class="input-group-text" (click)="onClickSearchArrow()">
+                      <i class="material-icons go-arrow">arrow_forward_ios</i>
+                    </span>
+                  </div>
+                </div>
+            </div>
+
+            <div class="row" style="line-height: .5em;">
+              <label class="search-bar-bottom-label">
+                Sell Your Home For FREE!
+              </label>
+            </div>
+
+            <div class="row d-none d-sm-block" style="margin-top: .5em;">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="home-info-circle circleBase">
+                       <img class="img-fluid home-info-circle-img" src="../../../assets/img/free_icon.png" />
+                       <div class="circle-label">Seller Pays Nothing</div>
+                       <div class="circle-label">No Repairs Needed</div>
+                       <div class="circle-label">No Closing Costs</div>
+                       <div class="circle-label">No Agent Fees</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="home-info-circle circleBase">
+                      <img class="img-fluid home-info-circle-img" src="../../../assets/img/online_icon.png" />
+                      <div class="circle-label">All Online</div>
+                      <div class="circle-label">No Annoying Calls</div>
+                      <div class="circle-label">No In-Person Meetings</div>
+                      <div class="circle-label">No Price Haggling</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="home-info-circle circleBase">
+                      <img class="img-fluid home-info-circle-img" src="../../../assets/img/cash_icon.png" />
+                      <div class="circle-label">All Cash Offers</div>
+                      <div class="circle-label">No Appraisals</div>
+                      <div class="circle-label">No Home Inspections</div>
+                      <div class="circle-label">Move on Your Time-Frame</div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div> 
+            </div>
+          <!--  <div class="col-12 top-header-xs d-block d-sm-none">
+            <img class="img-fluid" style="max-height: 1.4em;" src="../../../assets/img/logo.png" />
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div style="background:#f1f1f1">
+  <!--For all views but xs bootstrap view-->
+  <div class="row d-none d-sm-block" style="padding-top: 3em">
+    <div class="home-sub-title col-8 offset-2">
+     How Can I Receive an Offer on <span style="color: rgb(68, 197, 242);">My Home?</span>
+     </div>
+  </div>
+  
+  <!--For xs bootstrap view-->
+  <div class="row d-block d-sm-none" style="padding-top: 1em">
+    <div class="home-sub-title col-10 offset-1">
+     Receive an Offer on <span style="color: rgb(68, 197, 242);">My Home?</span>
+     </div>
+  </div>
+  
+   <!--For all views but xs bootstrap view-->
+  <div class="row d-none d-sm-block">
+    <div class="col-8 offset-2">
+      <ul style="list-style-type: none; padding-left: 0em">
+
+        <!-- First Container -->
+        <li> 
+          <div class="row home-offer-instruction-row" (click)="toggleContainer1()">
+            <div class="col-2 align-self-center" style="padding: 0;">
+              <div class="badge d-flex justify-content-center">
+                <div class="align-self-center">1</div>
+              </div>
+            </div>
+            <div class="col-8 home-offer-instruction-column align-self-center">
+              <div class="home-offer-title">{{recieveOfferInstructions[0].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[0].instruction"></div>
+              <div *ngIf="viewMoreClicked1" class="bottomborder"></div>
+            </div>
+            <div *ngIf="!viewMoreClicked1" class="col-2 d-flex justify-content-end">
+              <div class="view-more align-self-end" >View more</div>
+            </div>
+            <div id="container-1" class="container-init">
+              <div class="row">
+                <div class="offset-2 col-7 d-flex" style="padding-top: 1em">
+                  <span>After entering your home address in the search box above, we will give you a chance to edit any of the information you see that is not correct. Sometimes your home does not match our records exactly, especially if you have modified your home. Examples may include bedroom count, bathroom count, finished square-footage, pool, or garage. 
+
+                  <br><br> Once you have edited any information that may be incorrect, move on to “Select a Time-Frame."
+                  </span>
+                </div>
+                <div class="col-3 d-flex"><img class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/step_1.jpg" /></div>
+                <div *ngIf="viewMoreClicked1" class="offset-10 col-2 d-flex justify-content-end">
+                  <div class="view-more align-self-end">View less</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Second Container -->
+        <li> 
+          <div class="row home-offer-instruction-row" (click)="toggleContainer2()">
+            <div class="col-2 align-self-center" style="padding: 0;">
+              <div class="badge d-flex justify-content-center">
+                <div class="align-self-center">2</div>
+              </div>
+            </div>
+            <div class="col-8 home-offer-instruction-column align-self-center">
+              <div class="home-offer-title">{{recieveOfferInstructions[1].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[1].instruction"></div>
+              <div *ngIf="viewMoreClicked2" class="bottomborder"></div>
+            </div>
+            <div *ngIf="!viewMoreClicked2" class="col-2 d-flex justify-content-end">
+              <div class="view-more align-self-end">View more</div>
+            </div>
+            <div id="container-2"  class="container-init">
+              <div class="row">
+              <div class="offset-2 col-3 d-flex"><img class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/step_2.jpg" /></div>
+              <div class="col-7 d-flex" style="padding-top: 1em">
+                <span>After you verify your information, it is time to select your time-frame. In this section you will outline two important details:<br>
+                    <br>1. When you need the money from the sale of your home.
+                    We will need a minimum of 5 business days before we can close and release the funds to your account but feel free to give yourself as much time as you need.
+                    <br><br>2. When you can be out of your home
+
+                <br><br> Our investors will send all the money for the purchase of your home to the title company in charge of processing the transaction. When you are out of the home, the money will be released to you. 
+                </span>
+              </div>
+              
+              <div *ngIf="viewMoreClicked2" class="offset-10 col-2 d-flex justify-content-end">
+                <div class="view-more align-self-end">View less</div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Third Container -->
+        <li> 
+          <div class="row home-offer-instruction-row" (click)="toggleContainer3()">
+            <div class="col-2 align-self-center" style="padding: 0;">
+              <div class="badge d-flex justify-content-center">
+                <div class="align-self-center">3</div>
+              </div>
+            </div>
+            <div class="col-8 home-offer-instruction-column align-self-center">
+              <div class="home-offer-title">{{recieveOfferInstructions[2].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[2].instruction"></div>
+              <div *ngIf="viewMoreClicked3" class="bottomborder"></div>
+            </div>
+            <div *ngIf="!viewMoreClicked3" class="col-2 d-flex justify-content-end">
+              <div class="view-more align-self-end" >View more</div>
+            </div>
+            <div id="container-3" class="container-init">
+              <div class="row">
+                <div class="offset-2 col-7 d-flex" style="padding-top: 1em">
+                 <span>Now that you have chosen your time frame, it's time to upload pictures of your home! These will be the pictures that investors will use to assess the condition of your property. Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.<br><br>
+
+                <div class="home-offer-title">Here's a few tips to help improve the quality of your photos:</div>
+                <ol class="image-tip-list"> 
+                  <li>Hold your camera steady</li>
+                  <li>Good lighting</li>
+                  <li>Take horizontal photos (landscape)</li>
+                  <li>Minimum of 20 photos</li>
+                </ol>
+              </span>
+                </div>
+                <div class="col-3 d-flex"><img class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/step_3.jpg" /></div>
+                <div *ngIf="viewMoreClicked3" class="offset-10 col-2 d-flex justify-content-end">
+                  <div class="view-more align-self-end">View less</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Fourth Container -->
+        <li> 
+          <div class="row home-offer-instruction-row" (click)="toggleContainer4()">
+            <div class="col-2 align-self-center" style="padding: 0;">
+              <div class="badge d-flex justify-content-center">
+                <div class="align-self-center">4</div>
+              </div>
+            </div>
+            <div class="col-8 home-offer-instruction-column align-self-center">
+              <div class="home-offer-title">{{recieveOfferInstructions[3].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[3].instruction"></div>
+              <div *ngIf="viewMoreClicked4" class="bottomborder"></div>
+            </div>
+            <div *ngIf="!viewMoreClicked4" class="col-2 d-flex justify-content-end">
+              <div class="view-more align-self-end">View more</div>
+            </div>
+            <div id="container-4"  class="container-init">
+              <div class="row">
+              <div class="offset-2 col-3 d-flex" style="margin-top: 1em;"><img class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/step_4.jpg" /></div>
+              <div class="col-7 d-flex" style="padding-top: 1em">
+                <span>Homeface has partnered with real investors in your area who buy houses for cash. Cash means the transaction is not subject to loan qualifications such as an appraisal or inspections. Cash means you do not have to sit and wait, hoping that your potential buyer will qualify for a loan. Cash means your buyer has the money available, and is ready to close as soon as you are! 
+                </span>
+              </div>
+              
+              <div *ngIf="viewMoreClicked4" class="offset-10 col-2 d-flex justify-content-end">
+                <div class="view-more align-self-end">View less</div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Fifth Container -->
+        <li> 
+          <div class="row home-offer-instruction-row" (click)="toggleContainer5()">
+            <div class="col-2 align-self-center" style="padding: 0;">
+              <div class="badge d-flex justify-content-center">
+                <div class="align-self-center">5</div>
+              </div>
+            </div>
+            <div class="col-8 home-offer-instruction-column align-self-center">
+              <div class="home-offer-title">{{recieveOfferInstructions[4].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[4].instruction"></div>
+              <div *ngIf="viewMoreClicked5" class="bottomborder"></div>
+            </div>
+            <div *ngIf="!viewMoreClicked5" class="col-2 d-flex justify-content-end">
+              <div class="view-more align-self-end" >View more</div>
+            </div>
+            <div id="container-5" class="container-init">
+              <div class="row">
+              <div class="offset-2 col-7 d-flex" style="padding-top: 1em">
+                <span>Why have one offer when you can have multiple?
+                <br><br>
+                When your offer date comes to a close, you can review the top competitive offers from our pool of qualified investors.
+                <br><br>
+                Once you review your offers, accept the one you are most comfortable with.
+                <br><br>
+                If you do not select an offer, we cannot start the closing process! 
+
+                </span>
+              </div>
+              <div class="col-3 d-flex"><img class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/step_5.jpg" /></div>
+              <div *ngIf="viewMoreClicked5" class="offset-10 col-2 d-flex justify-content-end">
+                <div class="view-more align-self-end">View less</div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </li>
+
+        <!-- Sixth Container -->
+        <li> 
+          <div class="row home-offer-instruction-row" (click)="toggleContainer6()">
+            <div class="col-2 align-self-center" style="padding: 0;">
+              <div class="badge d-flex justify-content-center">
+                <div class="align-self-center">6</div>
+              </div>
+            </div>
+            <div class="col-8 home-offer-instruction-column align-self-center">
+              <div class="home-offer-title">{{recieveOfferInstructions[5].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[5].instruction"></div>
+              <div *ngIf="viewMoreClicked6" class="bottomborder"></div>
+            </div>
+            <div *ngIf="!viewMoreClicked6" class="col-2 d-flex justify-content-end">
+              <div class="view-more align-self-end">View more</div>
+            </div>
+            <div id="container-6"  class="container-init">
+              <div class="row">
+              <div class="offset-2 col-3 d-flex"><img style="margin-top: 1em;" class="justify-content-center align-self-center rounded-circle img-fluid" src="../../../assets/img/step_6.jpg" /></div>
+              <div class="col-7 d-flex" style="padding-top: 1em">
+                <span>All closings are done through a qualified title and escrow company who will explain each step of the process. They will make sure that the title to your home stays in your name, until you sign the paperwork in their office or in front of a licensed notary. *You must sign the closing documents in person.
+                <br><br>
+                The title company will pay you the money from your home after the closing is finalized.
+
+                </span>
+              </div>
+              
+              <div *ngIf="viewMoreClicked6" class="offset-10 col-2 d-flex justify-content-end">
+                <div class="view-more align-self-end">View less</div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!--For xs bootstrap view-->
+  <div class="row d-block d-sm-none">
+    <div class="col-10 offset-1">
+      <ul style="list-style-type: none; padding-left: 0em">
+        <li> 
+          <div class="row align-items-center home-offer-instruction-row">
+            <div class="col-2 badge d-flex justify-content-center" style="padding: 0">
+              <div class="align-self-center">1</div>
+            </div>
+            <div class="col-8 home-offer-instruction-column">
+              <div class="home-offer-title">{{recieveOfferInstructions[0].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[0].instruction"></div>
+            </div>
+            <div class="col-2 d-flex justify-content-end" style="width: 100%; height: 100%; "><span class="view-more-xs align-self-end"><img src="../../../assets/img/down_arrow.png" /></span></div>
+          </div>
+        </li>
+        <li> 
+          <div class="row align-items-center home-offer-instruction-row">
+            <div class="col-2 badge d-flex justify-content-center" style="padding: 0">
+              <div class="align-self-center">2</div>
+            </div>
+            <div class="col-8 home-offer-instruction-column">
+              <div class="home-offer-title">{{recieveOfferInstructions[1].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[1].instruction"></div>
+            </div>
+            <div class="col-2 d-flex justify-content-end" style="width: 100%; height: 100%; "><span class="view-more-xs align-self-end"><img src="../../../assets/img/down_arrow.png" /></span></div>
+          </div>
+        </li>
+        <li> 
+          <div class="row align-items-center home-offer-instruction-row">
+            <div class="col-2 badge d-flex justify-content-center" style="padding: 0">
+              <div class="align-self-center">3</div>
+            </div>
+            <div class="col-8 home-offer-instruction-column">
+              <div class="home-offer-title">{{recieveOfferInstructions[2].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[2].instruction"></div>
+            </div>
+            <div class="col-2 d-flex justify-content-end" style="width: 100%; height: 100%; "><span class="view-more-xs align-self-end"><img src="../../../assets/img/down_arrow.png" /></span></div>
+          </div>
+        </li>
+        <li> 
+          <div class="row align-items-center home-offer-instruction-row">
+            <div class="col-2 badge d-flex justify-content-center" style="padding: 0">
+              <div class="align-self-center">4</div>
+            </div>
+            <div class="col-8 home-offer-instruction-column">
+              <div class="home-offer-title">{{recieveOfferInstructions[3].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[3].instruction"></div>
+            </div>
+            <div class="col-2 d-flex justify-content-end" style="width: 100%; height: 100%; "><span class="view-more-xs align-self-end"><img src="../../../assets/img/down_arrow.png" /></span></div>
+          </div>
+        </li>
+        <li> 
+          <div class="row align-items-center home-offer-instruction-row">
+            <div class="col-2 badge d-flex justify-content-center" style="padding: 0">
+              <div class="align-self-center">5</div>
+            </div>
+            <div class="col-8 home-offer-instruction-column">
+              <div class="home-offer-title">{{recieveOfferInstructions[4].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[4].instruction"></div>
+            </div>
+            <div class="col-2 d-flex justify-content-end" style="width: 100%; height: 100%; "><span class="view-more-xs align-self-end"><img src="../../../assets/img/down_arrow.png" /></span></div>
+          </div>
+        </li>
+        <li> 
+          <div class="row align-items-center home-offer-instruction-row">
+            <div class="col-2 badge d-flex justify-content-center" style="padding: 0">
+              <div class="align-self-center">6</div>
+            </div>
+            <div class="col-8 home-offer-instruction-column">
+              <div class="home-offer-title">{{recieveOfferInstructions[5].title}}</div>
+              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[5].instruction"></div>
+            </div>
+            <div class="col-2 d-flex justify-content-end" style="width: 100%; height: 100%;"><span class="view-more-xs align-self-end"><img src="../../../assets/img/down_arrow.png" /></span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <br><br><br>
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col-12 bottom-page-container">
+      <div class="container-fluid">
+        <div class="row">
+           <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 address">
+            HomeSupervisor@homeslack.com<br>
+            Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+</div>
+</div>
+

@@ -1,0 +1,29 @@
+.authorization-form-container{
+  
+  filter: brightness(100%) !important;
+  z-index: 100;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+/*  position: fixed !important;*/
+  margin: 2em 0em;
+  border: 1px solid #ccc;
+  border-radius: .5em;
+}
+
+.page-link-title{
+  font-family: Century Gothic, sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: gray;
+  margin-top: 1em;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.page-link{
+  border: none;
+  font-family: Century Gothic, sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: rgb(68, 197, 242);
+  padding: 1em;
+}

@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+  <a class="navbar-brand d-flex" [routerLink]="['/home']"><img class="align-self-center img-fluid" style="max-height: 1.5em; padding-left: 1em;" src="../../../assets/img/home_slack_logo_white.png" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon d-flex"><i class="material-icons align-self-center" style="font-size:2em;color:white;">menu</i></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto" >
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./directory']" [ngClass]="{'nav-tab-selected' : router.url === '/directory'}">Page Directory</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./why-us']" [ngClass]="{'nav-tab-selected' : router.url === '/why-us'}">WHY US</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./contact']" [ngClass]="{'nav-tab-selected' : router.url === '/contact'}">CONTACT US</a>
+      </li>
+      
+      <li class="dropdown d-flex align-items-center" *ngIf="!isLoggedIn" style="margin-right: 2em;">
+        <a class="dropdown-toggle dropdown-toggle-parent nav-link" data-toggle="dropdown" [ngClass]="{'nav-tab-selected' : router.url === '/login'}" style="margin-left: 0; margin-right: 0">SIGN IN</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a class="child-link" [routerLink]="['./login']">User</a></li>
+            <li class="dropdown-item"><a class="child-link" [routerLink]="['./login']">Investor</a></li>
+          </ul>
+      </li>
+      
+      <li class="dropdown d-flex align-items-center" *ngIf="isLoggedIn" style="text-align: center; margin-right: 2em; width: 10em">
+          <a class="dropdown-toggle navbar-profile-icon-container" style="width: 100%;" data-toggle="dropdown"><img src="../../../assets/img/avatar.png" class="img-fluid nav-profile-icon"/></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a class="child-link">My Profile</a></li>
+            <li class="dropdown-item"><a class="child-link">Messages</a></li>
+            <li class="dropdown-item"><a class="child-link">Add New Home</a></li>
+            <li class="dropdown-item"><a class="child-link" (click)="logout()">Sign Out</a></li>
+          </ul>
+      </li>
+      
+      <li></li>
+    </ul>
+  </div>
+</nav>

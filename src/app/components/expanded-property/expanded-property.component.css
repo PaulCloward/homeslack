@@ -1,0 +1,167 @@
+.house-row{
+  padding: 2em 0em;
+}
+
+.header {
+    font-size: 1.2em;
+    margin-top: 1em;
+    margin-bottom: .5em;
+}
+
+
+.line-divider{
+    height: 1px;
+    border-top: .5px solid lightgray;
+    width: 100%;
+    margin: .5em auto;
+}
+
+.properties{
+    color:rgb(68, 197, 242) !important;
+}
+
+
+.top-header-title-container{
+    text-align: center;
+      width: 100%;
+      top: 20%;
+      height: 0;
+      line-height: 0;
+      position: absolute;
+      z-index: 2;
+}
+
+.top-header-title{
+  font-family: Century Gothic, sans-serif;
+  font-size: 2.3em;
+  margin-top: 1em;
+}
+
+
+.investor-stat-row{
+  padding: .1em 0em;
+  color: #939393;
+}
+
+.stat-count{
+	color: white;
+	border-radius: 30%;
+	padding: .0em .4em;
+}
+
+.stat-count-blue{
+	background: rgb(68, 197, 242);
+}
+
+.stat-count-red{
+	background-color: red;
+}
+
+.icon-container {
+    text-align:center; 
+    padding:0em;
+}
+
+.label-property{
+    font-family: Century Gothic, sans-serif;
+	font-size: 1.1em;
+	font-weight: 600;
+	color: rgb(68, 197, 242);
+    line-height: 1.2em;
+    margin-top:.5em;
+}
+
+.label-question{
+    margin-top: .4em;
+    font-family: Century Gothic, sans-serif;
+	font-size: 1.3em;
+	font-weight: 300;
+}
+
+.label-property-result{
+	font-family: Century Gothic, sans-serif;
+	font-size: 1em;
+	font-weight: 400;
+	line-height: 1em;
+}
+
+.information-title{
+    padding-top: 1em;
+    padding-left: 0em; 
+    font-size: 1.5em;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 600;
+    color: #7E7E7E;
+    line-height: 1.2em;
+}
+
+.countdown-container{
+	width: 100%;
+	background-color: #eaeaea;
+	margin-left: 2em;
+	border-radius: .3em;
+	text-align: center;
+	padding-top: .5em;
+	padding-bottom: 1em;
+}
+
+.countdown-label{
+	width: 100%;
+	color: gray;
+  font-size: 1.1em;
+}
+
+.select-offer{
+	box-shadow: rgba(0,0,0,0.30);
+}
+
+.closing-label {
+  margin-top: .5em;
+  font-size: 2.3em;
+  text-align: center;
+}
+
+.countdown-circle-red, .countdown-circle-blue{
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 100%;
+  color: white;
+  margin: 0 auto;
+}
+
+.countdown-circle-blue{
+  background-color: rgb(68, 197, 242);
+}
+
+.countdown-circle-red{
+  background-color: red;
+}
+
+
+.countdown-circle-number{
+    font-size: 1em;
+}
+
+.countdown-time-label{
+    margin-top: .5em;
+    text-align: center;
+    font-size: .5em;
+}
+
+.circle-column{
+  padding: 0em;
+}
+
+.investor-container{
+  padding-top: .5em;
+}
+
+.property-details-top-row{
+  border-top: 1.5px solid #D2D2D2;
+  padding-top: 1em; 
+}
+
+.property-details-bottom-row{
+  border-bottom: 1.5px solid #D2D2D2;
+  padding-bottom: 1em; 
+}

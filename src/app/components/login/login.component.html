@@ -1,0 +1,59 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_sign_in.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">SIGN</span> <span class="top-header-title-light"> IN</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-6 offset-3" style="padding: 4em 0em;">
+			<input class="input-login" type="email" name="user" placeholder="Email Address" #email><br>
+			<input class="input-login" type="password" name="pass" placeholder="Password" #password><br>
+			<div class="forgot-label">Forgot your username or password? <span class="click-here">CLICK HERE</span></div>
+			<input type="submit" name="login" value="Sign In" class="btn-sign-in" placeholder="Login" (click)="login(email.value, password.value)"> 
+			<br><br>
+      <div class="form-group">
+        <div class="form-control checkmark-container">
+            <div class="form-check">
+            <label class="container">Send new password to email
+            <input type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+          </div>
+            <div class="form-check">
+            <label class="container">Send new password to phone
+            <input type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+          </div>
+          </div>
+        </div>
+			
+			<input type="submit" name="Send" value="Send" class="btn-sign-in" placeholder="Send"/> 
+			
+		</div>
+	</div>
+</div>
+<div class="row">
+  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
+    <div class="container-fluid">
+      <div class="row">
+         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 address">
+          HomeSupervisor@homeslack.com<br>
+          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

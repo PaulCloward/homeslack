@@ -1,0 +1,183 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_create_account.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">CREATE</span> <span class="top-header-title-light"> ACCOUNT</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- <app-flash-message [message]='alertMessage'></app-flash-message> -->
+<div class="col-6 offset-3 d-none d-md-block" style="padding: 4em 0em 0em 0em; text-align: center">
+	
+	<!-- <input class="input-login" type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword"> -->
+
+  <form class="custom-form" [formGroup]="myForm">
+
+    <label class="title">Welcome to <span class="title-company">Homeface</span></label>
+    <input class="input-login" type="text" placeholder="First Name" [formControl]="firstName">
+    <input class="input-login" type="text" placeholder="Last Name"  [formControl]="lastName">
+    <input class="input-login" type="phone" placeholder="Phone"  [formControl]="phone">
+    <input class="input-login" type="email" placeholder="Email/login" [formControl]="email" />
+    <input class="input-login" type="password" placeholder="Password" [formControl]="password">
+
+    <!-- Value: {{ myForm.value | json }}  -->
+    <!-- <ul>
+        <li>Valid:
+            <mat-chip selected="true" [color]="myForm.valid ? 'accent' : 'warn'">{{ myForm.valid }}</mat-chip>
+        </li>
+        <li>Invalid:
+            <mat-chip selected="true" [color]="myForm.invalid ? 'accent' : 'warn'">{{ myForm.invalid }}</mat-chip>
+        </li>
+        <li>Dirty:
+            <mat-chip selected="true" [color]="myForm.dirty ? 'accent' : 'warn'">{{ myForm.dirty }}</mat-chip>
+        </li>
+        <li>Pristine:
+            <mat-chip selected="true" [color]="myForm.pristine ? 'accent' : 'warn'">{{ myForm.pristine }}</mat-chip>
+        </li>
+        <li>Touched:
+            <mat-chip selected="true" [color]="myForm.touched ? 'accent' : 'warn'">{{ myForm.touched }}</mat-chip>
+        </li>
+        <li>Untouched:
+            <mat-chip selected="true" [color]="myForm.untouched ? 'accent' : 'warn'">{{ myForm.untouched }}</mat-chip>
+        </li>
+        <li>Pending:
+            <mat-chip selected="true" [color]="myForm.pending ? 'accent' : 'warn'">{{ myForm.pending }}</mat-chip>
+        </li>
+    </ul>
+    <hr> -->
+    
+   <!--  <mat-form-field>
+        <input class="input-login-mat" type="text" matInput formControlName="firstName2" autocomplete="off">
+        <mat-placeholder class="placeholder" type="text">first name</mat-placeholder>
+        <mat-error *ngIf="firstName2.invalid" class="has-text-danger">
+            Name needs to only be letters...
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input class="input-login-mat" matInput formControlName="lastName2" autocomplete="off">
+        <mat-placeholder class="placeholder">last name</mat-placeholder>
+        <mat-error *ngIf="lastName2.invalid" class="has-text-danger">
+            Name needs to only be letters...
+        </mat-error>
+    </mat-form-field>
+    
+        <input class="input-login-mat" matInput formControlName="email" autocomplete="off">
+        <mat-placeholder class="placeholder">email</mat-placeholder>
+        <mat-error *ngIf="email.invalid && email.touched" class="has-text-danger">
+            Your email does not look right
+        </mat-error>
+    
+    <mat-form-field>
+        <input class="input-login-mat" matInput type="password" formControlName="password" autocomplete="new-password">
+        <mat-placeholder class="placeholder">password</mat-placeholder>
+        <mat-hint align="end">Must have one letter, and one number</mat-hint>
+        <mat-error *ngIf="password.invalid && password.touched" class="has-text-danger">
+            That password is weak...
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="age" [value]="0" formControlName="age">
+        <mat-error *ngIf="age.errors?.min && age.touched">
+            {{ age.errors.min.actual }} is young to use this app kiddo!
+        </mat-error>
+        <mat-error *ngIf="age.errors?.max && age.touched">
+            {{ age.errors.max.actual }} is too you old to use this app gramps!
+        </mat-error>
+    </mat-form-field>
+    <mat-checkbox formControlName="agree" color="primary">Are you sure?</mat-checkbox>
+    <hr>
+     -->
+   <!--   <button mat-raised-button [disabled]="myForm.invalid || loading" color="primary">Let's Do it!</button> -->
+</form>	
+
+  <div class="form-group">
+    <div class="form-control checkmark-container">
+      <div class="form-check">
+	    <label class="container">I want to receive status updates via text
+		  <input type="checkbox" checked="checked">
+		  <span class="checkmark"></span>
+		</label>
+	  </div>
+      <div class="form-check">
+	    <label class="container">I want to receive status updates via email
+		  <input type="checkbox" checked="checked">
+		  <span class="checkmark"></span>
+		</label>
+	  </div>
+    </div>
+  </div>
+    
+	
+	<div class="company-terms">By creating an account you are agreeing with the Homeface <a class="terms-link">Terms</a></div>
+	
+	<input type="submit" value="Create" class="btn btn-light" placeholder="Login" (click)="createUserAccount()" /> 
+	
+	
+	<div class="line-divider" style="margin-top:3.4em;"></div>
+	<div class="already-have-account-div">Already have a Homeface account? <a class="sign-in-link" [routerLink]="['/login']">Sign In</a></div>
+	<!-- <div class="line-divider" style="margin-bottom: 0em"></div> -->
+</div>
+
+
+
+<!-- XS View -->
+<div class="col-10 offset-1 d-block d-md-none" style="padding: 4em 0em 0em 0em; text-align: center">
+  <label class="title">Welcome to <span class="title-company">Homeface</span></label>
+  <input class="input-login" type="text" placeholder="First Name" [formControl]="firstName">
+  <input class="input-login" type="text" placeholder="Last Name"  [formControl]="lastName">
+  <input class="input-login" type="text" placeholder="Phone"  [formControl]="phone">
+  <input class="input-login" type="email" placeholder="Email/login" [formControl]="email" />
+  <input class="input-login" type="password" placeholder="Password" [formControl]="password">
+  <!-- <input class="input-login" type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword"> -->
+  
+
+  <div class="form-group">
+    <div class="form-control checkmark-container">
+      <div class="form-check">
+      <label class="container">I want to receive status updates via text
+      <input type="checkbox" checked="checked">
+      <span class="checkmark"></span>
+    </label>
+    </div>
+      <div class="form-check">
+      <label class="container">I want to receive status updates via email
+      <input type="checkbox" checked="checked">
+      <span class="checkmark"></span>
+    </label>
+    </div>
+    </div>
+  </div>
+    
+  
+  <div class="company-terms">By creating an account you are agreeing with the Homeface <a class="terms-link">Terms</a></div>
+  
+  <input type="submit" value="Create" class="btn btn-light" placeholder="Login" (click)="createUserAccount()" /> 
+  
+  
+  <div class="line-divider" style="margin-top:3.4em;"></div>
+  <div class="already-have-account-div">Already have a Homeface account? <a class="sign-in-link" [routerLink]="['/login']">Sign In</a></div>
+  <!-- <div class="line-divider" style="margin-bottom: 0em"></div> -->
+</div>
+
+<div class="row">
+  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
+    <div class="container-fluid">
+      <div class="row">
+         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 address">
+          HomeSupervisor@homeslack.com<br>
+          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

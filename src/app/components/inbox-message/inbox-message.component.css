@@ -1,0 +1,40 @@
+.message-container{
+	padding: .4em;
+	margin: 1em 1em; 
+	cursor: pointer;
+	border-radius: .1em;
+	
+}
+
+.message-selected{
+	background: #eaeaea;
+	box-shadow: 1px 1px 5px #7D7D7D;
+}
+
+.message-non-selected{
+	background: white;
+	box-shadow: 1px 1px 2px #7D7D7D;
+}
+
+.recent-contact-image{
+	width: 100%;
+}
+
+.recent-contact-name{
+	color: black;
+	margin-top: .6em;
+	margin-left: .4em;
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 1em;
+}
+
+.recent-contact-message{
+	color: gray;
+	margin-top: .2em;
+	margin-left: .9em;
+	font-size: .7em;
+	font-weight: 300;
+	line-height: 1em;
+
+}

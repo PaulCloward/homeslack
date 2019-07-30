@@ -1,0 +1,92 @@
+* {
+	font-family: Century Gothic;
+}
+
+.dropzone {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-weight: 200;
+	height: 300px;
+	border-radius: 5px;
+	background: #e8e8e8;
+	margin: 2em 0 10px 0;
+}
+
+.hovering {
+	border: 2px solid #f16624;
+	color: #dadada !important;
+}
+
+.file-label {
+	font-size: 1.2em;
+}
+
+progress::-webkit-progress-value {
+	transition: width 0.1s ease;
+}
+
+.img-result {
+	width: 250px;
+}
+
+.btn-finish-edit{
+    color: white;
+    background-color:  rgb(68, 197, 242);
+    border-radius: .5em;
+    margin-top: 1em;
+    width: 100%;
+    font-size: 1.2em;
+    padding: .3em;
+    font-family: Century Gothic, sans-serif;
+}
+
+.image-upload-description{
+	margin-top: 4em;
+	margin-bottom: 1em;
+	font-size: 1.2em;
+	font-weight: 600;
+	color:gray;
+	line-height: 1.2em;
+	font-weight: lighter;
+}
+
+.header-tips{
+	font-size: 1.2em;
+	font-weight: 600;
+	color:gray;
+	margin-top: 0em;
+	font-weight: bold;
+}
+
+.tip-list{
+	padding-left: 5em;
+}
+
+.tip-item{
+	font-size: 1.2em;
+	font-weight: 600;
+	color:gray;
+	font-weight: lighter;
+}
+
+.image-upload-icon {
+    margin-bottom: 1em;
+    cursor:pointer;
+    width: 5em;
+    height: 5em;
+}
+
+.upload-label{
+	font-size: 1.2em;
+}
+
+.btn-next{
+	float:right;
+	color: white;
+	border-radius: 1.5em;
+	padding: .4em 1.3em;
+	background-color: rgb(68, 197, 242);
+	box-shadow: 2px 2px 2px #888888;
+}
