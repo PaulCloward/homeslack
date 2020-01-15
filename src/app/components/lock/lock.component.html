@@ -1,0 +1,48 @@
+<div class="background-image d-none d-sm-block" style="background-image : url(../../../assets/img/landing_page.jpg)"></div>
+<div class="container-fluid d-none d-sm-block">
+	<div class="row">
+		<div class="col-6 offset-6">
+			<div class="authorization-form-container">
+				<div class="row">
+					<div class="col-10 offset-1">
+						  <br><br><br>
+						  <div class="authorization-title">
+						  		<div class="row">
+							  		<div class="col-7 logo-column">
+								        <img class="logo" src="../../../assets/img/home_slack_logo.png" />
+							      	</div> 	
+							  	</div>
+							  	<div class="row">
+							  		<div class="col-3 company-name-underline">
+							  		</div>
+							  	</div>
+						  </div>
+						  <div class="sub-label" style="margin-bottom: 1.5em;">
+						  	Learn about Homeslack
+						  </div>
+
+						  <form class="custom-form" [formGroup]="loginForm">
+							  <input type="text" placeholder="Email" formControlName="email" class="authorization-input" autocomplete="email" />
+							  <br>
+							  <input type="password" formControlName="password" placeholder="Password" class="authorization-input" autocomplete="password" />
+							  <br>
+							  <br>
+							  <input type="submit" value="Log In" class="authorization-button" (click)="login()" />
+						  </form>
+						  <div *ngIf="errorMessage != null && errorMessage != ''" class="error-message">
+						  	* {{errorMessage}}
+						  </div>
+
+						  <div class="row">
+						  	<div class="col-10 offset-1">
+						  		<div class="line-divider"></div>
+						  	</div>
+						  </div>
+				  		
+				  		
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>  

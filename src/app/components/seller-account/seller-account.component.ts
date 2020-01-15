@@ -1,73 +1,80 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { IHome } from '../../model/IHome';
-import { IUser } from '../../model/IUser';
-import { FirebaseService } from '../../services/firebase.service';
-import { HomeService } from '../../services/home.service';
-import { Observable } from 'rxjs';
-import * as firebase from 'firebase/app';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Seller } from '../../class/Seller';
+import { FirestoreService } from '../../services/firestore.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
+import { PropertyDetails } from '../../class/PropertyDetails';
 
 @Component({
   selector: 'app-seller-account',
   templateUrl: './seller-account.component.html',
   styleUrls: ['./seller-account.component.css']
 })
-export class SellerAccountComponent implements OnInit {
+export class SellerAccountComponent implements OnInit, OnDestroy {
 
-  mUser:IUser;
-  home:IHome;
+  mSeller:Seller;
+  mSellerPropertyDetails:PropertyDetails;
+  mUserID:string;
 
-  private address:string = "This is the address";
+  subscriptionAuthState:Subscription;
+  subscriptionSeller:Subscription;
+  subscriptionSellerPropertyDetails:Subscription;
 
-  constructor(public router:Router, public firebaseService: FirebaseService, private mAuth: AngularFireAuth, private mHomeService:HomeService) { 
+  constructor(private mRouter:Router, private mFirestoreService: FirestoreService, private mAuth:AngularFireAuth) { 
   }
 
   ngOnInit() {
-
-    this.mHomeService.currentHome.subscribe(home => this.initHome(home));
     
-    this.mAuth.authState.subscribe(user => {
-      if(user) {
-            this.firebaseService.getUserInfo("/users/" + user.uid + "/contact/").subscribe(
-              (success) => this.parseUserObject(success))
-            }
-
-           /* this.firebaseService.getHomeListings("/users/" + user.uid + "/home/").map(function (success)
-                {this.parseHomeListings(success);}
-              )*/
+      if(this.subscriptionAuthState != null){
+        this.subscriptionAuthState.unsubscribe();
       }
-      );
+     
+      this.subscriptionAuthState = this.mAuth.authState.subscribe(user => {   
+           if(user) {
+              this.mUserID = user.uid;
+              this.getSellerContactInformation(this.mUserID);
+              this.getSellerPropertyDetails(this.mUserID);
+           }else{
+             this.mUserID = null;
+           }
+      });
   }
 
-  initHome(home:IHome){
-    this.home = home;
+  ngOnDestroy(){
+    if(this.subscriptionAuthState != null){
+      this.subscriptionAuthState.unsubscribe();
+    }
+    if(this.subscriptionSeller != null){
+      this.subscriptionSeller.unsubscribe();
+    }
+    if(this.subscriptionSellerPropertyDetails != null){
+      this.subscriptionSellerPropertyDetails.unsubscribe();
+    }
+  }
 
-    if(this.home.addressInfo.street !== ""){
-      console.log("SEARCH FOR HOME WAS FOUND");
-    }else{
-      console.log("NO HOME FROM SEARCH QUERY FOUND. LOOKING FOR CACHE NOW");
-      this.home = this.mHomeService.getLocalStorageProperty();
+  getSellerContactInformation(userUID:string){
+
+    if(this.subscriptionSeller != null){
+      this.subscriptionSeller.unsubscribe();
     }
 
-    JSON.stringify(this.home);
+    this.subscriptionSeller = this.mFirestoreService.getSellerContactInformation(userUID).subscribe(seller => {
+      this.mSeller = seller;
+    });
   }
 
-  parseUserObject(user:IUser){
+  getSellerPropertyDetails(userUID:string){
+    if(this.subscriptionSellerPropertyDetails != null){
+      this.subscriptionSellerPropertyDetails.unsubscribe();
+    }
     
-    if(user != null){
-      console.log("User: " + JSON.stringify(user));
-      this.mUser = user;
-    }
-  }
-
-  parseHomeListings(homes){
-    console.log("TESTETESTSET");
-     console.log(homes)
+    this.subscriptionSellerPropertyDetails = this.mFirestoreService.getSellerPropertyDetails(userUID).subscribe(property => {
+      this.mSellerPropertyDetails = property;
+    });
   }
 
   onClickListedProperty(){
-    this.mHomeService.updateHomeProperties(this.home);
-    this.router.navigate(['./expanded-property']);
+    this.mRouter.navigate(['./expanded-property']);
   }
 }

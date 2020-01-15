@@ -1,0 +1,589 @@
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/header_time_frame.jpg" class="img-under-nav"/>
+        <div class="row">
+          <div class="col-12 top-header-title-container">
+            <div class="top-header-title"><span class="top-header-title-bold">TIME </span> <span class="top-header-title-light">FRAME</span></div>
+          </div>
+        </div>
+        <div class="row top-header-time-frame-icons-container d-none d-sm-block">
+            <div class="col-8 offset-2">
+            <div class="row">
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Need to search for your home again? Click to go back and search again" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Forget to enter some information about your home? Click to go back and update"  [routerLink]="['../verify-info-page']" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" matTooltipPosition="below" matTooltip="Lets find out your homeslack time-frame below" src="../../../assets/img/ic_time_frame_time_blue.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_camera_grey.png" />
+                </div>
+                <div class="col top-header-time-icon-column">
+                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_grey.png" />
+                </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="row top-header-time-frame-icons-container d-flex d-sm-none">
+              <div class="col-10 offset-1">
+                <div class="row">
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" matTooltipPosition="above" matTooltip="Need to search for your home again? Click to go back and search again" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                  </div>
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" matTooltipPosition="above" matTooltip="Forget to enter some information about your home? Click to go back and update"  src="../../../assets/img/ic_time_frame_question_blue.png" />
+                  </div>
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" matTooltipPosition="below" matTooltip="Lets find out your homeslack time-frame below" src="../../../assets/img/ic_time_frame_time_blue.png" />
+                  </div>
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_camera_grey.png" />
+                  </div>
+                  <div class="col top-header-time-icon-column">
+                      <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_grey.png" />
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+<div class="container-fluid" style="padding-top: 5em;">
+
+  <!-- STEP 1 IS FOR EVERYTHING -->
+  <div class="row" [@fadeInOut]>
+    <div class="col-6 offset-3 time-frame-description-container-left">
+        Select the option that best describes your home. 
+    </div>
+  </div>
+
+  <div class="row" style="margin-bottom: 1em" [@fadeInOut]>
+      <div class="col-6 offset-3">
+          <div class="form-group">
+          <div [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': selectedHomeDescription == null}">
+              <div class="form-check">
+              <label class="container">Property is vacant
+              <input type="radio" value="vacant" name="home.timeframeInfo.homeDescription" [(ngModel)]="home.timeframeInfo.homeDescription" (click)="onClickHomeDescription(homeDescriptionPropertyIsVacant)">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+            <div class="form-check">
+              <label class="container">Property is owner occupied
+              <input type="radio" value="ownerOccupied" name="home.timeframeInfo.homeDescription" [(ngModel)]="home.timeframeInfo.homeDescription" (click)="onClickHomeDescription(homeDescriptionPropertyIsOwnerOccupied)">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+            <div class="form-check">
+              <label class="container">Property is tenant occupied (rented out)
+              <!-- <input type="radio" value="tenantOccupied" name="home.timeframeInfo.homeDescription" [(ngModel)]="home.timeframeInfo.homeDescription" (click)="onClickHomeDescription(homeDescriptionPropertyIsTenantOccupied)"> -->
+              <input type="radio" value="tenantOccupied" name="home.timeframeInfo.homeDescription" [(ngModel)]="home.timeframeInfo.homeDescription" (click)="onClickHomeDescription(homeDescriptionPropertyIsTenantOccupied)">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+            </div>
+          </div>
+      </div>
+  </div>
+  
+    <!-- STEP 2 FOR ALL OPTIONS ON STEP 1 ('Property is vacant', 'Property is owner occupied', 'Property is tenant occupied (rented out)') -->
+    <div class="row" [hidden]="selectedHomeDescription == null" [@fadeInOut]>
+      <div class="col-6 offset-3 time-frame-description-container-left">
+          Is this property currently listed with a realtor?
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 1em" [hidden]="selectedHomeDescription == null" [@fadeInOut]>
+      <div class="col-6 offset-3">
+          <div class="form-group">
+          <div [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': isPropertyListedWithRealtor == null}">
+              <div class="form-check">
+              <label class="container">Yes
+              <input type="radio" [value]="true" name="isPropertyListedWithRealtor" [(ngModel)]="isPropertyListedWithRealtor" (click)="onClickIsPropertyListedWithRealtor()">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+            <div class="form-check" style="margin-top: 0">
+              <label class="container">No
+              <input type="radio" [value]="false" name="isPropertyListedWithRealtor" [(ngModel)]="isPropertyListedWithRealtor" (click)="onClickIsPropertyListedWithRealtor()">
+              <span class="checkmark"></span>
+            </label>
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- IF STEP 2 IS ANSWERED YES, FOR ALL 3 STEP 1 OPTIONS, ('Property is vacant', 'Property is owner occupied', 'Property is tenant occupied (rented out)') -->
+    <div class="row" [hidden]="isPropertyListedWithRealtor != true">
+      <div class="col-6 offset-3 time-frame-description-container-left">
+        I understand that I will be required to pay any and all fees that I 
+        am contractually obligated to pay at the time of closing to my realtor or broker.        
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 1em" [hidden]="isPropertyListedWithRealtor !== true">
+      <div class="col-6 offset-3">
+          <div class="form-group">
+            <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': isPropertyListedWithRealtor == null || (isPropertyListedWithRealtor == true && (payRealtorFeesEndorsement == null || payRealtorFeesEndorsement.length != 2))}">
+                
+                <label class="label-initials">Type your initials here:</label>
+                <br> 
+                <input class="input-initials" [(ngModel)]="payRealtorFeesEndorsement" (keydown)="onKeyDown($event)" type="text" maxlength="2"  />
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- PREFERRED CLOSING DATE IS NEEDED IN STEP 1 AND 2, OPTIONS ('Property is vacant', 'Property is owner occupied') -->
+  <div class="row" [hidden]="isPropertyListedWithRealtor == null || (isPropertyListedWithRealtor == true && (payRealtorFeesEndorsement == null || payRealtorFeesEndorsement.length != 2)) || selectedHomeDescription == homeDescriptionPropertyIsTenantOccupied">
+    <div class="col-6 offset-3 time-frame-description-container-left">
+        Pick a preferred <label class="primary-label">closing date</label>
+    </div>
+  </div>
+  <!-- Closing Date must be a standard business day. No weekend or holiday. It must also be at least 7 business days out from current(today's) date.
+     All other calendars will hinge on this -->
+  <div class="row" [hidden]="isPropertyListedWithRealtor == null || (isPropertyListedWithRealtor == true && (payRealtorFeesEndorsement == null || payRealtorFeesEndorsement.length != 2)) || selectedHomeDescription == homeDescriptionPropertyIsTenantOccupied">
+    <div class="col-12" style="text-align: center">
+      <ngb-datepicker #dp [ngClass]="{'calendar-step-highlight': selectedPreferredClosingDate == null}" 
+      [(ngModel)]="selectedPreferredClosingDate" 
+      (select)="onPreferredClosingDateSelection($event)" 
+        [minDate]="preferredClosingStartDate"
+        [markDisabled]="isWeekend" 
+        [displayMonths]="2"
+        [firstDayOfWeek]="0">
+    </ngb-datepicker> 
+    </div>
+  </div>
+
+
+  
+
+  <div class="row" [hidden]="selectedPreferredClosingDate == null || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied">
+    <div class="col-6 offset-3 time-frame-description-container-left">
+      Can you be out of your home by the closing date that you selected above?
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 1em" [hidden]="selectedPreferredClosingDate == null || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied">
+    <div class="col-6 offset-3">
+          <div class="form-group">
+        <div [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': isOutByClosing == null}">
+            <div class="form-check">
+            <label class="container">Yes
+            <input type="radio" [value]="true" name="isOutByClosing" [(ngModel)]="isOutByClosing" (click)="onClickIsOutByClosing()">
+            <span class="checkmark"></span>
+          </label>
+          </div>
+            <div class="form-check">
+            <label class="container">No
+            <input type="radio" [value]="false" name="isOutByClosing" [(ngModel)]="isOutByClosing" (click)="onClickIsOutByClosing()">
+            <span class="checkmark"></span>
+          </label>
+          </div>
+          </div>
+        </div>
+    </div>
+  </div>
+ 
+  <div class="row" [hidden]="selectedPreferredClosingDate == null || selectedHomeDescription != homeDescriptionPropertyIsVacant && (selectedHomeDescription == homeDescriptionPropertyIsOwnerOccupied && (isOutByClosing == false || isOutByClosing == null))" style="margin-top: 1em;">
+    <div class="col-6 offset-3 time-frame-description-container-left">
+      If my home is sold, I agree to remove any personal items that I want from the property prior to the close of escrow date I selected above. Anything that I leave behind is considered discarded.
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 1em" [hidden]="selectedPreferredClosingDate == null || selectedHomeDescription != homeDescriptionPropertyIsVacant && (selectedHomeDescription == homeDescriptionPropertyIsOwnerOccupied && (isOutByClosing == false || isOutByClosing == null))">
+    <div class="col-6 offset-3">
+        <div class="form-group">
+          <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': removePersonalItemsAgreementEndorsement == null || removePersonalItemsAgreementEndorsement.length != 2}">
+              
+              <label class="label-initials">Type your initials here:</label>
+              <br>
+              <input class="input-initials" [(ngModel)]="removePersonalItemsAgreementEndorsement" type="text" maxlength="2"  />
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied || isOutByClosing != false" style="margin-bottom: -.2em">
+    <div class="col-6 offset-3 time-frame-description-container-left">
+        Please select a preferred move out date
+    </div>
+  </div>
+  <div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied || isOutByClosing != false">
+      <div class="col-12" style="text-align: center">
+        <!-- -Move out date can be a maximum of 21 days after the closing date. Does not have to be a business day. -->
+        <ngb-datepicker 
+          [ngClass]="{'calendar-step-highlight': selectedPreferredMoveOutDate == null}"
+          #dp2 [(ngModel)]="selectedPreferredMoveOutDate" 
+          (select)="onPreferredMovingDateSelection($event)"
+          [minDate]="preferredMovingStartDate"
+          [maxDate]="preferredMovingEndDate" 
+          [displayMonths]="selectedPreferredMoveOutMonthCalendarAmount"
+          [disabled]="disabled"
+          [firstDayOfWeek]="0"
+          [startDate]="preferredMovingStartDate">
+      </ngb-datepicker> 
+      </div>
+    </div>
+
+    <div class="row" [hidden]="selectedPreferredMoveOutDate == null || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied" style="margin-top: 1em;">
+      <div class="col-6 offset-3 time-frame-description-container-left">
+        If my home is sold, I agree to remove any personal items that I want from the property prior to the move out date I selected above. Anything that I leave behind is considered discarded.
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 1em" [hidden]="selectedPreferredMoveOutDate == null || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied">
+      <div class="col-6 offset-3">
+          <div class="form-group">
+            <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': removePersonalItemsByMoveoutAgreementEndorsement == null || removePersonalItemsByMoveoutAgreementEndorsement.length != 2}">
+                
+                <label class="label-initials">Type your initials here:</label>
+                <br>
+                <input class="input-initials" [(ngModel)]="removePersonalItemsByMoveoutAgreementEndorsement" type="text" maxlength="2"  />
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row" [hidden]="removePersonalItemsByMoveoutAgreementEndorsement == null || removePersonalItemsByMoveoutAgreementEndorsement.length != 2" style="margin-top: 1em;">
+      <div class="col-6 offset-3 time-frame-description-container-left">
+        I understand and agree that if I move out after the close of escrow, up to $5,000.00 of the proceeds from the sale will stay at the escrow company in the form of a “holdback” until the property is vacant.
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 1em" [hidden]="removePersonalItemsByMoveoutAgreementEndorsement == null || removePersonalItemsByMoveoutAgreementEndorsement.length != 2">
+      <div class="col-6 offset-3">
+          <div class="form-group">
+            <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': escrowHoldbackFeeAgreementEndorsement == null || escrowHoldbackFeeAgreementEndorsement.length != 2}">
+                
+                <label class="label-initials">Type your initials here:</label>
+                <br>
+                <input class="input-initials" [(ngModel)]="escrowHoldbackFeeAgreementEndorsement" type="text" maxlength="2"  />
+            </div>
+          </div>
+      </div>
+    </div>
+
+  <div class="row" style="margin-bottom: -.2em;margin-top: 1em;" [hidden]="(removePersonalItemsAgreementEndorsement == null || removePersonalItemsAgreementEndorsement.length != 2) && (escrowHoldbackFeeAgreementEndorsement == null || escrowHoldbackFeeAgreementEndorsement.length != 2)">
+    <div class="col-6 offset-3 time-frame-description-container-left">
+        Choose a date to review the offers on your home
+    </div>
+  </div>
+  <div class="row" [hidden]="(removePersonalItemsAgreementEndorsement == null || removePersonalItemsAgreementEndorsement.length != 2) && (escrowHoldbackFeeAgreementEndorsement == null || escrowHoldbackFeeAgreementEndorsement.length != 2)">
+    <div class="col-12" style="text-align: center">
+      <!-- TODO -->
+      <ngb-datepicker [ngClass]="{'calendar-step-highlight': selectedReviewOfferDate == null}" 
+        [(ngModel)]="selectedReviewOfferDate" 
+        (select)="onReviewOfferDateSelection($event)"
+        [minDate]="reviewOfferStartDate"
+        [maxDate]="reviewOfferEndDate" 
+        [markDisabled]="isWeekend" 
+        [displayMonths]="2"
+        [disabled]="disabled"
+        [firstDayOfWeek]="0">
+    </ngb-datepicker> 
+    </div>
+  </div>
+
+   
+
+
+<div class="row" [hidden]="selectedReviewOfferDate == null || selectedHomeDescription != homeDescriptionPropertyIsVacant" style="margin-top: 1em;">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+      You have requested for the transaction to close (you get your money) on {{selectedPreferredClosingDate | ngbDate | date}}. You have decided to select your offer on {{selectedReviewOfferDate | ngbDate | date}}.
+  </div>
+</div>
+<div class="row" style="margin-bottom: 1em" [hidden]="selectedReviewOfferDate == null || selectedHomeDescription != homeDescriptionPropertyIsVacant">
+  <div class="col-6 offset-3">
+      <div class="form-group">
+        <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': authorizationEndorsement == null || authorizationEndorsement.length != 2}">
+            
+            <label class="label-initials">Type your initials in the box below verifying that you understand the significance of the dates described:</label>
+            <br>
+            <input class="input-initials" [(ngModel)]="authorizationEndorsement" type="text" maxlength="2"  />
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="row" [hidden]="selectedReviewOfferDate == null || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied" style="margin-top: 1em;">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+       You have requested for the transaction to close (you get your money) on {{selectedPreferredClosingDate | ngbDate | date}}. You have decided to select your offer on {{selectedReviewOfferDate | ngbDate | date}}. 
+       You are expected to be moved out by <div style="display: inline-block;" *ngIf="selectedPreferredMoveOutDate != null">{{selectedPreferredMoveOutDate | ngbDate | date}}</div><div style="display: inline-block;" *ngIf="selectedPreferredMoveOutDate == null">{{selectedPreferredClosingDate | ngbDate | date}}</div>.
+  </div>
+</div> 
+<div class="row" style="margin-bottom: 1em" [hidden]="selectedReviewOfferDate == null || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied">
+  <div class="col-6 offset-3">
+      <div class="form-group">
+        <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': authorizationEndorsement == null || authorizationEndorsement.length != 2}">
+            
+            <label class="label-initials">Type your initials in the box below verifying that you understand the significance of the dates described:</label>
+            <br>
+            <input class="input-initials" [(ngModel)]="authorizationEndorsement" type="text" maxlength="2"  />
+        </div>
+      </div>
+  </div>
+</div> 
+
+<div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyListedWithRealtor == null || (isPropertyListedWithRealtor == true && (payRealtorFeesEndorsement == null || payRealtorFeesEndorsement.length != 2))">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+    Do you have a property manager in place?
+  </div>
+</div>
+<div class="row" style="margin-bottom: 1em" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyListedWithRealtor == null || (isPropertyListedWithRealtor == true && (payRealtorFeesEndorsement == null || payRealtorFeesEndorsement.length != 2))">
+  <div class="col-6 offset-3">
+      <div class="form-group">
+      <div [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': isPropertyManagerInPlace == null}">
+          <div class="form-check">
+          <label class="container">Yes
+          <input type="radio" [value]="true" name="isPropertyManagerInPlace" [(ngModel)]="isPropertyManagerInPlace" (click)="onClickIsPropertyManagerInPlace()">
+          <span class="checkmark"></span>
+        </label>
+        </div>
+          <div class="form-check">
+          <label class="container">No, I self manage the property
+          <input type="radio" [value]="false" name="isPropertyManagerInPlace" [(ngModel)]="isPropertyManagerInPlace" (click)="onClickIsPropertyManagerInPlace()">
+          <span class="checkmark"></span>
+        </label>
+        </div>
+        </div>
+      </div>
+  </div>
+</div> 
+
+<div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyManagerInPlace == null || isPropertyManagerInPlace == false">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+    When does your agreement with your property manager expire?
+  </div>
+</div>
+<div class="row"  style="margin-bottom: 1em"  [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyManagerInPlace == null || isPropertyManagerInPlace == false">
+  <div class="col-12 datepicker-container">
+    <div class="col-12" style="text-align: center">
+      <!-- -->
+      <ngb-datepicker 
+        [ngClass]="{'calendar-step-highlight': selectedPropertyMangagerAgreementExpirationDate == null}" 
+        [(ngModel)]="selectedPropertyMangagerAgreementExpirationDate" 
+        (select)="onPropertyMangagerAgreementExpirationDateSelection($event)"
+        [minDate]="propertyMangagerAgreementExpirationStartDate"
+        [markDisabled]="isWeekend" 
+        [displayMonths]="2"
+        [firstDayOfWeek]="0"
+        >
+    </ngb-datepicker> 
+    </div>
+  </div>
+</div> 
+
+<div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyManagerInPlace == null || isPropertyManagerInPlace == false">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+      Upload your property management agreement here.
+  </div>
+</div>
+<div class="row" style="margin-bottom: 1em"  [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyManagerInPlace == null || isPropertyManagerInPlace == false">
+  <div class="col-6 offset-3">
+    <button class="btn-choose-file">Choose File</button>
+  </div>
+</div> 
+
+<div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyManagerInPlace == null || (isPropertyManagerInPlace == true && selectedPropertyMangagerAgreementExpirationDate == null)">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+    Is your Tenant/s month-to-month
+  </div>
+</div>
+<div class="row" style="margin-bottom: 1em" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyManagerInPlace == null || (isPropertyManagerInPlace == true && selectedPropertyMangagerAgreementExpirationDate == null)">
+  <div class="col-6 offset-3">
+      <div class="form-group">
+      <div class="form-control checkmark-container">
+          <div class="form-check">
+          <label class="container">Yes
+          <input type="radio" [value]="true" name="isTenantMonthToMonth" [(ngModel)]="isTenantMonthToMonth" (click)="onClickIsTenantMonthToMonth()">
+          <span class="checkmark"></span>
+        </label>
+        </div>
+        <div class="form-check">
+          <label class="container">No
+          <input type="radio" [value]="false" name="isTenantMonthToMonth" [(ngModel)]="isTenantMonthToMonth" (click)="onClickIsTenantMonthToMonth()">
+          <span class="checkmark"></span>
+        </label>
+        </div>
+        </div>
+      </div>
+  </div>
+</div> 
+
+<div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isTenantMonthToMonth == null || isTenantMonthToMonth == true">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+    When does your rental agreement with the tenant/s expire?
+  </div>
+</div>
+<div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isTenantMonthToMonth == null || isTenantMonthToMonth == true">
+  <div class="col-12 datepicker-container">
+    <div class="col-12" style="text-align: center">
+      <!-- -->
+      <ngb-datepicker 
+        [ngClass]="{'calendar-step-highlight': selectedTenantRentalAgreementDate == null}" 
+        [(ngModel)]="selectedTenantRentalAgreementDate" 
+        (select)="onTenantRentalAgreementDateSelection($event)"
+        [minDate]="tenantRentalAgreementStartDate"
+        [markDisabled]="isWeekend" 
+        [displayMonths]="2"
+        [firstDayOfWeek]="0">>
+    </ngb-datepicker> 
+    </div>
+  </div>
+</div> 
+
+
+<div class="row" [hidden]="isTenantMonthToMonth == null || (isTenantMonthToMonth == false && selectedTenantRentalAgreementDate == null)" style="margin-top: 1em;">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+    What amount is your tenant contractually obligated to pay each month?
+  </div>
+</div>
+<div class="row" style="margin-bottom: 1em" [hidden]="isTenantMonthToMonth == null || (isTenantMonthToMonth == false && selectedTenantRentalAgreementDate == null)">
+  <div class="col-6 offset-3">
+      <div class="form-group">
+        <div style="padding: 2em 0em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': tenantObligatedToPayAmount == null || tenantObligatedToPayAmount == ''}">
+            
+            <label class="label-amount">Amount: </label>
+            <input class="input-amount" currencyMask [(ngModel)]="tenantObligatedToPayAmount" type="text" maxlength="11"  />
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="row" [hidden]="tenantObligatedToPayAmount == null || tenantObligatedToPayAmount == ''">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+    Do you have a security deposit?
+  </div>
+</div>
+<div class="row" style="margin-bottom: 1em"  [hidden]="tenantObligatedToPayAmount == null || tenantObligatedToPayAmount == ''">
+  <div class="col-6 offset-3">
+      <div class="form-group">
+      <div  [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': isThereSecurityDeposit == null}">
+          <div class="form-check">
+          <label class="container">Yes
+          <input type="radio" [value]="true" name="isThereSecurityDeposit" [(ngModel)]="isThereSecurityDeposit" (click)="onClickIsThereSecurityDeposit()">
+          <span class="checkmark"></span>
+        </label>
+        </div>
+        <div class="form-check">
+          <label class="container">No
+          <input type="radio" [value]="false" name="isThereSecurityDeposit" [(ngModel)]="isThereSecurityDeposit" (click)="onClickIsThereSecurityDeposit()">
+          <span class="checkmark"></span>
+        </label>
+        </div>
+        </div>
+      </div>
+  </div>
+</div> 
+
+<div class="row" [hidden]="isThereSecurityDeposit == null || isThereSecurityDeposit == false" style="margin-top: 1em;">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+    Enter security deposit amount
+  </div>
+</div>
+<div class="row" style="margin-bottom: 1em" [hidden]="isThereSecurityDeposit == null || isThereSecurityDeposit == false">
+  <div class="col-6 offset-3">
+      <div class="form-group">
+        <div style="padding: 2em 0em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': securityDepositAmount == null || securityDepositAmount == ''}">
+            
+            <label class="label-amount">Amount: </label>
+            <input class="input-amount" currencyMask [(ngModel)]="securityDepositAmount" type="text" maxlength="11"  />
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="row" [hidden]="isThereSecurityDeposit == null || (isThereSecurityDeposit == true && securityDepositAmount == null && securityDepositAmount != '')">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+      Upload a copy of the current rental agreement
+  </div>
+</div>
+<div class="row" style="margin-bottom: 1em"  [hidden]="isThereSecurityDeposit == null || (isThereSecurityDeposit == true && securityDepositAmount == null && securityDepositAmount != '')">
+  <div class="col-6 offset-3">
+    <button class="btn-choose-file">Choose File</button>
+  </div>
+</div> 
+
+ <!-- PREFERRED CLOSING TENANT OCCUPIED DATE IS NEEDED IN 3, OPTIONS ('Property is Tenant Occuped') -->
+ <div class="row" [hidden]="isThereSecurityDeposit == null || (isThereSecurityDeposit == true && securityDepositAmount == null && securityDepositAmount != '')">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+      Pick a preferred <label class="primary-label">closing date</label>
+  </div>
+</div>
+<!-- Closing Date must be a standard business day. No weekend or holiday. It must also be at least 7 business days out from current(today's) date.
+   All other calendars will hinge on this -->
+<div class="row" [hidden]="isThereSecurityDeposit == null || (isThereSecurityDeposit == true && securityDepositAmount == null && securityDepositAmount != '')">
+  <div class="col-12" style="text-align: center">
+    <ngb-datepicker #dp [ngClass]="{'calendar-step-highlight': selectedPreferredClosingTenantOccupiedDate == null}" 
+    [(ngModel)]="selectedPreferredClosingTenantOccupiedDate" 
+    (select)="onPreferredClosingDateTenantOccupiedSelection($event)" 
+      [minDate]="preferredClosingTenantOccupiedStartDate"
+      [markDisabled]="isWeekend" 
+      [displayMonths]="2"
+      [firstDayOfWeek]="0">
+  </ngb-datepicker> 
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: -.2em;margin-top: 1em;" [hidden]="selectedPreferredClosingTenantOccupiedDate == null">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+      Choose a date to review the offers on your home
+  </div>
+</div>
+<div class="row" [hidden]="selectedPreferredClosingTenantOccupiedDate == null">
+  <div class="col-12" style="text-align: center">
+    <!-- TODO -->
+    <ngb-datepicker [ngClass]="{'calendar-step-highlight': selectedReviewOfferTenantOccupiedDate == null}" #dp2 
+    [(ngModel)]="selectedReviewOfferTenantOccupiedDate" (select)="onReviewOfferTenantOccupiedDateSelection($event)"
+      [minDate]="reviewOfferTenantOccupiedStartDate"
+      [maxDate]="reviewOfferTenantOccupiedEndDate" 
+      [markDisabled]="isWeekend" 
+      [displayMonths]="2"
+      [firstDayOfWeek]="0">
+  </ngb-datepicker> 
+  </div>
+</div>
+
+  <div class="row" style="margin-bottom: -.2em;margin-top: 1em;" [hidden]="selectedReviewOfferTenantOccupiedDate == null || selectedHomeDescription == homeDescriptionPropertyIsVacant || selectedHomeDescription == homeDescriptionPropertyIsOwnerOccupied">
+  <div class="col-6 offset-3 time-frame-description-container-left">
+    You have requested for the transaction to close (you get your money) on {{selectedPreferredClosingTenantOccupiedDate | ngbDate | date}}. 
+    You have decided to select your offer on {{selectedReviewOfferTenantOccupiedDate | ngbDate | date }}. 
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 1em" [hidden]="selectedReviewOfferTenantOccupiedDate == null || selectedHomeDescription == homeDescriptionPropertyIsVacant || selectedHomeDescription == homeDescriptionPropertyIsOwnerOccupied">
+  <div class="col-6 offset-3">
+      <div class="form-group">
+        <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': (everythingConfirmedEndorsement == null || everythingConfirmedEndorsement.length < 2)}">
+            
+            <label class="label-initials">Type your initials in the box below verifying that you understand the significance of the dates described:</label>
+            <br> 
+            <input class="input-initials" [(ngModel)]="everythingConfirmedEndorsement" type="text" maxlength="2"  />
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="row" [hidden]="authorizationEndorsement == null || authorizationEndorsement.length != 2 || selectedHomeDescription == homeDescriptionPropertyIsTenantOccupied">
+  <div class="col-6 offset-3" style="padding:0em;">
+      <div class="btn-container">
+          <button class="btn-next pending-step-highlight" (click)="onClickNext()">Next</button>
+      </div>
+  </div>
+</div> 
+
+<div class="row" [hidden]="everythingConfirmedEndorsement == null || everythingConfirmedEndorsement.length != 2">
+  <div class="col-6 offset-3" style="padding:0em;">
+      <div class="btn-container">
+          <button class="btn-next pending-step-highlight" (click)="onClickNext()">Next</button>
+      </div>
+  </div>
+</div>
+<br>
+</div>
+<app-footer></app-footer>

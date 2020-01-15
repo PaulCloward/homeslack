@@ -12,7 +12,6 @@
     width: 80%;
     text-align: left;
     margin-top: .2em;
-    
 }
 
 .dropdown-toggle{
@@ -76,7 +75,6 @@ agm-map {
 }
 
 .information-title{
-    margin-top: 3em;
     font-size: 2em;
     font-family: Century Gothic, sans-serif;
     font-weight: 600;
@@ -89,6 +87,13 @@ agm-map {
     font-family: Century Gothic, sans-serif;
     font-weight: 300;
     color: #7E7E7E;
+}
+
+.street-address{
+    font-size: 2.1em; 
+    line-height: 1.1em; 
+    width: 100%;
+    text-align: end;
 }
 
 .create-account{
@@ -165,7 +170,8 @@ agm-map {
 }
 
 .icon-label {
-    /*cursor: pointer;*/
+    cursor: pointer;
+    align-self: flex-start;
 }
 
 .btn-create-account{
@@ -176,7 +182,11 @@ agm-map {
     border-radius: 3em;
     padding: .3em .5em;
     font-weight: 600;
+    box-shadow: 1px 1px 5px 0px #888888;
+    cursor: pointer;
+    
 }
+
 
 .create-account-subtitle{
     font-size: 1em;
@@ -250,7 +260,6 @@ agm-map {
     }
 
     .information-title{
-        margin-top: 1em;
         font-size: 1.5em;
     }
 

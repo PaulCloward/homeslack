@@ -3,14 +3,8 @@
 }
 
 .navbar {
-    background-color: #4D4D4D;
-    opacity: .9; 
-    padding: 0em;
-    border-bottom: 3px solid rgba(68, 197, 242, .9);
-}
-
-.navbar-brand{
-    /*padding-left:1em;*/
+    background-color: #FFF;
+    padding: 0em 0em .3em 0em;
 }
 
 /*Takes off drowdown arrow*/
@@ -40,10 +34,11 @@
 */
 .dropdown-menu {
   background-color: #4D4D4D;
-  opacity: .9; 
+  opacity: .9;
   padding: 0em;
   margin: 0em !important;  
   min-width: 100% !important;
+  border-top: #4D4D4D;
 }
 
 /*<li> element of child nav*/
@@ -51,18 +46,20 @@
   background-color: #4D4D4D;
   padding: 1em 1em;
   text-align: center;
-  font-size: .8em;
+  font-size: .9em;
   text-decoration: none;
-  color: white;
+  color: #e0e0e0;
+  font-family: Century Gothic, sans-serif;
+  font-weight: 600;
 }
 
 .child-link {
-    color: white;
-    cursor:pointer;
-    padding-left: 1em !important;
-    padding-right: 1em !important;
-    padding-top: 1em !important;
-    padding-bottom: 1em !important;
+  color: #e0e0e0;
+  cursor:pointer;
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
 }
 
 /*<a> element of child nav :hover*/
@@ -73,22 +70,24 @@
   text-decoration: none;
 }
 
-.nav-item{
-    padding: 0em 0em;
-    font-size: .9em;
-    font-family: Century Gothic, sans-serif;
-}
+
 
 .nav-link{
-    color: white;
-    width: 10em;
-    padding-top: 1.5em !important;
-    padding-bottom: 1.5em !important;
+    color: #4D4D4D !important;
+    padding-top: 3em !important;
+    padding-bottom: .5em !important;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+    margin-right: 1em;
+    margin-left: 1em;
     text-align: center;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 600;
+    font-size: 1.1em;
 }
 
 .nav-link:hover {
-    color:rgb(68, 197, 242);
+    color:rgb(68, 197, 242) !important;
 }
 
 .nav-icon{
@@ -102,26 +101,17 @@
 }
 
 .nav-tab-selected{
-  /*background-color: rgb(68, 197, 242);*/
-  color:rgb(68, 197, 242) !important;
-  font-size: 1em;
-  font-weight: 600;
+  background-color: rgb(68, 197, 242);
+  color:#FFF !important;
 }
 
 .nav-tab-selected:hover {
-  /*color: white !important;
-  background-color: rgb(68, 197, 242);
-  opacity: .9;*/
   text-decoration: none;
   color:rgb(68, 197, 242) !important;
+  color: white !important;
 }
 
 .nav-profile-icon{
   width: 2.5em;
   margin: 0 auto;
-}
-
-*{
-  /*border: 1px solid red;*/
-
 }

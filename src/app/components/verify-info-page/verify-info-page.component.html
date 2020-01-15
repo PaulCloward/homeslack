@@ -11,10 +11,10 @@
             <div class="col-8 offset-2">
             <div class="row">
                 <div class="col top-header-time-icon-column">
-                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                    <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Need to search for your home again? Click to go back and search again" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
                 </div>
                 <div class="col top-header-time-icon-column">
-                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                    <img class="top-header-time-icon" matTooltipPosition="above" matTooltip="Lets fill out your home information below" src="../../../assets/img/ic_time_frame_question_blue.png" />
                 </div>
                 <div class="col top-header-time-icon-column">
                     <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_time_grey.png" />
@@ -33,10 +33,10 @@
               <div class="col-10 offset-1">
                 <div class="row">
                   <div class="col top-header-time-icon-column">
-                      <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                      <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Need to search for your home again? Click to go back and search again" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
                   </div>
                   <div class="col top-header-time-icon-column">
-                      <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                      <img class="top-header-time-icon" matTooltipPosition="above" matTooltip="Lets fill out your home information below" src="../../../assets/img/ic_time_frame_question_blue.png" />
                   </div>
                   <div class="col top-header-time-icon-column">
                       <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_time_grey.png" />
@@ -73,22 +73,20 @@
         </div>
     </div>
     
-    <div class="row">
-        <div class="col-6 offset-1">
-            <div class="row">
-                <div class="col information-title">
+    <div class="row" style="margin-top: 6em;">
+        <div class="col-4 offset-1">
+            <div class="information-title">
                     Property Details:
-                </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <span class="information-subtitle">Information Incorrect? Click<span class="question-mark-circle rounded-circle" style="vertical-align: middle; font-size: 1em; cursor: default;">?</span> to edit</span>
-                </div>
-            </div>
+            <div class="information-subtitle">Information Incorrect? Click<span class="question-mark-circle rounded-circle" style="vertical-align: middle; font-size: 1em; cursor: default;">?</span> to edit</div>
         </div>
-        <div class="col-5" style="margin-top: 1em; border: 1px solid black; text-align: left; padding-right: 4em;">
-            <div class="street-address" style="font-size: 1.8em; line-height: 1.1em;">
-                {{home.addressInfo.street}} &nbsp;{{home.addressInfo.city}},&nbsp;{{home.addressInfo.state}}&nbsp; {{home.addressInfo.zipCode}}
+        <div class="col-6" style="padding: 0em">
+            <div class="street-address">
+                <span style="color: #7E7E7E;">{{home.addressInfo.street}}</span>
+            </div>
+            <div class="street-address">
+                    {{home.addressInfo.city}},
+                    &nbsp;{{home.addressInfo.state}}&nbsp; {{home.addressInfo.zipCode}}
             </div>
             <!-- <div class="city-state-address" style="font-size: 1.5em; line-height: 1.1em; display: inline-block;">
                 &nbsp;{{home.addressInfo.city}},&nbsp;{{home.addressInfo.state}}&nbsp; {{home.addressInfo.zipCode}}
@@ -103,7 +101,7 @@
                 <div class="col-4">
                     <div class="row" (click)="editModeTotalLivingArea = !editModeTotalLivingArea">
                         <div class="col-3 icon-container d-flex justify-content-center"
-                        ><img src="../../../assets/img/total_living_area.png" class="icon-label align-self-center img-fluid" title="{{totalLivingAreaHint}}"/></div>
+                        ><img src="../../../assets/img/total_living_area.png" class="icon-label img-fluid" placement="top"  matTooltip="{{totalLivingAreaHint}}"/></div>
                         <div class="col-9">
                            <div class="label-property">
                                 Total Living Area <span class="question-mark-circle rounded-circle">?</span>
@@ -116,7 +114,9 @@
                 </div>
                 <div class="col-4">
                     <div class="row" (click)="editModeYearBuild = !editModeYearBuild">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/year_built.png" class="icon-label align-self-center img-fluid" title="{{yearBuildHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/year_built.png" class="icon-label img-fluid" placement="top"  matTooltip="{{yearBuildHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Year Build <span class="question-mark-circle rounded-circle">?</span>
@@ -129,7 +129,9 @@
                 </div>
                 <div class="col-4">
                     <div class="row" (click)="editModeLotSize = !editModeLotSize">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/lot_size.png" class="icon-label align-self-center img-fluid" title="{{lotSizeHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/lot_size.png" class="icon-label img-fluid" titplacement="top"  matTooltip="{{lotSizeHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Lot Size <span class="question-mark-circle rounded-circle" >?</span>
@@ -157,7 +159,9 @@
             <div class="row mt-4 d-none d-md-flex">
                 <div class="col-4">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center" (click)="editModeBedrooms = !editModeBedrooms"><img src="../../../assets/img/Bedrooms.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{bedroomsHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center" (click)="editModeBedrooms = !editModeBedrooms">
+                            <img src="../../../assets/img/Bedrooms.png" class="icon-label img-fluid" data-toggle="tooltip" data-placement="top" placement="top"  matTooltip="{{bedroomsHint}}"/>
+                        </div>
                         <div class="col-9" >
                             <div class="label-property" (click)="editModeBedrooms = !editModeBedrooms">
                                 Bedrooms <span class="question-mark-circle rounded-circle" >?</span>
@@ -193,7 +197,9 @@
                 </div>
                 <div class="col-4">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center" (click)="editModeBathrooms = !editModeBathrooms"><img src="../../../assets/img/bathroom.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{bathroomsHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center" (click)="editModeBathrooms = !editModeBathrooms">
+                            <img src="../../../assets/img/bathroom.png" class="icon-label img-fluid" data-toggle="tooltip" data-placement="top" placement="top"  matTooltip="{{bathroomsHint}}"/>
+                        </div>
                         <div class="col-9">
                         <div class="label-property" (click)="editModeBathrooms = !editModeBathrooms">
                             Bathrooms <span class="question-mark-circle rounded-circle" >?</span>
@@ -231,7 +237,9 @@
                 </div>
                 <div class="col-4">
                     <div class="row">
-                        <div (click)="editModeBasement = !editModeBasement" class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Basement.png" class="icon-label align-self-center img-fluid" title="{{basementHint}}"/></div>
+                        <div (click)="editModeBasement = !editModeBasement" class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Basement.png" class="icon-label img-fluid" placement="top"  matTooltip="{{basementHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property" (click)="editModeBasement = !editModeBasement">
                                 Basement<span class="question-mark-circle rounded-circle">?</span>
@@ -275,7 +283,9 @@
             <div class="row mt-4 d-none d-md-flex">
                 <div class="col-4">
                     <div class="row">
-                        <div (click)="editModeGarage = !editModeGarage" class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Garage.png" class="icon-label align-self-center img-fluid" title="{{garageHint}}"/></div>
+                        <div (click)="editModeGarage = !editModeGarage" class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Garage.png" class="icon-label img-fluid" placement="top"  matTooltip="{{garageHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property" (click)="editModeGarage = !editModeGarage">
                                 Garage <span class="question-mark-circle rounded-circle" >?</span>
@@ -306,7 +316,9 @@
                 </div>
                 <div class="col-4">
                     <div class="row" (click)="editModePool = !editModePool">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Pool.png" class="icon-label align-self-center img-fluid" title="{{poolHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Pool.png" class="icon-label img-fluid" placement="top"  matTooltip="{{poolHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Pool <span class="question-mark-circle rounded-circle">?</span>
@@ -333,7 +345,9 @@
                 </div>
                 <div class="col-4">
                     <div class="row" (click)="editModeHotTub = !editModeHotTub">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/hot_tub.png" class="icon-label align-self-center img-fluid" title="{{hotTubHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/hot_tub.png" class="icon-label img-fluid" placement="top"  matTooltip="{{hotTubHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Hot Tub <span class="question-mark-circle rounded-circle">?</span>
@@ -366,7 +380,9 @@
             <div class="row mt-4 d-none d-md-flex">
                 <div class="col-4">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center" (click)="editModeCooling = !editModeCooling"><img src="../../../assets/img/Cooling.png" class="icon-label align-self-center img-fluid" data-toggle="tooltip" data-placement="top" title="{{coolingHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center" (click)="editModeCooling = !editModeCooling">
+                            <img src="../../../assets/img/Cooling.png" class="icon-label img-fluid" data-toggle="tooltip" data-placement="top" placement="top"  matTooltip="{{coolingHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property" (click)="editModeCooling = !editModeCooling">
                                 Cooling <span class="question-mark-circle rounded-circle" >?</span>
@@ -396,7 +412,9 @@
             <div class="row d-flex d-md-none property-row">
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/total_living_area.png" class="icon-label align-self-center img-fluid" title="{{totalLivingAreaHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/total_living_area.png" class="icon-label img-fluid" placement="top"  matTooltip="{{totalLivingAreaHint}}"/>
+                        </div>
                         <div class="col-9">
                            <div class="label-property">
                                 Total Living Area <span class="question-mark-circle rounded-circle" (click)="editModeTotalLivingArea = !editModeTotalLivingArea">?</span>
@@ -408,7 +426,9 @@
                 </div>
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/year_built.png" class="icon-label align-self-center img-fluid" title="{{yearBuildHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/year_built.png" class="icon-label img-fluid" placement="top"  matTooltip="{{yearBuildHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Year Build <span class="question-mark-circle rounded-circle" (click)="editModeYearBuild = !editModeYearBuild">?</span>
@@ -424,7 +444,9 @@
             <div class="row d-flex d-md-none property-row">
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/lot_size.png" class="icon-label align-self-center img-fluid" title="{{lotSizeHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/lot_size.png" class="icon-label img-fluid" placement="top"  matTooltip="{{lotSizeHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Lot Size <span class="question-mark-circle rounded-circle" (click)="editModeLotSize = !editModeLotSize">?</span>
@@ -437,7 +459,9 @@
                 </div>
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Bedrooms.png" class="icon-label align-self-center img-fluid" title="{{bedroomsHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Bedrooms.png" class="icon-label img-fluid" placement="top"  matTooltip="{{bedroomsHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Bedrooms <span class="question-mark-circle rounded-circle" (click)="editModeBedrooms = !editModeBedrooms">?</span>
@@ -453,7 +477,9 @@
             <div class="row d-flex d-md-none property-row">
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/bathroom.png" class="icon-label align-self-center img-fluid" title="{{bathroomsHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/bathroom.png" class="icon-label img-fluid" placement="top"  matTooltip="{{bathroomsHint}}"/>
+                        </div>
                         <div class="col-9">
                         <div class="label-property">
                             Bathrooms <span class="question-mark-circle rounded-circle" (click)="editModeBathrooms = !editModeBathrooms">?</span>
@@ -465,7 +491,9 @@
                 </div>
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Basement.png" class="icon-label align-self-center img-fluid" title="{{basementHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Basement.png" class="icon-label img-fluid" placement="top"  matTooltip="{{basementHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Basement
@@ -481,7 +509,9 @@
             <div class="row d-flex d-md-none property-row">
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Garage.png" class="icon-label align-self-center img-fluid" title="{{garageHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Garage.png" class="icon-label img-fluid" placement="top"  matTooltip="{{garageHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Garage <span class="question-mark-circle rounded-circle" (click)="editModeGarage = !editModeGarage">?</span>
@@ -493,7 +523,9 @@
                 </div>
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Pool.png" class="icon-label align-self-center img-fluid" title="{{poolHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Pool.png" class="icon-label img-fluid" placement="top"  matTooltip="{{poolHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Pool <span class="question-mark-circle rounded-circle" (click)="editModePool = !editModePool">?</span>
@@ -521,7 +553,9 @@
             <div class="row d-flex d-md-none property-row">
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/hot_tub.png" class="icon-label align-self-center img-fluid" title="{{hotTubHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/hot_tub.png" class="icon-label img-fluid" placement="top"  matTooltip="{{hotTubHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Hot Tub <span class="question-mark-circle rounded-circle" (click)="editModeHotTub = !editModeHotTub">?</span>
@@ -547,7 +581,9 @@
                 </div>
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center"><img src="../../../assets/img/Cooling.png" class="icon-label align-self-center img-fluid" title="{{coolingHint}}"/></div>
+                        <div class="col-3 icon-container d-flex justify-content-center">
+                            <img src="../../../assets/img/Cooling.png" class="icon-label img-fluid" placement="top"  matTooltip="{{coolingHint}}"/>
+                        </div>
                         <div class="col-9">
                             <div class="label-property">
                                 Cooling <span class="question-mark-circle rounded-circle" (click)="editModeCooling = !editModeCooling">?</span>
@@ -591,7 +627,8 @@
                 <div class="col-12">
                     <div class="label-question">Any HVAC, Plumbing, Electrical, or Roofing Issues we should know about<span class="question-mark">?</span></div>
 
-                    <textarea class="input-edit-property" [(ngModel)]="home.concerns.hperIssues" placeholder="HVAC, Plumbing, Electrical, or Roofing Issues..." style="resize: none" type="text" maxlength="300"></textarea>
+                    <!-- home.concerns ?? -->
+                    <!-- <textarea class="input-edit-property" [(ngModel)]="home.concerns.hperIssues" placeholder="HVAC, Plumbing, Electrical, or Roofing Issues..." style="resize: none" type="text" maxlength="300"></textarea> -->
                 </div>
             </div>
            
@@ -600,14 +637,15 @@
                 <div class="col-12">
                     <div class="label-question">Any other concerns you can tell us about<span class="question-mark">?</span></div>
 
-                    <textarea class="input-edit-property" [(ngModel)]="home.concerns.otherConcerns" placeholder="Other concerns..." style="resize: none" type="text" maxlength="300"></textarea>
+                    <!-- home.concerns ?? -->
+                    <!-- <textarea class="input-edit-property" [(ngModel)]="home.concerns.otherConcerns" placeholder="Other concerns..." style="resize: none" type="text" maxlength="300"></textarea> -->
                 </div>
             </div>
             
-            <div class="row" class="create-account-subtitle" style="padding-top: 1em; border-top: 1px solid #7E7E7E">
+            <div *ngIf="!loggedIn" class="row" class="create-account-subtitle" style="padding-top: 1em; border-top: 1px solid #7E7E7E">
                 Create a Homeface account to save your information and to start the process selling your home.
             </div>
-            <div class="row" style="margin-top: 1em;">
+            <div *ngIf="!loggedIn" class="row" style="margin-top: 1em;">
                 <button class="btn btn-create-account" (click)="onClickCreateAccount()">Create Account</button>
             </div>
             <div *ngIf="loggedIn" class="row">
@@ -625,20 +663,4 @@
     </div>
     <br><br>
 </div>
-<div class="row">
-  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
-    <div class="container-fluid">
-      <div class="row">
-         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 address">
-          HomeSupervisor@homeslack.com<br>
-          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-footer></app-footer>

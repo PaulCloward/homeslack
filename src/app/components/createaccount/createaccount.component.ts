@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { IUser } from '../../model/IUser';
-import { IHome } from '../../model/IHome';
-import { HomeService } from '../../services/home.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Seller } from '../../class/Seller';
+import { FirestoreService } from '../../services/firestore.service';
+import * as firebase from 'firebase/app';
+import { SellerPropertyService } from '../../services/seller-property.service';
+import { PropertyDetails } from '../../class/PropertyDetails';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-createaccount',
@@ -13,110 +14,125 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./createaccount.component.css']
 })
 export class CreateaccountComponent implements OnInit {
-
-  private TAG: String = "CREATE ACCOUNT: "; 
-
-  public user$ = this.firebaseService.user;
   
   isUpdatedByText:boolean = false;
   isUpdatedByEmail:boolean = false;
-  /*firstName:string;
-  lastName:string;
-  phone:string;*/
-  email2:string;
-  password2:string;
-  confirmPassword:string;
   
-  home:IHome;
-  myForm: FormGroup;
+  mSellerPropertyDetails:PropertyDetails;
+  myFormContact: FormGroup;
+  mSellerContactInfo:Seller;
   
   @Input() alertMessage:string;
+  userID:string;
 
-
-  constructor(private _homeService: HomeService, private firebaseService: FirebaseService, private router: Router, private fb:FormBuilder) { }
+  constructor(private mAuth:AngularFireAuth, private mSellerPropertyService: SellerPropertyService, private mFirestoreService: FirestoreService, private mRouter: Router, private mFormBuilder:FormBuilder) { }
 
   ngOnInit() {
-    this._homeService.currentHome.subscribe(home => this.home = home);
 
-    const phone = this.fb.group({
-      area: [],
-      prefix: [],
-      line: []
+    this.mAuth.authState.subscribe(user => {
+      if(user){
+        this.userID = user.uid;
+        this.successfulCreatedAccount(this.mSellerContactInfo)
+      }else{
+        this.userID = "";
+      }
+    })
+
+    this.mSellerPropertyService.getSellerPropertyDetailsSource().subscribe(propertyDetails =>{
+        this.mSellerPropertyDetails = propertyDetails;
     });
 
-    this.myForm = this.fb.group({
+    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+    let phoneNumberPattern = "^(\+\d{1,3}[- ]?)?\d{10}$";
+
+    this.myFormContact = this.mFormBuilder.group({
       firstName: ['', [
-        Validators.required,
-        Validators.pattern('[a-zA-Z]+')
+        Validators.required
       ]],
       lastName: ['', [
-        Validators.required,
-        Validators.pattern('[a-zA-Z]+')
+        Validators.required
       ]],
       email: ['', [
         Validators.required,
         Validators.email
       ]],
       phone: ['', [
-        Validators.required
+        Validators.required,
+        // ValidationPhoneNumber.checkLimit(9,11),
+        // Validators.pattern("^[0-9]+$")
       ]],
       password: ['', [
         Validators.required,
-        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
+       // Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
+      ]],
+      confirmPassword: ['', [
+        Validators.required,
+        //Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
       ]]
+    }, {validator: this.checkPasswords });
+
+    this.mSellerContactInfo = new Seller();
+
+    this.myFormContact.valueChanges.subscribe(contactForm => {
+      this.mSellerContactInfo.first_name = contactForm.firstName;
+      this.mSellerContactInfo.last_name = contactForm.lastName;
+      this.mSellerContactInfo.email = contactForm.email;
+      this.mSellerContactInfo.phone = contactForm.phone;
     });
+  }
+
+  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+    let pass = group.get('password').value;
+    let confirmPassword = group.get('confirmPassword').value;
+
+    return pass === confirmPassword ? null : { notSame: true }     
   }
   
   createUserAccount(){
 
-    let validFields:boolean = this.validateInputFields();
-    if(validFields == false){
-      return;
-    }
+    this.mSellerContactInfo.created_account_timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
-    var newUser:IUser = {firstName: this.myForm.value.firstName, lastName: this.myForm.value.lastName,
-          phone: this.myForm.value.phone, email: this.myForm.value.email};
-
-    this.firebaseService.createAccount(this.myForm.value.email, this.myForm.value.password)
+    this.mFirestoreService.createAccount(this.myFormContact.value.email, this.myFormContact.value.password)
       .subscribe(
-        success => this.successfulCreatedAccount(newUser),
+        success => 
+        {},
         error => this.alertMessage = error
       );
   }
   
-  successfulCreatedAccount(newUser:IUser){
-    this.firebaseService.createUserAccount(newUser);
-    this.firebaseService.saveUserPropertyData(this.home);
-    console.log(this.home);
-    this._homeService.updateHomeProperties(this.home);
-    console.log(this.TAG);
-    console.log("After update home properties");
-    console.log(this.home);
-    this.router.navigate(['./time-frame']);
+  successfulCreatedAccount(sellerContactInfo:Seller){
+    this.mFirestoreService.saveSellerContactInformation(this.userID,Object.assign({},sellerContactInfo)); 
+    this.mFirestoreService.saveSellerPropertyDetails(this.userID,Object.assign({}, this.mSellerPropertyDetails));
+    this.mRouter.navigate(['./time-frame']);
   }
-  
-  validateInputFields():boolean{
-    return true;
+
+
+  onClickTerms(){
+    this.mRouter.navigate(['./terms']);
   }
 
   /*Reactive Form Methods*/
   get firstName() {
-    return this.myForm.get('firstName');
+    return this.myFormContact.get('firstName');
   }
 
   get lastName() {
-    return this.myForm.get('lastName');
+    return this.myFormContact.get('lastName');
   }
 
   get email() {
-    return this.myForm.get('email');
+    return this.myFormContact.get('email');
   }
 
   get phone() {
-    return this.myForm.get('phone');
+    return this.myFormContact.get('phone');
   }
 
   get password() {
-    return this.myForm.get('password');
+    return this.myFormContact.get('password');
+  }
+
+  get confirmPassword() {
+    return this.myFormContact.get('confirmPassword');
   }
 }

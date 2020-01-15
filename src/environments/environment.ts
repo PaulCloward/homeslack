@@ -12,6 +12,6 @@ export const environment = {
     projectId: "homeslack-12280",
     storageBucket: "homeslack-12280.appspot.com",
     messagingSenderId: "272232401051",
-    appId: "1:272232401051:web:8f4310a00556a5b5"
+    appId: "1:272232401051:web:bfda6c82a9f92e15b99e3e"
   }
 };

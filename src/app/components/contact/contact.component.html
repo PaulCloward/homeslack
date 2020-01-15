@@ -12,18 +12,52 @@
 </div>
 <div class="container-fluid d-none d-md-block" style="padding: 4em 0em">
     <div class="row">
-        <div class="col-5 offset-3 left-side">
-            <p class="description">We are here to answer any questions you may have and will respond as soon as possible.</p>
-            <input type="text" class="contact-input" placeholder="Name"/>
-            <input type="text" class="contact-input" placeholder="Email"/>
-            <textarea placeholder="Message" class="text-area" rows="5" name=""></textarea>
-            <div class="btn-container">
-                <button class="btn-send">SEND</button>
-            </div>
+        <div class="col-5 offset-3 left-side"  *ngIf="!isSubmitted">
+            <form class="custom-form" [formGroup]="myFormContact" >
+                <p class="description">We are here to answer any questions you may have and will respond as soon as possible.</p>
+                
+                <input [ngStyle]="{'border': (name.invalid && name.touched) ? '.5px solid red' : '.5px solid gray'}"  formControlName="name" type="text" class="contact-input" placeholder="Name"/>
+              
+                <div *ngIf="name.invalid && name.touched" class="error-hint">
+                   <span class="warning">*</span> Your name should have only alphabet letters
+                </div>
+                <input [ngStyle]="{'border': (email.invalid && email.touched) ? '.5px solid red' : '.5px solid gray'}" class="contact-input" maxlength="60" placeholder="Email" formControlName="email" autocomplete="off">
+                <div *ngIf="email.invalid && email.touched" class="error-hint">
+                    <span class="warning">*</span>Your email does not look right
+                </div>
+                
+                <textarea [ngStyle]="{'border': (message.invalid && message.touched) ? '.5px solid red' : '.5px solid gray'}"  formControlName="message" placeholder="Message" class="text-area" rows="5" name=""
+                    maxlength="2000"></textarea>
+                <div *ngIf="message.invalid && message.touched" class="error-hint">    
+                    <span class="warning">*</span>Your message to Homeslack needs at least 50 characters before sending
+                </div>
+                
+
+                <div style="width: 100%;text-align: right;" [hidden]="myFormContact.valid">
+                    <div class="btn-container-default" [matTooltip]="tipMessage" matTooltipPosition="above">
+                        <button  [disabled]="true" class="btn-send-default">SEND</button>
+                    </div>
+                </div>
+            
+                <div class="btn-container" [hidden]="!myFormContact.valid">
+                    <button class="btn-send" (click)="onSubmit()">SEND</button>
+                </div>
+
+            </form>
+    
+        </div>
+        <div class="col-5 offset-3 left-side" *ngIf="isSubmitted">
+                <div class="thanks">
+                    Thank you! 
+                </div>
+                <div class="get-in-touch">
+                    A member of the Homeslack team will be in touch with you touch soon 
+                </div>
+        
         </div>
         <div class="col-4 right-side">
             <div class="list-title" style="margin-top: 0em !important">Email:</div>
-            <div class="list-item">info@homeface.com</div>
+            <div class="list-item">Homeslackteam@gmail.com</div>
             
             <div class="list-title">Phone:</div>
             <div class="list-item">1-801-580-4435</div>
@@ -35,14 +69,16 @@
         </div>
     </div>
 </div>
-<div class="container-fluid d-block d-md-none" style="padding: 4em 0em">
+<!-- <div class="container-fluid d-block d-md-none" style="padding: 4em 0em">
     <div class="row">
         <div class="col-8 offset-2">
             <p class="description">We are here to answer any questions you may have and will respond as soon as possible.</p>
-            <input type="text" class="contact-input" placeholder="Name"/>
-            <input type="text" class="contact-input" placeholder="Email"/>
-            <textarea placeholder="Message" class="text-area" rows="5" name=""></textarea>
-            <div class="btn-container">
+            <input [(ngModel)]="name" type="text" class="contact-input" placeholder="Name"/>
+            <input [(ngModel)]="email" type="text" class="contact-input" placeholder="Email"/>
+            <textarea  [(ngModel)]="message" placeholder="Message" class="text-area" rows="5" name=""
+                maxlength="500"></textarea>
+            
+            <div class="btn-container" [hidden]="name == '' || email == '' || message == '' || message.length < 50">
                 <button class="btn-send">SEND</button>
             </div>
             <div class="list-title" style="margin-top: 0em !important">Email:</div>
@@ -57,21 +93,5 @@
             <div class="list-item">UT 84062</div>
         </div>
     </div>
-</div>
-<div class="row">
-  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
-    <div class="container-fluid">
-      <div class="row">
-         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 address">
-          HomeSupervisor@homeslack.com<br>
-          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</div> -->
+<app-footer></app-footer>

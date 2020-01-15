@@ -113,6 +113,8 @@
 .top-header-time-icon{
     width: 80px;
     height: 80px;
+    box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+    border-radius: 100%;
 }
 
 .top-header-circle{ 
@@ -310,3 +312,22 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.error-hint{
+  /* border: 0px solid #D8000C; */
+  color: #000;
+  background-color: #FFD2D2;
+  font-size:.8em;
+  font-weight: bold;
+  padding: .3em 1em;
+  border-radius: 10px;
+  margin-top: .5em;
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+}
+
+.warning{
+  color: #D8000C !important; 
+}
+

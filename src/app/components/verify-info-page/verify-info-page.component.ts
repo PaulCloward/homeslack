@@ -4,6 +4,7 @@ import { FirebaseService } from '../../services/firebase.service';
 import { MapsAPILoader } from '@agm/core';
 import { HomeService } from '../../services/home.service';
 import { IHome } from '../../model/IHome';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-verify-info-page',
@@ -59,15 +60,19 @@ export class VerifyInfoPageComponent implements OnInit {
 
   lotSizeType:string= "Sqft";
 
-  constructor(private _homeService: HomeService, private authService: FirebaseService, private router: Router) { }
+  constructor(private mAuth: AngularFireAuth, private _homeService: HomeService, private authService: FirebaseService, private router: Router) { }
 
   ngOnInit() {
+    
+      this.mAuth.authState.subscribe(
+        user => {if(user){
+           this.loggedIn = true;
+          } else{
+            this.loggedIn = false;
+          }
+        }
+      )
 
-      this.authService.isAuthenticated()
-        .subscribe(
-            success => this.isLoggedFunction(success)
-          );
-        
       this._homeService.currentHome.subscribe(home => this.initHome(home));
   }
 
@@ -111,16 +116,6 @@ export class VerifyInfoPageComponent implements OnInit {
 
       this.lat = Number(this.home.addressInfo.latitude);
       this.lng = Number(this.home.addressInfo.longitude);
-  }
-
-  isLoggedFunction(test:boolean){
-    
-    if(test){
-      this.loggedIn = true;
-    }else{
-      this.loggedIn = false;
-    }
-    console.log("Verify Info Page. Is Logged: " + this.loggedIn);
   }
 
   onClickNext(){

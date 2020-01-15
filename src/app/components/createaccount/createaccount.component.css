@@ -20,6 +20,8 @@ input:focus {
 .title{
      font-family: 'Raleway',sans-serif;
      font-size: 1.7em;
+     width: 100%;
+     text-align: center;
 }
 
 .title-company{
@@ -29,6 +31,7 @@ input:focus {
 .company-terms{
     font-size: 1.3em;
     text-align: left;
+    width: 100%;
    /* margin-bottom: 2.5em;*/
 }
 
@@ -47,6 +50,22 @@ input:focus {
     box-shadow: 1px 1px 5px 0px #888888;
     cursor: pointer;
     margin-top: .3em;
+    outline: none;
+}
+
+.btn-container-default{
+    display: inline-block;
+    margin-left: auto;
+}
+
+.btn-create-default{
+    border-radius: 1em;
+    color:rgba(255,255,255,.5);
+    background-color:rgba(68, 197, 242,.5);
+    padding: .3em 1.4em;
+    border: none;
+    outline: none;
+    margin-top: .5em;
 }
 
 .login-forgot-label{
@@ -61,7 +80,8 @@ input:focus {
     font-size: 1.7em;
     margin-top: .5em;
     padding: .7em 0em;
-    
+    width: 100%;
+    text-align: center;
 }
 
 .line-divider{

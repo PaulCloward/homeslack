@@ -1,0 +1,114 @@
+<div class="container-fluid top-image-container" >
+        <div class="row" >
+          <div class="col-12">
+            <img src="../../../assets/img/header_image_upload.jpg" class="img-under-nav"/>
+            <div class="row">
+              <div class="col-12 top-header-title-container">
+                <div class="top-header-title"><span class="top-header-title-bold">UPLOAD</span> <span class="top-header-title-light"> PHOTOS</span></div>
+              </div>
+            </div>
+    
+            <div class="row top-header-time-frame-icons-container">
+                <div class="col-8 offset-2">
+                <div class="row">
+                    <div class="col top-header-time-icon-column">
+                        <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Need to search for your home again? Click to go back and search again" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                    </div>
+                    <div class="col top-header-time-icon-column">
+                        <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Forget to enter some information about your home? Click to go back and update" [routerLink]="['../verify-info-page']" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                    </div>
+                    <div class="col top-header-time-icon-column">
+                        <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Something wrong with the time-frame for getting your home sold? Click to go back and update" [routerLink]="['../listing-time']" src="../../../assets/img/ic_time_frame_time_blue.png" />
+                    </div>
+                    <div class="col top-header-time-icon-column">
+                        <img class="top-header-time-icon" matTooltipPosition="above" matTooltip="Add pictures of your home below" src="../../../assets/img/ic_time_frame_camera_blue.png"/>
+                    </div>
+                    <div class="col top-header-time-icon-column">
+                        <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_grey.png" />
+                    </div>
+                    </div>
+                </div>
+              </div>
+    
+          </div>
+        </div>
+    </div>
+<div class="container-fluid" style="padding: 0;">
+    <div class="row">
+        <div class="col-3">
+            <div class="left-container">
+
+                <div class="slide-circle-state-row" [@fadeInOut]>
+                    <div [ngClass]="{'circle-state-selected': currentSlideState == 0, 'circle-state-unselected': currentSlideState != 0}"></div>
+                    <div [ngClass]="{'circle-state-selected': currentSlideState == 1, 'circle-state-unselected': currentSlideState != 1}"></div>
+                    <div [ngClass]="{'circle-state-selected': currentSlideState == 2, 'circle-state-unselected': currentSlideState != 2}"></div>
+                </div>
+
+                <div class="slide"  *ngIf="currentSlideState == 0" [@fadeInOut]>
+
+                        <div class="slide-icon-container">
+                            <img class="icon-pictures" src="../../../assets/img/clip_art_1.png" />
+                        </div>
+                        The pictures uploaded will be used by investors to assess the condition of your property. 
+                </div>
+                <div class="slide" *ngIf="currentSlideState == 1" [@fadeInOut]>
+                    <div class="slide-icon-container">
+                        <img class="icon-photographer" src="../../../assets/img/clip_art_4.png" />
+                    </div>
+                    Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.
+                </div>
+                <div class="slide"*ngIf="currentSlideState == 2" [@fadeInOut]>
+                    <div class="slide-icon-container">
+                        <img class="icon-tips" src="../../../assets/img/clip_art_2.png" />
+                    </div>
+                    <ol class="tip-list">
+                        <li class="tip-item">Hold your camera steady</li>
+                        <li class="tip-item">Good lighting</li>
+                        <li class="tip-item">Take horizontal photos (landscape) </li>
+                        <li class="tip-item">Minimum of 10 photos</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="right-container">
+                <div class="label-upload-photos">
+                    Upload photos of your home
+                </div>
+                <div class="image-upload-container"
+                dropzone
+                (hovered)="toggleHover($event)"
+                (dropped)="onDrop($event)"
+                [class.hovering]="isHovering">
+                    <div class="container-add-labels">
+                        <div class="label-drag-add-drop">Drag and Drop photos here</div>
+                        <div class="label-or">or</div>
+                        <button class="btn-add" (click)="onClickSelectPhotos()">
+                        Select  <i class="material-icons" style="margin-left: 8px; align-self: center;">cloud_upload</i>
+                        </button>
+                        <div style="display: flex; align-items: center; margin-top: 2em; justify-content: center;">
+                            <div class="at-least">
+                                10 photos needed
+                            </div>
+                            <i class="material-icons icon-collections">collections</i>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row" *ngIf="imageList != null && imageList.length > 0">
+                    <div class="imagebox">
+                        <img [src]="imageList[0].download_url" class="home-image img-fluid">
+                        <span class="imagebox-desc">bathroom</span> 
+                    </div>
+                </div> -->
+                <div *ngFor="let file of files">
+                    <uploader-task [file]="file"></uploader-task>
+                </div>
+                <div style="width: 100%; text-align: end;">
+                    <button *ngIf="imageList.length < 10"  class="btn-next" (click)="clickNextPage()">Next</button>
+                    <button *ngIf="imageList.length >= 10" class="btn-next-disabled" (click)="clickNextPage()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

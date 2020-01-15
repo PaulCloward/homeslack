@@ -13,6 +13,8 @@ export class WhyUsComponent implements OnInit {
   viewMoreClicked2:boolean = false;
   viewMoreClicked3:boolean = false;
 
+   backgroundColorFooter:string = "#FFFFFF";
+
   constructor() { }
 
   ngOnInit() {

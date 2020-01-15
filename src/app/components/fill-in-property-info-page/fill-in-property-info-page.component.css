@@ -31,6 +31,7 @@
 
 .icon-label{
     cursor: pointer;
+    align-self: flex-start;
 }
 
 .label-question{
@@ -95,14 +96,15 @@ agm-map {
 }
 
 
-.create-account{
+/* .create-account{
     cursor: pointer;
     text-align: center;
     font-size: 2em;
     font-family: Century Gothic, sans-serif;
     font-weight: 600;
     color: #939393;
-}
+    box-shadow: 1px 1px 5px 0px #888888;
+} */
 
 ::placeholder{
     text-align: left;
@@ -176,6 +178,22 @@ agm-map {
     border-radius: 3em;
     padding: .3em .5em;
     font-weight: 600;
+    box-shadow: 1px 1px 5px 0px #888888;
+    cursor: pointer;
+}
+
+.btn-create-account-default{
+    color:rgba(255,255,255,.5);
+    background-color:rgba(68, 197, 242,.5);
+    margin: 0 auto;
+    font-size: 2.5em;
+    border-radius: 3em;
+    padding: .3em .5em;
+    font-weight: 600;
+    cursor: default;
+    outline: none;
+    border: none;
+    
 }
 
 .create-account-subtitle{
@@ -214,6 +232,23 @@ agm-map {
     box-shadow: 2px 2px 5px 0px #888;
 }
 
+.btn-container-disabled{
+    display: inline-block;
+}
+
+.btn-next-disabled{
+    margin-top: 0em;
+    color:rgba(255,255,255,.5);
+    background-color:rgba(68, 197, 242,.5);
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+    padding: .5em 1.5em;
+    outline: none;
+    box-shadow: 2px 2px 5px 0px #888;
+    box-shadow: none;
+}
+
 .label-hint{
     font-size: .9em;
     font-style: italic;
@@ -234,7 +269,9 @@ agm-map {
 }
 
 .dropdown-toggle{
-    margin-left: -1em;
+    margin-left: -1;
+    text-align: left;
+    width: 100%;
 }
 
 .dropdown-toggle::after {
@@ -302,6 +339,7 @@ agm-map {
         border-radius: 3em;
         padding: .3em .5em;
         font-weight: 600;
+        box-shadow: 2px 2px 5px 0px #888888;
     }
 
     .map-container{

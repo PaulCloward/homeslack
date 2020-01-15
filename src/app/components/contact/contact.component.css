@@ -68,6 +68,11 @@
     text-align: end;
 }
 
+.btn-container-default{
+    display: inline-block;
+    margin-left: auto;
+}
+
 .btn-send{
     margin-top: 1em;
     color: white;
@@ -78,4 +83,30 @@
     padding: .5em 1.5em;
     outline: none;
     box-shadow: 2px 2px 5px 0px #888;
+}
+
+.btn-send-default{
+    border-radius: 1em;
+    color:rgba(255,255,255,.5);
+    background-color:rgba(68, 197, 242,.5);
+    padding: .3em 1.4em;
+    border: none;
+    outline: none;
+    margin-top: .5em;
+}
+
+.thanks{
+    color: rgb(68, 197, 242);
+    font-weight: bold;
+    font-size: 2em;
+    font-family: Century Gothic, sans-serif;
+}
+
+.get-in-touch{
+    color: #464646;
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: Century Gothic, sans-serif;
+    line-height: 1em;
+    margin-top: .5em;
 }

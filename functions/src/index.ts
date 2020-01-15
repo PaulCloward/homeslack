@@ -1,59 +1,64 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
 
-admin.initializeApp();
-//const db = admin.firestore();
+import * as Storage from '@google-cloud/storage';
+const projectID = 'homeslack-12280';
+const gcs = new Storage.Storage({projectId:projectID});
 
-//Sendgrid Config
-import * as sgMail from '@sendgrid/mail';
+import { tmpdir } from 'os';
+import { join, dirname } from 'path';
 
-const API_KEY = functions.config().sendgrid.key;
-const TEMPLATE_ID = functions.config().sendgrid.template;
-sgMail.setApiKey(API_KEY);
+import * as sharp from 'sharp';
+import * as fs from 'fs-extra';
 
-// Sends email to user after signup
-/*export const welcomeEmail = functions.auth.user().onCreate(user => {
+export const generateThumbs = functions.storage
+  .object()
+  .onFinalize(async object => {
+    
 
-    const msg = {
-        //to: user.email,
-        to: 'paulclowardcs12@gmail.com',
-        from: 'hello@fireship.io',
-        templateId: TEMPLATE_ID,
-        dynamic_template_data: {
-            subject: 'Welcome to my awesome app!',
-            name: user.displayName,
-        },
-    };
+    const bucket = gcs.bucket(object.bucket);
+    const filePath = object.name;
 
-    return sgMail.send(msg);
+    const fileName = filePath!.split('/').pop();
 
-});*/
+    const bucketDir = dirname(filePath!);
 
+    const workingDir = join(tmpdir(), 'thumbs');
+    const tmpFilePath = join(workingDir, 'source.png');
 
-// Sends email via HTTP. Can be called from frontend code. 
-export const genericEmail = functions.https.onCall(async (data, context) => {
-
-    /*if (!context.auth && !context.auth.token.email) {
-        throw new functions.https.HttpsError('failed-precondition', 'Must be logged with an email address');
+    if (fileName!.includes('thumb@') || !object.contentType!.includes('image')) {
+      console.log('exiting function');
+      return false;
     }
-*/
-    const msg = {
-        to: data.to,
-        from: data.from,
-        templateId: TEMPLATE_ID,
-        dynamic_template_data: {
-            subject: data.subject,
-            name: data.text,
-            requestEmail: data.requestEmail,
-            message: data.message
-        },
-    };
 
-    await sgMail.send(msg);
+    // 1. Ensure thumbnail dir exists
+    await fs.ensureDir(workingDir);
 
-    // Handle errors here
+    // 2. Download Source File
+    await bucket.file(filePath!).download({
+      destination: tmpFilePath
+    });
 
-    // Response must be JSON serializable
-    return { success: true };
+    // 3. Resize the images and define an array of upload promises
+    const sizes = [64, 128, 256];
 
-});
+    const uploadPromises = sizes.map(async size => {
+      const thumbName = `thumb@${size}_${fileName}`;
+      const thumbPath = join(workingDir, thumbName);
+
+      // Resize source image
+      await sharp(tmpFilePath)
+        .resize(size, size)
+        .toFile(thumbPath);
+
+      // Upload to GCS
+      return bucket.upload(thumbPath, {
+        destination: join(bucketDir, thumbName)
+      });
+    });
+
+    // 4. Run the upload operations
+    await Promise.all(uploadPromises);
+
+    // 5. Cleanup remove the tmp/thumbs from the filesystem
+    return fs.remove(workingDir);
+  });

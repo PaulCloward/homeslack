@@ -8,9 +8,9 @@ import { HomeService } from '../../services/home.service';
 import { IHome } from '../../model/IHome';
 import { IAddress } from '../../model/IAddress';
 import { IHomeDetails } from '../../model/IHomeDetails';
-import { IConcerns } from '../../model/IConcerns';
 import { ITimeframe } from '../../model/ITimeframe';
-
+import { AngularFireAuth } from '@angular/fire/auth';
+import { PropertyFinderService } from '../../services/property-finder.service';
 declare var $: any;
 
 @Component({
@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
   home: IHome;
   homeDetails:IHomeDetails;
   addressInfo:IAddress;
-  concerns: IConcerns;
   timeframeInfo:ITimeframe;
 
   collectedHomeDetails:any;
@@ -56,24 +55,45 @@ export class HomeComponent implements OnInit {
   
   autocomplete:any;
   
-  @ViewChild("search")
+  @ViewChild("search", {static: true})
   public searchElementRef: ElementRef;
 
-  constructor(private router: Router, private _homeService: HomeService, private firebaseService: FirebaseService,
-                  private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { 
+  backgroundColorFooter:string = "#FFFFFF";
 
-     firebaseService.isAuthenticated()
+  constructor(private mAuth:AngularFireAuth, private router: Router, private _homeService: HomeService, private firebaseService: FirebaseService,
+                  private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private mPropertyFinderService:PropertyFinderService) { 
+
+     mAuth.authState
       .subscribe(
-          success => this.isLoggedIn = success,
+          user => {
+            if(user){
+              this.isLoggedIn = true;
+            }else{
+              this.isLoggedIn = false;
+            }
+          },
           error => this.alertMessage = error.message
         );
   }
+
+  test(){
+    console.log("asdas");
+  }
+
+  onKeyDown(event: any) {
+  
+    let inputChar = event.key;
+
+    if (inputChar == 'Enter') {
+      // User hit enter when searching for home
+      this.onClickSearchArrow();
+    }
+}
 
   ngOnInit(){
 
     this.initAddressInfo();
     this.initHomeDetails();
-    this.initConcerns();
     this.initTimeframeInfo();
     
     this.searchControl = new FormControl();
@@ -94,11 +114,7 @@ export class HomeComponent implements OnInit {
    }
 
    initAddressInfo(){
-     this.addressInfo = { city: "", street: "", state:"", zipCode:"", country: "", latitude:"", longitude: "", geoid: ""};
-   }
-
-   initConcerns(){
-     this.concerns = { hperIssues: "", todoQuestion: "", otherConcerns: ""};
+     this.addressInfo = { city: null, street: null, state:null, zipCode:null, unit: null};
    }
 
    initTimeframeInfo(){
@@ -129,11 +145,8 @@ export class HomeComponent implements OnInit {
       }
     }
    
-    onPropertyQuery(address1, address2){
-        //clear any saved property in the cache before searching
-        this._homeService.clearLocalStoragePropertySearch();
-      	
-        this._homeService.getHomeProperties(address1, address2)
+    onPropertyQuery(address1, address2){	
+        this.mPropertyFinderService.getHomeProperties(address1, address2)
       		.subscribe(resPropertyDetails => this.collectedHomeDetails = JSON.parse(JSON.stringify(resPropertyDetails)),
       			error => this.router.navigate(['./fill-in-property-info-page']),
       			() => this.collectHomeInformation(this.collectedHomeDetails));
@@ -148,7 +161,6 @@ export class HomeComponent implements OnInit {
         id:"",
         addressInfo:this.addressInfo,
         homeDetails:this.homeDetails,
-        concerns:this.concerns,
         timeframeInfo:this.timeframeInfo
       }
 
@@ -277,14 +289,21 @@ export class HomeComponent implements OnInit {
         this.ngZone.run(() => {
          
           var place = this.autocomplete.getPlace();
+
+          if(place){
+
+          } else{
+            this.router.navigate(['./fill-in-property-info-page']);
+          }         
+          if(place == null || place == undefined){
+            this.router.navigate(['./fill-in-property-info-page']);
+          }
           
           if(!place){
              this.router.navigate(['./fill-in-property-info-page']);
-          }
+          }   
 
-          if(!place.address_components){
-            this.router.navigate(['./fill-in-property-info-page']);
-          }
+          console.log(place);
 
           for(var i = 0; i < place.address_components.length; i++){
             
@@ -470,13 +489,15 @@ export class HomeComponent implements OnInit {
     }
     
   recieveOfferInstructions:IReceiveOfferInstructions[] = [
-    {title: "Verify Your Information", instruction: "After we pull your address, verify the information is correct"},
-    {title: "Select a Time-Frame", instruction: "Tell us when you need the money<br>Tell us when you will be out of your home"},
-    {title: "Upload Pictures", instruction: "Use our friendly and interactive interface to send us pictures of your home"},
-    {title: "Allow our Qualified Investors to Make Offers", instruction: "All offers will come from cash-registered Investors"},
-    {title: "Select Offer", instruction: "Review the Top 5 offers along with each company's ratings, and choose which offer you'd like to select"},
-    {title: "Close", instruction: "Close the transaction through the title company<br>Collect your money<br>Move out!"}
+    {title: "Verify your information", instruction: "After we pull your address, verify the information is correct"},
+    {title: "Select a time-frame", instruction: "Tell us when you need the money<br>Tell us when you will be out of your home"},
+    {title: "Upload pictures", instruction: "Use our friendly and interactive interface to send us pictures of your home"},
+    {title: "Allow our qualified investors to make offers", instruction: "All offers will come from cash-registered investors"},
+    {title: "Select offer", instruction: "Review the Top 5 offers along with each company's ratings, and choose which offer you'd like to select"},
+    {title: "Close", instruction: "Close the transaction through the title company<br>Collect your money<br>Move out"}
     ];
+
+    
 }
 
 interface IReceiveOfferInstructions {

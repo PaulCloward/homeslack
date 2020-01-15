@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { Observable   } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
-
 import { IHome } from '../model/IHome';
 import { IAddress } from '../model/IAddress';
 import { IHomeDetails } from '../model/IHomeDetails';
-import { IConcerns } from '../model/IConcerns';
 import { ITimeframe } from '../model/ITimeframe';
 import { Http, Response, Headers } from '@angular/http';
+import 'rxjs/Rx';
 
 @Injectable()
 export class HomeService {
@@ -20,9 +19,7 @@ export class HomeService {
   homeDetails:IHomeDetails = {livingSquareFootage: -1, lotSizeAcres:-1, lotSizeSqFt:-1, lotSizeSelectedType:0, yearBuild:-1, numBeds:-1, numBaths: -1, carGarage:-1, basement:false,
           pool:false, cooling:-1, hotTub:false, roofAge:-1}
     
-  addressInfo:IAddress = { city: "", street: "", state:"", zipCode:"", country: "", latitude:"", longitude: "", geoid: ""};
-   
-  concerns:IConcerns = { hperIssues: "", todoQuestion: "", otherConcerns: ""};
+  addressInfo:IAddress = { city: null, street: null, state:null, zipCode:null, unit: null};
   
   timeframeInfo:ITimeframe = { homeDescription:"", listWithRealtor:false,
     understandRealtorFeeObligation:false,
@@ -44,7 +41,6 @@ export class HomeService {
       id:"",
       addressInfo:this.addressInfo,
       homeDetails:this.homeDetails,
-      concerns:this.concerns,
       timeframeInfo:this.timeframeInfo
   });
   currentHome = this.homeSource.asObservable();
@@ -85,11 +81,11 @@ export class HomeService {
 
   getHomeProperties(address1:string, address2:string){
     
-    var _url: string = "https://search.onboard-apis.com/propertyapi/v1.0.0/property/detail?address1=" + address1 + "&address2=" + address2 + "&debug=True";
+    var _url: string = "https://search.onboard-apis.com/propertyapi/v1.0.0/property/detail?address1=" + address1 + "&address2=" + address2 + "";
 
     let headers = new Headers();
     headers.append("Accept", "application/json");
-    headers.append("apikey", "  0602d94d29350818db600ea4316178b1");
+    headers.append("apikey", "  f2e58caae3c631c04c806aa292c23c5c");
     return this._http.get(_url,{headers:headers})
       .map((res: Response) => res.json());
   }

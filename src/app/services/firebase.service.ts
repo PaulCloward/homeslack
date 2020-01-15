@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import { IHome } from '../model/IHome';
-import { IUser } from '../model/IUser';
-import { ITimeframe } from '../model/ITimeframe';
-import { AngularFireObject } from 'angularfire2/database';
-import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
-import { map, filter, scan } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
-import { Http, Headers } from '@angular/http';
+import { Observable, from as observableFrom, } from 'rxjs';
+import { Router } from '@angular/router';
  
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/first";
+import { IAddress } from '../model/IAddress';
+
+import { IHomeDetails } from '../model/IHomeDetails';
 
 @Injectable()
 export class FirebaseService {
@@ -23,27 +22,93 @@ export class FirebaseService {
 
   userDate:Observable<any>;
   item: Observable<any>;
-  
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth, private router: Router) {
-  		 
-  		  this.user = afAuth.authState;
 
-        firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          this.userUID = user.uid;
-        }
-      });
+  authStateGuard:any;
+
+
+  readonly KEY_HOME_SELLER:string = 'home_seller';
+  readonly KEY_SELLER_CONTACT_INFORMATION:string = 'seller_contact_information';
+  readonly KEY_SELLER_HOME_ADDRESS:string = 'seller_home_address';
+  readonly KEY_SELLER_HOME_CONCERNS:string = 'seller_home_concerns';
+  readonly KEY_SELLER_HOME_DETAILS:string = 'seller_home_details';
+  readonly KEY_SELLER_TIME_LINE_OF_SALE:string = 'seller_time_line_of_sale';
+  
+  userID:string;
+
+  constructor(private mFirestoreStore:AngularFirestore, private db: AngularFireDatabase, private mAngularAuth: AngularFireAuth, private router: Router) {
+  		 
+  		  this.mAngularAuth.authState.subscribe(user => {
+          if(user != null){
+            this.userID = user.uid;
+          }
+        })
+
+        this.mAngularAuth.authState.subscribe((auth) => {
+          this.authStateGuard = auth;
+        });
+  }
+
+
+  saveSellerHomeAddress(homeAddress:IAddress){
+    if(this.userID == null || this.userID == ''){
+      return;
+    }
+    this.mFirestoreStore.collection(this.KEY_SELLER_HOME_ADDRESS).doc(this.userID).set(homeAddress);
+  }
+
+  updateSellerHomeAddress(homeAddress:IAddress){
+    if(this.userID == null || this.userID == ''){
+      return;
+    }
+    this.mFirestoreStore.collection(this.KEY_SELLER_HOME_ADDRESS).doc(this.userID).update(homeAddress);
+  }
+
+  saveSellerDetailsOfHome(details:IHomeDetails){
+    if(this.userID == null || this.userID == ''){
+      return;
+    }
+    this.mFirestoreStore.collection(this.KEY_SELLER_HOME_DETAILS).doc(this.userID).set(details);
+  }
+
+  updateSellerDetailsOfHome(details:IHomeDetails){
+    if(this.userID == null || this.userID == ''){
+      return;
+    }
+    this.mFirestoreStore.collection(this.KEY_SELLER_HOME_DETAILS).doc(this.userID).update(details);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ////OLDDDD
+
+  get authenticated(): boolean{
+    return this.authStateGuard !== null;
   }
 
   createAccount(email:string, password:string):Observable<any>{
-    return Observable.fromPromise(
-      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return observableFrom(
+      this.mAngularAuth.auth.createUserWithEmailAndPassword(email, password)
     );
   }
   
   saveUserPropertyData(newHomeListing:IHome){
     const refHome = this.db.database.ref("users").child(this.getCurrentUser().uid).child("home").push();
-    console.log("KEY: " + refHome.key);
     newHomeListing.id = refHome.key;
     this.db.database.ref("users").child(this.getCurrentUser().uid).child("home").child(refHome.key).set(newHomeListing);
   }
@@ -55,36 +120,30 @@ export class FirebaseService {
   /*
     Saves the users information to firebase database under users/uid
   */
-  createUserAccount(newUser:IUser){
-    this.db.database.ref("users").child(this.getCurrentUser().uid).child("contact").set(newUser);
-  }
+  
   
   login(email:string, password:string):Observable<any>{
-  	return Observable.fromPromise(
-  		this.afAuth.auth.signInWithEmailAndPassword(email, password)
+  	return observableFrom(
+  		this.mAngularAuth.auth.signInWithEmailAndPassword(email, password)
   	);
   }
    
   logout(){
-    this.afAuth.auth.signOut().then(() => {
+    this.mAngularAuth.auth.signOut().then(() => {
        this.router.navigate(['/home']);
     });
   }
 
-  isAuthenticated(): Observable<boolean>{
+  /*isAuthenticated(): Observable<boolean>{
     return this.user.map(user => user && user.uid !== undefined);
-  }
+  }*/
   
   getCurrentUser():firebase.User{
-    return this.afAuth.auth.currentUser;
+    return this.mAngularAuth.auth.currentUser;
   }
 
   getCurrentUserID():string{
     return this.userUID;
-  }
-
-  getUserInfo(listPath): Observable<IUser> {   
-   return this.db.object<IUser>(listPath).valueChanges();
   }
 
   getHomeListings(listPath):Observable<any>{

@@ -12,19 +12,19 @@
             <div class="col-8 offset-2">
             <div class="row">
                 <div class="col top-header-time-icon-column">
-                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
+                    <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Need to search for your home again? Click to go back and search again" [routerLink]="['../home']" src="../../../assets/img/ic_time_frame_magnify_blue.png" />
                 </div>
                 <div class="col top-header-time-icon-column">
-                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../verify-info-page']" src="../../../assets/img/ic_time_frame_question_blue.png" />
+                    <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Forget to enter some information about your home? Click to go back and update" [routerLink]="['../verify-info-page']" src="../../../assets/img/ic_time_frame_question_blue.png" />
                 </div>
                 <div class="col top-header-time-icon-column">
-                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../time-frame']" src="../../../assets/img/ic_time_frame_time_blue.png" />
+                    <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Something wrong with the time-frame for getting your home sold? Click to go back and update" [routerLink]="['../time-frame']" src="../../../assets/img/ic_time_frame_time_blue.png" />
                 </div>
                 <div class="col top-header-time-icon-column">
-                    <img class="top-header-time-icon nav-circle-icon" [routerLink]="['../image-upload']" src="../../../assets/img/ic_time_frame_camera_blue.png"/>
+                    <img class="top-header-time-icon nav-circle-icon" matTooltipPosition="above" matTooltip="Have more pictures of your home? Click to go back and add more" [routerLink]="['../upload-photos']" src="../../../assets/img/ic_time_frame_camera_blue.png"/>
                 </div>
                 <div class="col top-header-time-icon-column">
-                    <img class="top-header-time-icon" src="../../../assets/img/ic_time_frame_check_mark_blue.png" />
+                    <img class="top-header-time-icon" matTooltipPosition="above" matTooltip="Review your entered home information below. If everything is correct, go ahead and submit." src="../../../assets/img/ic_time_frame_check_mark_blue.png" />
                 </div>
                 </div>
             </div>
@@ -34,7 +34,6 @@
 </div>
 
 <div class="container-fluid" style="padding: 0em">
-
     <div class="row house-row">
         <div class="col-10 offset-2"> 
 
@@ -53,10 +52,10 @@
  
         <div class="col-10 offset-2" >
             <div class="street-address">
-                {{home.addressInfo.street}}
+                {{sellerPropertyDetails.address.street}}
             </div>
             <div class="city-state-address">
-                {{home.addressInfo.city}},&nbsp;{{home.addressInfo.state}}&nbsp; {{home.addressInfo.zipCode}}
+            {{sellerPropertyDetails.address.city}},&nbsp;{{sellerPropertyDetails.address.state}}&nbsp; {{sellerPropertyDetails.address.zipCode}}
             </div>
         </div>
     </div>
@@ -78,7 +77,7 @@
                            <div class="label-property">
                                 Total Living Area
                             </div>
-                            <div class="label-property-result">{{home.homeDetails.livingSquareFootage}} Square Feet</div>
+                            <div class="label-property-result">{{sellerPropertyDetails.living_square_feet}} Square Feet</div>
                            
                         </div>
                     </div>
@@ -90,7 +89,7 @@
                             <div class="label-property">
                                 Year Build 
                             </div>
-                            <div class="label-property-result">{{home.homeDetails.yearBuild}}</div>
+                            <div class="label-property-result">{{sellerPropertyDetails.year}}</div>
                             
                         </div>
                     </div>
@@ -102,7 +101,7 @@
                             <div class="label-property">
                                 Lot Size
                             </div>
-                            <div class="label-property-result">{{home.homeDetails.lotSizeAcres}} Acres</div>
+                            <div class="label-property-result">{{sellerPropertyDetails.lot_size}} Acres</div>
                            
                         </div>
                     </div>
@@ -118,7 +117,7 @@
                             <div class="label-property">
                                 Bedrooms 
                             </div>
-                            <div class="label-property-result">{{home.homeDetails.numBeds}}</div>
+                            <div class="label-property-result">{{sellerPropertyDetails.beds}}</div>
                             
                         </div>
                     </div>
@@ -130,7 +129,7 @@
                         <div class="label-property">
                             Bathrooms 
                         </div>
-                        <div class="label-property-result">{{home.homeDetails.numBaths}}</div>
+                        <div class="label-property-result">{{sellerPropertyDetails.baths}}</div>
                        
                         </div>
                     </div>
@@ -142,9 +141,9 @@
                             <div class="label-property">
                                 Basement 
                             </div>
-                            <div *ngIf="home.homeDetails.basement == false" class="label-property-result">None</div>
-                            <div *ngIf="home.homeDetails.basement == true" class="label-property-result">Yes</div>
-                            <div *ngIf="home.homeDetails.basement != true" class="label-property-result">{{home.homeDetails.basement}}&nbsp;Finished</div>
+                            <div *ngIf="sellerPropertyDetails.basement == false" class="label-property-result">None</div>
+                            <div *ngIf="sellerPropertyDetails.basement == true" class="label-property-result">Yes</div>
+                            <div *ngIf="sellerPropertyDetails.basement == true" class="label-property-result">{{sellerPropertyDetails.basement_completed | percent}}&nbsp;Finished</div> 
                         </div>
                     </div>
                 </div>
@@ -159,7 +158,7 @@
                             <div class="label-property">
                                 Garage 
                             </div>
-                            <div class="label-property-result">{{home.homeDetails.carGarage}} Car</div>
+                            <div class="label-property-result">{{sellerPropertyDetails.garage}} Car</div>
                             
                         </div>
                     </div>
@@ -171,9 +170,9 @@
                             <div class="label-property">
                                 Pool 
                             </div>
-                            <div *ngIf="home.homeDetails.pool == true" class="label-property-result">Yes</div>
-                            <div *ngIf="home.homeDetails.pool == false" class="label-property-result">No</div>
-                           
+                            <div *ngIf="sellerPropertyDetails.pool == true" class="label-property-result">Yes</div>
+                            <div *ngIf="sellerPropertyDetails.pool == false" class="label-property-result">No</div>
+                            
                         </div>
                     </div>
                 </div>
@@ -184,8 +183,8 @@
                             <div class="label-property">
                                 Hot Tub 
                             </div>
-                            <div *ngIf="home.homeDetails.hotTub == true" class="label-property-result">Yes</div>
-                            <div *ngIf="home.homeDetails.hotTub == false" class="label-property-result">No</div>
+                            <div *ngIf="sellerPropertyDetails.hot_tub == true" class="label-property-result">Yes</div>
+                            <div *ngIf="sellerPropertyDetails.hot_tub == false" class="label-property-result">No</div>
                             
                         </div>
                     </div>
@@ -204,8 +203,7 @@
                                 Cooling 
                             </div>
                              <div class="label-property-result">
-                                {{displayCooling}}
-                            </div>
+                                {{sellerPropertyDetails.cooling_type}}
                         </div>
                     </div>
                 </div>
@@ -220,31 +218,20 @@
            
             
             
-            <div class="row" class="confirm-listing-subtitle">
-                By clicking submit, you are listing your home for sale on HomeSlack
+           
+        </div>
+        <div class="row mt-4">
+                <div class="col-12">
+                    <div class="confirm-listing-subtitle">
+                         By clicking submit, you are listing your home for sale on HomeSlack
+                    </div>
+                </div>
             </div>
             <div class="row">
-                
-                <button class="btn btn-confirm-listing" style="padding-left: 1.5em; padding-right: 1.5em; margin-top: 0em; margin-bottom: 0em" (click)="onSubmitHomeListing()">Submit</button>
-
+                <div class="col-12" style="text-align: center;">
+                    <button class="btn btn-confirm-listing" style="padding-left: 1.5em; padding-right: 1.5em; margin-top: 0em; margin-bottom: 0em" (click)="onSubmitHomeListing()">Submit</button>
+                </div>
             </div>
-        </div>
     </div>
 </div>
-<div class="row">
-  <div class="col-12 bottom-page-container" style="background-color: #f1f1f1">
-    <div class="container-fluid">
-      <div class="row">
-         <img src="../../../assets/img/home_slack_icon.png" class="img-fluid img-logo" /> 
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 address">
-          HomeSupervisor@homeslack.com<br>
-          Copyright 2019 Homeslack 292 Galena Park Blvd, Draper, UT 84020
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-footer></app-footer>

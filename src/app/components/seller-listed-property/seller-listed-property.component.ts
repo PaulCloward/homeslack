@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IHome } from '../../model/IHome';
+import { PropertyDetails } from '../../class/PropertyDetails';
 
 @Component({
   selector: 'app-seller-listed-property',
@@ -8,12 +8,12 @@ import { IHome } from '../../model/IHome';
 })
 export class SellerListedPropertyComponent implements OnInit {
 
-  @Input() home:IHome;
+  @Input() mSellerPropertyDetails:PropertyDetails;
 
   constructor() { }
 
   ngOnInit() {
-  	console.log("LISTED PROPERTY: " + JSON.stringify(this.home));
+  	
   }
 
 }
