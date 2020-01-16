@@ -139,7 +139,6 @@
 
 .home-info-img{
   width: 3.5em;
-  background-color: #43C5E4;
   margin-top: 1.5em;
 }
 
@@ -432,11 +431,13 @@
 }
 
 .middle-blue-section{
-  height: 18em;
   width: 100%;
   background-color: #43C5E4;
   margin-top: 1em;
-  opacity: .8;
+}
+
+.image-blue-middle-section{
+  width: 100%;
 }
 
 
@@ -517,6 +518,6 @@
 }
 
 .house-image{
-  width: 500px;
+  width: 550px;
   margin-right: .5em;
 }
