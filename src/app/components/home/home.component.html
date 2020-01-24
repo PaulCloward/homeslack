@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12" style="padding: 0;">
             
-            <img  class="img-under-nav" src="../../../assets/img/landing_page.jpg"/>
+            <img  class="img-under-nav" src="../../../assets/img/img_banners/3.jpg"/>
         
             <div class="img-cover"></div>
 
@@ -106,11 +106,11 @@
                 1
               </div>
               <div class="how-to-item-info">
-                <div class="how-to-item-info-header">
-                  VERIFY YOUR INFORMATION
+                <div class="how-to-item-info-header" [innerHtml]="receiveOfferInstructions[0].title"> 
+            
                 </div>
                 <div class="how-to-item-info-sub-header">
-                  After we pull your address, verify the information is correct
+                  {{ receiveOfferInstructions[0].instruction }}
                 </div>
               </div>
             </div>
@@ -122,10 +122,10 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  SELECT A TIME-FRAME
+                  {{ receiveOfferInstructions[1].title | uppercase }}
                 </div>
                 <div class="how-to-item-info-sub-header">
-                  Tell us when you need the money<br>Tell us when you will be out of your home
+                  {{ receiveOfferInstructions[1].instruction }}
                 </div>
               </div>
             </div>
@@ -145,10 +145,10 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  VERIFY YOUR INFORMATION
+                  {{ receiveOfferInstructions[2].title | uppercase }}
                 </div>
                 <div class="how-to-item-info-sub-header">
-                  After we pull your address, verify the information is correct
+                  {{ receiveOfferInstructions[2].instruction }}
                 </div>
               </div>
             </div>
@@ -160,10 +160,10 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  SELECT A TIME-FRAME
+                  {{ receiveOfferInstructions[3].title | uppercase }}
                 </div>
                 <div class="how-to-item-info-sub-header">
-                  Tell us when you need the money<br>Tell us when you will be out of your home
+                  {{ receiveOfferInstructions[3].instruction }}
                 </div>
               </div>
             </div>
@@ -183,10 +183,10 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  VERIFY YOUR INFORMATION
+                  {{ receiveOfferInstructions[4].title | uppercase }}
                 </div>
                 <div class="how-to-item-info-sub-header">
-                  After we pull your address, verify the information is correct
+                  {{ receiveOfferInstructions[4].instruction }}
                 </div>
               </div>
             </div>
@@ -198,10 +198,10 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  SELECT A TIME-FRAME
+                  {{ receiveOfferInstructions[5].title | uppercase }}
                 </div>
                 <div class="how-to-item-info-sub-header">
-                  Tell us when you need the money<br>Tell us when you will be out of your home
+                  {{ receiveOfferInstructions[5].instruction }}
                 </div>
               </div>
             </div>

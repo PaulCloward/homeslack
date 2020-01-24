@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeService } from '../../services/home.service';
-import { IHome } from '../../model/IHome';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { PropertyDetails } from '../../class/PropertyDetails';
+import { SellerPropertyService } from '../../services/seller-property.service';
+import { IAddress } from '../../model/IAddress';
 
 @Component({
   selector: 'app-verify-info-page',
@@ -11,13 +12,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class VerifyInfoPageComponent implements OnInit {
   
-
+  userUID:string;
+  sellerProperty:PropertyDetails;
+  otherBeds:boolean = false;
+  otherGarage:boolean = false;
+  otherBathCount:boolean = false;
 
  //OLD STUFF BELOW
 
   loggedIn:boolean = false;
-
-  home:IHome;
   // TypeError: Cannot read property 'basement' of undefined
   lat: number;
   lng: number;
@@ -61,7 +64,7 @@ export class VerifyInfoPageComponent implements OnInit {
 
   lotSizeType:string= "Sqft";
 
-  constructor(private mAuth: AngularFireAuth, private _homeService: HomeService, private mRouter: Router) { }
+  constructor(private mAuth: AngularFireAuth, private mSellerPropertyService: SellerPropertyService, private mRouter: Router) { }
 
   ngOnInit() {
     
@@ -72,44 +75,66 @@ export class VerifyInfoPageComponent implements OnInit {
             this.loggedIn = false;
           }
         }
-      )
+      );
 
-      this._homeService.currentHome.subscribe(home => this.initHome(home));
+      //this.mSellerPropertyService.getSellerPropertyDetailsSource().subscribe(propertyDetails => 
+       // { 
+       //   this.initHome(propertyDetails);
+      //});
+        let address:IAddress = {street: '9528 Foxwood Lane', city: 'Sandy', zip_code: 84092, state: "Utah", unit: null};
+
+      let property:PropertyDetails = {
+        living_square_feet: 1200, lot_size:340,
+        lot_size_unit:'acres',
+        year:1983,
+        beds:5,
+        baths: 4,
+        garage:4,
+        basement:true,
+        basement_completed:.50,
+        pool:false,
+        pool_description:"great looking place",
+        cooling_type:"None",
+        hot_tub:true,
+        hot_tub_description:"fantastic",
+        roof_age_range:"16+ years",
+        concerns_hvac_roofing_etc:"none really",
+        concerns_other: "no other concerns", 
+        address:address};
+
+        this.initHome(property);
   }
 
-  initHome(home:IHome){
+  initHome(property:PropertyDetails){
     
-    this.home = home; 
-    console.log("Init Home: " + JSON.stringify(this.home));
+    this.sellerProperty = property; 
+    console.log("Init Home: " + JSON.stringify(this.sellerProperty));
     
-    if(this.home.addressInfo.street !== ""){
+    if(this.sellerProperty.address.street != ""){
       console.log("SEARCH FOR HOME WAS FOUND");
-    }else{
-      console.log("NO HOME FROM SEARCH QUERY FOUND. LOOKING FOR CACHE NOW");
-      this.home = this._homeService.getLocalStorageProperty();
     }
 
-    console.log(this.home);
 
-    if(this.home.homeDetails.pool){
+
+    if(this.sellerProperty.pool){
         this.displayPool = "Yes";
       } else{
         this.displayPool = "No";
       }
 
-      if(this.home.homeDetails.hotTub){
+      if(this.sellerProperty.hot_tub){
         this.displayHotTub = "Yes";
       } else{
         this.displayHotTub = "No";
       }
 
-      if(this.home.homeDetails.cooling){
+      if(this.sellerProperty.cooling_type){
         this.displayCooling = "Yes";
       } else{
         this.displayCooling = "No";
       }
 
-      if(this.home.homeDetails.basement){
+      if(this.sellerProperty.basement){
          this.displayBasement = "Yes";
       }else{
           this.displayBasement = "No";
@@ -117,86 +142,77 @@ export class VerifyInfoPageComponent implements OnInit {
   }
 
   onClickNext(){
-    console.log(this.home);
-    this._homeService.updateHomeProperties(this.home);
+    this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mRouter.navigate(['/listing-time']);
   }
   
   onClickCreateAccount(){
-    this._homeService.updateHomeProperties(this.home);
+    this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mRouter.navigate(['./create-account']);
   }
 
   onClickBasementNo(){
-    this.displayBasement = "No";
-    this.home.homeDetails.basement = false;
+    this.sellerProperty.basement = false;
     this.editModeBasement = true;
   }
 
   onClickBasementYes(){
-    this.displayBasement = "Yes";
-    this.home.homeDetails.basement = true;
+    this.sellerProperty.basement = true;
     this.editModeBasement = true;
   }
 
   onClickPoolNo(){
-    this.displayPool = "No";
-    this.home.homeDetails.pool = false;
+    this.sellerProperty.pool = false;
     this.editModePool = true;
   }
 
   onClickPoolYes(){
-    this.displayPool = "Yes";
-    this.home.homeDetails.pool = true;
+    this.sellerProperty.pool = true;
     this.editModePool = true;
   }
 
   onClickHotTubNo(){
-    this.displayHotTub = "No";
-    this.home.homeDetails.hotTub = false;
+    this.sellerProperty.hot_tub = false;
     this.editModeHotTub = true;
   }
 
   onClickHotTubYes(){
-    this.displayHotTub = "Yes";
-    this.home.homeDetails.hotTub = true;
+    this.sellerProperty.hot_tub = true;
     this.editModeHotTub = true;
   }
 
   onClickCoolingNo(){
-    this.displayCooling = "No";
-    this.home.homeDetails.cooling = -1;
+    this.sellerProperty.cooling_type = "No";
     this.editModeCooling = false;
   }
 
   onClickCoolingYes(){
-    this.displayCooling = "Yes";
-    this.home.homeDetails.cooling = 1;
+    this.sellerProperty.cooling_type = "Yes"
     this.editModeCooling = false;
   }
 
   onClickDropdownOptionOne(){
-    this.home.homeDetails.roofAge = 0;
+    this.sellerProperty.roof_age_range = '1-3 Years';
      $('#dropdownMenuButton').html('1-3 Years');
   }
 
   onClickDropdownOptionTwo(){
-    this.home.homeDetails.roofAge = 1;
+    this.sellerProperty.roof_age_range = '4-6 Years';
     $('#dropdownMenuButton').html('4-6 Years');
   }
 
   onClickDropdownOptionThree(){
-    this.home.homeDetails.roofAge = 2;
+    this.sellerProperty.roof_age_range = '7-10 Years';
     $('#dropdownMenuButton').html('7-10 Years');
   }
 
   onClickDropdownOptionFour(){
-    this.home.homeDetails.roofAge = 3;
+    this.sellerProperty.roof_age_range = '11-15 Years';
     $('#dropdownMenuButton').html('11-15 Years');
   }
 
   onClickDropdownOptionFive(){
-    this.home.homeDetails.roofAge = 4;
+    this.sellerProperty.roof_age_range = '16+ Years';
     $('#dropdownMenuButton').html('16+ Years');
   }
 
@@ -205,214 +221,214 @@ export class VerifyInfoPageComponent implements OnInit {
   bedroomDisplayNumber:number;
 
   onClickDropdownOptionBedroomOne(){
-    this.home.homeDetails.numBeds = 1;
+    this.sellerProperty.beds = 1;
   }
 
   onClickDropdownOptionBedroomTwo(){
-    this.home.homeDetails.numBeds = 2;
+    this.sellerProperty.beds = 2;
   }
 
   onClickDropdownOptionBedroomThree(){
-    this.home.homeDetails.numBeds = 3;
+    this.sellerProperty.beds = 3;
   }
 
   onClickDropdownOptionBedroomFour(){
-    this.home.homeDetails.numBeds = 4;
+    this.sellerProperty.beds = 4;
   }
 
   onClickDropdownOptionBedroomFive(){
-    this.home.homeDetails.numBeds = 5;
+    this.sellerProperty.beds = 5;
   }
 
   onClickDropdownOptionBedroomSix(){
-    this.home.homeDetails.numBeds = 6;
+    this.sellerProperty.beds = 6;
   }
 
   onClickDropdownOptionBedroomSeven(){
-    this.home.homeDetails.numBeds = 7;
+    this.sellerProperty.beds = 7;
   }
 
   onClickDropdownOptionBedroomEight(){
-    this.home.homeDetails.numBeds = 8;
+    this.sellerProperty.beds = 8;
   }
 
   onClickDropdownOptionBedroomNine(){
-    this.home.homeDetails.numBeds = 9;
+    this.sellerProperty.beds = 9;
   }
 
   onClickDropdownOptionBedroomTen(){
-    this.home.homeDetails.numBeds = 10;
+    this.sellerProperty.beds = 10;
   }
 
   onClickDropdownOptionBedroomOther(){
-    this.home.homeDetails.numBeds = -2;
+    this.sellerProperty.beds = -2;
     $('#dropdownMenuButtonBedroom').html('Other');
   }
 /*----------------  Bathrooms  ---------------*/
   onClickDropdownOptionBathroomMakeSelection(){
-    this.home.homeDetails.numBaths = -1;
+    this.sellerProperty.baths = null;
      $('#dropdownMenuButtonBathroom').html('Make Selection');
      this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomOne(){
-    this.home.homeDetails.numBaths = 1;
+    this.sellerProperty.baths = 1;
      $('#dropdownMenuButtonBathroom').html('1');
      this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomOneHalf(){
-    this.home.homeDetails.numBaths = 1.5;
+    this.sellerProperty.baths = 1.5;
      $('#dropdownMenuButtonBathroom').html('1.5');
      this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomOne3Quarters(){
-    this.home.homeDetails.numBaths = 1.75;
+    this.sellerProperty.baths = 1.75;
      $('#dropdownMenuButtonBathroom').html('1.75');
      this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomTwo(){
-    this.home.homeDetails.numBaths = 2;
+    this.sellerProperty.baths = 2;
     $('#dropdownMenuButtonBathroom').html('2');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomTwoHalf(){
-    this.home.homeDetails.numBaths = 2.5;
+    this.sellerProperty.baths = 2.5;
     $('#dropdownMenuButtonBathroom').html('2.5');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomTwo3Quarters(){
-    this.home.homeDetails.numBaths = 2.75;
+    this.sellerProperty.baths = 2.75;
     $('#dropdownMenuButtonBathroom').html('2.75');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomThree(){
-    this.home.homeDetails.numBaths = 3;
+    this.sellerProperty.baths = 3;
     $('#dropdownMenuButtonBathroom').html('3');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomThreeHalf(){
-    this.home.homeDetails.numBaths = 3.5;
+    this.sellerProperty.baths = 3.5;
     $('#dropdownMenuButtonBathroom').html('3.5');
     this.bathroomsOther = false;
   }
   onClickDropdownOptionBathroomThree3Quarters(){
-    this.home.homeDetails.numBaths = 3.75;
+    this.sellerProperty.baths = 3.75;
     $('#dropdownMenuButtonBathroom').html('3.75');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomFour(){
-    this.home.homeDetails.numBaths = 4;
+    this.sellerProperty.baths = 4;
     $('#dropdownMenuButtonBathroom').html('4');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomFourHalf(){
-    this.home.homeDetails.numBaths = 4.5;
+    this.sellerProperty.baths = 4.5;
     $('#dropdownMenuButtonBathroom').html('4.5');
     this.bathroomsOther = false;
   }
   onClickDropdownOptionBathroomFour3Quarters(){
-    this.home.homeDetails.numBaths = 4.75;
+    this.sellerProperty.baths = 4.75;
     $('#dropdownMenuButtonBathroom').html('4.75');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomFive(){
-    this.home.homeDetails.numBaths = 5;
+    this.sellerProperty.baths = 5;
     $('#dropdownMenuButtonBathroom').html('5');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomFiveHalf(){
-    this.home.homeDetails.numBaths = 5.5;
+    this.sellerProperty.baths = 5.5;
     $('#dropdownMenuButtonBathroom').html('5.5');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroomFive3Quarters(){
-    this.home.homeDetails.numBaths = 5.75;
+    this.sellerProperty.baths= 5.75;
     $('#dropdownMenuButtonBathroom').html('5.75');
     this.bathroomsOther = false;
   }
 
   onClickDropdownOptionBathroom6OrMore(){
-    this.home.homeDetails.numBaths = -2;
+    this.sellerProperty.baths = 6;
     $('#dropdownMenuButtonBathroom').html('Other');
     this.bathroomsOther = true;
   }
 
 /*------------------ End Bathrooms ------------*/
 onClickDropdownOptionGarageMakeSelection(){
-  this.home.homeDetails.carGarage = -1;
+  this.sellerProperty.garage = -1;
   $('#dropdownMenuButtonGarage').html('Make Selection');
 }
 
 onClickDropdownOptionGarageOneSpot(){
-    this.home.homeDetails.carGarage = 1;
+    this.sellerProperty.garage = 1;
     $('#dropdownMenuButtonGarage').html('1');
     this.garageOther = false;
 }
 
 onClickDropdownOptionGarageTwoSpots(){
-    this.home.homeDetails.carGarage = 2;
+    this.sellerProperty.garage= 2;
     $('#dropdownMenuButtonGarage').html('2');
     this.garageOther = false;
 }
 
 onClickDropdownOptionGarageThreeSpots(){
-    this.home.homeDetails.carGarage = 3;
+    this.sellerProperty.garage = 3;
     $('#dropdownMenuButtonGarage').html('3');
     this.garageOther = false;
 }
 
 onClickDropdownOptionGarageFourSpots(){
-     this.home.homeDetails.carGarage = 4;
+     this.sellerProperty.garage = 4;
      $('#dropdownMenuButtonGarage').html('4');
      this.garageOther = false;
 }
 
 onClickDropdownOptionGarageMoreThanFour(){
-  this.home.homeDetails.carGarage = 5;
+  this.sellerProperty.garage = 5;
   $('#dropdownMenuButtonGarage').html('Other');
   this.garageOther = true;
 }
 
 /*---------------- Cooling Functions--------------------------*/
  onClickCoolingDropdownOptionOne(){
-    this.home.homeDetails.roofAge = 0;
+    this.sellerProperty.cooling_type = "Central HVAC";
      $('#dropdownMenuButtonCooling').html('Central HVAC');
   }
 
   onClickCoolingDropdownOptionTwo(){
-    this.home.homeDetails.roofAge = 1;
+    this.sellerProperty.cooling_type = "Furnace & Swamp Cooler";
     $('#dropdownMenuButtonCooling').html('Furnace & Swamp Cooler');
   }
 
   onClickCoolingDropdownOptionThree(){
-    this.home.homeDetails.roofAge = 2;
+    this.sellerProperty.cooling_type = "Swamp Cooler Only";
     $('#dropdownMenuButtonCooling').html('Swamp Cooler Only');
   }
 
   onClickCoolingDropdownOptionFour(){
-    this.home.homeDetails.roofAge = 2;
+    this.sellerProperty.cooling_type = "Window Unit(s)";
     $('#dropdownMenuButtonCooling').html('Window Unit(s)');
   }
 
   onClickCoolingDropdownOptionFive(){
-    this.home.homeDetails.roofAge = 2;
+    this.sellerProperty.cooling_type = "Furnace Only";
     $('#dropdownMenuButtonCooling').html('Furnace Only');
   }
 
   onClickCoolingDropdownOptionSix(){
-    this.home.homeDetails.roofAge = 2;
+    this.sellerProperty.cooling_type = "None";
     $('#dropdownMenuButtonCooling').html('None');
   }
 

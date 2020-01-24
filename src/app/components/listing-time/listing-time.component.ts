@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HomeService } from '../../services/home.service';
 import { IHome } from '../../model/IHome';
 import { NgbCalendar, NgbDateStruct, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import { trigger, state, style, animate, transition } from '@angular/animations';

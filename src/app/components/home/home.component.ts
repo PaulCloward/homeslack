@@ -312,7 +312,7 @@ export class HomeComponent implements OnInit {
 
     
     
-  recieveOfferInstructions:IReceiveOfferInstructions[] = [
+  receiveOfferInstructions:IReceiveOfferInstructions[] = [
     {title: "Verify your information", instruction: "After we pull your address, verify the information is correct"},
     {title: "Select a time-frame", instruction: "Tell us when you need the money<br>Tell us when you will be out of your home"},
     {title: "Upload pictures", instruction: "Use our friendly and interactive interface to send us pictures of your home"},

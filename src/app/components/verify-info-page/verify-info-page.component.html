@@ -72,6 +72,8 @@
         </agm-map>
         </div>
     </div>
+
+    {{sellerProperty | json}} 
     
     <div class="row" style="margin-top: 6em;">
         <div class="col-4 offset-1">
@@ -82,15 +84,12 @@
         </div>
         <div class="col-6" style="padding: 0em">
             <div class="street-address">
-                <span style="color: #7E7E7E;">{{home.addressInfo.street}}</span>
+                <span style="color: #7E7E7E;">{{sellerProperty.street}}</span>
             </div>
             <div class="street-address">
-                    {{home.addressInfo.city}},
-                    &nbsp;{{home.addressInfo.state}}&nbsp; {{home.addressInfo.zipCode}}
+                    {{sellerProperty.city}},
+                    &nbsp;{{sellerProperty.state}}&nbsp; {{sellerProperty.zip_code}}
             </div>
-            <!-- <div class="city-state-address" style="font-size: 1.5em; line-height: 1.1em; display: inline-block;">
-                &nbsp;{{home.addressInfo.city}},&nbsp;{{home.addressInfo.state}}&nbsp; {{home.addressInfo.zipCode}}
-            </div> -->
         </div>
     </div>
     
@@ -106,9 +105,9 @@
                            <div class="label-property">
                                 Total Living Area <span class="question-mark-circle rounded-circle">?</span>
                             </div>
-                            <div *ngIf="!editModeTotalLivingArea" class="label-property-result">{{home.homeDetails.livingSquareFootage}} Square Feet</div>
+                            <div *ngIf="!editModeTotalLivingArea" class="label-property-result">{{sellerProperty.living_square_feet}} Square Feet</div>
                             <div *ngIf="editModeTotalLivingArea" class="label-hint"> Livable Sqft # in Home?</div>
-                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property" type="text" [(ngModel)]="home.homeDetails.livingSquareFootage" (click)="$event.stopPropagation()"/>
+                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property" type="text" [(ngModel)]="sellerProperty.living_square_feet" (click)="$event.stopPropagation()"/>
                         </div>
                     </div>
                 </div>
@@ -121,9 +120,9 @@
                             <div class="label-property">
                                 Year Build <span class="question-mark-circle rounded-circle">?</span>
                             </div>
-                            <div *ngIf="!editModeYearBuild" class="label-property-result">{{home.homeDetails.yearBuild}}</div>
+                            <div *ngIf="!editModeYearBuild" class="label-property-result">{{sellerProperty.year}}</div>
                             <div *ngIf="editModeYearBuild" class="label-hint">Year the House was Built?</div>
-                            <input *ngIf="editModeYearBuild" class="input-edit-property" [(ngModel)]="home.homeDetails.yearBuild" type="text" (click)="$event.stopPropagation()"/>
+                            <input *ngIf="editModeYearBuild" class="input-edit-property" [(ngModel)]="sellerProperty.year" type="text" (click)="$event.stopPropagation()"/>
                         </div>
                     </div>
                 </div>
@@ -136,8 +135,8 @@
                             <div class="label-property">
                                 Lot Size <span class="question-mark-circle rounded-circle" >?</span>
                             </div>
-                            <div *ngIf="!editModeLotSize && lotSizeType == 'Sqft'" class="label-property-result">{{home.homeDetails.lotSizeSqFt}} {{lotSizeType}}</div>
-                            <div *ngIf="!editModeLotSize && lotSizeType == 'Acres'" class="label-property-result">{{home.homeDetails.lotSizeAcres}} {{lotSizeType}}</div>
+                            <div *ngIf="!editModeLotSize && lotSizeType == 'Sqft'" class="label-property-result">{{sellerProperty.lot_size}} {{lotSizeType}}</div>
+                            <div *ngIf="!editModeLotSize && lotSizeType == 'Acres'" class="label-property-result">{{sellerProperty.lot_size}} {{lotSizeType}}</div>
                             <div *ngIf="editModeLotSize" class="label-hint">Total Size of Lot in Sqft or Acres</div>
                            
                             <div class="row" style="margin-top: 1em; margin-left: .2em">
@@ -166,11 +165,11 @@
                             <div class="label-property" (click)="editModeBedrooms = !editModeBedrooms">
                                 Bedrooms <span class="question-mark-circle rounded-circle" >?</span>
                             </div>
-                            <div *ngIf="!editModeBedrooms" class="label-property-result">{{home.homeDetails.numBeds}}</div>
+                            <div *ngIf="!editModeBedrooms" class="label-property-result">{{sellerProperty.beds}}</div>
                             <div *ngIf="editModeBedrooms" class="label-hint">How many Finished Bathrooms In Home</div>
                             <div class="dropdown" *ngIf="editModeBedrooms">
                               <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBedroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{home.homeDetails.numBeds}}
+                                {{sellerProperty.beds}}
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBedroom">
                                 <a class="dropdown-item" (click)="onClickDropdownOptionBedroomOne()">1</a>
@@ -186,7 +185,7 @@
                                 <a class="dropdown-item" (click)="onClickDropdownOptionBedroomOther()">Other</a>
                               </div>
                             </div>
-                            <div class="row" *ngIf="home.homeDetails.numBeds == -2">
+                            <div class="row" *ngIf="sellerProperty.beds == null">
                                 <div class="col-12">
                                    <input  class="input-edit-property" [(ngModel)]="bedroomDisplayNumber" placeholder="# of Bedrooms..." type="number" maxlength="3"/>
                                 </div>
@@ -204,11 +203,11 @@
                         <div class="label-property" (click)="editModeBathrooms = !editModeBathrooms">
                             Bathrooms <span class="question-mark-circle rounded-circle" >?</span>
                         </div>
-                        <div *ngIf="!editModeBathrooms" class="label-property-result">{{home.homeDetails.numBaths}}</div>
+                        <div *ngIf="!editModeBathrooms" class="label-property-result">{{sellerProperty.baths}}</div>
                         <div class="label-hint" *ngIf="editModeBathrooms">Finished Bathrooms in Home?</div>
                         <div class="dropdown" *ngIf="editModeBathrooms">
                           <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBathroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{home.homeDetails.numBaths}}
+                            {{sellerProperty.baths}}
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBathroom">
                             <a class="dropdown-item" (click)="onClickDropdownOptionBathroomMakeSelection()">Make Selection</a>
@@ -249,18 +248,18 @@
                             <div *ngIf="editModeBasement" class="label-hint label-hint-above-buttons">Basement in House? If so, % Finished?</div>
                            <div  *ngIf="editModeBasement" class="row mt-2 btn-row-margin-left">
                                 <div (click)="onClickBasementNo()" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.basement == 'No'}">
+                                    [ngClass]="{'btn-result-clicked' : sellerProperty.basement == false}">
                                     No
                                 </div>
                                 <div (click)="onClickBasementYes()" class="col-3 label-property-result btn-result" 
-                                    [ngClass]="{'btn-result-clicked' : hom.homeDetails.basement == 'Yes'}">
+                                    [ngClass]="{'btn-result-clicked' : sellerProperty.basement == true}">
                                     Yes
                                 </div>
                             </div>
-                            <div *ngIf="editModeBasement && home.homeDetails.basement == true" style="width: 100%">
+                            <div *ngIf="editModeBasement && sellerProperty.basement == true" style="width: 100%">
                                     <input class="input-edit-property" [(ngModel)]="garageSquareFeet" placeholder="Total Basement Sqft..." type="number" maxlength="100"/>
                             </div>
-                            <div class="dropdown" *ngIf="home.homeDetails.basement == true">
+                            <div class="dropdown" *ngIf="sellerProperty.basement == true">
                               <button class="btn dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{basementPercentageFinished}}
                               </button>
@@ -290,7 +289,7 @@
                             <div class="label-property" (click)="editModeGarage = !editModeGarage">
                                 Garage <span class="question-mark-circle rounded-circle" >?</span>
                             </div>
-                            <div *ngIf="!editModeGarage" class="label-property-result">{{home.homeDetails.carGarage}} Car</div>
+                            <div *ngIf="!editModeGarage" class="label-property-result">{{sellerProperty.garage}} Car</div>
 
                             <!-- While In Edit Mode Tags -->
                             <div *ngIf="editModeGarage" class="label-hint">Max # of Cars that Fit in Garage?</div>
@@ -329,15 +328,15 @@
                            <div  *ngIf="editModePool" class="row mt-2 btn-row-margin-left">
                            
                                 <div *ngIf="editModePool" (click)="onClickPoolNo()" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.pool == false}">
+                                    [ngClass]="{'btn-result-clicked' : sellerProperty.pool == false}">
                                     No
                                 </div>
                                 <div (click)="onClickPoolYes()" class="col-3 label-property-result btn-result" 
-                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.pool == true}">
+                                    [ngClass]="{'btn-result-clicked' : sellerProperty.pool == true}">
                                     Yes
                                 </div>
                             </div>
-                            <div *ngIf="home.homeDetails.pool == true" style="width: 100%">
+                            <div *ngIf="sellerProperty.pool == true" style="width: 100%">
                                 <textarea class="input-edit-property" [(ngModel)]="poolCondition" placeholder="Describe Pool condition..." style="resize: none" type="text" maxlength="100"></textarea>
                             </div>
                         </div>
@@ -357,16 +356,16 @@
                             <div class="row mt-2 btn-row-margin-left" *ngIf="editModeHotTub">
                                 
                                 <div (click)="onClickHotTubNo()" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.hotTub == false}">
+                                    [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == false}">
                                     No
                                 </div>
                                 <div  (click)="onClickHotTubYes()" class="col-3 label-property-result btn-result" 
-                                    [ngClass]="{'btn-result-clicked' : home.homeDetails.hotTub == true}">
+                                    [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == true}">
                                     Yes
                                 </div>
 
                             </div>
-                            <div *ngIf="home.homeDetails.hotTub == true" style="width: 100%">
+                            <div *ngIf="sellerProperty.hot_tub == true" style="width: 100%">
                                     <textarea class="input-edit-property" [(ngModel)]="hotTubCondition" placeholder="Describe Hot Tub condition..." style="resize: none" type="text" maxlength="100"></textarea>
                             </div>
                         </div>
@@ -387,7 +386,7 @@
                             <div class="label-property" (click)="editModeCooling = !editModeCooling">
                                 Cooling <span class="question-mark-circle rounded-circle" >?</span>
                             </div>
-                            <div *ngIf="!editModeCooling" class="label-property-result">{{home.homeDetails.cooling}}</div>
+                            <div *ngIf="!editModeCooling" class="label-property-result">{{sellerProperty.cooling_type}}</div>
                             <div class="label-hint" *ngIf="editModeCooling">Home Cooling System Type?</div>
                             <div class="dropdown" *ngIf="editModeCooling">
                               <button class="btn dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -408,204 +407,10 @@
                
             </div>
 
-            <!-- First Row md, xs -->
-            <div class="row d-flex d-md-none property-row">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/total_living_area.png" class="icon-label img-fluid" placement="top"  matTooltip="{{totalLivingAreaHint}}"/>
-                        </div>
-                        <div class="col-9">
-                           <div class="label-property">
-                                Total Living Area <span class="question-mark-circle rounded-circle" (click)="editModeTotalLivingArea = !editModeTotalLivingArea">?</span>
-                            </div>
-                            <div *ngIf="!editModeTotalLivingArea" class="label-property-result">{{home.homeDetails.livingSquareFootage}} Square Feet</div>
-                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property" type="text" [(ngModel)]="home.homeDetails.livingSquareFootage" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/year_built.png" class="icon-label img-fluid" placement="top"  matTooltip="{{yearBuildHint}}"/>
-                        </div>
-                        <div class="col-9">
-                            <div class="label-property">
-                                Year Build <span class="question-mark-circle rounded-circle" (click)="editModeYearBuild = !editModeYearBuild">?</span>
-                            </div>
-                            <div *ngIf="!editModeYearBuild" class="label-property-result">{{home.homeDetails.yearBuild}}</div>
-                            <input *ngIf="editModeYearBuild" class="input-edit-property" [(ngModel)]="home.homeDetails.yearBuild" type="text"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Second Row md, xs -->
-            <div class="row d-flex d-md-none property-row">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/lot_size.png" class="icon-label img-fluid" placement="top"  matTooltip="{{lotSizeHint}}"/>
-                        </div>
-                        <div class="col-9">
-                            <div class="label-property">
-                                Lot Size <span class="question-mark-circle rounded-circle" (click)="editModeLotSize = !editModeLotSize">?</span>
-                            </div>
-                            <div *ngIf="!editModeLotSize && lotSizeType == 'Acres'" class="label-property-result">{{home.homeDetails.lotSizeAcres}} Acres</div>
-                            <div *ngIf="!editModeLotSize && lotSizeType == 'Sqft'" class="label-property-result">{{home.homeDetails.lotSizeSqFt}} Sqft</div>
-                            <input *ngIf="editModeLotSize" class="input-edit-property" [(ngModel)]="home.homeDetails.lotSizeAcres" type="text"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/Bedrooms.png" class="icon-label img-fluid" placement="top"  matTooltip="{{bedroomsHint}}"/>
-                        </div>
-                        <div class="col-9">
-                            <div class="label-property">
-                                Bedrooms <span class="question-mark-circle rounded-circle" (click)="editModeBedrooms = !editModeBedrooms">?</span>
-                            </div>
-                            <div *ngIf="!editModeBedrooms" class="label-property-result">{{home.homeDetails.numBeds}}</div>
-                            <input *ngIf="editModeBedrooms" class="input-edit-property" [(ngModel)]="home.homeDetails.numBeds" type="text"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Third Row md, xs -->
-            <div class="row d-flex d-md-none property-row">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/bathroom.png" class="icon-label img-fluid" placement="top"  matTooltip="{{bathroomsHint}}"/>
-                        </div>
-                        <div class="col-9">
-                        <div class="label-property">
-                            Bathrooms <span class="question-mark-circle rounded-circle" (click)="editModeBathrooms = !editModeBathrooms">?</span>
-                        </div>
-                        <div *ngIf="!editModeBathrooms" class="label-property-result">{{home.homeDetails.numBaths}}</div>
-                        <input *ngIf="editModeBathrooms" class="input-edit-property" [(ngModel)]="home.homeDetails.numBaths" type="text"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/Basement.png" class="icon-label img-fluid" placement="top"  matTooltip="{{basementHint}}"/>
-                        </div>
-                        <div class="col-9">
-                            <div class="label-property">
-                                Basement
-                            </div>
-                            
-                            <input class="input-edit-property" [(ngModel)]="home.homeDetails.basement" type="text"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fourth Row md, xs -->
-            <div class="row d-flex d-md-none property-row">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/Garage.png" class="icon-label img-fluid" placement="top"  matTooltip="{{garageHint}}"/>
-                        </div>
-                        <div class="col-9">
-                            <div class="label-property">
-                                Garage <span class="question-mark-circle rounded-circle" (click)="editModeGarage = !editModeGarage">?</span>
-                            </div>
-                            <div *ngIf="!editModeGarage" class="label-property-result">{{home.homeDetails.carGarage}} Car</div>
-                            <input *ngIf="editModeGarage" class="input-edit-property" [(ngModel)]="home.homeDetails.carGarage" type="text"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/Pool.png" class="icon-label img-fluid" placement="top"  matTooltip="{{poolHint}}"/>
-                        </div>
-                        <div class="col-9">
-                            <div class="label-property">
-                                Pool <span class="question-mark-circle rounded-circle" (click)="editModePool = !editModePool">?</span>
-                            </div>
-                            <div *ngIf="!editModePool" class="label-property-result">{{displayPool}}</div>
-                           <div class="row mt-2 btn-row-margin-left">
-                                <div *ngIf="editModePool" (click)="displayPool = 'No'" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : displayPool == 'No'}">
-                                    No
-                                </div>
-                                <div *ngIf="editModePool" (click)="displayPool = 'Yes'" class="col-3 label-property-result btn-result" 
-                                    [ngClass]="{'btn-result-clicked' : displayPool == 'Yes'}">
-                                    Yes
-                                </div>
-                                <div *ngIf="displayPool == 'Yes'" style="width: 100%">
-                                    <textarea class="input-edit-property" [(ngModel)]="poolCondition" placeholder="Describe Pool condition..." style="resize: none" type="text" maxlength="100"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fifth Row md, xs -->
-            <div class="row d-flex d-md-none property-row">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/hot_tub.png" class="icon-label img-fluid" placement="top"  matTooltip="{{hotTubHint}}"/>
-                        </div>
-                        <div class="col-9">
-                            <div class="label-property">
-                                Hot Tub <span class="question-mark-circle rounded-circle" (click)="editModeHotTub = !editModeHotTub">?</span>
-                            </div>
-                            <div *ngIf="!editModeHotTub" class="label-property-result">{{displayHotTub}}</div>
-                            <div class="row mt-2 btn-row-margin-left">
-                                <div *ngIf="editModeHotTub" (click)="displayHotTub = 'No'" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : displayHotTub == 'No'}">
-                                    No
-                                </div>
-                                <div *ngIf="editModeHotTub" (click)="displayHotTub = 'Yes'" class="col-3 label-property-result btn-result" 
-                                    [ngClass]="{'btn-result-clicked' : displayHotTub == 'Yes'}">
-                                    Yes
-                                </div>
-                                <div *ngIf="displayHotTub == 'Yes'" style="width: 100%">
-                                    <textarea class="input-edit-property" [(ngModel)]="hotTubCondition" placeholder="Describe Hot Tub condition..." style="resize: none" type="text" maxlength="100"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/Cooling.png" class="icon-label img-fluid" placement="top"  matTooltip="{{coolingHint}}"/>
-                        </div>
-                        <div class="col-9">
-                            <div class="label-property">
-                                Cooling <span class="question-mark-circle rounded-circle" (click)="editModeCooling = !editModeCooling">?</span>
-                            </div>
-                            <div *ngIf="!editModeCooling" class="label-property-result"> {{displayCooling}}</div>
-                            <div class="row mt-2 btn-row-margin-left">
-                                <div *ngIf="editModeCooling" (click)="displayCooling = 'No'" class="col label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : displayCooling == 'No'}">
-                                    No
-                                </div>
-                                <div *ngIf="editModeCooling" (click)="displayCooling = 'Yes'" class="col label-property-result btn-result" 
-                                    [ngClass]="{'btn-result-clicked' : displayCooling == 'Yes'}">
-                                    Yes
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
+    
             
-            
-            <div class="row" style="margin-top: 1em; padding-top: 1em; border-top: 1px solid #7E7E7E">
+        <div class="row" style="margin-top: 1em; padding-top: 1em; border-top: 1px solid #7E7E7E">
                 <div class="col-12">
                     <div class="label-question">About How Old is the Roof<span class="question-mark">?</span></div>
                     <div class="dropdown">
@@ -628,7 +433,7 @@
                     <div class="label-question">Any HVAC, Plumbing, Electrical, or Roofing Issues we should know about<span class="question-mark">?</span></div>
 
                     <!-- home.concerns ?? -->
-                    <!-- <textarea class="input-edit-property" [(ngModel)]="home.concerns.hperIssues" placeholder="HVAC, Plumbing, Electrical, or Roofing Issues..." style="resize: none" type="text" maxlength="300"></textarea> -->
+                    <textarea class="input-edit-property" [(ngModel)]="sellerProperty.concerns_hvac_roofing_etc" placeholder="HVAC, Plumbing, Electrical, or Roofing Issues..." style="resize: none" type="text" maxlength="300"></textarea> 
                 </div>
             </div>
            
@@ -638,7 +443,7 @@
                     <div class="label-question">Any other concerns you can tell us about<span class="question-mark">?</span></div>
 
                     <!-- home.concerns ?? -->
-                    <!-- <textarea class="input-edit-property" [(ngModel)]="home.concerns.otherConcerns" placeholder="Other concerns..." style="resize: none" type="text" maxlength="300"></textarea> -->
+                    <textarea class="input-edit-property" [(ngModel)]="sellerProperty.concerns_other" placeholder="Other concerns..." style="resize: none" type="text" maxlength="300"></textarea>
                 </div>
             </div>
             
