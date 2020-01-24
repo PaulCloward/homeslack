@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  @Input() backgroundColor:string = "#f1f1f1";
-
+  //@Input() backgroundColor:string = "#f1f1f1";
+  @Input() backgroundColor:string = "rgb(68, 197, 242);";
   constructor() { }
 
   ngOnInit() {

@@ -7,20 +7,22 @@
     <ul class="navbar-nav ml-auto">
       
       <li class="nav-item">
-        <a [routerLink]="['./directory']" [ngClass]="{'nav-link':true, 'nav-tab-selected' : router.url === '/directory'}">Directory</a>
+        <a [routerLink]="['./directory']" [ngClass]="{'nav-link':true, 'nav-tab-selected' : mRouter.url === '/directory'}">Directory</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="['./why-us']" [ngClass]="{'nav-link':true, 'nav-tab-selected' : router.url === '/why-us'}">Why Us</a>
+        <a [routerLink]="['./why-us']" [ngClass]="{'nav-link':true, 'nav-tab-selected' : mRouter.url === '/why-us'}">Why Us</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="['./contact']" [ngClass]="{'nav-link':true, 'nav-tab-selected' : router.url === '/contact'}">Contact</a>
+        <a [routerLink]="['./contact']" [ngClass]="{'nav-link':true, 'nav-tab-selected' : mRouter.url === '/contact'}">Contact</a>
       </li>
       <li class="nav-item">
-        <a  [routerLink]="['./login']" *ngIf="!isLoggedIn" [ngClass]="{'nav-link':true, 'nav-tab-selected' : router.url === '/login'}">Sign In</a>
+        <a  [routerLink]="['./login']" *ngIf="!isLoggedIn" [ngClass]="{'nav-link':true, 'nav-tab-selected' : mRouter.url === '/login'}">Sign In</a>
       </li>
       
-      <li class="dropdown d-flex align-items-center" *ngIf="isLoggedIn" style="text-align: center; margin-right: 2em; width: 10em">
-          <a class="dropdown-toggle navbar-profile-icon-container" style="width: 100%;" data-toggle="dropdown"><img src="../../../assets/img/avatar.png" class="img-fluid nav-profile-icon"/></a>
+      <li class="dropdown" *ngIf="isLoggedIn" style="text-align: center; margin-right: 2em; width: 8em">
+          <a class="dropdown-toggle navbar-profile-icon-container" data-toggle="dropdown">
+            <img src="../../../assets/img/avatar.png" class="profile-icon"/>
+          </a>
           <ul class="dropdown-menu">
             <li class="dropdown-item"><a class="child-link">My Profile</a></li>
             <li class="dropdown-item"><a class="child-link">Messages</a></li>

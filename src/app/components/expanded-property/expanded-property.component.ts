@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ISeller } from '../../model/ISeller';
 import { Router } from '@angular/router';
 import { IHome } from '../../model/IHome';
 import { Seller } from '../../class/Seller';
-import { FirebaseService } from '../../services/firebase.service';
-import { HomeService } from '../../services/home.service';
-import { Observable } from 'rxjs';
-import * as firebase from 'firebase/app';
+import { PropertyDetails } from '../../class/PropertyDetails';
+import { FirestoreService } from '../../services/firestore.service';
+import { Subscription } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -14,36 +13,54 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: './expanded-property.component.html',
   styleUrls: ['./expanded-property.component.css']
 })
-export class ExpandedPropertyComponent implements OnInit {
+export class ExpandedPropertyComponent implements OnInit, OnDestroy {
 
   home:any;
-  mSeller:ISeller = { first_name: "Paul", last_name: "Placeholder", 'created_account':'?', phone: '?-???-???-????', email: "placeholder@gmail.com" };
-  mSeller2:Seller;
+  mSeller:Seller;
+  userUID:string;
+  
 
-  constructor(private mHomeService:HomeService, private mAuth: AngularFireAuth, private firebaseService:FirebaseService) { 
-  	this.mHomeService.currentHome.subscribe(home => this.initHome(home));
+  mSellerPropertyDetails:PropertyDetails;
 
-    
-     
+  mSubscriptionAuthState:Subscription;
+
+  constructor(private mFirestoreService: FirestoreService, private mRouter:Router, private mAuth:AngularFireAuth) {  
   }
 
   ngOnInit() {
-  	
-  }
-
-   initHome(home:IHome){
-    this.home = home;
-
-    if(this.home.addressInfo.street !== ""){
-      console.log("SEARCH FOR HOME WAS FOUND");
-    }else{
-      console.log("NO HOME FROM SEARCH QUERY FOUND. LOOKING FOR CACHE NOW");
-      this.home = this.mHomeService.getLocalStorageProperty();
+  	if(this.mSubscriptionAuthState){
+      this.mSubscriptionAuthState.unsubscribe();
     }
-
-    JSON.stringify(this.home);
+    
+    this.mSubscriptionAuthState = this.mAuth.authState.subscribe(user => {
+      if(user){
+        this.userUID = user.uid;
+        this.getSellerContactInformation(this.userUID);
+        this.getSellerPropertyDetails(this.userUID);
+      }
+    });
   }
 
+  ngOnDestroy(){
+    if(this.mSubscriptionAuthState){
+      this.mSubscriptionAuthState.unsubscribe();
+    }
+  }
 
-
+  getSellerContactInformation(userUID:string){
+    this.mFirestoreService.getSellerContactInformation(userUID).subscribe(contactInformation => {
+      if(contactInformation){
+        this.mSeller = contactInformation;
+      }
+    });
+  }
+  
+  getSellerPropertyDetails(userUID:string){
+    this.mFirestoreService.getSellerPropertyDetails(userUID).subscribe(property => {
+     if(property){
+       console.log("YOO" + JSON.stringify(property));
+      this.mSellerPropertyDetails = property;
+     }
+    });
+  }
 }

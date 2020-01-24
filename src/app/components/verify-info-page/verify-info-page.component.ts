@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseService } from '../../services/firebase.service';
-import { MapsAPILoader } from '@agm/core';
 import { HomeService } from '../../services/home.service';
 import { IHome } from '../../model/IHome';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -13,10 +11,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class VerifyInfoPageComponent implements OnInit {
   
+
+
+ //OLD STUFF BELOW
+
   loggedIn:boolean = false;
 
   home:IHome;
-
   // TypeError: Cannot read property 'basement' of undefined
   lat: number;
   lng: number;
@@ -60,14 +61,14 @@ export class VerifyInfoPageComponent implements OnInit {
 
   lotSizeType:string= "Sqft";
 
-  constructor(private mAuth: AngularFireAuth, private _homeService: HomeService, private authService: FirebaseService, private router: Router) { }
+  constructor(private mAuth: AngularFireAuth, private _homeService: HomeService, private mRouter: Router) { }
 
   ngOnInit() {
     
-      this.mAuth.authState.subscribe(
-        user => {if(user){
+      this.mAuth.authState.subscribe(user => {
+        if(user) {
            this.loggedIn = true;
-          } else{
+          } else {
             this.loggedIn = false;
           }
         }
@@ -113,20 +114,17 @@ export class VerifyInfoPageComponent implements OnInit {
       }else{
           this.displayBasement = "No";
       }
-
-      this.lat = Number(this.home.addressInfo.latitude);
-      this.lng = Number(this.home.addressInfo.longitude);
   }
 
   onClickNext(){
     console.log(this.home);
     this._homeService.updateHomeProperties(this.home);
-    this.router.navigate(['/time-frame']);
+    this.mRouter.navigate(['/listing-time']);
   }
   
   onClickCreateAccount(){
     this._homeService.updateHomeProperties(this.home);
-    this.router.navigate(['./create-account']);
+    this.mRouter.navigate(['./create-account']);
   }
 
   onClickBasementNo(){

@@ -38,36 +38,19 @@
         <div class="col-3">
             <div class="left-container">
 
-                <div class="slide-circle-state-row" [@fadeInOut]>
-                    <div [ngClass]="{'circle-state-selected': currentSlideState == 0, 'circle-state-unselected': currentSlideState != 0}"></div>
-                    <div [ngClass]="{'circle-state-selected': currentSlideState == 1, 'circle-state-unselected': currentSlideState != 1}"></div>
-                    <div [ngClass]="{'circle-state-selected': currentSlideState == 2, 'circle-state-unselected': currentSlideState != 2}"></div>
+                <div class="left-image-container">
+                    <img class="left-image" src="../../../assets/img/taking_photo_blue.jpg" />
+                    <div class="left-image-overlay-text">Placeholder</div>
                 </div>
 
-                <div class="slide"  *ngIf="currentSlideState == 0" [@fadeInOut]>
-
-                        <div class="slide-icon-container">
-                            <img class="icon-pictures" src="../../../assets/img/clip_art_1.png" />
-                        </div>
-                        The pictures uploaded will be used by investors to assess the condition of your property. 
-                </div>
-                <div class="slide" *ngIf="currentSlideState == 1" [@fadeInOut]>
-                    <div class="slide-icon-container">
-                        <img class="icon-photographer" src="../../../assets/img/clip_art_4.png" />
-                    </div>
-                    Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.
-                </div>
-                <div class="slide"*ngIf="currentSlideState == 2" [@fadeInOut]>
-                    <div class="slide-icon-container">
-                        <img class="icon-tips" src="../../../assets/img/clip_art_2.png" />
-                    </div>
-                    <ol class="tip-list">
-                        <li class="tip-item">Hold your camera steady</li>
-                        <li class="tip-item">Good lighting</li>
-                        <li class="tip-item">Take horizontal photos (landscape) </li>
-                        <li class="tip-item">Minimum of 10 photos</li>
-                    </ol>
-                </div>
+                <!-- The pictures uploaded will be used by investors to assess the condition of your property.      
+                Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.
+                <li class="tip-item"></li>Hold your camera steady</li>
+                <li class="tip-item">Good lighting</li>
+                <li class="tip-item">Take horizontal photos (landscape) </li>
+                <li class="tip-item">Minimum of 10 photos</li> -->
+               
+            
             </div>
         </div>
         <div class="col-9">
@@ -75,37 +58,50 @@
                 <div class="label-upload-photos">
                     Upload photos of your home
                 </div>
-                <div class="image-upload-container"
+                <div [ngClass]="{'image-upload-container-tall': (mImageList == null || mImageList.length == 0),
+                    'image-upload-container-small': mImageList.length > 0}"
                 dropzone
                 (hovered)="toggleHover($event)"
                 (dropped)="onDrop($event)"
                 [class.hovering]="isHovering">
                     <div class="container-add-labels">
+                        <input class="file-input" type="file" (change)="startUpload($event.target.files)">
                         <div class="label-drag-add-drop">Drag and Drop photos here</div>
                         <div class="label-or">or</div>
-                        <button class="btn-add" (click)="onClickSelectPhotos()">
+                        <button class="btn-add" (click)="showPreview(event)">
                         Select  <i class="material-icons" style="margin-left: 8px; align-self: center;">cloud_upload</i>
                         </button>
                         <div style="display: flex; align-items: center; margin-top: 2em; justify-content: center;">
-                            <div class="at-least">
-                                10 photos needed
+                            <div class="at-least" *ngIf="mImageList != null && mImageList.length >= 10">
+                                Feel free to move on or keep adding photos
+                            </div>
+                            <div class="at-least" *ngIf="mImageList != null && mImageList.length < 10">
+                                {{ 10 - mImageList.length }} more photos needed
+                            </div>
+                            <div class="at-least" *ngIf="mImageList == null">
+                                {{ 10 }} more photos needed
                             </div>
                             <i class="material-icons icon-collections">collections</i>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row" *ngIf="imageList != null && imageList.length > 0">
-                    <div class="imagebox">
-                        <img [src]="imageList[0].download_url" class="home-image img-fluid">
-                        <span class="imagebox-desc">bathroom</span> 
+                
+                <div class="items">
+                    <div class="item" *ngFor="let image of mImageList; let i = index">
+                        <div class="imagebox">
+                            <span style="position: absolute; top: 2px; right: 5px; z-index: 10; font-size: 1.1em; color: rgba(68, 137, 242, .7); cursor: pointer;">x</span>
+                            <img [src]="mImageList[i].image_url" class="home-image img-fluid">
+                            <span class="imagebox-desc">bathroom</span> 
+                        </div>
                     </div>
-                </div> -->
-                <div *ngFor="let file of files">
+                </div>
+                
+                <div *ngFor="let file of mFiles">
                     <uploader-task [file]="file"></uploader-task>
                 </div>
                 <div style="width: 100%; text-align: end;">
-                    <button *ngIf="imageList.length < 10"  class="btn-next" (click)="clickNextPage()">Next</button>
-                    <button *ngIf="imageList.length >= 10" class="btn-next-disabled" (click)="clickNextPage()">Next</button>
+                    <button *ngIf="10 - mImageList.length <= 0"  class="btn-next" (click)="clickNextPage()">Next</button>
+                    <button *ngIf="10 - mImageList.length > 0" class="btn-next-disabled" (click)="clickNextPage()" matTooltipPosition="above" matTooltip="Need to upload at least 10 photes before proceeding">Next</button>
                 </div>
             </div>
         </div>

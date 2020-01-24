@@ -32,6 +32,7 @@ export class CreateaccountComponent implements OnInit {
     this.mAuth.authState.subscribe(user => {
       if(user){
         this.userID = user.uid;
+        console.log(JSON.stringify(this.mSellerContactInfo));
         this.successfulCreatedAccount(this.mSellerContactInfo)
       }else{
         this.userID = "";
@@ -101,9 +102,11 @@ export class CreateaccountComponent implements OnInit {
   }
   
   successfulCreatedAccount(sellerContactInfo:Seller){
-    this.mFirestoreService.saveSellerContactInformation(this.userID,Object.assign({},sellerContactInfo)); 
-    this.mFirestoreService.saveSellerPropertyDetails(this.userID,Object.assign({}, this.mSellerPropertyDetails));
-    this.mRouter.navigate(['./time-frame']);
+    this.mFirestoreService.saveSellerContactInformation(this.userID,Object.assign({},sellerContactInfo));
+      this.mFirestoreService.saveSellerPropertyDetails(this.userID,Object.assign({}, this.mSellerPropertyDetails));
+        this.mRouter.navigate(['./listing-time']);
+      
+    
   }
 
 

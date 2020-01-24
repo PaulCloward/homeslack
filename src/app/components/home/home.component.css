@@ -239,29 +239,8 @@
   color: #000;
 }
 
-.home-offer-container-image{
-  text-align: center;
-}
 
-.home-offer-image{
-  width: 170px;
-  height: 170px;
-  border-radius: 100%;
-  margin-top: 2em;
-}
 
-.badge {
-  border-radius: 50%;
-  width: 1.8em;
-  height: 1.8em;
-  background: #fff;
-  color: #FFFFFF;
-  font-family: Century Gothic, sans-serif;
-  font-size: 2em;
-  font-weight: 600;
-  background-color: rgb(68, 197, 242);
-  margin: 0 auto;
-}
 
 #space{
     height: 20em;
@@ -432,7 +411,6 @@
 
 .middle-blue-section{
   width: 100%;
-  background-color: #43C5E4;
   margin-top: 1em;
 }
 
@@ -502,11 +480,6 @@
   margin-bottom: 2em;
 }
 
-.footer-section{
-  height: 14em;
-  width: 100%;
-  background-color: #EBECF0;
-}
 
 .container-house-image{
   position: absolute;
@@ -520,4 +493,73 @@
 .house-image{
   width: 550px;
   margin-right: .5em;
+}
+
+.footer-section {
+  background-color: #13335A;
+  display: grid;
+  grid-template-columns: 3.5fr 1fr 1fr 1fr; /* fraction*/
+  height: 14em;
+}
+
+.footer-large-column{
+  position: relative;
+}
+
+.footer-column{
+  position: flex;
+}
+
+.footer-company-image{
+    width:260px;
+    position: absolute;
+    left: 12%;
+    top: 12%;
+}
+
+.footer-button-contact-homeslack{
+  background-color:#307FE2;
+  position: absolute;
+  right: 10%;
+  top: 15%;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 25px;
+  font-family: 'Roboto', sans-serif;
+  font-size: .9em;
+  font-weight: 500;
+  padding: 6px 11px;
+}
+
+.footer-LLC{
+  display: inline-block;
+  position: absolute;
+  bottom: 6%;
+  left: 12%;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: .9em;
+} 
+
+.footer-list-header, .footer-list-sub-header{
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer-list-header{
+  color: white;
+  font-weight: 500;
+  font-size: 1em;
+  margin-top: 1.3em;
+}
+
+.footer-list-sub-header{
+  font-weight: 400;
+  font-size: .8em;
+  margin-top: .6em;
+  letter-spacing: 0;
+  color: #6EA5EB;
+  opacity: 1;
 }

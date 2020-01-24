@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -24,7 +24,7 @@ export class LockComponent implements OnInit {
 
   smallScreenSignInView:boolean = true;
 
-  constructor(private mFB: FormBuilder, private mAuth:AngularFireAuth, private mFirebaseService:FirebaseService
+  constructor(private mFB: FormBuilder, private mAuth:AngularFireAuth, private mAuthService:AuthenticationService
     , private mRouter: Router) { }
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class LockComponent implements OnInit {
 
   
   login(){
-    this.mFirebaseService.login(this.loginEmail,this.loginPassword)
+    this.mAuthService.login(this.loginEmail,this.loginPassword)
       .subscribe(
       success => this.mRouter.navigate(['/home']),
       error => this.errorMessage = error

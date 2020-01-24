@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -13,11 +12,10 @@ export class NavbarComponent implements OnInit {
    public isLoggedIn:boolean;
    model:any;
 
-  constructor(private mAuth:AngularFireAuth, private authService: FirebaseService, public router: Router) { }
+  constructor(private mAuth:AngularFireAuth, public mRouter: Router) { }
 
   ngOnInit() {
-    this.mAuth.authState.subscribe(
-        user => {
+    this.mAuth.authState.subscribe(user => {
           if(user){
            this.isLoggedIn = true;
           } else{
@@ -28,8 +26,11 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    console.log("logout");
-    this.authService.logout();
-    console.log("Logged In? : " + this.isLoggedIn);
+    this.mAuth.auth.signOut().then(() => {
+      this.mRouter.navigateByUrl('home');
+    })
+    .catch(error => {
+      console.log("Sign Out Failed " + error);
+    })
   }
 }

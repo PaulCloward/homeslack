@@ -42,13 +42,13 @@ export class SellerAccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    if(this.subscriptionAuthState != null){
+    if(this.subscriptionAuthState){
       this.subscriptionAuthState.unsubscribe();
     }
-    if(this.subscriptionSeller != null){
+    if(this.subscriptionSeller){
       this.subscriptionSeller.unsubscribe();
     }
-    if(this.subscriptionSellerPropertyDetails != null){
+    if(this.subscriptionSellerPropertyDetails){
       this.subscriptionSellerPropertyDetails.unsubscribe();
     }
   }
@@ -60,7 +60,9 @@ export class SellerAccountComponent implements OnInit, OnDestroy {
     }
 
     this.subscriptionSeller = this.mFirestoreService.getSellerContactInformation(userUID).subscribe(seller => {
-      this.mSeller = seller;
+      if(seller){
+        this.mSeller = seller;
+      }
     });
   }
 
@@ -70,7 +72,9 @@ export class SellerAccountComponent implements OnInit, OnDestroy {
     }
     
     this.subscriptionSellerPropertyDetails = this.mFirestoreService.getSellerPropertyDetails(userUID).subscribe(property => {
-      this.mSellerPropertyDetails = property;
+      if(property){
+        this.mSellerPropertyDetails = property;
+      }
     });
   }
 

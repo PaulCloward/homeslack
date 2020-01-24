@@ -27,7 +27,8 @@
 
 .address {
   text-align: center;
-  color: #bcbcbc;
+   color: #bcbcbc; 
+ 
   font-family: Nunito, sans-serif;
   font-weight: 300;
   font-size: 1.13em;
@@ -103,7 +104,7 @@
   position: absolute;
   z-index: 2;
   width: 100%;
-  top: 83%;
+  bottom: -9%;
 }
 
 .top-header-time-icon-column{
@@ -126,6 +127,7 @@
 .top-header-title{
   font-family: Century Gothic, sans-serif;
   font-size: 3em;
+  color:rgba(255,255,255,.9);
 }
 
 .top-header-title-bold{

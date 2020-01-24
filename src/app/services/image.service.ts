@@ -20,8 +20,8 @@ export class ImageService {
     })
   }
 
-  getImageDetailList() {
-    return this.mFirestore.collection(this.KEY_PROPERITES).valueChanges();
+  getImageDetailList(userID:string) {
+    return this.mFirestore.collection(this.KEY_PROPERITES, ref => ref.where('user', '==', userID)).valueChanges();
   }
 
   insertImageDetails(imageDetails) {

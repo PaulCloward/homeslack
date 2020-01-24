@@ -35,7 +35,6 @@ export class FirestoreService {
   }
 
   getSellerContactInformation(userUID):Observable<Seller>{
-   
     return  this.mAngularFiretore.collection(this.KEY_SELLER_CONTACT_INFORMATION).doc<Seller>(userUID).valueChanges();
   }
   
@@ -64,11 +63,5 @@ export class FirestoreService {
     return observableFrom(
       this.mAngularAuth.auth.createUserWithEmailAndPassword(email, password)
     );
-  }
-
-  login(email:string, password:string):Observable<any>{
-  	return observableFrom(
-  		this.mAngularAuth.auth.signInWithEmailAndPassword(email, password)
-  	);
   }
 }

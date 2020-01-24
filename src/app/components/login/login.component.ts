@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -40,12 +40,10 @@ export class LoginComponent implements OnInit {
   signInMessageHint:string = "Need a correctly formatted email and password before proceeding";
   sendForNewPasswordHint:string = "Need a correctly formatted email before proceeding";
 
-  public user$ = this.firebaseService.user;
-
   myFormEmail: FormGroup;
   myFormResetPassword: FormGroup;
 
-  constructor(private firebaseService: FirebaseService, private router: Router, private mFormBuilder:FormBuilder) { 
+  constructor(private mAuthService: AuthenticationService, private router: Router, private mFormBuilder:FormBuilder) { 
   	    
   }
 
@@ -70,7 +68,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){  
-  	this.firebaseService.login(this.email.value,this.password.value)
+  	this.mAuthService.login(this.email.value,this.password.value)
   	  .subscribe(
   		success => this.router.navigate(['/home']),
   		error => alert(error)

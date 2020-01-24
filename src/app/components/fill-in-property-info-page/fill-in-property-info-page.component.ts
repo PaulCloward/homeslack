@@ -19,21 +19,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
   otherGarage:boolean = false;
   otherBathCount:boolean = false;
 
-  onSelectGarageSpots(spots:number){
-    if(spots > 0){
-      this.sellerProperty.garage = spots;
-      this.otherGarage = false;
-    }else {
-      this.otherGarage = true;
-    }
-  }
-
-
-  //------------------Old Stuff Below------------------------------
-
-
   loggedIn:boolean = false;
-  
 
   totalLivingAreaHint:string = "Tell us what the total living area of your home is. EXAMPLE: 1500sqft";
   yearBuildHint:string = "Tell us what year your home was built. EXAMPLE: 1985"
@@ -60,15 +46,18 @@ export class FillInPropertyInfoPageComponent implements OnInit {
         if(user){
           this.loggedIn = true;
           this.userUID = user.uid;
+
         }else{
           this.loggedIn = false;
-          this.userUID = "";
+          this.userUID = null;
         }
       }
     );
 
     this.mSellerPropertyService.getSellerPropertyDetailsSource().subscribe(propertyDetails =>{
-      this.sellerProperty = propertyDetails;
+      if(propertyDetails){
+        this.sellerProperty = propertyDetails;
+      }
     })
 
       this.mFormAddressFields = this.mFormBuilder.group({
@@ -94,16 +83,21 @@ export class FillInPropertyInfoPageComponent implements OnInit {
       });
 
       this.mFormAddressFields.valueChanges.subscribe(addressForm => {
-        this.sellerProperty.address.street = addressForm.streetAddress;
-        this.sellerProperty.address.state = addressForm.state;
-        this.sellerProperty.address.city = addressForm.city;
-        this.sellerProperty.address.zipCode = addressForm.zipCode;
-        
-        if(addressForm.unitNumber != null && addressForm.unitNumber != ''){
-          this.sellerProperty.address.unit = addressForm.unitNumber;
-        }
+     
+        if(addressForm){
 
-        this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
+          this.sellerProperty.address.street = addressForm.streetAddress;
+          this.sellerProperty.address.state = addressForm.state;
+          this.sellerProperty.address.city = addressForm.city;
+          this.sellerProperty.address.zip_code = addressForm.zipCode;
+          
+          
+          if(addressForm.unitNumber != null && addressForm.unitNumber != ''){
+            this.sellerProperty.address.unit = addressForm.unitNumber;
+          }
+
+          this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
+          }
       });
     
      
@@ -134,14 +128,34 @@ export class FillInPropertyInfoPageComponent implements OnInit {
        this.sellerProperty.baths = bathCount;
        this.otherBathCount = false;
     }else{
+      this.sellerProperty.baths = null;
       this.otherBathCount = true;
+    }
+  }
+
+  onBasementExisting(isBasment:boolean){
+    this.sellerProperty.basement = isBasment;
+    if(isBasment){
+      this.sellerProperty.basement_completed = 1;
+    }else{
+      this.sellerProperty.basement_completed = 0;
+    }
+  }
+
+  onSelectGarageSpots(spots:number){
+    if(spots > 0){
+      this.sellerProperty.garage = spots;
+      this.otherGarage = false;
+    }else {
+      this.sellerProperty.garage = null;
+      this.otherGarage = true;
     }
   }
 
   onClickNext(){
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mFirestoreService.saveSellerPropertyDetails(this.userUID,Object.assign({},this.sellerProperty));
-    this.mRouter.navigate(['/time-frame']);
+    this.mRouter.navigate(['/listing-time']);
   }
 
   onClickCreateAccount(){

@@ -1,4 +1,4 @@
-import { Address } from './Address';
+import { IAddress } from '../model/IAddress';
 
 export class PropertyDetails{
     
@@ -19,26 +19,14 @@ export class PropertyDetails{
     roof_age_range:string;
     concerns_hvac_roofing_etc:string;
     concerns_other:string; 
-    address:Address;
-    
+    address:IAddress;
+
     constructor(){
-        this.address = Object.assign({},new Address());
-        this.living_square_feet = 0;
-        this.lot_size = 0;
-        this.lot_size_unit = 'sqft';
-        this.year = 0;
-        this.beds = 1;
-        this.baths = 1;
-        this.garage = 0;
         this.basement = false;
-        this.basement_completed = 0;
         this.pool = false;
-        this.pool_description;
-        this.cooling_type = "None";
         this.hot_tub = false;
-        this.hot_tub_description = "";
-        this.roof_age_range = '1 - 3 years';
-        this.concerns_hvac_roofing_etc = "";
-        this.concerns_other = "";
+        this.lot_size_unit = "sqft";
+        this.address = {street:null,
+            state: null, city:null, zip_code: null};
     }
 }

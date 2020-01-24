@@ -19,7 +19,7 @@ export class HomeService {
   homeDetails:IHomeDetails = {livingSquareFootage: -1, lotSizeAcres:-1, lotSizeSqFt:-1, lotSizeSelectedType:0, yearBuild:-1, numBeds:-1, numBaths: -1, carGarage:-1, basement:false,
           pool:false, cooling:-1, hotTub:false, roofAge:-1}
     
-  addressInfo:IAddress = { city: null, street: null, state:null, zipCode:null, unit: null};
+  addressInfo:IAddress = { city: null, street: null, state:null, zip_code:null, unit: null};
   
   timeframeInfo:ITimeframe = { homeDescription:"", listWithRealtor:false,
     understandRealtorFeeObligation:false,

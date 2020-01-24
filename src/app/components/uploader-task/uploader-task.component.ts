@@ -23,7 +23,6 @@ export class UploadTaskComponent implements OnInit {
   constructor(private mStorage: AngularFireStorage, private mFirestore: AngularFirestore, private mImageService:ImageService) { }
 
   ngOnInit() {
-    //this.startUpload();
     this.mImageService.uploadImageToStorage(this.file);
   }
 

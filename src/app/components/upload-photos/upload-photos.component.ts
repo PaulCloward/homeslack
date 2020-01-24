@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
 import { ImageService } from '../../services/image.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-upload-photos',
@@ -31,51 +33,72 @@ import { ImageService } from '../../services/image.service';
   ])
   ]
 })
-export class UploadPhotosComponent implements OnInit {
-
-  currentSlideState:number = 0;
+export class UploadPhotosComponent implements OnInit, OnDestroy {
 
   isHovering: boolean;
 
-  files: File[] = [];
-  imageList: any[];
+  mFiles: File[] = [];
+  mImageList: any[] = [];
 
-  constructor(private mRouter:Router, private mImageService:ImageService) { 
-    this.mImageService.getImageDetailList().subscribe(
+  mSubscriptionAuthState:Subscription;
+  mSubscriptionHomeImages:Subscription;
 
-      images=> {
-        console.log(images);
-        this.imageList = images;
-        // this.rowIndexArray =  Array.from(Array(Math.ceil((this.imageList.length+1) / 3)).keys());
+  constructor(private mRouter:Router, private mImageService:ImageService, private mAngularFireAuth:AngularFireAuth) { 
+    
+    if(this.mSubscriptionAuthState){
+      this.mSubscriptionAuthState.unsubscribe();
+    }
+
+    this.mSubscriptionAuthState = this.mAngularFireAuth.authState.subscribe(user => {
+      if(user){
+
+        if(this.mSubscriptionHomeImages){
+          this.mSubscriptionHomeImages.unsubscribe();
+        }
+    
+        this.mSubscriptionHomeImages = this.mImageService.getImageDetailList(user.uid).subscribe((images)=> {
+            if(images){
+              this.mImageList = images;
+            }
+          }
+        );
+
+      }else{
+        this.mRouter.navigateByUrl('login');
       }
-    );
+    });
   }
 
   ngOnInit() {
-    setInterval(()=>{
-      this.currentSlideState += 1;
-      if(this.currentSlideState == 3){
-        this.currentSlideState = 0;
-      }
-    }, 8000);
+  }
+
+  ngOnDestroy(){
+
+    if(this.mSubscriptionAuthState){
+      this.mSubscriptionAuthState.unsubscribe();
+    }
+
+    if(this.mSubscriptionHomeImages){
+      this.mSubscriptionHomeImages.unsubscribe();
+    }
+
   }
 
   toggleHover(event: boolean) {
     this.isHovering = event;
   }
-
-
+  
   onDrop(files: FileList) {
     for (let i = 0; i < files.length; i++) {
-      this.files.push(files.item(i));
+      this.mFiles.push(files.item(i));
     }
   }
 
   showPreview(event: any) {
-    if (event.target.files) {
+    if (event && event.target && event.target.files) {
       let files = event.target.files;
       for (let i = 0; i < files.length; i++) {
-        this.files.push(files.item(i));
+        this.mFiles.push(files.item(i));
       }
     }
     

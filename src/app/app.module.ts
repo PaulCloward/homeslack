@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
-import { FirebaseService } from './services/firebase.service';
 import { HomeService } from './services/home.service';
+import { SearchPropertyService } from './services/search-property.service';
 import { PropertyFinderService } from './services/property-finder.service';
 import { SellerPropertyService } from './services/seller-property.service';
 import { AngularFireModule } from '@angular/fire';
@@ -69,9 +69,11 @@ import { NgbDatePipe } from './pipes/ngb-date.pipe';
 
 import { NgxCurrencyModule } from "ngx-currency";
 import { ImageService } from './services/image.service';
+import { AuthenticationService } from './services/authentication.service';
 import { UploadPhotosComponent } from './components/upload-photos/upload-photos.component';
 import { UploaderComponent } from './components/uploader/uploader.component';
 import { UploadTaskComponent } from './components/uploader-task/uploader-task.component';
+
 
 export const customCurrencyMaskConfig = {
   align: "left",
@@ -104,12 +106,11 @@ const appRoutes: Routes = [
   {path: 'expanded-property', component: ExpandedPropertyComponent},
   {path: 'directory', component: DirectoryComponent},
   {path: 'inbox', component: InboxComponent},
-  { path: 'time-frame', component: ListingTimeComponent},
+  { path: 'listing-time', component: ListingTimeComponent},
   { path: 'terms', component: TermsComponent},
   { path: 'upload-photos', component: UploadPhotosComponent},
   { path: 'uploader', component: UploaderComponent},
-  { 
-    path: 'image', component:ImagesComponent, children:[
+  { path: 'image', component:ImagesComponent, children:[
       { path:'upload', component: ImageComponent},
       { path:'list', component:ImageListComponent}
   ] 
@@ -159,9 +160,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule, // imports firebase/storage only needed for storage features
+    AngularFirestoreModule, 
+    AngularFireAuthModule,
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireFunctionsModule,
     HttpModule,
@@ -186,7 +187,7 @@ const appRoutes: Routes = [
     MatIconModule,
     CommonModule
   ],
-  providers: [FirebaseService, HomeService, AuthGuard, ImageService, PropertyFinderService, SellerPropertyService],
+  providers: [HomeService, AuthGuard, ImageService, PropertyFinderService, SellerPropertyService, AuthenticationService, SearchPropertyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

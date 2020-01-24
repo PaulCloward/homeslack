@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
-import { FirebaseService } from '../../services/firebase.service';
 import { IHome } from '../../model/IHome';
 import { NgbCalendar, NgbDateStruct, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import { trigger, state, style, animate, transition } from '@angular/animations';
@@ -100,7 +99,7 @@ export class ListingTimeComponent implements OnInit {
 
   disabled:boolean = true;
   
-  constructor(private mHomeService: HomeService, private mFirebaseService: FirebaseService, private router:Router, private mCalendar: NgbCalendar) {
+  constructor(private mRouter:Router, private mCalendar: NgbCalendar) {
 
    }
 
@@ -117,11 +116,6 @@ export class ListingTimeComponent implements OnInit {
     this.preferredMovingStartDate = this.mCalendar.getToday();
 
     this.tenantRentalAgreementStartDate = this.mCalendar.getToday();
-  
-    this.mHomeService.currentHome.subscribe(home => {
-        this.home = home;
-      }
-    );
   }
 
   onKeyDown(event: any) {
@@ -221,10 +215,7 @@ export class ListingTimeComponent implements OnInit {
   }
 
   onClickNext(){
-    this.mHomeService.updateHomeProperties(this.home);
-    //TODO
-    //this.mFirebaseService.updateSavedUserPropertyData(this.home);
-  	this.router.navigate(['/upload-photos']);
+  	this.mRouter.navigate(['/upload-photos']);
   }
 
   onPropertyMangagerAgreementExpirationDateSelection(date:NgbDate){

@@ -39,12 +39,8 @@
                   </div>
                 </div>
               </div>
-
             </div>
-          
-
-           
-
+    
             <div class="container-container-home-info">
                     <div class="container-home-info">
                        <img class="img-fluid home-info-img" src="../../../assets/img/ic_free.png" />
@@ -73,8 +69,6 @@
                       <div class="home-info-label">No home inspections</div>
                       <div class="home-info-label">Move on your time-frame</div>
                     </div>
-                 
-              
               </div>  
             </div>
             
@@ -93,7 +87,7 @@
     <div class="row">
       <div class="col-6">
         <div class="container-house-image">
-          <img  class="house-image" src="../../../assets/img/home_landing_page.png"/>
+          <img  class="house-image" src="../../../assets/img/home_page_realestate_image.png"/>
         </div>
       </div>
       <div class="col-6">
@@ -217,291 +211,35 @@
         </div>
       </div>
     </div>
-
-  </div>
-
-  <div class="footer-section">
-
-  </div>
-  
-  <!-- OLD CODE FOR DROP DOWN SELECTOR INFO-->
-  <div style="background:#f1f1f1" [hidden]="true">
-  <!--For all views but xs bootstrap view-->
-  <div class="row" style="padding-top: 3em">
-    <div class="home-sub-title col-8 offset-2">
-     How do I receive an offer on <span style="color: rgb(68, 197, 242);">my home?</span>
-     </div>
-  </div>
-
-
-  
-   <!-- - Dropdown view selectors -->
-  <div class="row">
-    <div class="col-8 offset-2">
-          <!-- First Container -->
-          <div class="row home-offer-container" (click)="toggleContainer1()">
-              <div class="col-2 align-self-center" style="padding: 0;">
-                <div class="badge d-flex justify-content-center">
-                  <div class="align-self-center">1</div>
-                </div>
-              </div>
-              <div class="col-8 home-offer-instruction-column align-self-center">
-                <div class="home-offer-title">Verify your information</div>
-                <div *ngIf="!viewMoreClicked1" class="home-offer-instruction">
-                    After we pull your address, verify the information is correct
-                </div>
-                <div *ngIf="viewMoreClicked1" class="bottomborder"></div>
-              </div>
-              <div *ngIf="!viewMoreClicked1" class="col-2 d-flex justify-content-end">
-                <div class="view-more align-self-end">View more</div>
-              </div>
-              <div id="container-1"  class="container-init">
-                <div class="row">
-                <div class="offset-2 col-3">
-                  <div class="home-offer-container-image">
-                      <img class="home-offer-image" src="../../../assets/img/step_1.jpg" />
-                  </div>
-                </div>
-                <div class="col-6">
-                    <p class="home-offer-paragraph">
-                        After entering your home address in the search box above, we will give you a 
-                        chance to edit any of the information you see that is not correct. Sometimes your home 
-                        does not match our records exactly, especially if you have modified your home. Examples may 
-                        include bedroom count, bathroom count, finished square-footage, pool, or garage.
-                      </p>
-  
-                      <p class="home-offer-paragraph"> 
-                        Once you have edited any information that may be incorrect, move on to “Select a Time-Frame."
-                      </p>
-           
-                </div>
-                
-                <div *ngIf="viewMoreClicked1" class="col" style="text-align: right;">
-                  <div class="view-more">View less</div>
-                </div>
-              </div>
-              </div>
-            </div>
-
-
-        <!-- Second Container -->
-         
-          <div class="row home-offer-container" (click)="toggleContainer2()">
-            <div class="col-2 align-self-center" style="padding: 0;">
-              <div class="badge d-flex justify-content-center">
-                <div class="align-self-center">2</div>
-              </div>
-            </div>
-            <div class="col-8 home-offer-instruction-column align-self-center">
-              <div class="home-offer-title">Select a time-frame</div>
-              <div *ngIf="!viewMoreClicked2" class="home-offer-instruction">
-                Tell us when you need the money
-              </div>
-              <div *ngIf="!viewMoreClicked2" class="home-offer-instruction">
-                Tell us when you will be out of your home
-              </div>
-              <div *ngIf="viewMoreClicked2" class="bottomborder"></div>
-            </div>
-            <div *ngIf="!viewMoreClicked2" class="col-2 d-flex justify-content-end">
-              <div class="view-more align-self-end">View more</div>
-            </div>
-            <div id="container-2"  class="container-init">
-              <div class="row">
-              <div class="offset-2 col-3">
-                <div class="home-offer-container-image">
-                    <img class="home-offer-image" src="../../../assets/img/step_2.jpg" />
-                </div>
-              </div>
-              <div class="col-6">
-                <p class="home-offer-paragraph" style="margin-left: 0 !important;"> 
-                  After you verify your information, it is time to select your time-frame. In this section you will outline two important details:
-                </p>
-                <p class="home-offer-paragraph-header">
-                  When you need the money from the sale of your home?
-                </p>
-                <p class="home-offer-paragraph"> 
-                  We will need a minimum of 5 business days before we can close and release the funds to your account 
-                  but feel free to give yourself as much time as you need.
-                </p>
-                <p class="home-offer-paragraph-header">
-                  When you can be out of your home?
-                </p>
-                <p class="home-offer-paragraph"> 
-                  Our investors will send all the money for the purchase of your home to the title 
-                  company in charge of processing the transaction. When you are out of the home, the money
-                  will be released to you. 
-                </p>
-         
-              </div>
-              
-              <div *ngIf="viewMoreClicked2" class="offset-10 col-2 d-flex justify-content-end">
-                <div class="view-more align-self-end">View less</div>
-              </div>
-            </div>
-            </div>
-          </div>
-     
-
-        <!-- Third Container -->
-          <div class="row home-offer-container" (click)="toggleContainer3()">
-            <div class="col-2 align-self-center" style="padding: 0;">
-              <div class="badge d-flex justify-content-center">
-                <div class="align-self-center">3</div>
-              </div>
-            </div>
-            <div class="col-8 home-offer-instruction-column align-self-center">
-              <div class="home-offer-title">Upload pictures</div>
-              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[2].instruction"></div>
-              <div *ngIf="viewMoreClicked3" class="bottomborder"></div>
-            </div>
-            <div *ngIf="!viewMoreClicked3" class="col-2 d-flex justify-content-end">
-              <div class="view-more align-self-end" >View more</div>
-            </div>
-            <div id="container-3" class="container-init">
-              <div class="row">
-                <div class="offset-2 col-7 d-flex" style="padding-top: 1em">
-                 <span>Now that you have chosen your time frame, it's time to upload pictures of your home! These will be the pictures that investors will use to assess the condition of your property. Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.<br><br>
-
-                <div class="home-offer-title">Here's a few tips to help improve the quality of your photos:</div>
-                <ol class="image-tip-list"> 
-                  <li>Hold your camera steady</li>
-                  <li>Good lighting</li>
-                  <li>Take horizontal photos (landscape)</li>
-                  <li>Minimum of 20 photos</li>
-                </ol>
-              </span>
-                </div>
-                <div class="col-3">
-                    <div class="home-offer-container-image">
-                        <img class="home-offer-image" src="../../../assets/img/step_3.jpg" />
-                    </div>
-                  </div>
-                <div *ngIf="viewMoreClicked3" class="offset-10 col-2 d-flex justify-content-end">
-                  <div class="view-more align-self-end">View less</div>
-                </div>
-              </div>
-            </div>
-          </div>
-       
-
-        <!-- Fourth Container -->
-          <div class="row home-offer-container" (click)="toggleContainer4()">
-            <div class="col-2 align-self-center" style="padding: 0;">
-              <div class="badge d-flex justify-content-center">
-                <div class="align-self-center">4</div>
-              </div>
-            </div>
-            <div class="col-8 home-offer-instruction-column align-self-center">
-              <div class="home-offer-title">Allow our qualified investors to make offers</div>
-              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[3].instruction"></div>
-              <div *ngIf="viewMoreClicked4" class="bottomborder"></div>
-            </div>
-            <div *ngIf="!viewMoreClicked4" class="col-2 d-flex justify-content-end">
-              <div class="view-more align-self-end">View more</div>
-            </div>
-            <div id="container-4"  class="container-init">
-              <div class="row">
-                  <div class="offset-2 col-3">
-                      <div class="home-offer-container-image">
-                          <img class="home-offer-image" src="../../../assets/img/step_4.jpg" />
-                      </div>
-                    </div>
-              <div class="col-6 d-flex" style="padding-top: 1em">
-                <span>Homeface has partnered with real investors in your area who buy houses for cash. Cash means the transaction is not subject to loan qualifications such as an appraisal or inspections. Cash means you do not have to sit and wait, hoping that your potential buyer will qualify for a loan. Cash means your buyer has the money available, and is ready to close as soon as you are! 
-                </span>
-              </div>
-              
-              <div *ngIf="viewMoreClicked4" class="offset-10 col-2 d-flex justify-content-end">
-                <div class="view-more align-self-end">View less</div>
-              </div>
-            </div>
-            </div>
-          </div>
-        
-
-        <!-- Fifth Container -->
-     
-          <div class="row home-offer-container" (click)="toggleContainer5()">
-            <div class="col-2 align-self-center" style="padding: 0;">
-              <div class="badge d-flex justify-content-center">
-                <div class="align-self-center">5</div>
-              </div>
-            </div>
-            <div class="col-8 home-offer-instruction-column align-self-center">
-              <div class="home-offer-title">Select offer</div>
-              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[4].instruction"></div>
-              <div *ngIf="viewMoreClicked5" class="bottomborder"></div>
-            </div>
-            <div *ngIf="!viewMoreClicked5" class="col-2 d-flex justify-content-end">
-              <div class="view-more align-self-end" >View more</div>
-            </div>
-            <div id="container-5" class="container-init">
-              <div class="row">
-              <div class="offset-2 col-7 d-flex" style="padding-top: 1em">
-                <span>Why have one offer when you can have multiple?
-                <br><br>
-                When your offer date comes to a close, you can review the top competitive offers from our pool of qualified investors.
-                <br><br>
-                Once you review your offers, accept the one you are most comfortable with.
-                <br><br>
-                If you do not select an offer, we cannot start the closing process! 
-
-                </span>
-              </div>
-              <div class="col-3">
-                <div class="home-offer-container-image">
-                    <img class="home-offer-image" src="../../../assets/img/step_5.jpg" />
-                </div>
-              </div>
-              <div *ngIf="viewMoreClicked5" class="offset-10 col-2 d-flex justify-content-end">
-                <div class="view-more align-self-end">View less</div>
-              </div>
-            </div>
-          </div>
-          </div>
-        
-
-        <!-- Sixth Container -->
-
-          <div class="row home-offer-container" (click)="toggleContainer6()">
-            <div class="col-2 align-self-center" style="padding: 0;">
-              <div class="badge d-flex justify-content-center">
-                <div class="align-self-center">6</div>
-              </div>
-            </div>
-            <div class="col-8 home-offer-instruction-column align-self-center">
-              <div class="home-offer-title">Close</div>
-              <div class="home-offer-instruction" [innerHtml]="recieveOfferInstructions[5].instruction"></div>
-              <div *ngIf="viewMoreClicked6" class="bottomborder"></div>
-            </div>
-            <div *ngIf="!viewMoreClicked6" class="col-2 d-flex justify-content-end">
-              <div class="view-more align-self-end">View more</div>
-            </div>
-            <div id="container-6"  class="container-init">
-              <div class="row">
-                <div class="col-3">
-                    <div class="home-offer-container-image">
-                        <img class="home-offer-image" src="../../../assets/img/step_6.jpg" />
-                    </div>
-                </div>
-                <div class="col-7 d-flex" style="padding-top: 1em">
-                <span>All closings are done through a qualified title and escrow company who will explain each step of the process. They will make sure that the title to your home stays in your name, until you sign the paperwork in their office or in front of a licensed notary. *You must sign the closing documents in person.
-                <br><br>
-                The title company will pay you the money from your home after the closing is finalized.
-
-                </span>
-              </div>
-              
-              <div *ngIf="viewMoreClicked6" class="offset-10 col-2 d-flex justify-content-end">
-                <div class="view-more align-self-end">View less</div>
-              </div>
-            </div>
-            </div>
-          </div>
-    </div>
-  </div>
-  <br><br><br>
-  <app-footer [backgroundColor]="backgroundColorFooter"></app-footer> 
+  </div> 
 </div>
+
+<div class="footer-section">
+  <div class="footer-large-column">
+    <img class="footer-company-image" src="../../../assets/img/home_slack_logo_white.png" />
+    <button class="footer-button-contact-homeslack" >TRY HOMESLACK</button>
+    <div class="footer-LLC">@ 2018 Homeslack, LLC</div>
+  </div>
+  <div class="footer-column">
+    <div class="footer-list-header">Information</div>
+    <div class="footer-list-sub-header">placeholder</div>
+    <div class="footer-list-sub-header">placeholder</div>
+    <div class="footer-list-sub-header">placeholder</div>
+    <div class="footer-list-sub-header">placeholder</div>
+    <div class="footer-list-sub-header">placeholder</div>
+  </div>  
+  <div  class="footer-column">
+    <div class="footer-list-header">About</div>
+    <div class="footer-list-sub-header">placeholder</div>
+    <div class="footer-list-sub-header">placeholder</div>
+  </div>
+  <div class="footer-column">
+    <div class="footer-list-header">Contact</div>
+    <div class="footer-list-sub-header">Try Homeslack</div>
+    <div class="footer-list-sub-header">Ask a Question</div>
+  </div>
 </div>
+
+
+  
 

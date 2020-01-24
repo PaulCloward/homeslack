@@ -94,10 +94,19 @@
     font-size: 1.5em;
 }
 
+.navbar-profile-icon-container{
+  width: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  display: flex;
+
+}
+
 .profile-icon {
-    max-width: 1.6em;
+    width: 3em;
+    height: 3em;
+    margin-bottom: .5em;
     cursor: pointer;
-    margin: 0em 2em;
 }
 
 .nav-tab-selected{
@@ -109,9 +118,4 @@
   text-decoration: none;
   color:rgb(68, 197, 242) !important;
   color: white !important;
-}
-
-.nav-profile-icon{
-  width: 2.5em;
-  margin: 0 auto;
 }
