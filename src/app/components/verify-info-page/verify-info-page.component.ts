@@ -77,32 +77,32 @@ export class VerifyInfoPageComponent implements OnInit {
         }
       );
 
-      //this.mSellerPropertyService.getSellerPropertyDetailsSource().subscribe(propertyDetails => 
-       // { 
-       //   this.initHome(propertyDetails);
-      //});
-        let address:IAddress = {street: '9528 Foxwood Lane', city: 'Sandy', zip_code: 84092, state: "Utah", unit: null};
+      this.mSellerPropertyService.getSellerPropertyDetailsSource().subscribe(propertyDetails => 
+      { 
+          this.initHome(propertyDetails);
+      });
+      //   let address:IAddress = {street: '9528 Foxwood Lane', city: 'Sandy', zip_code: 84092, state: "Utah", unit: null};
 
-      let property:PropertyDetails = {
-        living_square_feet: 1200, lot_size:340,
-        lot_size_unit:'acres',
-        year:1983,
-        beds:5,
-        baths: 4,
-        garage:4,
-        basement:true,
-        basement_completed:.50,
-        pool:false,
-        pool_description:"great looking place",
-        cooling_type:"None",
-        hot_tub:true,
-        hot_tub_description:"fantastic",
-        roof_age_range:"16+ years",
-        concerns_hvac_roofing_etc:"none really",
-        concerns_other: "no other concerns", 
-        address:address};
+      // let property:PropertyDetails = {
+      //   living_square_feet: 1200, lot_size:340,
+      //   lot_size_unit:'acres',
+      //   year:1983,
+      //   beds:5,
+      //   baths: 4,
+      //   garage:4,
+      //   basement:true,
+      //   basement_completed:.50,
+      //   pool:false,
+      //   pool_description:"great looking place",
+      //   cooling_type:"None",
+      //   hot_tub:true,
+      //   hot_tub_description:"fantastic",
+      //   roof_age_range:"16+ years",
+      //   concerns_hvac_roofing_etc:"none really",
+      //   concerns_other: "no other concerns", 
+      //   address:address};
 
-        this.initHome(property);
+        //this.initHome(property);
   }
 
   initHome(property:PropertyDetails){
@@ -114,6 +114,13 @@ export class VerifyInfoPageComponent implements OnInit {
       console.log("SEARCH FOR HOME WAS FOUND");
     }
 
+    if(this.sellerProperty.latitude){
+      this.lat = this.sellerProperty.latitude;
+    }
+
+    if(this.sellerProperty.longitude){
+      this.lng = this.sellerProperty.longitude;
+    }
 
 
     if(this.sellerProperty.pool){

@@ -41,6 +41,9 @@ export class FillInPropertyInfoPageComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    
+
     this.mAuth.authState.subscribe(
       user => {
         if(user){
@@ -65,7 +68,8 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           Validators.required
         ]],
         unitNumber: ['', [
-          
+          Validators.required,
+          Validators.maxLength(6),
         ]],
         city: ['', [
           Validators.required,
@@ -76,9 +80,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           Validators.pattern('[a-zA-Z]+')
         ]],
         zipCode: ['', [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(5)
+          Validators.required
         ]]
       });
 
@@ -101,6 +103,10 @@ export class FillInPropertyInfoPageComponent implements OnInit {
       });
     
      
+  }
+
+  arrayRange(n: number, startFrom: number): number[] {
+    return [...Array(n).keys()].map(i => startFrom - i);
   }
 
   get streetAddress() {

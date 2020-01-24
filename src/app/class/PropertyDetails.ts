@@ -19,6 +19,8 @@ export class PropertyDetails{
     roof_age_range:string;
     concerns_hvac_roofing_etc:string;
     concerns_other:string; 
+    latitude?:number;
+    longitude?:number;
     address:IAddress;
 
     constructor(){

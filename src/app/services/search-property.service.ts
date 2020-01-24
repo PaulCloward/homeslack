@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
-import { PropertyDetails } from '../class/PropertyDetails';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx';
 
@@ -17,7 +16,7 @@ export class SearchPropertyService {
 
     let headers = new Headers();
     headers.append("Accept", "application/json");
-    headers.append("apikey", "  f2e58caae3c631c04c806aa292c23c5c");
+    headers.append("apikey", " c56318e1171d4682d97091917b823bea");
     return this.mHTTP.get(_url,{headers:headers})
       .map((res: Response) => res.json());
   }

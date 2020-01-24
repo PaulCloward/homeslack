@@ -124,8 +124,8 @@
                 <div class="how-to-item-info-header">
                   {{ receiveOfferInstructions[1].title | uppercase }}
                 </div>
-                <div class="how-to-item-info-sub-header">
-                  {{ receiveOfferInstructions[1].instruction }}
+                <div class="how-to-item-info-sub-header" [innerHTML]="receiveOfferInstructions[1].instruction">
+                
                 </div>
               </div>
             </div>
@@ -200,8 +200,7 @@
                 <div class="how-to-item-info-header">
                   {{ receiveOfferInstructions[5].title | uppercase }}
                 </div>
-                <div class="how-to-item-info-sub-header">
-                  {{ receiveOfferInstructions[5].instruction }}
+                <div class="how-to-item-info-sub-header" [innerHTML]="receiveOfferInstructions[5].instruction">
                 </div>
               </div>
             </div>

@@ -287,9 +287,11 @@ export class HomeComponent implements OnInit {
             return;
           }
 
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
+          this.mSellerProperty.latitude = place.geometry.location.lat();
+          this.mSellerProperty.longitude = place.geometry.location.lng();
           this.zoom = 18;
+
+          
           
           var newAddressArray = this.streetName.split(" ");
           newAddressArray.unshift(this.streetNumber);
