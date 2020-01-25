@@ -36,14 +36,17 @@ export class FillInPropertyInfoPageComponent implements OnInit {
 
   mFormAddressFields:FormGroup;
   mFormPropertyDetails:FormGroup;
-  
+
+
+ statesInAmericaArray :string[] = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+
   constructor(private mAuth:AngularFireAuth, private mSellerPropertyService: SellerPropertyService, private mRouter: Router,
     private mFormBuilder:FormBuilder, private mFirestoreService:FirestoreService) {
    }
 
   ngOnInit() {
 
-    
+
 
     this.mAuth.authState.subscribe(
       user => {
@@ -85,7 +88,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
         ]]
       });
 
-      
+
       this.mFormPropertyDetails = this.mFormBuilder.group({
         livingSquareFeet: ['', [
           Validators.required
@@ -115,7 +118,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           Validators.required
         ]],
         pool_description: ['', [
-         
+
         ]],
         cooling_type: ['', [
           Validators.required
@@ -136,15 +139,15 @@ export class FillInPropertyInfoPageComponent implements OnInit {
       });
 
       this.mFormAddressFields.valueChanges.subscribe(addressForm => {
-     
+
         if(addressForm){
 
           this.sellerProperty.address.street = addressForm.streetAddress;
           this.sellerProperty.address.state = addressForm.state;
           this.sellerProperty.address.city = addressForm.city;
           this.sellerProperty.address.zip_code = addressForm.zipCode;
-          
-          
+
+
           if(addressForm.unitNumber != null && addressForm.unitNumber != ''){
             this.sellerProperty.address.unit = addressForm.unitNumber;
           }
@@ -152,8 +155,8 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
           }
       });
-    
-     
+
+
   }
 
   arrayRange(n: number, startFrom: number): number[] {
@@ -219,4 +222,6 @@ export class FillInPropertyInfoPageComponent implements OnInit {
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mRouter.navigate(['./create-account']);
   }
+
+
 }

@@ -97,10 +97,20 @@
                     </div>
                     <div class="col">
                         <div class="label-property">State</div>
-                        <input [ngStyle]="{'border': (state.invalid && state.touched) ? '.5px solid red' : '.5px solid gray'}" class="input-edit-property" type="text" maxlength="12" formControlName="state" />
-                        <div class="error-hint" *ngIf="state.invalid && state.touched">
-                            Please enter a valid state
+
+                        <div class="dropdown">
+                          <button [hidden]="sellerProperty.address.state != null" class="btn btn-dropdown dropdown-toggle" type="button">
+                              Select State
+                          </button>
+                        <button [hidden]="sellerProperty.address.state == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           {{sellerProperty.address.state}}
+                        </button>
+                        <div class="dropdown-menu">
+                          <div *ngFor="let state of statesInAmericaArray">
+                              <a class="dropdown-item" (click)="sellerProperty.address.state = state">{{state}}</a>
+                          </div>
                         </div>
+                      </div>
                     </div>
                     <div class="col">
                         <div class="label-property">Zip Code</div>
@@ -146,7 +156,7 @@
                             Please enter a valid state
                         </div>
                     </div>
-                </div>            
+                </div>
                 <div class="row">
                     <div class="col">
                         <div class="label-property">Zip Code</div>
@@ -159,7 +169,7 @@
             </form>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-10 offset-1 information-title">
             Property Details:
@@ -171,7 +181,7 @@
                 <div class="col-4">
                     <div class="row">
                         <div class="col-3 icon-container d-flex justify-content-center">
-                                
+
                             <img src="../../../assets/img/total_living_area.png" class="icon-label img-fluid"  placement="top"  matTooltip="{{totalLivingAreaHint}}"/>
                         </div>
                         <div class="col-9">
@@ -190,9 +200,9 @@
                         </div>
                         <div class="col-9">
                             <div class="label-property">
-                                Year Build 
+                                Year Build
                             </div>
-                            <div class="label-hint">Year the House was Built?</div> 
+                            <div class="label-hint">Year the House was Built?</div>
                             <!-- <input class="input-edit-property" [(ngModel)]="sellerProperty.year" type="number" placeholder="year" max="4"/> -->
                             <div class="dropdown">
                                 <button [hidden]="sellerProperty.year != null" class="btn btn-dropdown dropdown-toggle" type="button">
@@ -205,10 +215,10 @@
                                 <div *ngFor="let year of arrayRange(171,2020)">
                                     <a class="dropdown-item" (click)="sellerProperty.year = year">{{year}}</a>
                                 </div>
-                                
-                            
+
+
                               </div>
-                            
+
                             </div>
                         </div>
                     </div>
@@ -230,7 +240,7 @@
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.lot_size_unit == 'sqft'}">
                                     Sqft
                                 </div>
-                                <div (click)="sellerProperty.lot_size_unit = 'acres'" class="col-3 label-property-result btn-result" 
+                                <div (click)="sellerProperty.lot_size_unit = 'acres'" class="col-3 label-property-result btn-result"
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.lot_size_unit == 'acres'}">
                                     Acres
                                 </div>
@@ -239,7 +249,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--Second Row-->
             <div class="row mt-4 d-none d-md-flex">
                 <div class="col-4">
@@ -272,11 +282,11 @@
                             <a class="dropdown-item" (click)="sellerProperty.beds = 10">10 Bed</a>
                             <!-- <a class="dropdown-item" (click)="otherBeds = true">Other</a> -->
                           </div>
-                        
+
                         </div>
                         <div class="row" *ngIf="otherBeds == true">
                             <div class="col-12">
-                               <input  class="input-edit-property" [(ngModel)]="sellerProperty.beds" placeholder="# of Bedrooms..." type="number" maxlength="3"/> 
+                               <input  class="input-edit-property" [(ngModel)]="sellerProperty.beds" placeholder="# of Bedrooms..." type="number" maxlength="3"/>
                            </div>
                         </div>
                     </div>
@@ -311,7 +321,7 @@
                             <a class="dropdown-item" (click)="onSelectBathCount(-1)">Other</a>
                           </div>
                         </div>
-                        <input *ngIf="otherBathCount == true" class="input-edit-property" [(ngModel)]="sellerProperty.baths" placeholder="# of Bathrooms..." type="text" maxlength="2"/> 
+                        <input *ngIf="otherBathCount == true" class="input-edit-property" [(ngModel)]="sellerProperty.baths" placeholder="# of Bathrooms..." type="text" maxlength="2"/>
                         </div>
                     </div>
                 </div>
@@ -330,13 +340,13 @@
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.basement == false}">
                                     No
                                 </div>
-                                <div (click)="onBasementExisting(true)" class="col-3 label-property-result btn-result" 
+                                <div (click)="onBasementExisting(true)" class="col-3 label-property-result btn-result"
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.basement == true}">
                                     Yes
                                 </div>
                                 <div class="label-hint" style="margin-top: .5em;" *ngIf="sellerProperty.basement == true">Percentage Finished?</div>
                                 <div class="dropdown" *ngIf="sellerProperty.basement == true">
-                                
+
                                   <button class="btn dropdown-toggle"  style="margin-top: .3em; text-align: left;" type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{sellerProperty.basement_completed | percent}}
                                   </button>
@@ -354,7 +364,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--Third Row-->
             <div class="row mt-4 d-none d-md-flex">
                 <div class="col-4">
@@ -385,7 +395,7 @@
                                 <a class="dropdown-item" (click)="onSelectGarageSpots(-1)">Other</a>
                                 </div>
                             </div>
-                            <input *ngIf="otherGarage == true" class="input-edit-property" [(ngModel)]="sellerProperty.garage" placeholder="Garage Spots..." type="text" maxlength="2"/> 
+                            <input *ngIf="otherGarage == true" class="input-edit-property" [(ngModel)]="sellerProperty.garage" placeholder="Garage Spots..." type="text" maxlength="2"/>
                         </div>
                     </div>
                 </div>
@@ -396,7 +406,7 @@
                         </div>
                         <div class="col-9">
                             <div class="label-property">
-                                Pool 
+                                Pool
                             </div>
                             <div class="label-hint">Does House have Pool?</div>
                            <div class="row mt-2 btn-row-margin-left">
@@ -404,7 +414,7 @@
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.pool == false}">
                                     No
                                 </div>
-                                <div (click)="sellerProperty.pool = true" class="col-3 label-property-result btn-result" 
+                                <div (click)="sellerProperty.pool = true" class="col-3 label-property-result btn-result"
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.pool == true}">
                                     Yes
                                 </div>
@@ -430,7 +440,7 @@
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == false}">
                                     No
                                 </div>
-                                <div (click)="sellerProperty.hot_tub = true" class="col-3 label-property-result btn-result" 
+                                <div (click)="sellerProperty.hot_tub = true" class="col-3 label-property-result btn-result"
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == true}">
                                     Yes
                                 </div>
@@ -444,7 +454,7 @@
                     </div>
                 </div>
             </div>
-             
+
             <!--Fourth Row-->
             <div class="row mt-4 d-none d-md-flex">
                 <div class="col-4">
@@ -477,7 +487,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row" style="margin-top: 1em; padding-top: 1em; border-top: 1px solid #7E7E7E">
                 <div class="col-12">
                     <div class="label-question">About How Old is the Roof<span class="question-mark">?</span></div>
@@ -498,7 +508,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row" >
                 <div class="col-12">
                     <div class="label-question">Any HVAC, Plumbing, Electrical, or Roofing Issues we should know about<span class="question-mark">?</span></div>
@@ -506,8 +516,8 @@
                     <textarea class="input-edit-property" [(ngModel)]="sellerProperty.concerns_hvac_roofing_etc" placeholder="HVAC, Plumbing, Electrical, or Roofing Issues..." style="resize: none" type="text" maxlength="300"></textarea>
                 </div>
             </div>
-           
-            
+
+
             <div class="row" style="padding-bottom: 1em">
                 <div class="col-12">
                     <div class="label-question">Any other concerns you can tell us about<span class="question-mark">?</span></div>
@@ -515,19 +525,19 @@
                     <textarea class="input-edit-property" [(ngModel)]="sellerProperty.concerns_other" placeholder="Other concerns..." style="resize: none" type="text" maxlength="300"></textarea>
                 </div>
             </div>
-            
- 
+
+
             <div *ngIf="!loggedIn" class="row" class="create-account-subtitle" style="padding-top: 1em; border-top: 1px solid #7E7E7E">
                 Create a Homeslack account to save your information and to start the process selling your home.
             </div>
-            
+
             <div *ngIf="!loggedIn" class="row" style="margin-top: 1em;">
                 <div class="col-12">
                     <div style="width: 100%;text-align: center;" *ngIf="mFormAddressFields.valid">
                         <button class="btn btn-create-account" (click)="onClickCreateAccount()">Create Account</button>
                     </div>
-                    
-        
+
+
                     <div style="width: 100%;text-align: center;" *ngIf="!mFormAddressFields.valid">
                         <div class="btn-container-disabled" matTooltipPosition="above" [matTooltip]="nextPageHint">
                             <button class="btn-create-account-default" disabled="true" >Create Account</button>
@@ -535,7 +545,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div *ngIf="loggedIn" class="row">
                 <div class="col-12">
                     <div class="btn-container" *ngIf="mFormAddressFields.valid">

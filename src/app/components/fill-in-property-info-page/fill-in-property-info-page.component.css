@@ -166,7 +166,7 @@ agm-map {
 }
 
 .icon-container {
-    text-align:center; 
+    text-align:center;
     padding:.5em;
 }
 
@@ -193,7 +193,7 @@ agm-map {
     cursor: default;
     outline: none;
     border: none;
-    
+
 }
 
 .create-account-subtitle{
@@ -203,11 +203,6 @@ agm-map {
     color: #7E7E7E;
     text-align: center;
     margin-top: 1em;
-}
-
-.dropdown{
-    margin-left: 1em;
-    width: 100%;
 }
 
 .btn{
@@ -258,6 +253,9 @@ agm-map {
 
 .dropdown{
     margin-left: -.5em;
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
 
 .btn-dropdown{
@@ -280,14 +278,16 @@ agm-map {
 }
 
 .dropdown-menu{
-
+    display: none;
     position: absolute;
+    top: 36px;
     background-color: #fff;
     min-width: 100%;
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
     z-index: 1;
     overflow-y: scroll;
     max-height: 10em;
+
 }
 
 .dropdown-menu a {
@@ -296,23 +296,23 @@ agm-map {
     text-decoration: none;
     display: block;
   }
-  
+
   .dropdown-menu a:hover {
     background-color: rgb(68, 197, 242);
     color:white;
     cursor: pointer;
   }
-  
+
   .dropdown:hover .dropdown-menu {
     display: block;
   }
-  
+
   .dropdown:hover .dropbtn {
     background-color: #d0d0d0;
   }
 
 @media only screen and (max-width: 576px) {
-    
+
     .fill-in-page-title {
         font-size: 1.5em;
         margin-top: 2em;
@@ -401,23 +401,23 @@ input[type=number] {
     width: 10px;
     border-radius: 5px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #FFF;
+    background: rgba(68, 197, 242, .2);
     border-radius: 5px;
   }
-  
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: rgb(68, 197, 242);
     border-radius: 5px;
   }
-  
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: rgb(68, 197, 242);
     border-radius: 5px;
   }
-  
+
   /* -------------------- */

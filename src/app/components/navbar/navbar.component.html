@@ -5,7 +5,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-      
+
       <li class="nav-item">
         <a [routerLink]="['./directory']" [ngClass]="{'nav-link':true, 'nav-tab-selected' : mRouter.url === '/directory'}">Directory</a>
       </li>
@@ -18,19 +18,19 @@
       <li class="nav-item">
         <a  [routerLink]="['./login']" *ngIf="!isLoggedIn" [ngClass]="{'nav-link':true, 'nav-tab-selected' : mRouter.url === '/login'}">Sign In</a>
       </li>
-      
-      <li class="dropdown" *ngIf="isLoggedIn" style="text-align: center; margin-right: 2em; width: 8em">
-          <a class="dropdown-toggle navbar-profile-icon-container" data-toggle="dropdown">
+
+      <li class="dropdown" *ngIf="isLoggedIn">
+          <a class="dropdown-toggle navbar-profile-icon-container" data-toggle="dropdown" id="dropdownMenuButtonRoof" aria-haspopup="true" aria-expanded="false">
             <img src="../../../assets/img/avatar.png" class="profile-icon"/>
           </a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a class="child-link">My Profile</a></li>
-            <li class="dropdown-item"><a class="child-link">Messages</a></li>
-            <li class="dropdown-item"><a class="child-link">Add New Home</a></li>
-            <li class="dropdown-item"><a class="child-link" (click)="logout()">Sign Out</a></li>
-          </ul>
+          <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item">My Profile</a>
+            <a class="dropdown-item">Messages</a>
+            <a class="dropdown-item">Add New Home</a>
+            <a class="dropdown-item" (click)="logout()">Sign Out</a>
+          </div>
       </li>
-      
+
       <li></li>
     </ul>
   </div>

@@ -11,7 +11,7 @@ import { IAddress } from '../../model/IAddress';
   styleUrls: ['./verify-info-page.component.css']
 })
 export class VerifyInfoPageComponent implements OnInit {
-  
+
   userUID:string;
   sellerProperty:PropertyDetails;
   otherBeds:boolean = false;
@@ -25,7 +25,7 @@ export class VerifyInfoPageComponent implements OnInit {
   lat: number;
   lng: number;
   zoom:number = 18;
-  
+
   editModeTotalLivingArea: boolean;
   editModeYearBuild: boolean;
   editModeLotSize: boolean;
@@ -42,7 +42,7 @@ export class VerifyInfoPageComponent implements OnInit {
   displayCooling:string;
   displayGarage:string;
   displayBasement:string;
-  
+
   totalLivingAreaHint:string = "Tell us what the total living area of your home is. EXAMPLE: 1500sqft";
   yearBuildHint:string = "Tell us what year your home was built. EXAMPLE: 1985"
   lotSizeHint:string = "Tell us what the total size of your lot is. This is usually in square feet or acres. EXAMPLE: 13068 sqft or .3 acres"
@@ -53,7 +53,7 @@ export class VerifyInfoPageComponent implements OnInit {
   poolHint:string = "Tell us if you have a pool. If YES, tell us what condition the pool equipment is in."
   hotTubHint:string = "Tell us if you have an in-ground hot tub. If YES, tell us what condition the hot tub equipment is in."
   coolingHint:string = "Tell us what type of cooling system you have in your home"
-  
+
   garageOther:boolean= false;
   bathroomsOther:boolean= false;
 
@@ -67,7 +67,7 @@ export class VerifyInfoPageComponent implements OnInit {
   constructor(private mAuth: AngularFireAuth, private mSellerPropertyService: SellerPropertyService, private mRouter: Router) { }
 
   ngOnInit() {
-    
+
       this.mAuth.authState.subscribe(user => {
         if(user) {
            this.loggedIn = true;
@@ -77,16 +77,16 @@ export class VerifyInfoPageComponent implements OnInit {
         }
       );
 
-      this.mSellerPropertyService.getSellerPropertyDetailsSource().subscribe(propertyDetails => 
-      { 
+      this.mSellerPropertyService.getSellerPropertyDetailsSource().subscribe(propertyDetails =>
+      {
           this.initHome(propertyDetails);
       });
   }
 
   initHome(property:PropertyDetails){
-    
-    this.sellerProperty = property; 
-    
+
+    this.sellerProperty = property;
+
     if(this.sellerProperty.address.street != ""){
       console.log("SEARCH FOR HOME WAS FOUND");
     }
@@ -99,29 +99,34 @@ export class VerifyInfoPageComponent implements OnInit {
       this.lng = this.sellerProperty.longitude;
     }
 
+    if(this.sellerProperty.garage){
+      this.editModeGarage = false;
+    }else{
+      this.editModeGarage = true;
+    }
 
     if(this.sellerProperty.pool){
-        this.editModePool = true;
-      } else{
         this.editModePool = false;
+      } else{
+        this.editModePool = true;
       }
 
       if(this.sellerProperty.hot_tub){
-        this.editModeHotTub = true;
-      } else{
         this.editModeHotTub = false;
+      } else{
+        this.editModeHotTub = true;
       }
 
       if(this.sellerProperty.cooling_type){
-        this.editModeCooling = true;
-      } else{
         this.editModeCooling = false;
+      } else{
+        this.editModeCooling = true;
       }
 
       if(this.sellerProperty.basement){
-         this.displayBasement = "Yes";
+         this.editModeBasement = false;
       }else{
-          this.displayBasement = "No";
+          this.editModeBasement = true;
       }
   }
 
@@ -129,64 +134,34 @@ export class VerifyInfoPageComponent implements OnInit {
     return [...Array(n).keys()].map(i => startFrom - i);
   }
 
-
+  onClickBasementCompletion(completion:number){
+    this.sellerProperty.basement_completed = completion;
+  }
   onClickNext(){
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mRouter.navigate(['/listing-time']);
   }
-  
+
   onClickCreateAccount(){
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mRouter.navigate(['./create-account']);
   }
 
-  onClickBasementNo(){
-    this.sellerProperty.basement = false;
-    this.editModeBasement = true;
-  }
-
-  onClickBasementYes(){
-    this.sellerProperty.basement = true;
-    this.editModeBasement = true;
+  onClickBasement(basementExists:boolean){
+    this.sellerProperty.basement = basementExists;
   }
 
 
-  onClickPoolNo(){
-    this.sellerProperty.pool = false;
-    this.editModePool = true;
+
+  onClickPool(poolExists){
+    this.sellerProperty.pool = poolExists;
   }
 
-  onClickPoolYes(){
-    this.sellerProperty.pool = true;
-    this.editModePool = true;
-  }
 
-  onClickHotTubNo(){
-    this.sellerProperty.hot_tub = false;
-    this.editModeHotTub = true;
-  }
-
-  onClickHotTubYes(){
-    this.sellerProperty.hot_tub = true;
-    this.editModeHotTub = true;
-  }
-
-  
   onClickHotTub(isHotTub:boolean){
-    if(isHotTub){
-      this.sellerProperty.hot_tub = true;
-    }else{
-      this.sellerProperty.hot_tub = false;
-    }
+    this.sellerProperty.hot_tub = isHotTub;
   }
 
-  onClickPool(isPool:boolean){
-    if(isPool){
-      this.sellerProperty.pool = true;
-    }else{
-      this.sellerProperty.pool = false;
-    }
-  }
 
   onClickRoofRange(range:string){
     this.sellerProperty.roof_age_range = range;
@@ -196,7 +171,7 @@ export class VerifyInfoPageComponent implements OnInit {
     this.sellerProperty.beds = bedCount;
   }
 
-  
+
   onClickBaths(bathCount){
     this.sellerProperty.baths = bathCount;
   }
@@ -210,9 +185,7 @@ onClickCooling(coolingType:string){
   this.sellerProperty.cooling_type = coolingType;
 }
 
-onClickBasementCompletion(completion:number){
-  this.sellerProperty.basement_completed = completion;
-}
+
 
 /*---------------------------------------------------------------*/
 

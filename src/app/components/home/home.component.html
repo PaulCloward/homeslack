@@ -3,9 +3,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12" style="padding: 0;">
-            
-            <img  class="img-under-nav" src="../../../assets/img/img_banners/3.jpg"/>
-        
+
+            <img  class="img-under-nav" style="max-height: 35em !important" src="../../../assets/img/landing_page.jpg"/>
+
             <div class="img-cover"></div>
 
             <div class="top-header">
@@ -14,13 +14,13 @@
               <div class="search-bar-label">
                   SELL YOUR HOME FOR <span style="color:rgb(68, 197, 242)">FREE!</span>
               </div>
-          
+
               <div class="row">
                 <div class="col-8 offset-2">
                   <div class="input-group d-none d-md-flex" style="height: .8em;">
                         <input placeholder="Enter your home address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
                         #search [formControl]="searchControl" style="font-size: .5em; font-family: 'Nunito'; text-transform: capitalize;" (keydown)="onKeyDown($event)">
-                        
+
                     <div class="input-group-append">
                       <span class="input-group-text" (click)="onClickSearchArrow()">
                         <i class="material-icons go-arrow">arrow_forward_ios</i>
@@ -30,7 +30,7 @@
                   <div class="input-group d-flex d-md-none" style="height: .8em; margin: .3em 0em;">
                         <input placeholder="Enter Your Address Here" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control search-bar-input"
                         #search [formControl]="searchControl" (keydown)="test()">
-                        
+
                     <div class="input-group-append">
                       <span class="input-group-text" (click)="onClickSearchArrow()">
                         <i class="material-icons go-arrow">arrow_forward_ios</i>
@@ -40,7 +40,7 @@
                 </div>
               </div>
             </div>
-    
+
             <div class="container-container-home-info">
                     <div class="container-home-info">
                        <img class="img-fluid home-info-img" src="../../../assets/img/ic_free.png" />
@@ -50,7 +50,7 @@
                        <div class="home-info-label">No closing costs</div>
                        <div class="home-info-label">No agent fees</div>
                     </div>
-              
+
                     <div class="container-home-info">
                       <img class="img-fluid home-info-img" src="../../../assets/img/ic_computer.png" />
                       <div class="home-info-header">ALL ONLINE</div>
@@ -59,8 +59,8 @@
                       <div class="home-info-label">No in-person meetings</div>
                       <div class="home-info-label">No price haggling</div>
                     </div>
-              
-                 
+
+
                     <div class="container-home-info">
                       <img class="img-fluid home-info-img" src="../../../assets/img/ic_cash.png" />
                       <div class="home-info-header">SELLER PAYS NOTHING</div>
@@ -69,13 +69,13 @@
                       <div class="home-info-label">No home inspections</div>
                       <div class="home-info-label">Move on your time-frame</div>
                     </div>
-              </div>  
+              </div>
             </div>
-            
+
           <!--  <div class="col-12 top-header-xs d-block d-sm-none">
             <img class="img-fluid" style="max-height: 1.4em;" src="../../../assets/img/logo.png" />
           </div> -->
-    
+
     </div>
   </div>
 
@@ -106,8 +106,8 @@
                 1
               </div>
               <div class="how-to-item-info">
-                <div class="how-to-item-info-header" [innerHtml]="receiveOfferInstructions[0].title"> 
-            
+                <div class="how-to-item-info-header" [innerHtml]="receiveOfferInstructions[0].title">
+
                 </div>
                 <div class="how-to-item-info-sub-header">
                   {{ receiveOfferInstructions[0].instruction }}
@@ -125,7 +125,7 @@
                   {{ receiveOfferInstructions[1].title | uppercase }}
                 </div>
                 <div class="how-to-item-info-sub-header" [innerHTML]="receiveOfferInstructions[1].instruction">
-                
+
                 </div>
               </div>
             </div>
@@ -210,7 +210,7 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
 
 <div class="footer-section">
@@ -226,7 +226,7 @@
     <div class="footer-list-sub-header">placeholder</div>
     <div class="footer-list-sub-header">placeholder</div>
     <div class="footer-list-sub-header">placeholder</div>
-  </div>  
+  </div>
   <div  class="footer-column">
     <div class="footer-list-header">About</div>
     <div class="footer-list-sub-header">placeholder</div>
@@ -240,5 +240,5 @@
 </div>
 
 
-  
+
 

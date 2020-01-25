@@ -21,8 +21,8 @@
 
 .address {
   text-align: center;
-   color: #bcbcbc; 
- 
+   color: #bcbcbc;
+
   font-family: Nunito, sans-serif;
   font-weight: 300;
   font-size: 1.13em;
@@ -112,7 +112,7 @@
     border-radius: 100%;
 }
 
-.top-header-circle{ 
+.top-header-circle{
     bottom: -12%;
     position: absolute;
     z-index: 2;
@@ -232,7 +232,7 @@
 }
 /*-------------------End of checkmark-------------------------*/
 
- /* Extra Small Devices, Phones */ 
+ /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
 
   .top-header-title{
@@ -295,7 +295,7 @@
   width: 5em;
   height: 5em;
   background: lightgray;
-  border-radius: 100%; 
+  border-radius: 100%;
   margin: 0 auto;
 }
 
@@ -303,7 +303,7 @@
   width: 5em;
   height: 5em;
   background: rgb(68, 197, 242);
-  border-radius: 100%; 
+  border-radius: 100%;
   margin: 0 auto;
 }
 html, body { height: 100%; }
@@ -324,6 +324,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .warning{
-  color: #D8000C !important; 
+  color: #D8000C !important;
 }
 
