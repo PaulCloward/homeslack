@@ -24,10 +24,10 @@ export class PropertyDetails{
     address:IAddress;
 
     constructor(){
-        this.basement = false;
-        this.pool = false;
-        this.hot_tub = false;
-        this.lot_size_unit = "sqft";
+        this.basement = null;
+        this.pool = null;
+        this.hot_tub = null;
+        this.lot_size_unit = null;
         this.address = {street:null,
             state: null, city:null, zip_code: null};
     }

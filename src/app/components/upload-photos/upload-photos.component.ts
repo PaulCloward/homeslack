@@ -104,6 +104,10 @@ export class UploadPhotosComponent implements OnInit, OnDestroy {
     
   }
 
+  onFindPhoto(event){
+    console.log("button clicked");
+  }
+
 
   onClickSelectPhotos(){
 

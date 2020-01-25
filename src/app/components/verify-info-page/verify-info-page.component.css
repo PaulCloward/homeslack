@@ -8,22 +8,6 @@
      margin-top: 2em;
 }
 
-.btn-dropdown{
-    width: 80%;
-    text-align: left;
-    margin-top: .2em;
-}
-
-.dropdown-toggle{
-    margin-left: -1em;
-}
-
-.dropdown-toggle::after {
-    text-align: right;
-    float: right;
-    /*Chrome IE fix*/
-    margin-top: 10px;
-}
 
 .verification-page-title {
     font-size: 2.3em;
@@ -124,6 +108,81 @@ agm-map {
     font-family: Century Gothic, sans-serif;
 }
 
+.btn-dropdown{
+    width: 80%;
+    text-align: left;
+    margin-top: .3em;
+}
+
+.dropdown-toggle::after {
+    text-align: right;
+    float: right;
+    /*Chrome IE fix*/
+    margin-top: 10px;
+}
+
+.dropdown{
+    margin-left: 1em;
+    width: 100%;
+}
+
+.dropdown{
+    margin-left: -.5em;
+}
+
+
+.btn-dropdown{
+    width: 80%;
+    text-align: left;
+    margin-top: .2em;
+}
+
+.dropdown-toggle{
+    margin-left: -1;
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown-toggle::after {
+    text-align: right;
+    float: right;
+    /*Chrome IE fix*/
+    margin-top: 10px;
+}
+
+.dropdown-menu{
+
+    position: absolute;
+    background-color: #fff;
+    min-width: 100%;
+    top: -1px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+    overflow-y: scroll;
+    max-height: 10em;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: rgb(68, 197, 242);
+    color:white;
+    cursor: pointer;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #d0d0d0;
+  }
+
 .question-mark{
     font-family: Raleway, sans-serif;
     font-weight: 400;
@@ -201,10 +260,6 @@ agm-map {
     cursor: pointer;
 }
 
-.dropdown{
-    margin-left: 1em;
-    width: 100%;
-}
 
 
 .btn{
@@ -236,9 +291,17 @@ agm-map {
     line-height: 1em;
 }
 
-.label-hint-above-buttons{
-    /*margin-top: -.2em;
-    margin-bottom: .4em;*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
 }
 
 @media only screen and (max-width: 576px) {
@@ -275,19 +338,8 @@ agm-map {
         margin-top: 1em;
     }
 
-    .dropdown{
-        margin-left: 1em;
-    }
 
-    .dropdown-toggle {
-        /*margin: 0 auto;*/
-       /* padding-left: 2em;
-        padding-right: 2em;*/
-        padding-top: .2em;
-        padding-bottom: .2em;
-        font-size: .9em;
-    }
-
+    
     .label-question {
         font-size: 1em;
     }
@@ -307,3 +359,31 @@ agm-map {
         height: 10em;
     }
 }
+
+/*---- Scroll bar code ----- */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #FFF;
+    border-radius: 5px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(68, 197, 242);
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(68, 197, 242);
+    border-radius: 5px;
+  }
+  
+  /* -------------------- */

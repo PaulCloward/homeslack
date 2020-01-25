@@ -35,6 +35,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
   garageOther:boolean = false;
 
   mFormAddressFields:FormGroup;
+  mFormPropertyDetails:FormGroup;
   
   constructor(private mAuth:AngularFireAuth, private mSellerPropertyService: SellerPropertyService, private mRouter: Router,
     private mFormBuilder:FormBuilder, private mFirestoreService:FirestoreService) {
@@ -82,6 +83,56 @@ export class FillInPropertyInfoPageComponent implements OnInit {
         zipCode: ['', [
           Validators.required
         ]]
+      });
+
+      
+      this.mFormPropertyDetails = this.mFormBuilder.group({
+        livingSquareFeet: ['', [
+          Validators.required
+        ]],
+        lotSize: ['', [
+          Validators.required,
+          Validators.maxLength(6),
+        ]],
+        lotSizeUnit: ['', [
+          Validators.required,
+          Validators.pattern('[a-zA-Z]+')
+        ]],
+        year: ['', [
+          Validators.required,
+          Validators.pattern('[a-zA-Z]+')
+        ]],
+        beds: ['', [
+          Validators.required
+        ]],
+        baths: ['', [
+          Validators.required
+        ]],
+        garage: ['', [
+          Validators.required
+        ]],
+        basement: ['', [
+          Validators.required
+        ]],
+        pool_description: ['', [
+         
+        ]],
+        cooling_type: ['', [
+          Validators.required
+        ]],
+        hot_tub_descriptions: ['', [
+          Validators.required
+        ]],
+        roof_age_range: ['', [
+          Validators.required
+        ]],
+        concerns_hvac_roofing_etc: ['', [
+          Validators.required
+        ]],
+        concerns_other: ['', [
+          Validators.required
+        ]],
+
       });
 
       this.mFormAddressFields.valueChanges.subscribe(addressForm => {

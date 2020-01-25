@@ -14,7 +14,7 @@
 }
 
 .right-container{
-    padding: 8em 2em;
+    padding: 8em 0em;
 }
 
 .image-upload-container-tall, .image-upload-container-small{
@@ -103,6 +103,9 @@
 .items{
     display: flex;
     overflow-x: auto;
+    z-index: 2;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 .items::-webkit-scrollbar{

@@ -84,11 +84,11 @@
         </div>
         <div class="col-6" style="padding: 0em">
             <div class="street-address">
-                <span style="color: #7E7E7E;">{{sellerProperty.street}}</span>
+                <span style="color: #7E7E7E;">{{sellerProperty.address.street}}</span>
             </div>
             <div class="street-address">
-                    {{sellerProperty.city}},
-                    &nbsp;{{sellerProperty.state}}&nbsp; {{sellerProperty.zip_code}}
+                    {{sellerProperty.address.city}},
+                    &nbsp;{{sellerProperty.address.state}}&nbsp; {{sellerProperty.address.zip_code}}
             </div>
         </div>
     </div>
@@ -105,9 +105,9 @@
                            <div class="label-property">
                                 Total Living Area <span class="question-mark-circle rounded-circle">?</span>
                             </div>
-                            <div *ngIf="!editModeTotalLivingArea" class="label-property-result">{{sellerProperty.living_square_feet}} Square Feet</div>
+                            <div *ngIf="!editModeTotalLivingArea" class="label-property-result">{{sellerProperty.living_square_feet}} Sqft</div>
                             <div *ngIf="editModeTotalLivingArea" class="label-hint"> Livable Sqft # in Home?</div>
-                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property" type="text" [(ngModel)]="sellerProperty.living_square_feet" (click)="$event.stopPropagation()"/>
+                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property" type="number" placeholder="Liveable Sqft #" [(ngModel)]="sellerProperty.living_square_feet" max="6" (click)="$event.stopPropagation()"/>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,22 @@
                             </div>
                             <div *ngIf="!editModeYearBuild" class="label-property-result">{{sellerProperty.year}}</div>
                             <div *ngIf="editModeYearBuild" class="label-hint">Year the House was Built?</div>
-                            <input *ngIf="editModeYearBuild" class="input-edit-property" [(ngModel)]="sellerProperty.year" type="text" (click)="$event.stopPropagation()"/>
+                            <div *ngIf="editModeYearBuild" class="dropdown">
+                                <button [hidden]="sellerProperty.year != null" class="btn btn-dropdown dropdown-toggle" type="button">
+                                    Year the house was built?
+                                </button>
+                              <button [hidden]="sellerProperty.year == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 {{sellerProperty.year}}
+                              </button>
+                              <div class="dropdown-menu" >
+                                <div *ngFor="let year of arrayRange(171,2020)">
+                                    <a class="dropdown-item" (click)="sellerProperty.year = year">{{year}}</a>
+                                </div>
+                                
+                            
+                              </div>
+                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -166,29 +181,26 @@
                                 Bedrooms <span class="question-mark-circle rounded-circle" >?</span>
                             </div>
                             <div *ngIf="!editModeBedrooms" class="label-property-result">{{sellerProperty.beds}}</div>
-                            <div *ngIf="editModeBedrooms" class="label-hint">How many Finished Bathrooms In Home</div>
+                            <div *ngIf="editModeBedrooms" class="label-hint"># Beds In Home</div>
                             <div class="dropdown" *ngIf="editModeBedrooms">
-                              <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBedroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button *ngIf="sellerProperty.beds == null" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBedroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Select # of beds
+                               </button>
+                              <button *ngIf="sellerProperty.beds" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBedroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{sellerProperty.beds}}
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBedroom">
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomOne()">1</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomTwo()">2</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomThree()">3</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomFour()">4</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomFive()">5</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomSix()">6</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomSeven()">7</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomEight()">8</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomNine()">9</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomTen()">10</a>
-                                <a class="dropdown-item" (click)="onClickDropdownOptionBedroomOther()">Other</a>
+                                <a class="dropdown-item" (click)="onClickBeds(1)">1</a>
+                                <a class="dropdown-item" (click)="onClickBeds(2)">2</a>
+                                <a class="dropdown-item" (click)="onClickBeds(3)">3</a>
+                                <a class="dropdown-item" (click)="onClickBeds(4)">4</a>
+                                <a class="dropdown-item" (click)="onClickBeds(5)">5</a>
+                                <a class="dropdown-item" (click)="onClickBeds(6)">6</a>
+                                <a class="dropdown-item" (click)="onClickBeds(7)">7</a>
+                                <a class="dropdown-item" (click)="onClickBeds(8)">8</a>
+                                <a class="dropdown-item" (click)="onClickBeds(9)">9</a>
+                                <a class="dropdown-item" (click)="onClickBeds(10)">10</a>
                               </div>
-                            </div>
-                            <div class="row" *ngIf="sellerProperty.beds == null">
-                                <div class="col-12">
-                                   <input  class="input-edit-property" [(ngModel)]="bedroomDisplayNumber" placeholder="# of Bedrooms..." type="number" maxlength="3"/>
-                                </div>
                             </div>
                     </div>
                 </div>
@@ -206,27 +218,29 @@
                         <div *ngIf="!editModeBathrooms" class="label-property-result">{{sellerProperty.baths}}</div>
                         <div class="label-hint" *ngIf="editModeBathrooms">Finished Bathrooms in Home?</div>
                         <div class="dropdown" *ngIf="editModeBathrooms">
-                          <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBathroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <button *ngIf="sellerProperty.baths == null" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBathroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select # of baths
+                          </button>
+                          <button *ngIf="sellerProperty.baths" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonBathroom" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{sellerProperty.baths}}
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBathroom">
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomMakeSelection()">Make Selection</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomOne()">1</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomOneHalf()">1.5</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomOne3Quarters()">1.75</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomTwo()">2</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomTwoHalf()">2.5</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomTwo3Quarters()">2.75</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomThree()">3</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomThreeHalf()">3.5</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomThree3Quarters()">3.75</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomFour()">4</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomFourHalf()">4.5</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomFour3Quarters()">4.75</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomFive()">5</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomFiveHalf()">5.5</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroomFive3Quarters()">5.75</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionBathroom6OrMore()">Other</a>
+                            <a class="dropdown-item" (click)="onClickBaths(1)">1</a>
+                            <a class="dropdown-item" (click)="onClickBaths(1.5)">1.5</a>
+                            <a class="dropdown-item" (click)="onClickBaths(1.75)">1.75</a>
+                            <a class="dropdown-item" (click)="onClickBaths(2)">2</a>
+                            <a class="dropdown-item" (click)="onClickBaths(2.5)">2.5</a>
+                            <a class="dropdown-item" (click)="onClickBaths(2.75)">2.75</a>
+                            <a class="dropdown-item" (click)="onClickBaths(3)">3</a>
+                            <a class="dropdown-item" (click)="onClickBaths(3.5)">3.5</a>
+                            <a class="dropdown-item" (click)="onClickBaths(3.75)">3.75</a>
+                            <a class="dropdown-item" (click)="onClickBaths(4)">4</a>
+                            <a class="dropdown-item" (click)="onClickBaths(4.5)">4.5</a>
+                            <a class="dropdown-item" (click)="onClickBaths(4.75)">4.75</a>
+                            <a class="dropdown-item" (click)="onClickBaths(5)">5</a>
+                            <a class="dropdown-item" (click)="onClickBaths(5.5)">5.5</a>
+                            <a class="dropdown-item" (click)="onClickBaths(5.75)">5.75</a>
+                            <a class="dropdown-item" (click)="onClickBaths(6)">6+</a>
                           </div>
                         </div>
                         <input *ngIf="bathroomsOther == true && editModeBathrooms" class="input-edit-property" [(ngModel)]="garageSpots" placeholder="# of Bathrooms..." type="text" maxlength="100"/> 
@@ -243,7 +257,12 @@
                             <div class="label-property" (click)="editModeBasement = !editModeBasement">
                                 Basement<span class="question-mark-circle rounded-circle">?</span>
                             </div>
-                            <div *ngIf="!editModeBasement" class="label-property-result">{{displayBasement}}</div>
+                            <div *ngIf="!editModeBasement && sellerProperty.basement" class="label-property-result">
+                                Yes
+                            </div>
+                            <div *ngIf="!editModeBasement && (sellerProperty.basement == null || sellerProperty.basement == false)" class="label-property-result">
+                                No
+                            </div>
                              <!-- While In Edit Mode Tags -->
                             <div *ngIf="editModeBasement" class="label-hint label-hint-above-buttons">Basement in House? If so, % Finished?</div>
                            <div  *ngIf="editModeBasement" class="row mt-2 btn-row-margin-left">
@@ -256,21 +275,20 @@
                                     Yes
                                 </div>
                             </div>
-                            <div *ngIf="editModeBasement && sellerProperty.basement == true" style="width: 100%">
-                                    <input class="input-edit-property" [(ngModel)]="garageSquareFeet" placeholder="Total Basement Sqft..." type="number" maxlength="100"/>
-                            </div>
                             <div class="dropdown" *ngIf="sellerProperty.basement == true">
-                              <button class="btn dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{basementPercentageFinished}}
+                                 <button *ngIf="sellerProperty.basement_completed == null" class="btn btn-dropdown dropdown-toggle"  style="margin-top: .3em " type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Percentage Finished?
+                                </button>
+                              <button class="btn btn-dropdown dropdown-toggle" *ngIf="sellerProperty.basement_completed != null"  style="margin-top: .3em;" type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{sellerProperty.basement_completed | percent}}
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBasement">
-                                <a class="dropdown-item" (click)="onClickBasementMakeSelection()">Percentage Finished?</a>
-                                <a class="dropdown-item" (click)="onClickBasement10()">10%</a>
-                                <a class="dropdown-item" (click)="onClickBasement25()">25%</a>
-                                <a class="dropdown-item" (click)="onClickBasement50()">50%</a>
-                                <a class="dropdown-item" (click)="onClickBasement75()">75%</a>
-                                <a class="dropdown-item" (click)="onClickBasement90()">90%</a>
-                                <a class="dropdown-item" (click)="onClickBasement100()">100%</a>
+                                <a class="dropdown-item" (click)="onClickBasementCompletion(.1)">10%</a>
+                                <a class="dropdown-item" (click)="onClickBasementCompletion(.25)">25%</a>
+                                <a class="dropdown-item" (click)="onClickBasementCompletion(.5)">50%</a>
+                                <a class="dropdown-item" (click)="onClickBasementCompletion(.75)">75%</a>
+                                <a class="dropdown-item" (click)="onClickBasementCompletion(.9)">90%</a>
+                                <a class="dropdown-item" (click)="onClickBasementCompletion(1)">100%</a>
                               </div>
                             </div>
                         </div>
@@ -289,37 +307,35 @@
                             <div class="label-property" (click)="editModeGarage = !editModeGarage">
                                 Garage <span class="question-mark-circle rounded-circle" >?</span>
                             </div>
-                            <div *ngIf="!editModeGarage" class="label-property-result">{{sellerProperty.garage}} Car</div>
+                            <div *ngIf="!editModeGarage" class="label-property-result">
+                                {{sellerProperty.garage}} Car
+                            </div>
 
                             <!-- While In Edit Mode Tags -->
                             <div *ngIf="editModeGarage" class="label-hint">Max # of Cars that Fit in Garage?</div>
                            
                             <div class="dropdown" *ngIf="editModeGarage">
-                          <button class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonGarage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            1
+                          <button *ngIf="sellerProperty.garage == null" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonGarage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            #  Selection
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonGarage">
-                            <a class="dropdown-item" (click)="onClickDropdownOptionGarageMakeSelection()">Make Selection</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionGarageOneSpot()">1</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionGarageTwoSpots()">2</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionGarageThreeSpots()">3</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionGarageFourSpots()">4</a>
-                            <a class="dropdown-item" (click)="onClickDropdownOptionGarageMoreThanFour()">Other</a>
+                            <a class="dropdown-item" (click)="onClickGarage(5)">1</a>
+                            <a class="dropdown-item" (click)="onClickGarage(5)">2</a>
+                            <a class="dropdown-item" (click)="onClickGarage(5)">3</a>
+                            <a class="dropdown-item" (click)="onClickGarage(5)">4</a>
+                            <a class="dropdown-item" (click)="onClickGarage(5)">5+</a>
                           </div>
-
                         </div>
-                        <input *ngIf="garageOther == true && editModeGarage" class="input-edit-property" [(ngModel)]="garageSpots" placeholder="Garage Spots..." type="text" maxlength="100"/> 
-                      
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="row" (click)="editModePool = !editModePool">
+                    <div class="row" >
                         <div class="col-3 icon-container d-flex justify-content-center">
                             <img src="../../../assets/img/Pool.png" class="icon-label img-fluid" placement="top"  matTooltip="{{poolHint}}"/>
                         </div>
                         <div class="col-9">
-                            <div class="label-property">
+                            <div class="label-property" (click)="editModePool = !editModePool">
                                 Pool <span class="question-mark-circle rounded-circle">?</span>
                             </div>
                             <div *ngIf="!editModePool" class="label-property-result">{{displayPool}}</div>
@@ -327,31 +343,31 @@
                             <div *ngIf="editModePool" class="label-hint label-hint-above-buttons">Does House have Pool?</div>
                            <div  *ngIf="editModePool" class="row mt-2 btn-row-margin-left">
                            
-                                <div *ngIf="editModePool" (click)="onClickPoolNo()" class="col-3 label-property-result btn-result"
+                                <div (click)="onClickPool(false)" class="col-3 label-property-result btn-result"
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.pool == false}">
                                     No
                                 </div>
-                                <div (click)="onClickPoolYes()" class="col-3 label-property-result btn-result" 
+                                <div (click)="onClickPool(true)" class="col-3 label-property-result btn-result" 
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.pool == true}">
                                     Yes
                                 </div>
                             </div>
                             <div *ngIf="sellerProperty.pool == true" style="width: 100%">
-                                <textarea class="input-edit-property" [(ngModel)]="poolCondition" placeholder="Describe Pool condition..." style="resize: none" type="text" maxlength="100"></textarea>
+                                <textarea class="input-edit-property" [(ngModel)]="sellerProperty.pool_description" placeholder="Describe Pool condition..." style="resize: none" type="text" maxlength="100"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="row" (click)="editModeHotTub = !editModeHotTub">
+                    <div class="row">
                         <div class="col-3 icon-container d-flex justify-content-center">
                             <img src="../../../assets/img/hot_tub.png" class="icon-label img-fluid" placement="top"  matTooltip="{{hotTubHint}}"/>
                         </div>
-                        <div class="col-9">
-                            <div class="label-property">
+                        <div class="col-9" >
+                            <div class="label-property"  (click)="editModeHotTub = !editModeHotTub">
                                 Hot Tub <span class="question-mark-circle rounded-circle">?</span>
                             </div>
-                            <div *ngIf="!editModeHotTub" class="label-property-result">{{displayHotTub}}</div>
+                            <div *ngIf="!editModeHotTub" [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == false, 'label-property-result': true}">{{sellerProperty.hot_tub}}</div>
                             <div *ngIf="editModeHotTub" class="label-hint label-hint-above-buttons">In-Ground Hot Tub?</div>
                             <div class="row mt-2 btn-row-margin-left" *ngIf="editModeHotTub">
                                 
@@ -366,7 +382,7 @@
 
                             </div>
                             <div *ngIf="sellerProperty.hot_tub == true" style="width: 100%">
-                                    <textarea class="input-edit-property" [(ngModel)]="hotTubCondition" placeholder="Describe Hot Tub condition..." style="resize: none" type="text" maxlength="100"></textarea>
+                                    <textarea class="input-edit-property" [(ngModel)]="sellerProperty.hot_tub" placeholder="Describe Hot Tub condition..." style="resize: none" type="text" maxlength="100"></textarea>
                             </div>
                         </div>
                     </div>
@@ -389,16 +405,16 @@
                             <div *ngIf="!editModeCooling" class="label-property-result">{{sellerProperty.cooling_type}}</div>
                             <div class="label-hint" *ngIf="editModeCooling">Home Cooling System Type?</div>
                             <div class="dropdown" *ngIf="editModeCooling">
-                              <button class="btn dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <button class="btn btn-dropdown dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Central HVAC
                               </button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCooling">
-                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionOne()">Central HVAC</a>
-                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionTwo()">Furnace & Swamp Cooler</a>
-                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionThree()">Swamp Cooler Only</a>
-                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionFour()">Window Unit(s)</a>
-                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionFive()">Furnace Only</a>
-                                <a class="dropdown-item" (click)="onClickCoolingDropdownOptionSix()">None</a>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" (click)="onClickCooling('Central HVAC')">Central HVAC</a>
+                                <a class="dropdown-item" (click)="onClickCooling('Furnace & Swamp Cooler')">Furnace & Swamp Cooler</a>
+                                <a class="dropdown-item" (click)="onClickCooling('Furnace Only')">Furnace Only</a>
+                                <a class="dropdown-item" (click)="onClickCooling('Swamp Cooler Only')">Swamp Cooler Only</a>
+                                <a class="dropdown-item" (click)="onClickCooling('Window Unit(s)')">Window Unit(s)</a>
+                                <a class="dropdown-item" (click)="onClickCooling('None')">None</a>
                               </div>
                             </div>
                         </div>
@@ -413,16 +429,19 @@
         <div class="row" style="margin-top: 1em; padding-top: 1em; border-top: 1px solid #7E7E7E">
                 <div class="col-12">
                     <div class="label-question">About How Old is the Roof<span class="question-mark">?</span></div>
-                    <div class="dropdown">
-                      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        1-3 Years
+                    <div class="dropdown"  style="width: 16em !important">
+                        <button *ngIf="sellerProperty.roof_age_range == null" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           roof age selection
+                        </button>
+                      <button *ngIf="sellerProperty.roof_age_range" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{sellerProperty.roof_age_range}}
                       </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" (click)="onClickDropdownOptionOne()">1-3 Years</a>
-                        <a class="dropdown-item" (click)="onClickDropdownOptionTwo()">4-6 Years</a>
-                        <a class="dropdown-item" (click)="onClickDropdownOptionThree()">7-10 Years</a>
-                        <a class="dropdown-item" (click)="onClickDropdownOptionFour()">11-15 Years</a>
-                        <a class="dropdown-item" (click)="onClickDropdownOptionFive()">16+ Years</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border: 1px solid green">
+                        <a class="dropdown-item" (click)="onClickRoofRange('1-3 Years')">1-3 Years</a>
+                        <a class="dropdown-item" (click)="onClickRoofRange('4-6 Years')">4-6 Years</a>
+                        <a class="dropdown-item" (click)="onClickRoofRange('7-10 Years')">7-10 Years</a>
+                        <a class="dropdown-item" (click)="onClickRoofRange('11-15 Years')">11-15 Years</a>
+                        <a class="dropdown-item" (click)="onClickRoofRange('16+ Years')">16+ Years</a>
                       </div>
                     </div>
                 </div>
@@ -448,7 +467,7 @@
             </div>
             
             <div *ngIf="!loggedIn" class="row" class="create-account-subtitle" style="padding-top: 1em; border-top: 1px solid #7E7E7E">
-                Create a Homeface account to save your information and to start the process selling your home.
+                Create a Homeslack account to save your information and to start the process selling your home.
             </div>
             <div *ngIf="!loggedIn" class="row" style="margin-top: 1em;">
                 <button class="btn btn-create-account" (click)="onClickCreateAccount()">Create Account</button>

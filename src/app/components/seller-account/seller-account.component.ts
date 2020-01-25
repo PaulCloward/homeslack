@@ -13,7 +13,7 @@ import { PropertyDetails } from '../../class/PropertyDetails';
 })
 export class SellerAccountComponent implements OnInit, OnDestroy {
 
-  mSeller:Seller;
+  mSeller:Seller = { first_name: "----", last_name:"----", email: "3", phone:"d",created_account_timestamp:''};
   mSellerPropertyDetails:PropertyDetails;
   mUserID:string;
 
