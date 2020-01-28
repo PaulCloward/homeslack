@@ -49,8 +49,6 @@
 
 }
 
-
-
 .nav-link{
     color: #4D4D4D !important;
     padding-top: 3em !important;
@@ -79,7 +77,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-
 }
 
 .profile-icon {

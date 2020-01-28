@@ -36,7 +36,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3" style="padding: 0">
+        <div class="col-3" style="padding: 0" [hidden]="true">
             <div class="left-container">
 
                 <div class="left-image-container">
@@ -54,28 +54,33 @@
             
             </div>
         </div>
-        <div class="col-9" style="padding: 0">
+        <div class="col-12" style="padding: 0">
 
             <div class="right-container">
-                <div class="label-upload-photos">
+                <!-- <div class="label-upload-photos" style="margin: 0em 2em">
                     Upload photos of your home
-                </div>
-                <div [ngClass]="{'image-upload-container-tall': (mImageList == null || mImageList.length == 0),
+                </div> -->
+                <!-- <div [ngClass]="{'image-upload-container-tall': (mImageList == null || mImageList.length == 0),
                     'image-upload-container-small': mImageList.length > 0}"
                 dropzone
                 (hovered)="toggleHover($event)"
                 (dropped)="onDrop($event)"
-                [class.hovering]="isHovering">
+                [class.hovering]="isHovering" style="margin: 0em 2em !important">
                     <div class="container-add-labels">
-                        <input class="file-input" type="file"  value="Add" placeholder="test" (change)="showPreview($event.target.files)">
+                        
                         <div class="label-drag-add-drop">Drag and Drop photos here</div>
                         <div class="label-or">or</div>
-                        <button class="btn-add" (click)="clickSlide()">
-                        Select  <i class="material-icons" style="margin-left: 8px; align-self: center;">cloud_upload</i>
-                        </button>
+                    
+                    
+                        <label class="custom-file-upload">
+                            <input type="file" accept="image/*" (change)="onDrop($event.target.files)"/>
+                            Select Photo(s) <i class="material-icons icon-upload">cloud_upload</i>
+                        </label>
                         <div style="display: flex; align-items: center; margin-top: 2em; justify-content: center;">
                             <div class="at-least" *ngIf="mImageList != null && mImageList.length >= 10">
                                 Feel free to move on or keep adding photos
+                                <br>
+                                {{ mImageList.length }} photos uploaded 
                             </div>
                             <div class="at-least" *ngIf="mImageList != null && mImageList.length < 10">
                                 {{ 10 - mImageList.length }} more photos needed
@@ -83,47 +88,53 @@
                             <div class="at-least" *ngIf="mImageList == null">
                                 {{ 10 }} more photos needed
                             </div>
-                            <i class="material-icons icon-collections">collections</i>
+                            <i class="material-icons icon-photo">collections</i>
                         </div>
                     </div>
-                </div>
-
-                
-               
-                <div [hidden]="true" style="position: relative;width: 100%; height: 20em;  margin-top: 4em; border: 2px solid blue">
-                    <img style="width: 100%; height: 100%;" src="../../../assets/img/taking_photo_blue.jpg" />
-                    <div style="position: absolute; top: 0%; display: block; overflow-x: scroll;">
-                        <div class="items">
-                            <div class="item" *ngFor="let image of mImageList; let i = index">
-                                <div class="imagebox">
-                                    <span style="position: absolute; top: 2px; right: 5px; z-index: 10; font-size: 1.1em; color: rgba(68, 137, 242, .7); cursor: pointer;">x</span>
-                                    <img [src]="mImageList[i].image_url" class="home-image img-fluid">
-                                    <span class="imagebox-desc">bathroom</span> 
+                </div> -->
+                {{isHovering}}
+                <div class="left-image-container" style="margin: 0em 4em 4em 4em; background-color: black;">
+                    <img [ngClass]="{'dropzone-background-image': isHovering == null || isHovering == false, 
+                'dropzone-background-image-hovered': isHovering}" src="../../../assets/img/taking_photo_blue.jpg" />
+                    <div class="left-image-overlay-text">
+                        <div class="container-dropzone"
+                    dropzone
+                    (hovered)="toggleHover($event)"
+                    (dropped)="onDrop($event)"
+                    [class.hovering]="isHovering">
+                        <div class="container-add-labels">
+                            
+                            <div class="label-drag-add-drop">Drag and Drop photos here</div>
+                            <div class="label-or">or</div>
+                            <!-- <button class="btn-add" (click)="onFindPhoto(event)">
+                            Select  <i class="material-icons" style="margin-left: 8px; align-self: center;">cloud_upload</i>
+                            </button> -->
+                        
+                            <label class="custom-file-upload">
+                                <input type="file" accept="image/*" (change)="onDrop($event.target.files)"/>
+                                Select Photo(s) <i class="material-icons icon-upload">cloud_upload</i>
+                            </label>
+                            <div style="display: flex; align-items: center; margin-top: 2em; justify-content: center;">
+                                <div class="at-least" *ngIf="mImageList != null && mImageList.length >= 10">
+                                    Feel free to move on or keep adding photos
+                                    <br>
+                                    {{ mImageList.length }} photos uploaded 
                                 </div>
+                                <div class="at-least" *ngIf="mImageList != null && mImageList.length < 10">
+                                    {{ 10 - mImageList.length }} more photos needed
+                                </div>
+                                <div class="at-least" *ngIf="mImageList == null">
+                                    {{ 10 }} more photos needed
+                                </div>
+                                <i class="material-icons icon-photo">collections</i>
                             </div>
                         </div>
                     </div>
+                    </div> 
                 </div>
 
-                <div class="glide">
-                        <div data-glide-el="track" class="glide__track">
-                          <ul class="glide__slides">
-
-                            <li *ngFor="let image of mImageList" class="glide__slide">
-                            
-                                    <img style="height: 200px; width: 200px" [src]="image.image_url" class="img-fluid">
-
-                                        
-                                        
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="glide__arrows" data-glide-el="controls">
-                                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-                                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
-                              </div>
-                      </div>
-              
+                
+               <app-image-slider [images]="mImageList"></app-image-slider>
                 
                 <div *ngFor="let file of mFiles">
                     <uploader-task [file]="file"></uploader-task>

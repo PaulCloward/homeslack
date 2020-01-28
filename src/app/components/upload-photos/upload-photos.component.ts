@@ -118,21 +118,18 @@ export class UploadPhotosComponent implements OnInit, OnDestroy {
     }
   }
 
-  showPreview(event: any) {
+  startUpload(event: any) {
+    console.log("Event" + event);
     if (event && event.target && event.target.files) {
+      console.log("Event target files" + event.target.files);
       let files = event.target.files;
       for (let i = 0; i < files.length; i++) {
-        this.mFiles.push(files.item(i));
+        // this.mFiles.push(files.item(i));
+        this.mImageService.uploadImageToStorage(files);
       }
     }
     
   }
-
-  onFindPhoto(event){
-    console.log("button clicked");
-  }
-
-
   onClickSelectPhotos(){
 
   }

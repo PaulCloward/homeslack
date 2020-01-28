@@ -16,7 +16,9 @@ export class ImageService {
 
   constructor(private mFirestore: AngularFirestore, private mStorage:AngularFireStorage, private mAuth:AngularFireAuth) { 
     mAuth.authState.subscribe(user => {
+      if(user){
       this.userUID = user.uid;
+      }
     })
   }
 
