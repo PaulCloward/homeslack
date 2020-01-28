@@ -1,0 +1,61 @@
+<div class="slider-container">
+  <div class="items">
+      <div class="item" *ngFor="let image of images; let i = index">
+          
+        <!-- Normal Photo Display -->
+        <div [hidden]="mPhotoInEditMode == i" class="imagebox" (mouseenter)="onThumbnailHover(i)" (mouseleave)="onThumbnailHover(-1)" [@fadeInOut]>
+            <div class="container-icon-delete" *ngIf="mImageHovered == i">
+            <i class="material-icons icon-delete">
+                delete_outline
+            </i>
+            </div>
+            <div class="container-icon-edit" *ngIf="mImageHovered == i " (click)="onEditPhoto(i)">
+            <i class="material-icons icon-edit">
+                edit
+            </i>
+            </div> 
+            <img [src]="image.image_url" class="home-image img-fluid" [@fadeInOut]>
+            <span *ngIf="image.description" class="imagebox-desc">{{image.description}}</span>  
+          </div>
+
+          <!-- Edit mode for thumbnail -->
+          <div [hidden]="mPhotoInEditMode != i" class="editbox">
+            <div class="container-icon-cancel" (click)="onCancelEditPhoto(image)">
+                <i class="material-icons icon-cancel">
+                    close
+                </i>
+            </div>
+            <div class="container-icon-edit" (click)="onSaveEditOfPhoto(image)">
+                <i class="material-icons icon-edit">
+                   check
+                </i>
+            </div>
+            <div class="container-edit-mode">
+                <textarea class="textarea-note" maxlength="300" [(ngModel)]="image.note"></textarea>
+         
+            <div class="dropdown">
+                <button [hidden]="image.description != null" class="btn-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select <i class="material-icons icon-home">photo</i> label
+                </button>
+              <button [hidden]="image.description == null" class="btn-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 {{image.description}}
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Bedroom')">Bedroom</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Master Bedroom')">Master Bedroom</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Garage')">Garage</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Bathroom')">Bathroom</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Backyard')">Backyard</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Frontyard')">Frontyard</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Roof')">Roof</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Basement')">Basement</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Living Room')">Living Room</a>
+                <a class="dropdown-item" (click)="onClickPhotoDescription('Other')">Other</a>
+              </div>
+            </div>
+          </div> 
+          </div>
+          
+      </div>
+  </div>
+</div>

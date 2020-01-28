@@ -73,6 +73,8 @@ import { AuthenticationService } from './services/authentication.service';
 import { UploadPhotosComponent } from './components/upload-photos/upload-photos.component';
 import { UploaderComponent } from './components/uploader/uploader.component';
 import { UploadTaskComponent } from './components/uploader-task/uploader-task.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -153,7 +155,9 @@ const appRoutes: Routes = [
     ImageListComponent,
     UploadPhotosComponent,
     UploaderComponent,
-    UploadTaskComponent
+    UploadTaskComponent,
+    ImageSliderComponent,
+    PhotoSliderComponent
   ],
   imports: [
     BrowserModule,

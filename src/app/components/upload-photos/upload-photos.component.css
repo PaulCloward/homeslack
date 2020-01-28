@@ -8,44 +8,51 @@
 
 .label-upload-photos{
     font-family: 'Roboto', sans-serif;
-    font-size: 22px;
+    font-size: 1.4em;
     font-weight: 500;
     color: rgba(0,0,0,.9);
 }
 
 .right-container{
-    padding: 8em 0em;
+    padding: 8em 0em 4em 0em;   
+}
+
+.container-dropzone{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-upload-container-tall, .image-upload-container-small{
     border-radius: 10px;
-    border: 2px dotted lightgray;
-    background-color: #F6F8FB;
+    background-color: #04A3C8; 
     margin-top: .2em;
-    
-    width: 100%;
+    margin-left: 0em;
+    margin-right: 0em;
+    padding: 0em 2em;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 1px 1px 2px rgba(0,0,0,.3);
 }
 
-.image-upload-container-tall{
+/* .image-upload-container-tall{
     height: 24em;
 }
 
 .image-upload-container-small{
-    height: 14em;
-}
+    height: 18em;
+} */
 
-
-.image-upload-container:hover{
+.image-upload-container-small:hover, .image-upload-container-tall:hover{
     box-shadow: 3px 3px 8px rgba(0,0,0,.3);
     opacity: .9;
 }
 
 .at-least{
-    color: rgba(0,0,0,1);
+    color: white;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
@@ -76,14 +83,14 @@
 }
 
 .label-drag-add-drop{
-    color: #000;
-    font-size: 1.6em;
+    color: white;
+    font-size: 1.1em;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
 }
 
 .label-or{
-    color: #000;
+    color: white;
     font-size: 1.2em;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
@@ -95,75 +102,16 @@
     list-style-type: none;
 }
 
-.icon-collections{
+.icon-photo{
     margin-left: .5em;
-    color: rgb(68, 197, 242);
-}
-
-.items{
-    display: flex;
-    overflow-x: auto;
-    z-index: 2;
-    margin-left: 2em;
-    margin-right: 2em;
-}
-
-.items::-webkit-scrollbar{
-    display: none;
-}
-
-.items .item{
-    min-width: 250px; 
-    height: 300px;
-    background: red;
-    margin: 10px;
-}
-
-.imagebox {
-    background: black;
-    padding: 0px;
-    position: relative;
-    text-align: center;   
-}
-  
-  .imagebox img {
-    opacity: 1;
-    transition: 0.5s opacity;
-  }
-  
-  .imagebox .imagebox-desc {
-    background-color: rgba(0, 0, 0, 0.6);
-    bottom: 0px;
     color: white;
-    font-size: 1.2em;
-    left: 0px;
-    padding: 10px 15px;
-    position: absolute;
-    transition: 0.5s padding;
-    text-align: center;
-    width: 100%;
+}
 
-  }
-  
-  .imagebox:hover img {
-    opacity: 0.7;
-  }
-  
-  .imagebox:hover .imagebox-desc {
-    padding-bottom: 10%;
-  }
-  
-  .home-image{
-    min-width: 250px; 
-    height: 300px;
-  }
 
-  .home-image:hover{
-      opacity: .7;
-  }
 
   .btn-next{
     margin-top: 2em;
+    margin-right: 2em;
     color: white;
     background-color: rgb(68, 197, 242);
     border: none;
@@ -176,6 +124,7 @@
 
 .btn-next-disabled{
     margin-top: 2em;
+    margin-right: 2em;
     color:rgba(255,255,255,.5);
     background-color:rgba(68, 197, 242,.5);
     border: none;
@@ -190,23 +139,56 @@
 
 .left-image-container{
     position: relative;
-    width: 100%;
+    border-radius: 1em;
+    
 }
 
-.left-image{
+
+
+.dropzone-background-image, .dropzone-background-image-hovered{
     width: 100%;
+    border-radius: 1em;
+    opacity: .8;
 }
+
+.dropzone-background-image-hovered{
+    opacity: .6;
+}
+
 
 .left-image-overlay-text{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
     z-index: 2;
-    color: white;
+    /* color: white;
     font-weight: bold;
     font-size: 2em;
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto',sans-serif; */
 }
 
+input[type="file"] {
+    display: none;
+}
 
+.custom-file-upload {
+    border: 1px solid #ccc;
+    /* display: inline-block; */
+    padding: 6px 20px;
+    cursor: pointer;
+    background-color: rgb(68, 197, 242);
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.icon-upload{
+    color: white;
+    margin-left: .4em;
+}
