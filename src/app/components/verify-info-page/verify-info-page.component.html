@@ -117,21 +117,25 @@
                             <img src="../../../assets/img/year_built.png" class="icon-label img-fluid" placement="top"  matTooltip="{{yearBuildHint}}"/>
                         </div>
                         <div class="col-9">
+                            <div class="label-property" *ngIf="sellerProperty.year == null"> 
+                                Year Build
+                            </div>
                             <div class="label-property" (click)="editModeYearBuild = !editModeYearBuild" *ngIf="sellerProperty.year">
                                 Year Build <span class="question-mark-circle rounded-circle">?</span>
                             </div>
                             <div *ngIf="!editModeYearBuild  && sellerProperty.year" class="label-property-result">{{sellerProperty.year}}</div>
                             <div *ngIf="editModeYearBuild || sellerProperty.year == null" class="label-hint">Year the House was Built?</div>
-                            <div *ngIf="editModeYearBuild || sellerProperty.year == null " class="dropdown">
-                                <button [hidden]="sellerProperty.year != null" class="btn btn-dropdown dropdown-toggle" type="button">
+                            
+                            <div class="dropdown" *ngIf="editModeYearBuild || sellerProperty.year == null">
+                                <button *ngIf="sellerProperty.year == null" class="btn btn-dropdown dropdown-toggle" type="button">
                                     Year the house was built?
                                 </button>
-                              <button [hidden]="sellerProperty.year == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <button *ngIf="sellerProperty.year" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                  {{sellerProperty.year}}
                               </button>
                               <div class="dropdown-menu" >
                                 <div *ngFor="let year of arrayRange(171,2020)">
-                                    <a class="dropdown-item" (click)="sellerProperty.year = year">{{year}}</a>
+                                    <a class="dropdown-item" (click)="onClickYearBuild(year)">{{year}}</a>
                                 </div>
 
 
@@ -315,21 +319,21 @@
                             </div>
 
                             <!-- While In Edit Mode Tags -->
-                            <div *ngIf="editModeGarage" class="label-hint">Max # of Cars that Fit in Garage?</div>
+                            <div *ngIf="editModeGarage || sellerProperty.garage == null"  class="label-hint">Max # of Cars that Fit in Garage?</div>
 
-                            <div class="dropdown" *ngIf="editModeGarage">
+                            <div class="dropdown" *ngIf="editModeGarage || sellerProperty.garage == null">
                             <button *ngIf="sellerProperty.garage == null" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonGarage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              #  Selection
+                              # of cars that Garage fits
                             </button>
                             <button *ngIf="sellerProperty.garage" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonGarage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               {{sellerProperty.garage}} car
                             </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonGarage">
-                            <a class="dropdown-item" (click)="onClickGarage(1)">1 car</a>
-                            <a class="dropdown-item" (click)="onClickGarage(2)">2 car</a>
-                            <a class="dropdown-item" (click)="onClickGarage(3)">3 car</a>
-                            <a class="dropdown-item" (click)="onClickGarage(4)">4 car</a>
-                            <a class="dropdown-item" (click)="onClickGarage(5)">5+ car</a>
+                            <a class="dropdown-item" (click)="onClickGarageSize(1)">1 car</a>
+                            <a class="dropdown-item" (click)="onClickGarageSize(2)">2 car</a>
+                            <a class="dropdown-item" (click)="onClickGarageSize(3)">3 car</a>
+                            <a class="dropdown-item" (click)="onClickGarageSize(4)">4 car</a>
+                            <a class="dropdown-item" (click)="onClickGarageSize(5)">5+ car</a>
                           </div>
                         </div>
                         </div>
@@ -341,8 +345,8 @@
                             <img src="../../../assets/img/Pool.png" class="icon-label img-fluid" placement="top"  matTooltip="{{poolHint}}"/>
                         </div>
                         <div class="col-9">
-                            <div class="label-property" (click)="editModePool = !editModePool">
-                                Pool <span class="question-mark-circle rounded-circle" [hidden]="sellerProperty.pool == null">?</span>
+                            <div class="label-property">
+                                Pool <span class="question-mark-circle rounded-circle"  (click)="editModePool = !editModePool" [hidden]="sellerProperty.pool == null">?</span>
                             </div>
                             <div *ngIf="!editModePool  && sellerProperty.pool == true" class="label-property-result">Yes</div>
                             <div *ngIf="!editModePool  && sellerProperty.pool == false" class="label-property-result">No</div>
@@ -371,10 +375,11 @@
                             <img src="../../../assets/img/hot_tub.png" class="icon-label img-fluid" placement="top"  matTooltip="{{hotTubHint}}"/>
                         </div>
                         <div class="col-9" >
-                            <div class="label-property"  (click)="editModeHotTub = !editModeHotTub">
-                                Hot Tub <span class="question-mark-circle rounded-circle">?</span>
+                            <div class="label-property">
+                                Hot Tub <span class="question-mark-circle rounded-circle" (click)="editModeHotTub = !editModeHotTub" [hidden]="sellerProperty.hot_tub == null">?</span>
                             </div>
-                            <div *ngIf="!editModeHotTub" [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == false, 'label-property-result': true}">{{sellerProperty.hot_tub}}</div>
+                            <div *ngIf="!editModeHotTub  && sellerProperty.hot_tub == true" class="label-property-result">Yes</div>
+                            <div *ngIf="!editModeHotTub  && sellerProperty.hot_tub == false" class="label-property-result">No</div>
                             <div *ngIf="editModeHotTub" class="label-hint label-hint-above-buttons">In-Ground Hot Tub?</div>
                             <div class="row mt-2 btn-row-margin-left" *ngIf="editModeHotTub">
 
@@ -389,7 +394,7 @@
 
                             </div>
                             <div *ngIf="sellerProperty.hot_tub == true" style="width: 100%">
-                                    <textarea class="input-edit-property" [(ngModel)]="sellerProperty.hot_tub" placeholder="Describe Hot Tub condition..." style="resize: none" type="text" maxlength="100"></textarea>
+                                    <textarea class="input-edit-property" [(ngModel)]="sellerProperty.hot_tub_description" placeholder="Describe Hot Tub condition..." style="resize: none" type="text" maxlength="100"></textarea>
                             </div>
                         </div>
                     </div>

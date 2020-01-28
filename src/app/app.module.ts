@@ -110,7 +110,7 @@ const appRoutes: Routes = [
   { path: 'terms', component: TermsComponent},
   { path: 'upload-photos', component: UploadPhotosComponent},
   { path: 'uploader', component: UploaderComponent},
-  { path: 'image', component:ImagesComponent, children:[
+  { path: 'images', component:ImagesComponent, children:[
       { path:'upload', component: ImageComponent},
       { path:'list', component:ImageListComponent}
   ] 

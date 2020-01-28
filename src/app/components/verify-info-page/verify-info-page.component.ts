@@ -99,6 +99,42 @@ export class VerifyInfoPageComponent implements OnInit {
       this.lng = this.sellerProperty.longitude;
     }
 
+    if(this.sellerProperty.living_square_feet){
+      this.editModeTotalLivingArea = false;
+    }else{
+      this.editModeTotalLivingArea = true;
+    }
+
+    if(this.sellerProperty.year){
+      this.editModeYearBuild = false;
+    }else{
+      this.editModeYearBuild = true;
+    }
+
+    if(this.sellerProperty.lot_size && this.sellerProperty.lot_size_unit){
+      this.editModeLotSize = false;
+    }else{
+      this.editModeLotSize = true;
+    }
+
+    if(this.sellerProperty.baths){
+      this.editModeBathrooms = false;
+   }else{
+       this.editModeBathrooms = true;
+   }
+
+      if(this.sellerProperty.beds){
+         this.editModeBedrooms = false;
+      }else{
+          this.editModeBedrooms = true;
+      }
+
+      if(this.sellerProperty.basement){
+        this.editModeBasement = false;
+     }else{
+         this.editModeBasement = true;
+     }
+    
     if(this.sellerProperty.garage){
       this.editModeGarage = false;
     }else{
@@ -123,20 +159,14 @@ export class VerifyInfoPageComponent implements OnInit {
         this.editModeCooling = true;
       }
 
-      if(this.sellerProperty.basement){
-         this.editModeBasement = false;
-      }else{
-          this.editModeBasement = true;
-      }
+
   }
 
   arrayRange(n: number, startFrom: number): number[] {
     return [...Array(n).keys()].map(i => startFrom - i);
   }
 
-  onClickBasementCompletion(completion:number){
-    this.sellerProperty.basement_completed = completion;
-  }
+
   onClickNext(){
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mRouter.navigate(['/listing-time']);
@@ -149,17 +179,22 @@ export class VerifyInfoPageComponent implements OnInit {
 
   onClickBasement(basementExists:boolean){
     this.sellerProperty.basement = basementExists;
+    this.editModeBasement = false;
   }
 
-
+  onClickBasementCompletion(completion:number){
+    this.sellerProperty.basement_completed = completion;
+  }
 
   onClickPool(poolExists){
     this.sellerProperty.pool = poolExists;
+    this.editModePool = false;
   }
 
 
   onClickHotTub(isHotTub:boolean){
     this.sellerProperty.hot_tub = isHotTub;
+    this.editModeHotTub = false;
   }
 
 
@@ -169,23 +204,28 @@ export class VerifyInfoPageComponent implements OnInit {
 
   onClickBeds(bedCount:number){
     this.sellerProperty.beds = bedCount;
+    this.editModeBedrooms = false;
   }
 
 
   onClickBaths(bathCount){
     this.sellerProperty.baths = bathCount;
+    this.editModeBathrooms = false;
   }
-
-
-onClickGarage(carGarageSize:number){
-  this.sellerProperty.garage = carGarageSize;
-}
 
 onClickCooling(coolingType:string){
   this.sellerProperty.cooling_type = coolingType;
+  this.editModeCooling = false;
+}
+onClickGarageSize(carFitInGarage:number){
+  this.sellerProperty.garage = carFitInGarage;
+  this.editModeGarage = false;
 }
 
-
+onClickYearBuild(year){
+  this.sellerProperty.year = year;
+  this.editModeYearBuild = false;
+}
 
 /*---------------------------------------------------------------*/
 

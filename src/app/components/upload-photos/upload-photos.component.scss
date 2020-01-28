@@ -1,3 +1,10 @@
+
+// Required Core Stylesheet
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
+// Optional Theme Stylesheet
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+
 .left-container{
     border-right: 1px solid #eaeaea;
     width: 100%;

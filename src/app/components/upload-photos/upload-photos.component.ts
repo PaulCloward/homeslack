@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { ImageService } from '../../services/image.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
+import Glide from '@glidejs/glide';
+
 
 @Component({
   selector: 'app-upload-photos',
   templateUrl: './upload-photos.component.html',
-  styleUrls: ['./upload-photos.component.css'],
+  styleUrls: ['./upload-photos.component.scss'],
   animations: [
     trigger('changeState', [
       state('state1', style({
@@ -69,7 +71,29 @@ export class UploadPhotosComponent implements OnInit, OnDestroy {
     });
   }
 
+  homePictures:any;
+
   ngOnInit() {
+    this.homePictures = new Glide(".glide", {
+      // options
+      startAt: 0,
+      perView: 3
+  })
+  
+  this.homePictures.mount()
+  
+  }
+
+  clickSlide(){
+
+    this.homePictures.update({
+      type: 'carousel',
+      focusAt: 'center',
+      startAt: 1,
+      perView: 4
+    });
+
+    this.homePictures.mount()
   }
 
   ngOnDestroy(){

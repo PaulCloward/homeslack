@@ -67,10 +67,10 @@
                 (dropped)="onDrop($event)"
                 [class.hovering]="isHovering">
                     <div class="container-add-labels">
-                        <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+                        <input class="file-input" type="file"  value="Add" placeholder="test" (change)="showPreview($event.target.files)">
                         <div class="label-drag-add-drop">Drag and Drop photos here</div>
                         <div class="label-or">or</div>
-                        <button class="btn-add" (click)="onFindPhoto(event)">
+                        <button class="btn-add" (click)="clickSlide()">
                         Select  <i class="material-icons" style="margin-left: 8px; align-self: center;">cloud_upload</i>
                         </button>
                         <div style="display: flex; align-items: center; margin-top: 2em; justify-content: center;">
@@ -90,7 +90,7 @@
 
                 
                
-                <div style="position: relative;width: 100%; height: 20em;  margin-top: 4em; border: 2px solid blue">
+                <div [hidden]="true" style="position: relative;width: 100%; height: 20em;  margin-top: 4em; border: 2px solid blue">
                     <img style="width: 100%; height: 100%;" src="../../../assets/img/taking_photo_blue.jpg" />
                     <div style="position: absolute; top: 0%; display: block; overflow-x: scroll;">
                         <div class="items">
@@ -103,9 +103,26 @@
                             </div>
                         </div>
                     </div>
-                            
-            
                 </div>
+
+                <div class="glide">
+                        <div data-glide-el="track" class="glide__track">
+                          <ul class="glide__slides">
+
+                            <li *ngFor="let image of mImageList" class="glide__slide">
+                            
+                                    <img style="height: 200px; width: 200px" [src]="image.image_url" class="img-fluid">
+
+                                        
+                                        
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="glide__arrows" data-glide-el="controls">
+                                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+                                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+                              </div>
+                      </div>
               
                 
                 <div *ngFor="let file of mFiles">
