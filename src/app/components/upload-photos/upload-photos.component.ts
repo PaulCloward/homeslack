@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { ImageService } from '../../services/image.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
-import Glide from '@glidejs/glide';
-
+import {TweenMax, Power2, TimelineLite, TimelineMax} from "gsap";
 
 @Component({
   selector: 'app-upload-photos',
@@ -38,6 +37,7 @@ import Glide from '@glidejs/glide';
 export class UploadPhotosComponent implements OnInit, OnDestroy {
 
   isHovering: boolean;
+  tl:TimelineMax;
 
   mFiles: File[] = [];
   mImageList: any[] = [];
@@ -71,29 +71,33 @@ export class UploadPhotosComponent implements OnInit, OnDestroy {
     });
   }
 
-  homePictures:any;
 
   ngOnInit() {
-    this.homePictures = new Glide(".glide", {
-      // options
-      startAt: 0,
-      perView: 3
-  })
-  
-  this.homePictures.mount()
-  
-  }
 
-  clickSlide(){
+    this.tl = new TimelineMax({paused:true});
 
-    this.homePictures.update({
-      type: 'carousel',
-      focusAt: 'center',
-      startAt: 1,
-      perView: 4
-    });
+    this.tl.from("nav", 1, {
+      x: 100,
+      display: 'none',
+      ease: Power2.easeOut,
+      delay: 0
+  });
 
-    this.homePictures.mount()
+  this.tl.to("circle.one", 3, {
+      scale: 1,
+      x: 0,
+      y: -1300,
+      ease: Power2.easeOut
+  }, "-=1");
+
+
+  this.tl.to("circle.two", 4, {
+      scale: 1.8,
+      x: 2900,
+      y: -500,
+      ease: Power2.easeOut
+  }, "-=3");
+
   }
 
   ngOnDestroy(){
@@ -135,8 +139,18 @@ export class UploadPhotosComponent implements OnInit, OnDestroy {
   }
 
   clickNextPage(){
-    //console.log(this.home);
-    //this._homeService.updateHomeProperties(this.home);
     this.mRouter.navigate(['/confirm-listing']);
   }  
+
+
+
+  onClickTest(){
+    
+  
+
+   
+        this.tl.play(); 
+    
+
+  }
 }

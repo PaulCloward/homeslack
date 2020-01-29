@@ -1,4 +1,7 @@
-<div class="container-fluid top-image-container" >
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"> </script>
+
+
+<!-- <div class="container-fluid top-image-container" >
         <div class="row" >
           <div class="col-12">
             <img src="../../../assets/img/img_banners/9.jpg" class="img-under-nav"/>
@@ -32,18 +35,10 @@
     
           </div>
         </div>
-</div>
+</div> -->
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-3" style="padding: 0" [hidden]="true">
-            <div class="left-container">
 
-                <div class="left-image-container">
-                    <img class="left-image" src="../../../assets/img/taking_photo_blue.jpg" />
-                    <div class="left-image-overlay-text">Placeholder</div>
-                </div>
-
+      
                 <!-- The pictures uploaded will be used by investors to assess the condition of your property.      
                 Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.
                 <li class="tip-item"></li>Hold your camera steady</li>
@@ -52,48 +47,36 @@
                 <li class="tip-item">Minimum of 10 photos</li> -->
                
             
-            </div>
-        </div>
-        <div class="col-12" style="padding: 0">
+        <div style="margin: auto; background: green;width : 100%; height: 100%;">
 
-            <div class="right-container">
-                <!-- <div class="label-upload-photos" style="margin: 0em 2em">
-                    Upload photos of your home
-                </div> -->
-                <!-- <div [ngClass]="{'image-upload-container-tall': (mImageList == null || mImageList.length == 0),
-                    'image-upload-container-small': mImageList.length > 0}"
-                dropzone
-                (hovered)="toggleHover($event)"
-                (dropped)="onDrop($event)"
-                [class.hovering]="isHovering" style="margin: 0em 2em !important">
-                    <div class="container-add-labels">
-                        
-                        <div class="label-drag-add-drop">Drag and Drop photos here</div>
-                        <div class="label-or">or</div>
-                    
-                    
-                        <label class="custom-file-upload">
-                            <input type="file" accept="image/*" (change)="onDrop($event.target.files)"/>
-                            Select Photo(s) <i class="material-icons icon-upload">cloud_upload</i>
-                        </label>
-                        <div style="display: flex; align-items: center; margin-top: 2em; justify-content: center;">
-                            <div class="at-least" *ngIf="mImageList != null && mImageList.length >= 10">
-                                Feel free to move on or keep adding photos
-                                <br>
-                                {{ mImageList.length }} photos uploaded 
-                            </div>
-                            <div class="at-least" *ngIf="mImageList != null && mImageList.length < 10">
-                                {{ 10 - mImageList.length }} more photos needed
-                            </div>
-                            <div class="at-least" *ngIf="mImageList == null">
-                                {{ 10 }} more photos needed
-                            </div>
-                            <i class="material-icons icon-photo">collections</i>
-                        </div>
-                    </div>
-                </div> -->
-                {{isHovering}}
-                <div class="left-image-container" style="margin: 0em 4em 4em 4em; background-color: black;">
+                <svg>
+                    <defs>
+                        <clipPath id="clipPath">
+                            <circle class="one" cx="200" cy="400"  r="1300" transform="scale(0)"/>
+                            <circle class="two" cx="-2200" cy="1900"  r="800" transform="scale(0)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+
+                <button class="btn-hint" id="open" (click)="onClickTest()">Open Nav</button>
+                
+                <div class="wrapper">
+                    <nav>
+                        <ul>
+                            <li><a href="#">Holy</a></li>
+                            <li><a href="#">Big</a></li>
+                            <li><a href="#">Balls</a></li>
+                            <li><a href="#">Shadow</a></li>
+                            <li><a href="#">Cool</a></li>
+                        </ul>
+
+                        <p>asdasd</p>
+                    </nav>
+                </div>
+
+                <div class="right-container" [hidden]="true">
+               
+                <div class="dropzone-image-container">
                     <img [ngClass]="{'dropzone-background-image': isHovering == null || isHovering == false, 
                 'dropzone-background-image-hovered': isHovering}" src="../../../assets/img/taking_photo_blue.jpg" />
                     <div class="left-image-overlay-text">
@@ -106,15 +89,13 @@
                             
                             <div class="label-drag-add-drop">Drag and Drop photos here</div>
                             <div class="label-or">or</div>
-                            <!-- <button class="btn-add" (click)="onFindPhoto(event)">
-                            Select  <i class="material-icons" style="margin-left: 8px; align-self: center;">cloud_upload</i>
-                            </button> -->
+                         
                         
                             <label class="custom-file-upload">
                                 <input type="file" accept="image/*" (change)="onDrop($event.target.files)"/>
                                 Select Photo(s) <i class="material-icons icon-upload">cloud_upload</i>
                             </label>
-                            <div style="display: flex; align-items: center; margin-top: 2em; justify-content: center;">
+                            <div style="display: flex; align-items: center; margin-top: .5em; justify-content: center;">
                                 <div class="at-least" *ngIf="mImageList != null && mImageList.length >= 10">
                                     Feel free to move on or keep adding photos
                                     <br>
@@ -139,12 +120,12 @@
                 <div *ngFor="let file of mFiles">
                     <uploader-task [file]="file"></uploader-task>
                 </div>
-                <div style="width: 100%; text-align: end;">
+                <div style="width: 100%; text-align: end; margin-bottom: 4em">
                     <button *ngIf="10 - mImageList.length <= 0"  class="btn-next" (click)="clickNextPage()">Next</button>
                     <button *ngIf="10 - mImageList.length > 0" class="btn-next-disabled" (click)="clickNextPage()" matTooltipPosition="above" matTooltip="Need to upload at least 10 photes before proceeding">Next</button>
                 </div>
+                
             </div>
         </div>
-    </div>
-</div>
+  
 <app-footer></app-footer>

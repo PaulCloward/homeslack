@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PropertyDetails } from '../../class/PropertyDetails';
 import { SellerPropertyService } from '../../services/seller-property.service';
 import { FirestoreService } from '../../services/firestore.service';
+import { CustomValidators } from 'ng2-validation';
 
 @Component({
    selector: 'app-fill-in-property-info-page',
@@ -68,71 +69,76 @@ export class FillInPropertyInfoPageComponent implements OnInit {
     })
 
       this.mFormAddressFields = this.mFormBuilder.group({
-        streetAddress: ['', [
+        streetAddress: [null, [
           Validators.required
         ]],
-        unitNumber: ['', [
-          Validators.required,
-          Validators.maxLength(6),
+        unitNumber: [null, [
+         
         ]],
-        city: ['', [
-          Validators.required,
-          Validators.pattern('[a-zA-Z]+')
-        ]],
-        state: ['', [
+        city: [null, [
           Validators.required,
           Validators.pattern('[a-zA-Z]+')
         ]],
-        zipCode: ['', [
+        state: [null, [
+          Validators.required,
+          Validators.pattern('[a-zA-Z]+')
+        ]],
+        zipCode: [null, [
           Validators.required
         ]]
       });
 
 
       this.mFormPropertyDetails = this.mFormBuilder.group({
-        livingSquareFeet: ['', [
-          Validators.required
-        ]],
-        lotSize: ['', [
+        livingSquareFeet: [null, [
           Validators.required,
-          Validators.maxLength(6),
+          CustomValidators.max(5)
         ]],
-        lotSizeUnit: ['', [
+        lotSize: [null, [
           Validators.required,
-          Validators.pattern('[a-zA-Z]+')
+          CustomValidators.max(6)
         ]],
-        year: ['', [
+        lotSizeUnit: [null, [
+          Validators.required
+        ]],
+        year: [null, [
           Validators.required,
-          Validators.pattern('[a-zA-Z]+')
+          CustomValidators.max(4)
         ]],
-        beds: ['', [
+        beds: [null, [
+          Validators.required,
+          CustomValidators.max(2)
+        ]],
+        baths: [null, [
+          Validators.required,
+          CustomValidators.max(2)
+        ]],
+        garage: [null, [
+          Validators.required,
+          CustomValidators.max(2)
+        ]],
+        basement: [null, [
           Validators.required
         ]],
-        baths: ['', [
-          Validators.required
-        ]],
-        garage: ['', [
-          Validators.required
-        ]],
-        basement: ['', [
-          Validators.required
-        ]],
-        pool_description: ['', [
+        poolDescription: [null, [
 
         ]],
-        cooling_type: ['', [
+        coolingType: [null, [
           Validators.required
         ]],
-        hot_tub_descriptions: ['', [
+        hotTub: [null, [
           Validators.required
         ]],
-        roof_age_range: ['', [
+        hotTubDescriptions: [null, [
+        
+        ]],
+        roofAge: [null, [
           Validators.required
         ]],
-        concerns_hvac_roofing_etc: ['', [
+        concernsHVAC: [null, [
           Validators.required
         ]],
-        concerns_other: ['', [
+        concernsOther: [null, [
           Validators.required
         ]],
 
@@ -156,8 +162,32 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           }
       });
 
+      this.mFormPropertyDetails.valueChanges.subscribe(propertyDetails => {
+
+        if(propertyDetails){
+
+          this.sellerProperty.living_square_feet= propertyDetails.livingSquareFeet;
+          this.sellerProperty.lot_size = propertyDetails.lotSize;
+          this.sellerProperty.beds= propertyDetails.beds;
+          this.sellerProperty.address.zip_code = propertyDetails.zipCode;
+
+
+          if(propertyDetails.unitNumber != null && propertyDetails.unitNumber != ''){
+            
+            if(propertyDetails.unitNumber.length > 6){
+              propertyDetails.unitNumber = propertyDetails.unitNumber.slice(0, 6);
+            }else{
+              this.sellerProperty.address.unit = propertyDetails.unitNumber;
+            }
+          }
+
+          this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
+          }
+      });
+
 
   }
+  
 
   arrayRange(n: number, startFrom: number): number[] {
     return [...Array(n).keys()].map(i => startFrom - i);

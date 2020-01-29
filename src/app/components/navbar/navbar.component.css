@@ -103,7 +103,7 @@
   min-width: 70%;
   /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
   z-index: 1;
-  overflow-y: scroll;
+  overflow-y: hidden;
   max-height: 14em;
   border: 1px solid white;
 

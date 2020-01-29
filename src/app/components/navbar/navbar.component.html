@@ -24,7 +24,7 @@
             <img src="../../../assets/img/avatar.png" class="profile-icon"/>
           </a>
           <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item">My Profile</a>
+            <a class="dropdown-item" [routerLink]="['./seller-account']">My Profile</a>
             <a class="dropdown-item">Messages</a>
             <a class="dropdown-item">Add New Home</a>
             <a class="dropdown-item" (click)="logout()">Sign Out</a>
