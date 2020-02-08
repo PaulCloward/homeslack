@@ -67,6 +67,7 @@
             <div class="fill-in-page-title">
                 Let's Fill Out Your <span class="company-color">Home Information!</span>
             </div>
+            
         </div>
     </div>
     <div class="row">
@@ -99,19 +100,19 @@
                     <div class="col">
                         <div class="label-property">State</div>
 
-                        <div class="dropdown">
-                          <button [hidden]="sellerProperty.address.state != null" class="btn btn-dropdown dropdown-toggle" type="button">
-                              Select State
-                          </button>
+   
+                      <div class="dropdown">
+                            <button [hidden]="sellerProperty.address.state != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select State
+                            </button>
                         <button [hidden]="sellerProperty.address.state == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           {{sellerProperty.address.state}}
+                                {{sellerProperty.address.state}}
                         </button>
-                        <div class="dropdown-menu">
-                          <div *ngFor="let state of statesInAmericaArray">
-                              <a class="dropdown-item" (click)="sellerProperty.address.state = state">{{state}}</a>
-                          </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonState">
+                                <a class="dropdown-item" *ngFor="let state of statesInAmericaArray" (click)="sellerProperty.address.state = state">{{state}}</a>
                         </div>
-                      </div>
+
+                        </div>
                     </div>
                     <div class="col">
                         <div class="label-property">Zip Code</div>
@@ -162,21 +163,18 @@
                             </div>
                             <div class="label-hint">Year the House was Built?</div>
                             <!-- <input class="input-edit-property" formControlName="sellerProperty.year" type="number" placeholder="year" max="4"/> -->
+
                             <div class="dropdown">
-                                <button [hidden]="sellerProperty.year != null" class="btn btn-dropdown dropdown-toggle" type="button">
-                                    Year the house was built?
+                                <button [hidden]="sellerProperty.year != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Select Year
                                 </button>
                               <button [hidden]="sellerProperty.year == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 {{sellerProperty.year}}
+                                 {{sellerProperty.year}} 
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonYear">
-                                <div *ngFor="let year of arrayRange(171,2020)">
-                                    <a class="dropdown-item" (click)="sellerProperty.year = year">{{year}}</a>
-                                </div>
-
-
+                                <a class="dropdown-item" *ngFor="let year of arrayRange(171,2020)" (click)="sellerProperty.year = year">{{year}}</a>
                               </div>
-
+    
                             </div>
                         </div>
                     </div>

@@ -278,8 +278,8 @@ agm-map {
 }
 
 .dropdown-menu{
-    display: none;
-    position: absolute;
+    /* display: none;
+    position: absolute; */
     top: 36px;
     background-color: #fff;
     min-width: 100%;
@@ -294,7 +294,7 @@ agm-map {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
+    /* display: block; */
   }
 
   .dropdown-menu a:hover {
@@ -304,7 +304,7 @@ agm-map {
   }
 
   .dropdown:hover .dropdown-menu {
-    display: block;
+    /* display: block; */
   }
 
   .dropdown:hover .dropbtn {
