@@ -85,7 +85,7 @@ export class HomeService {
 
     let headers = new Headers();
     headers.append("Accept", "application/json");
-    headers.append("apikey", "  f2e58caae3c631c04c806aa292c23c5c");
+    headers.append("apikey", " 55058fbb3f5d22d230583e02db0ab5ec");
     return this._http.get(_url,{headers:headers})
       .map((res: Response) => res.json());
   }

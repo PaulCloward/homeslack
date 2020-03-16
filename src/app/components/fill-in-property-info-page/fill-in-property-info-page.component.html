@@ -62,6 +62,13 @@
             </div>
         </div>
     </div>
+    <!-- <div class="row">
+        <div class="col-8 offset-2">
+            <div class="fill-in-page-title">
+                 {{ sellerProperty | json  }}
+            </div>
+        </div>
+    </div> -->
     <div class="row d-block d-sm-none" style="margin-top: 2em">
         <div class="col-12">
             <div class="fill-in-page-title">
@@ -116,7 +123,7 @@
                     </div>
                     <div class="col">
                         <div class="label-property">Zip Code</div>
-                        <input [ngStyle]="{'border': (zipCode.invalid && zipCode.touched) ? '.5px solid red' : '.5px solid gray'}" class="input-edit-property" type="text" (keydown)="onKeyDown($event)" maxlength="6"  formControlName="zipCode" />
+                        <input [ngStyle]="{'border': (zipCode.invalid && zipCode.touched) ? '.5px solid red' : '.5px solid gray'}" class="input-edit-property" type="text" maxlength="6"  formControlName="zipCode" />
                         <div class="error-hint" *ngIf="zipCode.invalid && zipCode.touched">
                             Please enter a valid zip code
                         </div>
@@ -148,7 +155,7 @@
                                 Total Living Area
                             </div>
                             <div class="label-hint">Livable Sqft # in Home?</div>
-                            <input class="input-edit-property" type="text" placeholder="Liveable Sqft #" (keydown)="onKeyDown($event)" maxlength="6"/>
+                            <input class="input-edit-property" type="text" placeholder="Liveable Sqft #" maxlength="6"/>
                         </div>
                     </div>
                 </div>

@@ -80,7 +80,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           Validators.pattern('[a-zA-Z]+')
         ]],
         state: [null, [
-          Validators.required,
+          
           Validators.pattern('[a-zA-Z]+')
         ]],
         zipCode: [null, [
@@ -129,7 +129,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
         hotTub: [null, [
           Validators.required
         ]],
-        hotTubDescriptions: [null, [
+        hotTubDescription: [null, [
         
         ]],
         roofAge: [null, [
@@ -149,7 +149,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
         if(addressForm){
 
           this.sellerProperty.address.street = addressForm.streetAddress;
-          this.sellerProperty.address.state = addressForm.state;
+          //this.sellerProperty.address.state = addressForm.state;
           this.sellerProperty.address.city = addressForm.city;
           this.sellerProperty.address.zip_code = addressForm.zipCode;
 
@@ -211,6 +211,10 @@ export class FillInPropertyInfoPageComponent implements OnInit {
 
   get zipCode() {
     return this.mFormAddressFields.get('zipCode');
+  }
+
+  onKeyDown(event){
+
   }
 
   onSelectBathCount(bathCount:number){
