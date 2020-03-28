@@ -1,7 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"> </script>
 
 
-<!-- <div class="container-fluid top-image-container" >
+<div class="container-fluid top-image-container" >
         <div class="row" >
           <div class="col-12">
             <img src="../../../assets/img/img_banners/9.jpg" class="img-under-nav"/>
@@ -35,46 +35,50 @@
     
           </div>
         </div>
-</div> -->
+</div>
 
 
-      
-                <!-- The pictures uploaded will be used by investors to assess the condition of your property.      
-                Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.
-                <li class="tip-item"></li>Hold your camera steady</li>
-                <li class="tip-item">Good lighting</li>
-                <li class="tip-item">Take horizontal photos (landscape) </li>
-                <li class="tip-item">Minimum of 10 photos</li> -->
-               
-            
-        <div style="margin: auto; background: green;width : 100%; height: 100%;">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <div class="label-upload-photos">
+                    The pictures uploaded will be used by investors to assess the condition of your property.      
+                    Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.
+                </div>
+                <ol>
+                    <li class="tip-item">Hold your camera steady</li>
+                    <li class="tip-item">Good lighting</li>
+                    <li class="tip-item">Take horizontal photos (landscape) </li>
+                    <li class="tip-item">Minimum of 10 photos</li> 
+                </ol>
+            </div>
+        </div>
 
-                <svg>
+                <!-- <svg>
                     <defs>
                         <clipPath id="clipPath">
                             <circle class="one" cx="200" cy="400"  r="1300" transform="scale(0)"/>
                             <circle class="two" cx="-2200" cy="1900"  r="800" transform="scale(0)"/>
                         </clipPath>
                     </defs>
-                </svg>
+                </svg> -->
 
-                <button class="btn-hint" id="open" (click)="onClickTest()">Open Nav</button>
+                <!-- <button class="btn-hint" id="open" (click)="onClickTest()">Open Nav</button>
                 
                 <div class="wrapper">
                     <nav>
                         <ul>
                             <li><a href="#">Holy</a></li>
                             <li><a href="#">Big</a></li>
-                            <li><a href="#">Balls</a></li>
+                            <li><a href="#">Tall</a></li>
                             <li><a href="#">Shadow</a></li>
                             <li><a href="#">Cool</a></li>
                         </ul>
 
                         <p>asdasd</p>
                     </nav>
-                </div>
+                </div> -->
 
-                <div class="right-container" [hidden]="true">
+                <div class="row">
                
                 <div class="dropzone-image-container">
                     <img [ngClass]="{'dropzone-background-image': isHovering == null || isHovering == false, 
@@ -125,7 +129,7 @@
                     <button *ngIf="10 - mImageList.length > 0" class="btn-next-disabled" (click)="clickNextPage()" matTooltipPosition="above" matTooltip="Need to upload at least 10 photes before proceeding">Next</button>
                 </div>
                 
-            </div>
+            
         </div>
   
 <app-footer></app-footer>

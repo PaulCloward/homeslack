@@ -72,20 +72,20 @@
           <div [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': selectedHomeDescription == null}">
               <div class="form-check">
               <label class="container">Property is vacant
-              <input type="radio" value="vacant" name="homeDescription" [(ngModel)]="homeDescription" (click)="onClickHomeDescription(homeDescriptionPropertyIsVacant)">
+              <input type="radio" value="vacant" (click)="onClickHomeDescription(homeDescriptionPropertyIsVacant)">
               <span class="checkmark"></span>
             </label>
             </div>
             <div class="form-check">
               <label class="container">Property is owner occupied
-              <input type="radio" value="ownerOccupied" name="homeDescription" [(ngModel)]="homeDescription" (click)="onClickHomeDescription(homeDescriptionPropertyIsOwnerOccupied)">
+              <input type="radio" value="ownerOccupied" (click)="onClickHomeDescription(homeDescriptionPropertyIsOwnerOccupied)">
               <span class="checkmark"></span>
             </label>
             </div>
             <div class="form-check">
               <label class="container">Property is tenant occupied (rented out)
               <!-- <input type="radio" value="tenantOccupied" name="homeDescription" [(ngModel)]="homeDescription" (click)="onClickHomeDescription(homeDescriptionPropertyIsTenantOccupied)"> -->
-              <input type="radio" value="tenantOccupied" name="homeDescription" [(ngModel)]="homeDescription" (click)="onClickHomeDescription(homeDescriptionPropertyIsTenantOccupied)">
+              <input type="radio" value="tenantOccupied" (click)="onClickHomeDescription(homeDescriptionPropertyIsTenantOccupied)">
               <span class="checkmark"></span>
             </label>
             </div>

@@ -1,1 +1,11 @@
- 
+.input-edit-property {
+    width: 100%;
+    border: .5px solid gray;
+    border-radius: .5em;
+    padding: .5em;
+    outline-color: red;
+    outline: none;
+    font-family: Century Gothic, sans-serif;
+    color: #0b3aa2;
+    margin-top: .3em;
+}
