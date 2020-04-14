@@ -10,7 +10,7 @@ import { IAddress } from '../../model/IAddress';
 import { IHomeDetails } from '../../model/IHomeDetails';
 import { ITimeframe } from '../../model/ITimeframe';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { PropertyFinderService } from '../../services/property-finder.service';
+import { PropertySearchEstatedService } from '../../services/property-search-estated.service';
 import { PropertyDetails } from '../../class/PropertyDetails';
 declare var $: any;
 
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   backgroundColorFooter:string = "#FFFFFF";
 
   constructor(private mAngularFireAuth:AngularFireAuth, private mRouter: Router, private mSellerPropertyService: SellerPropertyService,private mAuthService: AuthenticationService,
-                  private mapsAPILoader: MapsAPILoader, private mPropertyFinderService:PropertyFinderService) {
+                  private mapsAPILoader: MapsAPILoader, private mPropertyFinderService:PropertySearchEstatedService) {
 
 
   }
@@ -103,12 +103,13 @@ export class HomeComponent implements OnInit {
       }
     }
 
-    onPropertyQuery(address1, address2){
-      console.log('in prop');
-        this.mPropertyFinderService.getHomeProperties(address1, address2)
-      		.subscribe((resPropertyDetails) => {
-            console.log(resPropertyDetails);
-            this.collectAddressDetails(this.collectedPropertyDetails = JSON.parse(JSON.stringify(resPropertyDetails)));},
+   
+
+      onPropertyQueryEstated(address1:string, state:string, city:string, postalCode:string){
+  
+        this.mPropertyFinderService.getPropertyInformation(address1, state, city, postalCode)
+          .subscribe((resPropertyDetails) => {
+            this.collectAddressDetailsEstated(this.collectedPropertyDetails = JSON.parse(JSON.stringify(resPropertyDetails)));},
             error => { this.onErrorQuery(error) });
       }
 
@@ -117,7 +118,8 @@ export class HomeComponent implements OnInit {
         this.mRouter.navigate(['fill-in-property-info-page']);
     }
 
-    collectFoundApiPropertyDetails(data){
+    //Not in use
+    collectFoundApiPropertyDetailsAttom(data){
 
       if(data == null){
         console.log('data is null in  collectFound');
@@ -125,14 +127,71 @@ export class HomeComponent implements OnInit {
       }
 
 
-      this.collectAddressDetails(data);
-      this.initializePropertyDetails(data);
+      this.collectAddressDetailsAttom(data);
+      this.initializePropertyDetailsAttom(data);
 
       this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.mSellerProperty);
       this.mRouter.navigate(['./verify-info-page']);
     }
 
-    collectAddressDetails(data){
+
+    collectAddressDetailsEstated(data){
+      console.log(data.data);
+
+      if(data == null || data.data == null){
+        return;
+      }
+
+      let addressObject = data.data.address;
+
+      if(addressObject != null){
+        this.mSellerProperty.address.city = addressObject.city;
+        this.mSellerProperty.address.state = addressObject.state;
+        this.mSellerProperty.address.zip_code = addressObject.zip_code;
+        this.mSellerProperty.address.street = addressObject.formatted_street_address;
+        this.mSellerProperty.address.unit = addressObject.unit_number;
+        
+      }
+
+      let parcelObject = data.data.parcel;
+
+      if(parcelObject != null){
+        this.mSellerProperty.lot_size = parcelObject.area_sq_ft;
+      }
+
+      let structureObject = data.data.structure;
+      
+      if(structureObject != null){
+        this.mSellerProperty.year = structureObject.year_built;
+        this.mSellerProperty.baths = structureObject.baths;
+        this.mSellerProperty.beds = structureObject.beds_count;
+        this.mSellerProperty.hot_tub = false;
+      
+        if(structureObject.pool_type != null){
+          this.mSellerProperty.pool = true;
+          //this.mSellerProperty.pool_description = structureObject.pool_type;
+        }else{
+          this.mSellerProperty.pool = false;
+        }
+
+        if(structureObject.basement_type != null){
+          this.mSellerProperty.basement = true;
+        }else{
+          this.mSellerProperty.basement = false;
+        }
+
+        this.mSellerProperty.living_square_feet = structureObject.total_area_sq_ft;
+        this.mSellerProperty.cooling_type = structureObject.air_conditioning_type;
+        this.mSellerProperty.garage = structureObject.parking_spaces_count;
+      }
+
+      this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.mSellerProperty);
+      this.mRouter.navigate(['./verify-info-page']);
+    }
+
+    collectAddressDetailsAttom(data){
+      
+      console.log(data);
 
       if(data.property[0].address.locality != null && data.property[0].address.locality != 'NONE'){
         this.mSellerProperty.address.city = data.property[0].address.locality;
@@ -151,7 +210,7 @@ export class HomeComponent implements OnInit {
       }
     }
 
-    initializePropertyDetails(data){
+    initializePropertyDetailsAttom(data){
 
       if(data.property[0].building.interior.bsmtsize != null){
         this.mSellerProperty.basement = data.property[0].building.interior.bsmtsize;
@@ -225,6 +284,7 @@ export class HomeComponent implements OnInit {
     onClickSearchArrow(){
 
           var place = this.autocomplete.getPlace();
+          console.log("Place: " + place);
 
           if(place == null || place.address_components == null){
             this.mRouter.navigateByUrl('fill-in-property-info-page');
@@ -265,16 +325,10 @@ export class HomeComponent implements OnInit {
           this.mSellerProperty.latitude = place.geometry.location.lat();
           this.mSellerProperty.longitude = place.geometry.location.lng();
           this.zoom = 18;
-
-
-
           var newAddressArray = this.streetName.split(" ");
           newAddressArray.unshift(this.streetNumber);
           let addressLineOne:string = this.concatWordArray(newAddressArray);
-
-          let addressLineTwo:string = this.city + '%20' + this.state + '%20' + this.postalCode;
-
-          this.onPropertyQuery(addressLineOne, addressLineTwo);
+          this.onPropertyQueryEstated(addressLineOne, this.state, this.city, this.postalCode);
 
     }
 

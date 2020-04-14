@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12" style="padding: 0; ">
             
-            <img  class="img-under-nav" style="height:32em !important;" src="../../../assets/img/landing_page.jpg"/>
+            <img  class="img-under-nav" src="../../../assets/img/landing_page_2.jpg"/>
         
             <div class="img-cover"></div>
 
@@ -17,16 +17,18 @@
 
               <div class="row">
                 <div class="col-8 offset-2">
-                  <div class="input-group d-none d-md-flex" style="height: .8em;">
-                        <input placeholder="Enter your home address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-                        #search [formControl]="searchControl" style="font-size: .5em; font-family: 'Nunito'; text-transform: capitalize;" (keydown)="onKeyDown($event)">
+                  <form class="loginForm" #loginForm="ngForm" action="" (submit)="onClickSearchArrow()" autocomplete="off" method="POST">
+                    <div class="input-group d-none d-md-flex" style="height: .8em;">
+                          <input placeholder="Enter your home address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+                          #search [formControl]="searchControl" style="font-size: .5em; font-family: 'Nunito'; text-transform: capitalize;" (keydown)="onKeyDown($event)">
 
-                    <div class="input-group-append">
-                      <span class="input-group-text" (click)="onClickSearchArrow()">
-                        <i class="material-icons go-arrow">arrow_forward_ios</i>
-                      </span>
+                      <div class="input-group-append">
+                        <button type="submit" class="input-group-text" (click)="onClickSearchArrow()">
+                          <i class="material-icons go-arrow">arrow_forward_ios</i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  </form>
                   <div class="input-group d-flex d-md-none" style="height: .8em; margin: .3em 0em;">
                         <input placeholder="Enter Your Address Here" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control search-bar-input"
                         #search [formControl]="searchControl">
@@ -87,7 +89,7 @@
     <div class="row">
       <div class="col-6">
         <div class="container-house-image">
-          <img  class="house-image" src="../../../assets/img/home_page_realestate_image.png"/>
+          <img  class="house-image" src="../../../assets/img/home_on_landing_page.png"/>
         </div>
       </div>
       <div class="col-6">
@@ -122,7 +124,7 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  {{ receiveOfferInstructions[1].title | uppercase }}
+                  {{ receiveOfferInstructions[1].title  }}
                 </div>
                 <div class="how-to-item-info-sub-header" [innerHTML]="receiveOfferInstructions[1].instruction">
 
@@ -145,7 +147,7 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  {{ receiveOfferInstructions[2].title | uppercase }}
+                  {{ receiveOfferInstructions[2].title }}
                 </div>
                 <div class="how-to-item-info-sub-header">
                   {{ receiveOfferInstructions[2].instruction }}
@@ -160,7 +162,7 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  {{ receiveOfferInstructions[3].title | uppercase }}
+                  {{ receiveOfferInstructions[3].title }}
                 </div>
                 <div class="how-to-item-info-sub-header">
                   {{ receiveOfferInstructions[3].instruction }}
@@ -183,7 +185,7 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  {{ receiveOfferInstructions[4].title | uppercase }}
+                  {{ receiveOfferInstructions[4].title }}
                 </div>
                 <div class="how-to-item-info-sub-header">
                   {{ receiveOfferInstructions[4].instruction }}
@@ -198,7 +200,7 @@
               </div>
               <div class="how-to-item-info">
                 <div class="how-to-item-info-header">
-                  {{ receiveOfferInstructions[5].title | uppercase }}
+                  {{ receiveOfferInstructions[5].title }}
                 </div>
                 <div class="how-to-item-info-sub-header" [innerHTML]="receiveOfferInstructions[5].instruction">
                 </div>

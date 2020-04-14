@@ -9,6 +9,8 @@
 .img-under-nav {
   /* filter: brightness(50%); */
   z-index: 1;
+  width: 100%;
+  height: auto;
  
 }
 
@@ -289,6 +291,7 @@
     border: .1em solid rgb(68, 197, 242);
     border-radius: 1em;
     color: white;
+    outline: none;
 }
 
 .input-group-text:hover{
@@ -491,7 +494,7 @@
 }
 
 .house-image{
-  width: 550px;
+  width: 600px;
   margin-right: .5em;
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -77,7 +77,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
         ]],
         city: [null, [
           Validators.required,
-          Validators.pattern('[a-zA-Z]+')
+          // Validators.pattern('/^([a-z]+\s)*[a-z]+$/')
         ]],
         state: [null, [
           
@@ -184,11 +184,8 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
           }
       });
-
-
   }
   
-
   arrayRange(n: number, startFrom: number): number[] {
     return [...Array(n).keys()].map(i => startFrom - i);
   }
@@ -211,10 +208,6 @@ export class FillInPropertyInfoPageComponent implements OnInit {
 
   get zipCode() {
     return this.mFormAddressFields.get('zipCode');
-  }
-
-  onKeyDown(event){
-
   }
 
   onSelectBathCount(bathCount:number){
@@ -256,6 +249,5 @@ export class FillInPropertyInfoPageComponent implements OnInit {
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mRouter.navigate(['./create-account']);
   }
-
 
 }

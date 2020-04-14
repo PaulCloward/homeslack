@@ -303,10 +303,6 @@ agm-map {
     cursor: pointer;
   }
 
-  .dropdown:hover .dropdown-menu {
-    /* display: block; */
-  }
-
   .dropdown:hover .dropbtn {
     background-color: #d0d0d0;
   }
@@ -353,12 +349,6 @@ agm-map {
     .dropdown{
         margin-left: 1em;
     }
-
-    /*.dropdown-toggle {
-        padding-top: .2em;
-        padding-bottom: .2em;
-        font-size: .9em;
-    }*/
 
     .label-question {
         font-size: 1em;

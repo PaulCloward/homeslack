@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { PropertyDetails } from '../../class/PropertyDetails';
 import { SellerPropertyService } from '../../services/seller-property.service';
-import { IAddress } from '../../model/IAddress';
 
 @Component({
   selector: 'app-verify-info-page',
@@ -32,6 +31,7 @@ export class VerifyInfoPageComponent implements OnInit {
   editModeBedrooms: boolean;
   editModeBathrooms: boolean;
   editModeBasement: boolean;
+  editModeBasementCompletion: boolean;
   editModeGarage: boolean;
   editModePool: boolean;
   editModeHotTub: boolean;
@@ -111,17 +111,17 @@ export class VerifyInfoPageComponent implements OnInit {
       this.editModeYearBuild = true;
     }
 
-    if(this.sellerProperty.lot_size && this.sellerProperty.lot_size_unit){
+    if(this.sellerProperty.lot_size){
       this.editModeLotSize = false;
     }else{
       this.editModeLotSize = true;
     }
 
-    if(this.sellerProperty.baths){
-      this.editModeBathrooms = false;
-   }else{
-       this.editModeBathrooms = true;
-   }
+      if(this.sellerProperty.baths){
+        this.editModeBathrooms = false;
+    }else{
+        this.editModeBathrooms = true;
+    }
 
       if(this.sellerProperty.beds){
          this.editModeBedrooms = false;
@@ -144,12 +144,14 @@ export class VerifyInfoPageComponent implements OnInit {
     if(this.sellerProperty.pool){
         this.editModePool = false;
       } else{
+        this.sellerProperty.pool = false;
         this.editModePool = true;
       }
 
       if(this.sellerProperty.hot_tub){
         this.editModeHotTub = false;
       } else{
+        this.sellerProperty.hot_tub = false;
         this.editModeHotTub = true;
       }
 
@@ -158,14 +160,11 @@ export class VerifyInfoPageComponent implements OnInit {
       } else{
         this.editModeCooling = true;
       }
-
-
   }
 
   arrayRange(n: number, startFrom: number): number[] {
     return [...Array(n).keys()].map(i => startFrom - i);
   }
-
 
   onClickNext(){
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
@@ -190,7 +189,6 @@ export class VerifyInfoPageComponent implements OnInit {
     this.sellerProperty.pool = poolExists;
     this.editModePool = false;
   }
-
 
   onClickHotTub(isHotTub:boolean){
     this.sellerProperty.hot_tub = isHotTub;
@@ -230,59 +228,96 @@ onClickYearBuild(year){
 /*---------------------------------------------------------------*/
 
  mapStyle =[
+  
     {
-        "featureType": "all",
-        "elementType": "all",
-        "stylers": [
-            {
-                "hue": "#008eff"
-            }
-        ]
+      "featureType": "administrative",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      "featureType": "administrative.neighborhood",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#0080c0"
+        },
+        {
+          "weight": 2
+        }
+      ]
     },
     {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": "0"
-            },
-            {
-                "lightness": "0"
-            }
-        ]
+      "featureType": "poi",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      "featureType": "road",
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "saturation": "-60"
-            },
-            {
-                "lightness": "-20"
-            }
-        ]
-    }
+      "featureType": "transit",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    }  
 ]
+
+@HostListener('keydown', ['$event'])
+onKeyDown(e: KeyboardEvent) {
+  if (
+    // Allow: Delete, Backspace, Tab, Escape, Enter
+    [46, 8, 9, 27, 13].indexOf(e.keyCode) !== -1 || 
+    (e.keyCode === 65 && e.ctrlKey === true) || // Allow: Ctrl+A
+    (e.keyCode === 67 && e.ctrlKey === true) || // Allow: Ctrl+C
+    (e.keyCode === 86 && e.ctrlKey === true) || // Allow: Ctrl+V
+    (e.keyCode === 88 && e.ctrlKey === true) || // Allow: Ctrl+X
+    (e.keyCode === 65 && e.metaKey === true) || // Cmd+A (Mac)
+    (e.keyCode === 67 && e.metaKey === true) || // Cmd+C (Mac)
+    (e.keyCode === 86 && e.metaKey === true) || // Cmd+V (Mac)
+    (e.keyCode === 88 && e.metaKey === true) || // Cmd+X (Mac)
+    (e.keyCode >= 35 && e.keyCode <= 39) // Home, End, Left, Right
+  ) {
+    return;  // let it happen, don't do anything
+  }
+  // Ensure that it is a number and stop the keypress
+  if (
+    (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&
+    (e.keyCode < 96 || e.keyCode > 105)
+  ) {
+    e.preventDefault();
+  }
+}
+
+@HostListener('paste', ['$event'])
+onPaste(event: ClipboardEvent) {
+  event.preventDefault();
+  const pastedInput: string = event.clipboardData
+    .getData('text/plain')
+    .replace(/\D/g, ''); // get a digit-only string
+  document.execCommand('insertText', false, pastedInput);
+}
+@HostListener('drop', ['$event'])
+onDrop(event: DragEvent) {
+  event.preventDefault();
+  const textData = event.dataTransfer
+    .getData('text').replace(/\D/g, '');
+  //this.inputElement.focus();
+  document.execCommand('insertText', false, textData);
+}
+
 }

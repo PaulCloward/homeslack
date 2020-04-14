@@ -63,8 +63,6 @@
         </div>
     </div>
 
-
-
     <div class="row">
         <div class="col-10 offset-1 map-container" style="margin-top: 0em;">
         <agm-map [latitude]="lat" [longitude]="lng"  [scrollwheel]="false" [zoom]="zoom" [styles]="mapStyle" >
@@ -73,16 +71,14 @@
         </div>
     </div>
 
-    {{sellerProperty | json}}
-
-    <div class="row" style="margin-top: 6em;">
+    <div class="row">
         <div class="col-4 offset-1">
             <div class="information-title">
                     Property Details:
             </div>
             <div class="information-subtitle">Information Incorrect? Click<span class="question-mark-circle rounded-circle" style="vertical-align: middle; font-size: 1em; cursor: default;">?</span> to edit</div>
         </div>
-        <div class="col-6" style="padding: 0em">
+        <div class="col-6" style="padding: 0em;  margin-top: 6em;">
             <div class="street-address">
                 <span style="color: #7E7E7E;">{{sellerProperty.address.street}}</span>
             </div>
@@ -107,12 +103,13 @@
                             </div>
                             <div *ngIf="!editModeTotalLivingArea" class="label-property-result">{{sellerProperty.living_square_feet}} Sqft</div>
                             <div *ngIf="editModeTotalLivingArea" class="label-hint"> Livable Sqft # in Home?</div>
-                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property" type="number" placeholder="Liveable Sqft #" [(ngModel)]="sellerProperty.living_square_feet" max="6" (click)="$event.stopPropagation()"/>
+                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property"   type="text" maxlength="6" inputmode="numeric" pattern="[0-9]*" digitOnly  inputmode="numeric" pattern="[0-9]*" digitOnly  placeholder="Liveable Sqft #" [(ngModel)]="sellerProperty.living_square_feet" (click)="$event.stopPropagation()"/>
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-4">
-                    <div class="row" >
+                    <div class="row">
                         <div class="col-3 icon-container d-flex justify-content-center">
                             <img src="../../../assets/img/year_built.png" class="icon-label img-fluid" placement="top"  matTooltip="{{yearBuildHint}}"/>
                         </div>
@@ -127,47 +124,32 @@
                             <div *ngIf="editModeYearBuild || sellerProperty.year == null" class="label-hint">Year the House was Built?</div>
                             
                             <div class="dropdown" *ngIf="editModeYearBuild || sellerProperty.year == null">
-                                <button *ngIf="sellerProperty.year == null" class="btn btn-dropdown dropdown-toggle" type="button">
+                                <button *ngIf="sellerProperty.year == null" class="btn btn-dropdown dropdown-toggle" type="button"  id="dropdownMenuButtonYearBuild" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Year the house was built?
                                 </button>
-                              <button *ngIf="sellerProperty.year" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <button *ngIf="sellerProperty.year" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonYearBuild" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                  {{sellerProperty.year}}
                               </button>
-                              <div class="dropdown-menu" >
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonYearBuild">
                                 <div *ngFor="let year of arrayRange(171,2020)">
                                     <a class="dropdown-item" (click)="onClickYearBuild(year)">{{year}}</a>
                                 </div>
-
-
                               </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="row" (click)="editModeLotSize = !editModeLotSize">
-                        <div class="col-3 icon-container d-flex justify-content-center">
-                            <img src="../../../assets/img/lot_size.png" class="icon-label img-fluid" titplacement="top"  matTooltip="{{lotSizeHint}}"/>
-                        </div>
+                        <div class="col-3 icon-container d-flex justify-content-center"
+                        ><img src="../../../assets/img/lot_size.png" class="icon-label img-fluid" placement="top"  matTooltip="{{lotSizeHint}}"/></div>
                         <div class="col-9">
-                            <div class="label-property">
-                                Lot Size <span class="question-mark-circle rounded-circle" >?</span>
+                           <div class="label-property">
+                                Lot Size <span class="question-mark-circle rounded-circle">?</span>
                             </div>
-                            <div *ngIf="!editModeLotSize && lotSizeType == 'Sqft'" class="label-property-result">{{sellerProperty.lot_size}} {{lotSizeType}}</div>
-                            <div *ngIf="!editModeLotSize && lotSizeType == 'Acres'" class="label-property-result">{{sellerProperty.lot_size}} {{lotSizeType}}</div>
-                            <div *ngIf="editModeLotSize" class="label-hint">Total Size of Lot in Sqft or Acres</div>
-
-                            <div class="row" style="margin-top: 1em; margin-left: .2em">
-                                <div *ngIf="editModeLotSize" (click)="lotSizeType = 'Sqft'" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : lotSizeType == 'Sqft'}">
-                                    Sqft
-                                </div>
-                                <div *ngIf="editModeLotSize" (click)="lotSizeType = 'Acres'" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : lotSizeType == 'Acres'}">
-                                    Acres
-                                </div>
-                            </div>
+                            <div *ngIf="!editModeLotSize" class="label-property-result">{{sellerProperty.lot_size}} Sqft</div>
+                            <div *ngIf="editModeLotSize" class="label-hint"> Livable Sqft # in Home?</div>
+                            <input *ngIf="editModeLotSize" class="input-edit-property"  type="text" maxlength="6" inputmode="numeric" pattern="[0-9]*" digitOnly  placeholder="Total Size of Lot in Sqft" [(ngModel)]="sellerProperty.lot_size" (click)="$event.stopPropagation()"/>
                         </div>
                     </div>
                 </div>
@@ -280,20 +262,20 @@
                                 </div>
                             </div>
                             <div class="dropdown" *ngIf="sellerProperty.basement == true">
-                                 <button *ngIf="sellerProperty.basement_completed == null" class="btn btn-dropdown dropdown-toggle"  style="margin-top: .3em " type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Percentage Finished?
+                                <button [hidden]="sellerProperty.basement_completed != null" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Percentage Finished?
                                 </button>
-                              <button class="btn btn-dropdown dropdown-toggle" *ngIf="sellerProperty.basement_completed != null"  style="margin-top: .3em;" type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{sellerProperty.basement_completed | percent}}
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBasement">
-                                <a class="dropdown-item" (click)="onClickBasementCompletion(.1)">10%</a>
-                                <a class="dropdown-item" (click)="onClickBasementCompletion(.25)">25%</a>
-                                <a class="dropdown-item" (click)="onClickBasementCompletion(.5)">50%</a>
-                                <a class="dropdown-item" (click)="onClickBasementCompletion(.75)">75%</a>
-                                <a class="dropdown-item" (click)="onClickBasementCompletion(.9)">90%</a>
-                                <a class="dropdown-item" (click)="onClickBasementCompletion(1)">100%</a>
-                              </div>
+                                <button [hidden]="sellerProperty.basement_completed == null" class="btn dropdown-toggle" type="button" id="dropdownMenuButtonBasement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{sellerProperty.basement_completed | percent}}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBasement">
+                                    <a class="dropdown-item" (click)="this.sellerProperty.basement_completed = .1">10%</a>
+                                    <a class="dropdown-item" (click)="this.sellerProperty.basement_completed = .25">25%</a>
+                                    <a class="dropdown-item" (click)="this.sellerProperty.basement_completed = .5">50%</a>
+                                    <a class="dropdown-item" (click)="this.sellerProperty.basement_completed = .75">75%</a>
+                                    <a class="dropdown-item" (click)="this.sellerProperty.basement_completed = .9">90%</a>
+                                    <a class="dropdown-item" (click)="this.sellerProperty.basement_completed = 1">100%</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -346,14 +328,13 @@
                         </div>
                         <div class="col-9">
                             <div class="label-property">
-                                Pool <span class="question-mark-circle rounded-circle"  (click)="editModePool = !editModePool" [hidden]="sellerProperty.pool == null">?</span>
+                                 Pool
                             </div>
-                            <div *ngIf="!editModePool  && sellerProperty.pool == true" class="label-property-result">Yes</div>
-                            <div *ngIf="!editModePool  && sellerProperty.pool == false" class="label-property-result">No</div>
+                            <!-- <div *ngIf="!editModePool  && sellerProperty.pool == true" class="label-property-result">Yes</div>
+                            <div *ngIf="!editModePool  && sellerProperty.pool == false" class="label-property-result">No</div> -->
                             <!-- While In Edit Mode Tags -->
-                            <div *ngIf="editModePool" class="label-hint label-hint-above-buttons">Does House have Pool?</div>
-                           <div  *ngIf="editModePool" class="row mt-2 btn-row-margin-left">
-
+                            <div class="label-hint label-hint-above-buttons">Does House have Pool?</div>
+                            <div class="row mt-2 btn-row-margin-left">
                                 <div (click)="onClickPool(false)" class="col-3 label-property-result btn-result"
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.pool == false}">
                                     No
@@ -374,15 +355,12 @@
                         <div class="col-3 icon-container d-flex justify-content-center">
                             <img src="../../../assets/img/hot_tub.png" class="icon-label img-fluid" placement="top"  matTooltip="{{hotTubHint}}"/>
                         </div>
-                        <div class="col-9" >
+                        <div class="col-9">
                             <div class="label-property">
-                                Hot Tub <span class="question-mark-circle rounded-circle" (click)="editModeHotTub = !editModeHotTub" [hidden]="sellerProperty.hot_tub == null">?</span>
+                                Hot Tub
                             </div>
-                            <div *ngIf="!editModeHotTub  && sellerProperty.hot_tub == true" class="label-property-result">Yes</div>
-                            <div *ngIf="!editModeHotTub  && sellerProperty.hot_tub == false" class="label-property-result">No</div>
-                            <div *ngIf="editModeHotTub" class="label-hint label-hint-above-buttons">In-Ground Hot Tub?</div>
-                            <div class="row mt-2 btn-row-margin-left" *ngIf="editModeHotTub">
-
+                            <div class="label-hint label-hint-above-buttons">In-Ground Hot Tub?</div>
+                            <div class="row mt-2 btn-row-margin-left">
                                 <div (click)="onClickHotTub(false)" class="col-3 label-property-result btn-result"
                                     [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == false}">
                                     No
@@ -444,22 +422,22 @@
 
 
 
-        <div class="row" style="margin-top: 1em; padding-top: 1em; border-top: 1px solid #7E7E7E">
+            <div class="row" style="margin-top: 1em; padding-top: 1em; border-top: 1px solid #7E7E7E">
                 <div class="col-12">
                     <div class="label-question">About How Old is the Roof<span class="question-mark">?</span></div>
-                    <div class="dropdown"  style="width: 16em !important">
-                        <button *ngIf="sellerProperty.roof_age_range == null" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           roof age selection
-                        </button>
-                      <button *ngIf="sellerProperty.roof_age_range" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown" style="width: 16em !important">
+                        <button  [hidden]="sellerProperty.roof_age_range != null" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Roof age range
+                          </button>
+                      <button  [hidden]="sellerProperty.roof_age_range == null" class="btn dropdown-toggle" type="button" id="dropdownMenuButtonRoof" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{sellerProperty.roof_age_range}}
                       </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" (click)="onClickRoofRange('1-3 Years')">1-3 Years</a>
-                        <a class="dropdown-item" (click)="onClickRoofRange('4-6 Years')">4-6 Years</a>
-                        <a class="dropdown-item" (click)="onClickRoofRange('7-10 Years')">7-10 Years</a>
-                        <a class="dropdown-item" (click)="onClickRoofRange('11-15 Years')">11-15 Years</a>
-                        <a class="dropdown-item" (click)="onClickRoofRange('16+ Years')">16+ Years</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonRoof">
+                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '1 - 3 Years'">1 - 3 Years</a>
+                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '4 - 6 Years'">4 - 6 Years</a>
+                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '7 - 10 Years'">7 - 10 Years</a>
+                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '11 - 15 Years'">11 - 15 Years</a>
+                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '16+ Years'">16+ Years</a>
                       </div>
                     </div>
                 </div>

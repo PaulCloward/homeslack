@@ -7,6 +7,7 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/first";
 import { PropertyDetails } from '../class/PropertyDetails';
 import { Seller } from '../class/Seller';
+import { IInvestor } from '../model/IInvestor';
 
 
 @Injectable({
@@ -17,6 +18,7 @@ export class FirestoreService {
   readonly KEY_SELLER_CONTACT_INFORMATION:string = 'seller_contact_information';
   readonly KEY_SELLER_PROPERTY_ADDRESS:string = 'seller_property_address';
   readonly KEY_SELLER_PROPERTY_DETAILS:string = 'seller_property_details';
+  readonly KEY_INVESTOR_LIST:string = 'investor_list';
 
   constructor(private mAngularFiretore:AngularFirestore, private mAngularAuth: AngularFireAuth) {
   		
@@ -59,9 +61,7 @@ export class FirestoreService {
     return this.mAngularFiretore.collection(this.KEY_SELLER_PROPERTY_DETAILS).doc(userUID).valueChanges();
   }
 
-  createAccount(email:string, password:string):Observable<any>{
-    return observableFrom(
-      this.mAngularAuth.auth.createUserWithEmailAndPassword(email, password)
-    );
+  onCreateInvestorSaveInformation(userUID:string, investorInformation:IInvestor):Promise<void>{
+    return this.mAngularFiretore.collection(this.KEY_INVESTOR_LIST).doc(userUID).set(investorInformation);
   }
 }

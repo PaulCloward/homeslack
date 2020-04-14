@@ -12,7 +12,7 @@
 </div>
 <div class="col-6 offset-3 d-none d-md-block" style="padding: 4em 0em 0em 0em;">
 	
- <!-- {{mSellerPropertyDetails | json}} -->
+
   <form class="custom-form" [formGroup]="myFormContact">
 
     <label class="title">Welcome to <span class="title-company">Homeface</span></label>
@@ -76,7 +76,7 @@
 
 	<div style="width: 100%;text-align: right;" [hidden]="myFormContact.valid">
       <div class="btn-container-default" matTooltip="Please make sure all the information above is filled out and correct" matTooltipPosition="above">
-          <button  [disabled]="true" class="btn-create-default">SEND</button>
+          <button  [disabled]="true" class="btn-create-default">Create Account</button>
       </div>
   </div>
 
@@ -86,49 +86,6 @@
 	
 	<div class="line-divider" style="margin-top:3.4em;"></div>
 	<div class="already-have-account-div">Already have a Homeface account? <a class="sign-in-link" [routerLink]="['/login']">Sign In</a></div>
-	<!-- <div class="line-divider" style="margin-bottom: 0em"></div> -->
 </div>
 
-
-
-<!-- XS View -->
-<!-- <div class="col-10 offset-1 d-block d-md-none" style="padding: 4em 0em 0em 0em; text-align: center">
-  <label class="title">Welcome to <span class="title-company">Homeface</span></label>
-  <input class="input-login" type="text" placeholder="First Name" [formControl]="firstName"
-  [ngStyle]="{'border': (firstName.invalid && firstName.touched) ? '.5px solid red' : '.5px solid gray'}">
-
-  <input class="input-login" type="text" placeholder="Last Name"  [formControl]="lastName">
-  <input class="input-login" type="text" placeholder="Phone"  [formControl]="phone">
-  <input class="input-login" type="email" placeholder="Email/login" [formControl]="email" />
-  <input class="input-login" type="password" placeholder="Password" [formControl]="password">
-  <input class="input-login" type="password" placeholder="Re-enter password" [(ngModel)]="confirmPassword">
-  
-
-  <div class="form-group">
-    <div class="form-control checkmark-container">
-      <div class="form-check">
-      <label class="container">I want to receive status updates via text
-      <input type="checkbox" checked="checked">
-      <span class="checkmark"></span>
-    </label>
-    </div>
-      <div class="form-check">
-      <label class="container">I want to receive status updates via email
-      <input type="checkbox" checked="checked">
-      <span class="checkmark"></span>
-    </label>
-    </div>
-    </div>
-  </div>
-    
-  
-  <div class="company-terms">By creating an account you are agreeing with the Homeface <a class="terms-link">Terms</a></div>
-  
-  <input type="submit" value="Create" class="btn btn-light" placeholder="Login" (click)="createUserAccount()" /> 
-  
-  
-  <div class="line-divider" style="margin-top:3.4em;"></div>
-  <div class="already-have-account-div">Already have a Homeface account? <a class="sign-in-link" [routerLink]="['/create-account']">Sign In</a></div>
-</div>
--->
 <app-footer></app-footer> 

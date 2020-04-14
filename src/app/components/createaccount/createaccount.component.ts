@@ -29,16 +29,6 @@ export class CreateaccountComponent implements OnInit {
 
   ngOnInit() {
 
-    this.mAuth.authState.subscribe(user => {
-      if(user){
-        this.userID = user.uid;
-        console.log(JSON.stringify(this.mSellerContactInfo));
-        this.successfulCreatedAccount(this.mSellerContactInfo)
-      }else{
-        this.userID = "";
-      }
-    })
-
     this.mSellerPropertyService.getSellerPropertyDetailsSource().subscribe(propertyDetails =>{
         this.mSellerPropertyDetails = propertyDetails;
     });
@@ -93,23 +83,18 @@ export class CreateaccountComponent implements OnInit {
 
     this.mSellerContactInfo.created_account_timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
-    this.mFirestoreService.createAccount(this.myFormContact.value.email, this.myFormContact.value.password)
-      .subscribe(
-        success => 
-        {},
-        error => this.alertMessage = error
-      );
+    this.mAuth.auth.createUserWithEmailAndPassword(this.myFormContact.value.email, this.myFormContact.value.password).then(user => {
+      if(user != null){
+        this.userID = user.user.uid;
+        this.mFirestoreService.saveSellerContactInformation(this.userID,Object.assign({},this.mSellerContactInfo));
+        this.mFirestoreService.saveSellerPropertyDetails(this.userID,Object.assign({}, this.mSellerPropertyDetails));
+        this.mRouter.navigate(['./listing-time']);    
+      }
+    }).catch(error => {
+      error => this.alertMessage = error;
+    });
   }
   
-  successfulCreatedAccount(sellerContactInfo:Seller){
-    this.mFirestoreService.saveSellerContactInformation(this.userID,Object.assign({},sellerContactInfo));
-      this.mFirestoreService.saveSellerPropertyDetails(this.userID,Object.assign({}, this.mSellerPropertyDetails));
-        this.mRouter.navigate(['./listing-time']);
-      
-    
-  }
-
-
   onClickTerms(){
     this.mRouter.navigate(['./terms']);
   }

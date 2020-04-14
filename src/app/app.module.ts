@@ -5,6 +5,8 @@ import { HomeService } from './services/home.service';
 import { SearchPropertyService } from './services/search-property.service';
 import { PropertyFinderService } from './services/property-finder.service';
 import { SellerPropertyService } from './services/seller-property.service';
+import { PropertySearchCoreLogicService } from './services/property-search-core-logic.service';
+import { PropertySearchEstatedService } from './services/property-search-estated.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -39,6 +41,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { WhyUsComponent } from './components/why-us/why-us.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { ViewPropertiesComponent } from './components/view-properties/view-properties.component';
 import { SellerAccountComponent } from './components/seller-account/seller-account.component';
@@ -75,6 +78,10 @@ import { UploaderComponent } from './components/uploader/uploader.component';
 import { UploadTaskComponent } from './components/uploader-task/uploader-task.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
+import { SearchComponent } from './components/search/search.component';
+import { CreateAccountInvestorComponent } from './pages/create-account-investor/create-account-investor.component';
+import { NavbarSupportComponent } from './components/navbar-support/navbar-support.component';
+import { NavComponent } from './components/nav/nav.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -96,6 +103,7 @@ const appRoutes: Routes = [
   {path: 'verify-info-page', component: VerifyInfoPageComponent},
   {path: 'fill-in-property-info-page', component: FillInPropertyInfoPageComponent},
   {path: 'create-account', component: CreateaccountComponent},
+  {path: 'create-account-investor', component: CreateAccountInvestorComponent},
   {path: 'login', component: LoginComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'why-us', component: WhyUsComponent},
@@ -115,8 +123,8 @@ const appRoutes: Routes = [
   { path: 'images', component:ImagesComponent, children:[
       { path:'upload', component: ImageComponent},
       { path:'list', component:ImageListComponent}
-  ] 
-}
+    ] 
+  }
 ]
 
 @NgModule({
@@ -157,7 +165,11 @@ const appRoutes: Routes = [
     UploaderComponent,
     UploadTaskComponent,
     ImageSliderComponent,
-    PhotoSliderComponent
+    PhotoSliderComponent,
+    SearchComponent,
+    CreateAccountInvestorComponent,
+    NavbarSupportComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -189,9 +201,20 @@ const appRoutes: Routes = [
     TooltipModule, 
     MatTooltipModule,
     MatIconModule,
-    CommonModule
+    CommonModule,
+    MatFormFieldModule
   ],
-  providers: [HomeService, AuthGuard, ImageService, PropertyFinderService, SellerPropertyService, AuthenticationService, SearchPropertyService],
+  providers: [
+    HomeService, 
+    AuthGuard, 
+    ImageService, 
+    PropertyFinderService,
+    SellerPropertyService, 
+    AuthenticationService, 
+    SearchPropertyService,
+    PropertySearchCoreLogicService,
+    PropertySearchEstatedService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
