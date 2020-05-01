@@ -12,7 +12,7 @@ export class PropertySearchEstatedService {
 
   getPropertyInformation(address1:string, state:string, city:string, zipCode:string){
 
-   const _url: string = "https://apis.estated.com/v4/property?token=GW15yIfma4tFK50yWL2W7wUqXtiiW8&street_address=" + address1 + "&city=" + city + 
+   const _url: string = "https://apis.estated.com/v4/property?token=pXfjlJw8s6LbrSrTpyktfgbztvfKbJ&street_address=" + address1 + "&city=" + city + 
     "&state=" + state + "&zip_code=" + zipCode;
      let headers = new Headers();
     headers.append("Accept", "application/json");
