@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-inbox-message',
   templateUrl: './inbox-message.component.html',
-  styleUrls: ['./inbox-message.component.css']
+  styleUrls: ['./inbox-message.component.scss']
 })
 export class InboxMessageComponent implements OnInit {
 

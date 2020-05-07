@@ -1,6 +1,5 @@
 <div class="slider-container">
-  <div class="items">
-      <div class="item" *ngFor="let image of images; let i = index">
+      <div class="thumbnail" *ngFor="let image of images; let i = index">
           
         <!-- Normal Photo Display -->
         <div [hidden]="mPhotoInEditMode == i" class="imagebox" (mouseenter)="onThumbnailHover(i)" (mouseleave)="onThumbnailHover(-1)" [@fadeInOut]>
@@ -57,5 +56,4 @@
           </div>
           
       </div>
-  </div>
 </div>

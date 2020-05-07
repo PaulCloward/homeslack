@@ -266,29 +266,11 @@
       </div>
     </div>
 
-  <!-- <div class="row" style="margin-bottom: -.2em;margin-top: 1em;" [hidden]="(removePersonalItemsAgreementEndorsement == null || removePersonalItemsAgreementEndorsement.length != 2) && (escrowHoldbackFeeAgreementEndorsement == null || escrowHoldbackFeeAgreementEndorsement.length != 2)">
-    <div class="col-6 offset-3 time-frame-description-container-left">
-        Choose a date to review the offers on your home
-    </div>
-  </div>
-  <div class="row" [hidden]="(removePersonalItemsAgreementEndorsement == null || removePersonalItemsAgreementEndorsement.length != 2) && (escrowHoldbackFeeAgreementEndorsement == null || escrowHoldbackFeeAgreementEndorsement.length != 2)">
-    <div class="col-12" style="text-align: center">
-  
-      <ngb-datepicker [ngClass]="{'calendar-step-highlight': selectedReviewOfferDate == null}" 
-        [(ngModel)]="selectedReviewOfferDate" 
-        (select)="onReviewOfferDateSelection($event)"
-        [minDate]="reviewOfferStartDate"
-        [maxDate]="reviewOfferEndDate" 
-        [markDisabled]="isWeekend" 
-        [displayMonths]="2"
-        [disabled]="disabled"
-        [firstDayOfWeek]="0">
-    </ngb-datepicker> 
-    </div>
-  </div> -->
+
   <div class="row" style="margin-bottom: -.2em;margin-top: 1em;" [hidden]="(removePersonalItemsAgreementEndorsement == null || removePersonalItemsAgreementEndorsement.length != 2) && (escrowHoldbackFeeAgreementEndorsement == null || escrowHoldbackFeeAgreementEndorsement.length != 2)">
     <div class="col-6 offset-3 time-frame-description-container-left">
       In order for the transaction to close (you get your money) on the Close of Escrow date that you selected above, you must accept an offer on or before  {{selectedPreferredClosingDate | ngbDate | date}}.
+      <div *ngIf="selectedHomeDescription == homeDescriptionPropertyIsOwnerOccupied && selectedPreferredMoveOutDate != null"> You are expected to be moved out by {{selectedPreferredMoveOutDate | ngbDate | date}}.</div>
     </div>
   </div>
   <div class="row" [hidden]="(removePersonalItemsAgreementEndorsement == null || removePersonalItemsAgreementEndorsement.length != 2) && (escrowHoldbackFeeAgreementEndorsement == null || escrowHoldbackFeeAgreementEndorsement.length != 2)">
@@ -309,25 +291,7 @@
    
 
 
-<div class="row" [hidden]="(escrowCloseEndorsement == null || escrowCloseEndorsement.length != 2) || selectedHomeDescription != homeDescriptionPropertyIsVacant" style="margin-top: 1em;">
-  <div class="col-6 offset-3 time-frame-description-container-left">
-      You have requested for the transaction to close (you get your money) on {{selectedPreferredClosingDate | ngbDate | date}}.
-  </div>
-</div>
-<div class="row" style="margin-bottom: 1em" [hidden]="(escrowCloseEndorsement == null || escrowCloseEndorsement.length != 2)  || selectedHomeDescription != homeDescriptionPropertyIsVacant">
-  <div class="col-6 offset-3">
-      <div class="form-group">
-        <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': authorizationEndorsement == null || authorizationEndorsement.length != 2}">
-            
-            <label class="label-initials">Type your initials in the box below verifying that you understand the significance of the dates described:</label>
-            <br>
-            <input class="input-initials" [(ngModel)]="authorizationEndorsement" type="text" maxlength="2"  />
-        </div>
-      </div>
-  </div>
-</div>
-
-<div class="row" [hidden]="(escrowCloseEndorsement == null || escrowCloseEndorsement.length != 2)  || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied" style="margin-top: 1em;">
+<!-- <div class="row" [hidden]="(escrowCloseEndorsementOwnerOccupied == null || escrowCloseEndorsementOwnerOccupied.length != 2)  || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied" style="margin-top: 1em;">
   <div class="col-6 offset-3 time-frame-description-container-left">
        You have requested for the transaction to close (you get your money) on {{selectedPreferredClosingDate | ngbDate | date}}.
        You are expected to be moved out by <div style="display: inline-block;" *ngIf="selectedPreferredMoveOutDate != null">{{selectedPreferredMoveOutDate | ngbDate | date}}</div><div style="display: inline-block;" *ngIf="selectedPreferredMoveOutDate == null">{{selectedPreferredClosingDate | ngbDate | date}}</div>.
@@ -344,7 +308,7 @@
         </div>
       </div>
   </div>
-</div> 
+</div>  -->
 
 <div class="row" [hidden]="selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied || isPropertyListedWithRealtor == null || (isPropertyListedWithRealtor == true && (payRealtorFeesEndorsement == null || payRealtorFeesEndorsement.length != 2))">
   <div class="col-6 offset-3 time-frame-description-container-left">
@@ -585,27 +549,7 @@
 </div>
 </div>
 
-  <div class="row" style="margin-bottom: -.2em;margin-top: 1em;" [hidden]="(escrowCloseEndorsementTenantOccupied == null || escrowCloseEndorsementTenantOccupied.length != 2)  || selectedHomeDescription == homeDescriptionPropertyIsVacant || selectedHomeDescription == homeDescriptionPropertyIsOwnerOccupied">
-  <div class="col-6 offset-3 time-frame-description-container-left">
-    You have requested for the transaction to close (you get your money) on {{selectedPreferredClosingTenantOccupiedDate | ngbDate | date}}. 
-  </div>
-</div>
-
-<div class="row" style="margin-bottom: 1em" [hidden]="(escrowCloseEndorsementTenantOccupied == null || escrowCloseEndorsementTenantOccupied.length != 2)  || selectedHomeDescription == homeDescriptionPropertyIsVacant || selectedHomeDescription == homeDescriptionPropertyIsOwnerOccupied">
-  <div class="col-6 offset-3">
-      <div class="form-group">
-        <div style="padding-top: 1em" [ngClass]="{'form-control':true, 'checkmark-container':true, 'pending-step-highlight': (everythingConfirmedEndorsement == null || everythingConfirmedEndorsement.length < 2)}">
-            
-            <label class="label-initials">Type your initials in the box below verifying that you understand the significance of the dates described:</label>
-            <br> 
-            <input class="input-initials" [(ngModel)]="everythingConfirmedEndorsement" type="text" maxlength="2"  />
-        </div>
-      </div>
-  </div>
-</div>
-
-
-<div class="row" [hidden]="authorizationEndorsement == null || authorizationEndorsement.length != 2 || selectedHomeDescription == homeDescriptionPropertyIsTenantOccupied">
+<div class="row" [hidden]="(escrowCloseEndorsement == null || escrowCloseEndorsement.length != 2) || selectedHomeDescription != homeDescriptionPropertyIsOwnerOccupied">
   <div class="col-6 offset-3" style="padding:0em;">
       <div class="btn-container">
           <button class="btn-next pending-step-highlight" (click)="onClickNext()">Next</button>
@@ -613,7 +557,16 @@
   </div>
 </div> 
 
-<div class="row" [hidden]="everythingConfirmedEndorsement == null || everythingConfirmedEndorsement.length != 2">
+
+<div class="row" [hidden]="(escrowCloseEndorsement == null || escrowCloseEndorsement.length != 2) || selectedHomeDescription != homeDescriptionPropertyIsVacant">
+  <div class="col-6 offset-3" style="padding:0em;">
+      <div class="btn-container">
+          <button class="btn-next pending-step-highlight" (click)="onClickNext()">Next</button>
+      </div>
+  </div>
+</div> 
+
+<div class="row" [hidden]="(escrowCloseEndorsementTenantOccupied == null || escrowCloseEndorsementTenantOccupied.length != 2)  || selectedHomeDescription != homeDescriptionPropertyIsTenantOccupied">
   <div class="col-6 offset-3" style="padding:0em;">
       <div class="btn-container">
           <button class="btn-next pending-step-highlight" (click)="onClickNext()">Next</button>

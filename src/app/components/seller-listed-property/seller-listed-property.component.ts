@@ -4,7 +4,7 @@ import { PropertyDetails } from '../../class/PropertyDetails';
 @Component({
   selector: 'app-seller-listed-property',
   templateUrl: './seller-listed-property.component.html',
-  styleUrls: ['./seller-listed-property.component.css']
+  styleUrls: ['./seller-listed-property.component.scss']
 })
 export class SellerListedPropertyComponent implements OnInit {
 

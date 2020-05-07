@@ -145,7 +145,7 @@
                         ><img src="../../../assets/img/lot_size.png" class="icon-label img-fluid" placement="top"  matTooltip="{{lotSizeHint}}"/></div>
                         <div class="col-9">
                            <div class="label-property">
-                                Lot Size <span class="question-mark-circle rounded-circle">?</span>
+                                Total Sqft Size of Lot <span class="question-mark-circle rounded-circle">?</span>
                             </div>
                             <div *ngIf="!editModeLotSize" class="label-property-result">{{sellerProperty.lot_size}} Sqft</div>
                             <div *ngIf="editModeLotSize" class="label-hint"> Livable Sqft # in Home?</div>
@@ -330,8 +330,6 @@
                             <div class="label-property">
                                  Pool
                             </div>
-                            <!-- <div *ngIf="!editModePool  && sellerProperty.pool == true" class="label-property-result">Yes</div>
-                            <div *ngIf="!editModePool  && sellerProperty.pool == false" class="label-property-result">No</div> -->
                             <!-- While In Edit Mode Tags -->
                             <div class="label-hint label-hint-above-buttons">Does House have Pool?</div>
                             <div class="row mt-2 btn-row-margin-left">

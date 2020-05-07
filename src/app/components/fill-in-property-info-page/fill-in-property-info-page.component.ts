@@ -10,7 +10,7 @@ import { CustomValidators } from 'ng2-validation';
 @Component({
    selector: 'app-fill-in-property-info-page',
   templateUrl: './fill-in-property-info-page.component.html',
-  styleUrls: ['./fill-in-property-info-page.component.css']
+  styleUrls: ['./fill-in-property-info-page.component.scss']
 })
 export class FillInPropertyInfoPageComponent implements OnInit {
 

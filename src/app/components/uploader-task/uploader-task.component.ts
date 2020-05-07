@@ -8,7 +8,7 @@ import { ImageService } from '../../services/image.service';
 @Component({
   selector: 'uploader-task',
   templateUrl: './uploader-task.component.html',
-  styleUrls: ['./uploader-task.component.css']
+  styleUrls: ['./uploader-task.component.scss']
 })
 export class UploadTaskComponent implements OnInit {
 

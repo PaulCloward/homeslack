@@ -77,11 +77,8 @@ import { UploadPhotosComponent } from './components/upload-photos/upload-photos.
 import { UploaderComponent } from './components/uploader/uploader.component';
 import { UploadTaskComponent } from './components/uploader-task/uploader-task.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
-import { PhotoSliderComponent } from './components/photo-slider/photo-slider.component';
 import { SearchComponent } from './components/search/search.component';
 import { CreateAccountInvestorComponent } from './pages/create-account-investor/create-account-investor.component';
-import { NavbarSupportComponent } from './components/navbar-support/navbar-support.component';
-import { NavComponent } from './components/nav/nav.component';
 
 
 export const customCurrencyMaskConfig = {
@@ -165,11 +162,8 @@ const appRoutes: Routes = [
     UploaderComponent,
     UploadTaskComponent,
     ImageSliderComponent,
-    PhotoSliderComponent,
     SearchComponent,
-    CreateAccountInvestorComponent,
-    NavbarSupportComponent,
-    NavComponent
+    CreateAccountInvestorComponent
   ],
   imports: [
     BrowserModule,

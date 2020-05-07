@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-confirm-listing',
   templateUrl: './confirm-listing.component.html',
-  styleUrls: ['./confirm-listing.component.css']
+  styleUrls: ['./confirm-listing.component.scss']
 })
 export class ConfirmListingComponent implements OnInit, OnDestroy {
   

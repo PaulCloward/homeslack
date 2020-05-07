@@ -3,7 +3,7 @@ import { ImageService } from '../../../services/image.service';
 @Component({
   selector: 'app-image-list',
   templateUrl: './image-list.component.html',
-  styles: ['./image-list.css']
+  styles: ['./image-list.scss']
 })
 export class ImageListComponent implements OnInit {
   imageList: any[];

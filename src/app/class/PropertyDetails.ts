@@ -2,23 +2,23 @@ import { IAddress } from '../model/IAddress';
 
 export class PropertyDetails{
     
-    living_square_feet: number;
-    lot_size:number;
-    lot_size_unit:string;
-    year:number;
-    beds:number;
-    baths: number;
-    garage:number;
-    basement:boolean;
+    living_square_feet?: number;
+    lot_size?:number;
+    lot_size_unit?:string;
+    year?:number;
+    beds?:number;
+    baths?: number;
+    garage?:number;
+    basement?:boolean;
     basement_completed?:number;
-    pool:boolean;
+    pool?:boolean;
     pool_description?:string;
-    cooling_type:string;
-    hot_tub:boolean;
+    cooling_type?:string;
+    hot_tub?:boolean;
     hot_tub_description?:string;
-    roof_age_range:string;
-    concerns_hvac_roofing_etc:string;
-    concerns_other:string; 
+    roof_age_range?:string;
+    concerns_hvac_roofing_etc?:string;
+    concerns_other?:string; 
     latitude?:number;
     longitude?:number;
     address:IAddress;

@@ -11,7 +11,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-createaccount',
   templateUrl: './createaccount.component.html',
-  styleUrls: ['./createaccount.component.css']
+  styleUrls: ['./createaccount.component.scss']
 })
 export class CreateaccountComponent implements OnInit {
   

@@ -66,10 +66,15 @@
     color: white;
 }
 
-
+.container-btn-next{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%; 
+    margin-bottom: 4em;
+    margin-top: 2em;
+}
 
   .btn-next{
-    margin-right: 2em;
     color: white;
     background-color: rgb(68, 197, 242);
     border: none;
@@ -81,7 +86,6 @@
 }
 
 .btn-next-disabled{
-    margin-right: 2em;
     color:rgba(255,255,255,.5);
     background-color:rgba(68, 197, 242,.5);
     border: none;
@@ -96,9 +100,10 @@
 
 .dropzone-image-container{
     position: relative;
-    border-radius: 1em;
+    border-radius: 0em;
     background-color: black;
-    margin: 6em 4em 4em 4em;
+    margin-top: 6em;
+    margin-bottom: 1em;
 }
 
 

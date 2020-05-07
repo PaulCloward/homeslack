@@ -7,7 +7,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 @Component({
   selector: 'app-listing-time',
   templateUrl: './listing-time.component.html',
-  styleUrls: ['./listing-time.component.css'],
+  styleUrls: ['./listing-time.component.scss'],
   animations: [
     trigger('changeState', [
       state('state1', style({
@@ -52,6 +52,7 @@ export class ListingTimeComponent implements OnInit {
   escrowHoldbackFeeAgreementEndorsement:string;
   everythingConfirmedEndorsement:string;
   escrowCloseEndorsement:string;
+  escrowCloseEndorsementOwnerOccupied:string;
   escrowCloseEndorsementTenantOccupied:string;
 
   /*-- homeDescriptionPropertyIsTenantOccupied selected preceding properties  --*/
@@ -137,6 +138,7 @@ export class ListingTimeComponent implements OnInit {
     this.selectedPreferredMoveOutDate = null;
     this.selectedReviewOfferDate = null;
     this.escrowCloseEndorsement = null;
+    this.escrowCloseEndorsementOwnerOccupied = null;
     this.isOutByClosing = null;
     this.removePersonalItemsAgreementEndorsement = null;
     this.removePersonalItemsByMoveoutAgreementEndorsement = null;
@@ -168,6 +170,7 @@ export class ListingTimeComponent implements OnInit {
     this.selectedPreferredMoveOutDate = null;
     this.selectedReviewOfferDate = null;
     this.escrowCloseEndorsement = null;
+    this.escrowCloseEndorsementOwnerOccupied = null;
     this.isOutByClosing = null;
     this.removePersonalItemsAgreementEndorsement = null;
     this.removePersonalItemsByMoveoutAgreementEndorsement = null;
@@ -194,6 +197,7 @@ export class ListingTimeComponent implements OnInit {
     this.selectedPreferredClosingTenantOccupiedDate =null;
     this.selectedReviewOfferTenantOccupiedDate = null;
     this.escrowCloseEndorsementTenantOccupied = null;
+    this.escrowCloseEndorsementOwnerOccupied = null;
   }
 
   onClickIsThereSecurityDeposit(){
@@ -202,6 +206,7 @@ export class ListingTimeComponent implements OnInit {
     this.selectedPreferredClosingTenantOccupiedDate =null;
     this.selectedReviewOfferTenantOccupiedDate = null;
     this.escrowCloseEndorsementTenantOccupied = null;
+    this.escrowCloseEndorsementOwnerOccupied = null;
   }
 
   onClickIsPropertyManagerInPlace(){
@@ -212,6 +217,7 @@ export class ListingTimeComponent implements OnInit {
     this.securityDepositAmount = null;
     this.selectedReviewOfferTenantOccupiedDate = null;
     this.escrowCloseEndorsementTenantOccupied = null;
+    this.escrowCloseEndorsementOwnerOccupied = null;
   }
 
   onClickIsOutByClosing(){
@@ -219,6 +225,7 @@ export class ListingTimeComponent implements OnInit {
     this.selectedPreferredMoveOutDate = null;
     this.selectedReviewOfferDate = null;
     this.escrowCloseEndorsement = null;
+    this.escrowCloseEndorsementOwnerOccupied = null;
     this.removePersonalItemsByMoveoutAgreementEndorsement = null;
     this.escrowHoldbackFeeAgreementEndorsement = null;
   }
@@ -246,6 +253,7 @@ export class ListingTimeComponent implements OnInit {
     
     this.selectedReviewOfferDate = null;
     this.escrowCloseEndorsement = null;
+    this.escrowCloseEndorsementOwnerOccupied = null;
     this.selectedPreferredMoveOutDate = null;
 
     this.disabled = false;
@@ -260,6 +268,7 @@ export class ListingTimeComponent implements OnInit {
   onPreferredClosingDateTenantOccupiedSelection(date:NgbDate){
     this.selectedReviewOfferTenantOccupiedDate = null;
     this.escrowCloseEndorsementTenantOccupied = null;
+    this.escrowCloseEndorsementOwnerOccupied = null;
     this.determineReviewOfferTenantOccupiedEndDate(date);
   }
 

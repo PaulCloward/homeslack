@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-lock',
   templateUrl: './lock.component.html',
-  styleUrls: ['./lock.component.css']
+  styleUrls: ['./lock.component.scss']
 })
 export class LockComponent implements OnInit {
 

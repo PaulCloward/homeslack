@@ -1,11 +1,35 @@
+
+.navbar {
+    background-color: #FFF;
+    padding: 0em;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo{
+  align-self: center;
+  max-height: 2.2em;
+  margin: 0em 0em 0em 1em;
+  cursor: pointer;
+}
+
+.navbar-toggler{
+
+  outline: none;
+  height: 100%;
+}
+
+
+
+.ic-menu{
+  color: rgb(68, 197, 242);
+  font-size: 2em;
+}
+
 .tab-hidden{
 	display: none;
 }
 
-.navbar {
-    background-color: #FFF;
-    padding: 0em 0em .3em 0em;
-}
 
 .dropdown{
   position: relative;

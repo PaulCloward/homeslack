@@ -1,31 +1,21 @@
 .slider-container{
-  margin: 2em 2em;
+ 
   //background-color: #eaeaea;
   padding-bottom: 1em;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  z-index: 2;
 }
 
-.items{
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    z-index: 2;
-    margin-left: 2em;
-    margin-right: 2em;
-
-}
-
-.items .item{
-    
-    // background: red;
+.thumbnail{
     margin: 10px;
 }
 
 .imagebox, .editbox {
-    //background: #6AD4EC;
-    //background-color: #9CE4F5;
     background-color: white;
     border: 1px solid #ddd; /* Gray border */
-    border-radius: 10px;  /* Rounded border */
+    border-radius: 10px; 
     padding: .5em;
     position: relative;
     text-align: center;   
