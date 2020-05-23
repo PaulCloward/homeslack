@@ -168,8 +168,16 @@ export class FillInPropertyInfoPageComponent implements OnInit {
 
           this.sellerProperty.living_square_feet= propertyDetails.livingSquareFeet;
           this.sellerProperty.lot_size = propertyDetails.lotSize;
-          this.sellerProperty.beds= propertyDetails.beds;
-          this.sellerProperty.address.zip_code = propertyDetails.zipCode;
+        
+          if(propertyDetails.beds != null){
+            this.sellerProperty.beds = propertyDetails.beds;
+          }
+
+        
+          if(propertyDetails.zipCode != null && propertyDetails.zipCode != undefined){
+            this.sellerProperty.address.zip_code = propertyDetails.zipCode;
+          }
+         
 
 
           if(propertyDetails.unitNumber != null && propertyDetails.unitNumber != ''){

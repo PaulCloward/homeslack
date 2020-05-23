@@ -42,6 +42,7 @@ import { WhyUsComponent } from './components/why-us/why-us.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SharedModule } from './shared/shared.module';
 
 import { ViewPropertiesComponent } from './components/view-properties/view-properties.component';
 import { SellerAccountComponent } from './components/seller-account/seller-account.component';
@@ -79,6 +80,7 @@ import { UploadTaskComponent } from './components/uploader-task/uploader-task.co
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { SearchComponent } from './components/search/search.component';
 import { CreateAccountInvestorComponent } from './pages/create-account-investor/create-account-investor.component';
+
 
 
 export const customCurrencyMaskConfig = {
@@ -121,7 +123,18 @@ const appRoutes: Routes = [
       { path:'upload', component: ImageComponent},
       { path:'list', component:ImageListComponent}
     ] 
-  }
+  }, {
+    path: 'photos',
+    loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule)
+  },
+  {
+    path: 'investor',
+    loadChildren: () => import('./investor/investor.module').then(m => m.InvestorModule)
+  }, 
+  {
+    path: 'authentication',
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
+  },
 ]
 
 @NgModule({
@@ -153,7 +166,7 @@ const appRoutes: Routes = [
     LockComponent,
     ListingTimeComponent,
     NgbDatePipe,
-    FooterComponent,
+    // FooterComponent,
     TermsComponent,
     ImageComponent,
     ImagesComponent,
@@ -196,7 +209,8 @@ const appRoutes: Routes = [
     MatTooltipModule,
     MatIconModule,
     CommonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SharedModule
   ],
   providers: [
     HomeService, 

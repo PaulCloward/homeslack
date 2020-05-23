@@ -1,0 +1,33 @@
+<header>
+    <div class="menu" style="z-index: 2000001;">
+        <div class="bar"></div>
+    </div>
+    <div class="overlay"></div>
+    <nav style="z-index: 2000000;">
+        <a class="brand">
+            <img class="img-logo" routerLink="/home" src="../../../assets/img/logo_kuldasac.png" />
+        </a>
+        <ul>
+            <li class="nav-item">
+                <a routerLink="/directory" [ngClass]="{'nav-link': !isNavDirectory(), 'nav-link-selected': isNavDirectory()}" data-text="Directory">Directory</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/contact" [ngClass]="{'nav-link': !isNavContact(), 'nav-link-selected': isNavContact()}" data-text="Contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/why-us" [ngClass]="{'nav-link': !isNavWhyUs(), 'nav-link-selected': isNavWhyUs()}" data-text="Why Us">Why Us</a>
+            </li>
+           
+            <li class="nav-item nav-link-sign" *ngIf="!(mAuth.authState | async)">
+                <a style="color: #000" routerLink="/login" data-text="Sign In">Sign In</a>
+            </li>
+            <li class="nav-item nav-link-sign" *ngIf="(mAuth.authState | async)">
+                <a style="color: #000" (click)="onSignOut()" data-text="Sign Out">Sign Out</a>
+            </li>
+        </ul>
+    </nav>
+
+      <!-- TRANSCLUSION -->
+      <ng-content></ng-content>
+</header>
+

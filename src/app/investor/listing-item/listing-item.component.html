@@ -1,0 +1,60 @@
+<!-- <div class="container-item">
+    <div class="item-image">
+
+    </div>
+    <div class="item-count-down">
+
+    </div>
+</div> -->
+<div class="gallery-container">
+    <div class="container-item">
+        <div class="gallery-item">
+            <div class="image">
+                <img src="https://source.unsplash.com/1600x900/?house" alt="property">
+            </div>
+            <div [ngClass]="{'text': true, 'caption-priority': priority == 1}">
+                <div class="street-address">279 S Election Road</div>
+                <div class="state-address">Draper, UT 84020 {{priority}}</div>
+            </div>
+        </div>
+        <div class="image-details">
+            <div [ngClass]="{'label-details': true, 'label-priority': priority == 1}">
+                CLOSING COUNTDOWN
+            </div>
+            <div class="circle-row">
+                <div class="circle-column">
+                    <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
+                        56
+                    </div>
+                    <div class="circle-label">
+                        Days
+                    </div>
+                </div>
+                <div class="circle-column">
+                    <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
+                        56
+                    </div>
+                    <div class="circle-label">
+                        Hours
+                    </div>
+                </div>
+                <div class="circle-column">
+                    <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
+                        56
+                    </div>
+                    <div class="circle-label">
+                        Minutes
+                    </div>
+                </div>
+                <div class="circle-column">
+                    <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
+                        56
+                    </div>
+                    <div class="circle-label">
+                        Seconds
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

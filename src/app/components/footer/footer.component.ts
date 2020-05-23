@@ -9,7 +9,7 @@ export class FooterComponent implements OnInit {
 
   //@Input() backgroundColor:string = "#f1f1f1";
   //@Input() backgroundColor:string = "#13335A";
-  @Input() backgroundColor:string = "#04A3C8";
+  @Input() backgroundColor:string = "#44C6F3";
   
   constructor() { }
 

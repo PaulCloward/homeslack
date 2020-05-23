@@ -1,7 +1,7 @@
-<div class="container-fluid top-image-container" >
+<div class="container-fluid top-image-container" style="padding: 0 !important">
     <div class="row" >
       <div class="col-12">
-        <img src="../../../assets/img/img_banners/8.jpg" class="img-under-nav"/>
+        <img src="../../../assets/img/img_banners/8.jpg"  style="padding: 0 !important" class="img-under-nav"/>
         <div class="row">
           <div class="col-12 top-header-title-container">
             <div class="top-header-title"><span class="top-header-title-bold">CONTACT </span> <span class="top-header-title-light">US</span></div>
@@ -10,7 +10,7 @@
       </div>
     </div>
 </div>
-<div class="container-fluid d-none d-md-block" style="padding: 4em 0em">
+<div class="container-fluid" style="padding: 4em 0em !important">
     <div class="row">
         <div class="col-5 offset-3 left-side"  *ngIf="!isSubmitted">
             <form class="custom-form" [formGroup]="myFormContact" >
@@ -29,7 +29,7 @@
                 <textarea [ngStyle]="{'border': (message.invalid && message.touched) ? '.5px solid red' : '.5px solid gray'}"  formControlName="message" placeholder="Message" class="text-area" rows="5" name=""
                     maxlength="2000"></textarea>
                 <div *ngIf="message.invalid && message.touched" class="error-hint">    
-                    <span class="warning">*</span>Your message to Homeslack needs at least 50 characters before sending
+                    <span class="warning">*</span>Your message to Kuldasac needs at least 50 characters before sending
                 </div>
                 
 
@@ -51,13 +51,13 @@
                     Thank you! 
                 </div>
                 <div class="get-in-touch">
-                    A member of the Homeslack team will be in touch with you touch soon 
+                    A member of the Kuldasac team will be in touch with you touch soon 
                 </div>
         
         </div>
         <div class="col-4 right-side">
             <div class="list-title" style="margin-top: 0em !important">Email:</div>
-            <div class="list-item">Homeslackteam@gmail.com</div>
+            <div class="list-item">Kuldasacteam@gmail.com</div>
             
             <div class="list-title">Phone:</div>
             <div class="list-item">1-801-580-4435</div>

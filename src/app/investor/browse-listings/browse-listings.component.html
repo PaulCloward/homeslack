@@ -1,0 +1,52 @@
+<div class="page-container">
+    <div style="position: relative; width: 100%">
+        <img src="../../../assets/img/investor_profile_header_1.png" />
+        <div class="banner-info-container">
+            <img class="icon-profile" src="../../../assets/img/ic_profile.png"/>
+            <div class="investor-name">
+                Cole Reasch
+            </div>
+            <div class="investor-company">
+                Horrocks Engineers
+            </div>
+        </div>
+
+        <button class="btn-browse-listings" routerLink="/investor/listings">
+            <span class="btn-browse-listings-label">BROWSE LISTINGS</span>
+        </button>
+    </div>
+    <div class="property-columns">
+        <div class="column-under-contract">
+            <div class="column-label">
+                UNDER CONTRACT
+            </div>
+            <div class="container-listings">
+                <app-listing-item [priority]="priority1"></app-listing-item>
+                <app-listing-item></app-listing-item>
+                <app-listing-item></app-listing-item>
+            </div>
+        </div>
+        <div class="column-offers-made">
+            <div class="column-label">
+                OFFERS MADE
+            </div>
+            <div class="container-listings">
+                <app-listing-item></app-listing-item>
+                <app-listing-item></app-listing-item>
+                <app-listing-item></app-listing-item>
+            </div>
+        </div>
+        <div class="column-property-watch">
+            <div class="column-label">
+                PROPERTY WATCH
+            </div>
+            <div class="container-listings">
+                <app-listing-item></app-listing-item>
+                <app-listing-item></app-listing-item>
+                <app-listing-item></app-listing-item>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+
