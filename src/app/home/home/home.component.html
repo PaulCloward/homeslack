@@ -1,0 +1,55 @@
+<div class="page-container">
+    <div class="top-container">
+        <div id="left-side">
+            <div class="header-container">
+                <h1 style="color: #2A2A2A">Sell your home</h1>
+                <h1 style="color: #44C6F3">for free!</h1>
+            </div>
+            <div class="input-container">
+                <input placeholder="Enter your address..." #search [formControl]="searchControl" 
+                 (keydown)="onKeyDown($event)"/>
+                <button (click)="onClickSearchArrow()">Find Home</button>
+            </div>
+           
+        </div>
+        <div id="right-side">
+            <img src="../../../assets/img/home_1.png"/>
+        </div>
+        
+        
+    </div>
+    <div class="card-row">
+        <div class="card">
+            <img class="computer" src="../../../assets/img/ic_free.png" />
+            <label>It's free</label>
+            <ul>
+                <li>No repairs needed.</li>
+                <li>No closing costs.</li>
+                <li>No agent fees.</li>
+            </ul>
+        </div>
+        <div class="card center-card">
+            <img class="computer" src="../../../assets/img/ic_computer.png" />
+            <label>It's online</label>
+            <ul>
+                <li>No annoying calls.</li>
+                <li>No in-person meetings.</li>
+                <li>No price haggling.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <img class="cash" src="../../../assets/img/ic_cash.png" />
+            <label>It's cash</label>
+            <ul>
+                <li>No repairs needed.</li>
+                <li>No closing costs.</li>
+                <li>No agent fees.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="blue-container">
+        <img style="width: 100%;" src="../../../assets/img/home_blue.png" />
+        <label>How can I receive offers<br> on my home?</label>     
+    </div>
+</div>
+<app-footer></app-footer>

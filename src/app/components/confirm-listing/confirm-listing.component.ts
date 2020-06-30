@@ -48,10 +48,7 @@ export class ConfirmListingComponent implements OnInit, OnDestroy {
           }
         );
       }
-    });
-
-   
-    
+    }); 
   }
 
   ngOnDestroy(){
@@ -73,6 +70,17 @@ export class ConfirmListingComponent implements OnInit, OnDestroy {
   }
 
   onSubmitHomeListing(){
-    this.mRouter.navigate(['./seller-account']);
+
+    this.mFirestoreService.savePropertyToPublicListing(this.sellerPropertyDetails).then(success => {
+      this.mFirestoreService.saveFirstPropertyToIndividualSeller(this.userUID, this.sellerPropertyDetails).then(success => {
+        this.mRouter.navigate(['./seller-account']);
+      }).catch(error => {
+        console.log(error);
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+    
+    
   }
 }

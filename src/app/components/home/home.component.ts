@@ -1,18 +1,13 @@
-import { Component, OnInit, Input, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { } from 'googlemaps';
 import { SellerPropertyService } from '../../services/seller-property.service';
-import { IHome } from '../../model/IHome';
-import { IAddress } from '../../model/IAddress';
-import { IHomeDetails } from '../../model/IHomeDetails';
-import { ITimeframe } from '../../model/ITimeframe';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { PropertySearchEstatedService } from '../../services/property-search-estated.service';
 import { PropertyDetails } from '../../class/PropertyDetails';
-declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -181,7 +176,7 @@ export class HomeComponent implements OnInit {
         }
 
         this.mSellerProperty.living_square_feet = structureObject.total_area_sq_ft;
-        this.mSellerProperty.cooling_type = structureObject.air_conditioning_type;
+        this.mSellerProperty.cooling = structureObject.air_conditioning_type;
         this.mSellerProperty.garage = structureObject.parking_spaces_count;
       }
 
@@ -248,7 +243,7 @@ export class HomeComponent implements OnInit {
 
 
       if(data.property[0].utilities.coolingtype != null && data.property[0].utilities.coolingtype != 'NONE'){
-        this.mSellerProperty.cooling_type = data.property[0].utilities.coolingtype;
+        this.mSellerProperty.cooling = data.property[0].utilities.coolingtype;
       }
 
       if(data.property[0].building.parking.prkgSize != null){

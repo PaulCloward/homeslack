@@ -1,0 +1,198 @@
+.property{
+    height: 445px;
+    width: 100%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 3px 3px 11px #00000075;
+    opacity: 1;
+    margin-bottom: 35px;
+    margin-left: 26px;
+    margin-right: 25px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.left-side, .right-side{
+
+    width: 50%;
+    height: 100%;
+}
+
+.left-side{
+}
+
+.property-image{
+    
+}
+
+.closing-countdown{
+    text-align: center;
+    font-weight: bold;
+    font-size: 21px;
+    font-family: Century Gothic;
+    letter-spacing: 2.1px;
+    color: #44C6F3;
+    opacity: 1;
+    margin-top: 21px;
+    margin-bottom: 12px;
+}
+
+.countdown-container{
+    width: 60%;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.time-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.time-circle{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+
+    width: 52px;
+    height: 52px;
+    background: #44C6F3 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.time-number{
+    font-family: bold;
+    font-size: 18px;
+    font-family: Century Gothic;
+    letter-spacing: 1.8px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.time-label{
+    text-align: center;
+    font-family: 400;
+    font-size: 11px;
+    font-family: Century Gothic;
+    letter-spacing: 1.1px;
+    color: #707070;
+    opacity: 1;
+}
+
+.image-caption{
+    background: #2D2D2D 0% 0% no-repeat padding-box;
+    opacity: 1;
+    padding: 13px 0px 15px 22px;
+}
+
+.image-caption-header{
+    text-align: left;
+    font-weight: bold;
+    font-size: 23px;
+    font-family: Century Gothic;
+    letter-spacing: 2.3px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.image-caption-sub-header{
+    text-align: left;
+    font-weight: 400;
+    font-size: 17px;
+    font-family: Century Gothic;
+    letter-spacing: 1.7px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.right-side{
+    
+    padding-right: 34px;
+    padding-bottom: 29px;
+    padding-left: 26px;
+}
+
+.right-header{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #707070;
+    width: 100%;
+}
+
+.highest-bid{
+    
+    margin-top: 13px;
+    text-align: left;
+    font-size: 19px;
+    font-weight: bold;
+    font-family: Century Gothic;
+    letter-spacing: 2.1px;
+    color: #2D2D2D;
+    opacity: 1;
+}
+
+.highest-bid-number{
+
+    text-align: left;
+    font-size:34px;
+    font-weight: bold;
+    font-family: Century Gothic;
+    letter-spacing: 4.3px;
+    color: #2D2D2D;
+    opacity: 1;
+    margin-bottom: 4px;
+}
+
+.highest-container{
+    width: 80%;
+}
+
+.heart-container{
+    width: 20%;
+    height: 100%;
+    text-align: right;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.heart{
+    margin-top: 35px;
+    cursor: pointer;
+}
+
+.container-data-rows{
+    display: flex;
+    flex-direction: column;
+    margin-top: 18px;
+   
+}
+
+.data-row{
+    display: flex;
+    justify-content: row;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.property-image-circle{
+    height: 44px;
+    width: 44px;
+}
+
+.date-value{
+    text-align: left;
+    font-size: 17px;
+    font-weight:400;
+    font-family: Century Gothic;
+
+    letter-spacing: 1.7px;
+    color: #2D2D2D;
+    opacity: 1;
+    margin-left: 11px;
+}

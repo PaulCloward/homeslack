@@ -103,7 +103,7 @@
                             </div>
                             <div *ngIf="!editModeTotalLivingArea" class="label-property-result">{{sellerProperty.living_square_feet}} Sqft</div>
                             <div *ngIf="editModeTotalLivingArea" class="label-hint"> Total livable sqft in home?</div>
-                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property"   type="text" maxlength="6" inputmode="numeric" pattern="[0-9]*" digitOnly  inputmode="numeric" pattern="[0-9]*" digitOnly  placeholder="Liveable Sqft #" [(ngModel)]="sellerProperty.living_square_feet" (click)="$event.stopPropagation()"/>
+                            <input *ngIf="editModeTotalLivingArea" class="input-edit-property"   type="text" maxlength="6" placeholder="Liveable Sqft #" [(ngModel)]="sellerProperty.living_square_feet" (click)="$event.stopPropagation()" NumberOnly/>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                             </div>
                             <div *ngIf="!editModeLotSize" class="label-property-result">{{sellerProperty.lot_size}} Sqft</div>
                             <div *ngIf="editModeLotSize" class="label-hint"> Total Sqft Size of Lot?</div>
-                            <input *ngIf="editModeLotSize" class="input-edit-property"  type="text" maxlength="6" inputmode="numeric" pattern="[0-9]*" digitOnly  placeholder="Total Size of Lot in Sqft" [(ngModel)]="sellerProperty.lot_size" (click)="$event.stopPropagation()"/>
+                            <input *ngIf="editModeLotSize" class="input-edit-property"  type="text" maxlength="6"  placeholder="Total Size of Lot in Sqft" [(ngModel)]="sellerProperty.lot_size" (click)="$event.stopPropagation()" NumberOnly/>
                         </div>
                     </div>
                 </div>
@@ -387,20 +387,20 @@
                             <img src="../../../assets/img/Cooling.png" class="icon-label img-fluid" data-toggle="tooltip" data-placement="top" placement="top"  matTooltip="{{coolingHint}}"/>
                         </div>
                         <div class="col-9">
-                            <div class="label-property" *ngIf="sellerProperty.cooling_type == null">
+                            <div class="label-property" *ngIf="sellerProperty.cooling == null">
                               Cooling
                             </div>
-                            <div class="label-property" (click)="editModeCooling = !editModeCooling" *ngIf="sellerProperty.cooling_type">
+                            <div class="label-property" (click)="editModeCooling = !editModeCooling" *ngIf="sellerProperty.cooling">
                                 Cooling <span class="question-mark-circle rounded-circle" >?</span>
                             </div>
-                            <div *ngIf="!editModeCooling" class="label-property-result">{{sellerProperty.cooling_type}}</div>
+                            <div *ngIf="!editModeCooling" class="label-property-result">{{sellerProperty.cooling}}</div>
                             <div class="label-hint" *ngIf="editModeCooling">Home Cooling System Type?</div>
                             <div class="dropdown" *ngIf="editModeCooling">
-                              <button *ngIf="sellerProperty.cooling_type == null" class="btn btn-dropdown dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <button *ngIf="sellerProperty.cooling == null" class="btn btn-dropdown dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Select type of Cooling
                               </button>
-                              <button *ngIf="sellerProperty.cooling_type"  class="btn btn-dropdown dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{sellerProperty.cooling_type}}
+                              <button *ngIf="sellerProperty.cooling"  class="btn btn-dropdown dropdown-toggle"  style="margin-top: .3em; " type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{sellerProperty.cooling}}
                               </button>
                               <div class="dropdown-menu">
                                 <a class="dropdown-item" (click)="onClickCooling('Central HVAC')">Central HVAC</a>

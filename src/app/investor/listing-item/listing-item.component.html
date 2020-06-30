@@ -13,8 +13,8 @@
                 <img src="https://source.unsplash.com/1600x900/?house" alt="property">
             </div>
             <div [ngClass]="{'text': true, 'caption-priority': priority == 1}">
-                <div class="street-address">279 S Election Road</div>
-                <div class="state-address">Draper, UT 84020 {{priority}}</div>
+                <div class="street-address">{{listing.address.street}}</div>
+                <div class="state-address">{{listing.address.city}}, {{listing.address.state}} {{listing.address.zip_code}}</div>
             </div>
         </div>
         <div class="image-details">
@@ -24,7 +24,7 @@
             <div class="circle-row">
                 <div class="circle-column">
                     <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
-                        56
+                        {{countDownDay}}
                     </div>
                     <div class="circle-label">
                         Days
@@ -32,7 +32,7 @@
                 </div>
                 <div class="circle-column">
                     <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
-                        56
+                        {{countDownHour}}
                     </div>
                     <div class="circle-label">
                         Hours
@@ -40,7 +40,7 @@
                 </div>
                 <div class="circle-column">
                     <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
-                        56
+                        {{countDownMinute}}
                     </div>
                     <div class="circle-label">
                         Minutes
@@ -48,7 +48,7 @@
                 </div>
                 <div class="circle-column">
                     <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
-                        56
+                        {{countDownSecond}}
                     </div>
                     <div class="circle-label">
                         Seconds

@@ -7,6 +7,8 @@ import * as firebase from 'firebase/app';
 import { SellerPropertyService } from '../../services/seller-property.service';
 import { PropertyDetails } from '../../class/PropertyDetails';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ISellerInformation } from '../../model/ISellerInformation';
+import { IUserRoles } from '../../model/IUserRoles';
 
 @Component({
   selector: 'app-createaccount',
@@ -14,6 +16,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./createaccount.component.scss']
 })
 export class CreateaccountComponent implements OnInit {
+
+  loading = false;
+  success = false;
+  errorStatement = '';
   
   isUpdatedByText:boolean = false;
   isUpdatedByEmail:boolean = false;
@@ -49,8 +55,14 @@ export class CreateaccountComponent implements OnInit {
       ]],
       phone: ['', [
         Validators.required,
-        // ValidationPhoneNumber.checkLimit(9,11),
-        // Validators.pattern("^[0-9]+$")
+        Validators.minLength(12),
+        Validators.maxLength(12)
+      ]],
+      updatesText: ['', [
+        Validators.required
+      ]],
+      updatesEmail: ['', [
+        Validators.required
       ]],
       password: ['', [
         Validators.required,
@@ -61,6 +73,9 @@ export class CreateaccountComponent implements OnInit {
         //Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
       ]]
     }, {validator: this.checkPasswords });
+
+    this.updatesEmail.setValue(false);
+    this.updatesText.setValue(false);
 
     this.mSellerContactInfo = new Seller();
 
@@ -94,9 +109,77 @@ export class CreateaccountComponent implements OnInit {
       error => this.alertMessage = error;
     });
   }
+
+  async createAccount() {
+
+    this.loading = true;
+    this.errorStatement = "";
+
+    let email:string = this.email.value;
+    let password:string = this.password.value;
+
+   
+    let result = this.mAuth.auth.createUserWithEmailAndPassword(email, password);
+    result.then(success => {
+
+      // success.user.updatePhoneNumber(this.phoneNumber.value);
+      let uuid = success.user.uid;
+      this.mFirestoreService.saveSellerContactInformation(uuid,Object.assign({},this.mSellerContactInfo));
+      this.mFirestoreService.saveSellerPropertyDetails(uuid,Object.assign({}, this.mSellerPropertyDetails));
+
+      let sellerInformation:ISellerInformation = {
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        my_uid: uuid,
+        first_name: this.firstName.value,
+        last_name:this.lastName.value,
+        phone:this.phone.value,
+        email:this.email.value,
+        updates_text:this.updatesText.value,
+        updates_email:this.updatesEmail.value,
+      };
+
+      this.mFirestoreService.saveSellerInformation(uuid, sellerInformation).then(success => {
+
+        let userRoles:IUserRoles = {
+          my_uid: uuid,
+          role: {
+            admin: false,
+            investor: false,
+            seller: true
+          }
+        }
+
+        this.mFirestoreService.saveUserRoles(uuid, userRoles).then(success => {
+          console.log("Successfully registered as an seller");
+
+          // Clear form info
+        this.myFormContact.reset();
+          this.mRouter.navigateByUrl('/listing-time');
+        }).catch(error => {
+          console.log("Seller registration failed: " + error);
+        })
+  
+
+        
+
+      }).catch(error => {
+        console.log("Was not able to save investor information: " + error);
+      });
+    }).catch(error => {
+      console.log("Was not able to create investor account: " + error);
+        console.log(error.message);
+    });
+
+
+    this.loading = false;
+  }
   
   onClickTerms(){
     this.mRouter.navigate(['./terms']);
+  }
+
+  onPhoneInput(e:any){ 
+    this.phone.setValue(this.phone.value.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3'));
   }
 
   /*Reactive Form Methods*/
@@ -116,6 +199,14 @@ export class CreateaccountComponent implements OnInit {
     return this.myFormContact.get('phone');
   }
 
+  get updatesEmail() {
+    return this.myFormContact.get('updatesEmail');
+  }
+
+  get updatesText() {
+    return this.myFormContact.get('updatesText');
+  }
+
   get password() {
     return this.myFormContact.get('password');
   }
@@ -123,4 +214,6 @@ export class CreateaccountComponent implements OnInit {
   get confirmPassword() {
     return this.myFormContact.get('confirmPassword');
   }
+
+
 }

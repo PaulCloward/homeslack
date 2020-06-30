@@ -34,6 +34,14 @@ selector(s){
     });
   }
 
+  onSignIn(userType:string){
+    if(userType == 'investor'){
+      this.mRouter.navigateByUrl('login', {state: {data: {route: 'investor'}}});
+    }else {
+      this.mRouter.navigateByUrl('login', {state: {data: {route: 'seller'}}});
+    }
+  }
+
   isNavDirectory(){
     return this.mRouter.url == '/directory';
   }

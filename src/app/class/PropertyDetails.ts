@@ -13,7 +13,7 @@ export class PropertyDetails{
     basement_completed?:number;
     pool?:boolean;
     pool_description?:string;
-    cooling_type?:string;
+    cooling?:string;
     hot_tub?:boolean;
     hot_tub_description?:string;
     roof_age_range?:string;

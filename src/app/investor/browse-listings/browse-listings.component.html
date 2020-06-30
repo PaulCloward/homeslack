@@ -4,10 +4,10 @@
         <div class="banner-info-container">
             <img class="icon-profile" src="../../../assets/img/ic_profile.png"/>
             <div class="investor-name">
-                Cole Reasch
+                {{ mInvestorInformation?.contact_name}}
             </div>
             <div class="investor-company">
-                Horrocks Engineers
+                {{ mInvestorInformation?.company_name}}
             </div>
         </div>
 
@@ -21,9 +21,9 @@
                 UNDER CONTRACT
             </div>
             <div class="container-listings">
-                <app-listing-item [priority]="priority1"></app-listing-item>
+                <!-- <app-listing-item [priority]="priority1"></app-listing-item>
                 <app-listing-item></app-listing-item>
-                <app-listing-item></app-listing-item>
+                <app-listing-item></app-listing-item> -->
             </div>
         </div>
         <div class="column-offers-made">
@@ -31,9 +31,9 @@
                 OFFERS MADE
             </div>
             <div class="container-listings">
+                <!-- <app-listing-item></app-listing-item>
                 <app-listing-item></app-listing-item>
-                <app-listing-item></app-listing-item>
-                <app-listing-item></app-listing-item>
+                <app-listing-item></app-listing-item> -->
             </div>
         </div>
         <div class="column-property-watch">
@@ -41,9 +41,12 @@
                 PROPERTY WATCH
             </div>
             <div class="container-listings">
+                <div *ngFor="let listing of mWatchList">
+                    <app-listing-item [listing]="listing" (click)="onPropertyClick(listing)"></app-listing-item>
+                </div>
+                <!-- 
                 <app-listing-item></app-listing-item>
-                <app-listing-item></app-listing-item>
-                <app-listing-item></app-listing-item>
+                <app-listing-item></app-listing-item> -->
             </div>
         </div>
     </div>

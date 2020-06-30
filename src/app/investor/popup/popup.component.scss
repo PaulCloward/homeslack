@@ -1,0 +1,226 @@
+.popup-container{
+  width: 700px - (700px * .2); 
+  text-align: center;
+}
+
+.top-row-selectors, .top-row-close{
+  width: 100%; 
+  display: flex; 
+  align-items: center; 
+}
+
+.top-row-selectors{
+  justify-content: space-evenly;
+}
+
+.top-row-close{
+  justify-content: flex-end;
+}
+
+.back{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: auto;
+  background: #44C6F3; 
+  height: 40px; 
+  width: 40px; 
+  border-radius: 2rem;
+  color: white;
+  
+}
+
+.material-icons{
+  cursor: pointer;
+}
+
+
+ h3{
+   height: 34px;
+   text-align: center;
+  
+
+   font-weight: bold;
+   font-size: 28px - (28px * .2);
+   font-family: Century Gothic, 'Roboto', sans-serif;
+   letter-spacing: 2.8px - (2.8px * .2);
+   opacity: 1;
+}
+
+.btn-container{
+  width: 100%;
+  margin-top: 3.5em;
+  text-align: end;
+}
+
+button{
+
+  width: 208px - (54px * .2);
+  height: 54px - (54px * .2);
+  background: #44C6F3 0% 0% no-repeat padding-box;
+  box-shadow: (3px - (3px * .2)) (3px - (3px * .2)) (4px - (4px * .2)) #00000094;
+  border: none;
+  outline: none;
+  border-radius: 16px - (16px * .2);
+  opacity: 1;
+  cursor: pointer;
+
+  text-align: center;
+  font-weight: bold;
+  font-size: 23px - (23px * .2);
+  font-family: Century Gothic, 'Roboto', sans-serif;
+  letter-spacing: 2.3px;
+  color: #FFFFFF;
+  
+}
+
+.btn-disabled{
+  box-shadow: none !important;
+  opacity: .7 !important;
+  cursor: default;
+}
+
+mat-form-field{
+  width: 100%;
+  height: 10px;
+  margin-top: 2em;
+  border-radius: 16px;
+}
+
+mat-error{
+  width: 100%;
+  text-align: start;
+}
+
+
+input {
+  /* Layout Properties */
+
+  
+  /* UI Properties */
+  border-radius: 24px;
+  padding-left: 1em;
+ 
+  /* Text UI Properties*/
+  font-family: Century Gothic, sans-serif;
+  color: black;
+  font-size: 1em;
+  font-weight: 500;
+  opacity: 1;
+}
+
+
+// mat-icon-stepper selected color change 
+::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: black!important;
+}
+
+//input outline color
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #707070!important;
+  // opacity: 1!important;
+}
+
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #3db2da !important;
+  background-color: white !important;
+
+}
+
+// mat-input error outline color
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+  color: red!important;
+  opacity: 0.8!important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+  caret-color: red!important;
+}
+
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+  caret-color: red!important;
+}
+
+// mat-label normal state style
+::ng-deep .mat-form-field-label {
+  color: rgba(0,0,0,.6)!important;
+  // color: $mainColor!important;
+}
+
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #44C6F3 !important;
+}
+
+// mat-label error style
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: red!important;
+}
+
+.line-divider{
+  width: 350px - (350px * .2);
+  height: 0px;
+  border: .8px solid #707070;
+  opacity: 1;
+  margin: 0 auto;
+}
+
+label{
+  text-align: left;
+  font-family: Century Gothic;
+  font-size: 13px - (13px * .2);
+  font-weight: 400;
+  letter-spacing: 1.3px - (1.3px * .2);
+  color: #707070;
+  opacity: 1;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: .2em .5em .6em 0  !important; }
+::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
+
+
+section{
+  width: 100%;
+  text-align: left;
+  margin-top: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  
+
+    h3{
+      display: flex;
+      align-items: center;
+
+      text-align: left;
+      font-weight: bold;
+      font-family: Century Gothic;
+      font-size: 26px - (26px * .2);
+      letter-spacing: 3.3px;
+      color: #44C6F3;
+      opacity: 1;
+      margin-bottom: 0 !important;
+      
+      height: 1.1em;
+  }
+
+  h4{
+      text-align: left;
+      font-weight: 400;
+      font-family: Century Gothic;
+      font-size: 24px - (24px * .2);
+      letter-spacing: 2.4px;
+      color: #2D2D2D;
+      opacity: 1;
+      margin-top: 0 !important;
+      margin-bottom: 1.5em;
+  }
+}

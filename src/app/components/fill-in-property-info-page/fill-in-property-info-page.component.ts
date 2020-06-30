@@ -90,7 +90,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
 
 
       this.mFormPropertyDetails = this.mFormBuilder.group({
-        livingSquareFeet: [null, [
+        livingSquareFeet: ['', [
           Validators.required,
           CustomValidators.max(5)
         ]],
@@ -98,7 +98,7 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           Validators.required,
           CustomValidators.max(6)
         ]],
-        lotSizeUnit: [null, [
+        lotSizeUnit: ['', [
           Validators.required
         ]],
         year: [null, [
@@ -192,11 +192,58 @@ export class FillInPropertyInfoPageComponent implements OnInit {
           this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
           }
       });
+
+
+      this.lotSizeUnit.setValue('sqft');
+      this.beds.setValue(-1);
+      this.baths.setValue(-1);
   }
   
   arrayRange(n: number, startFrom: number): number[] {
     return [...Array(n).keys()].map(i => startFrom - i);
   }
+
+
+  onSelectBathCount(bathCount:number){
+    if(bathCount >= 1){
+       this.baths.setValue(bathCount);
+       this.otherBathCount = false;
+    }else{
+      this.sellerProperty.baths = null;
+      this.otherBathCount = true;
+    }
+  }
+
+  onBasementExisting(isBasment:boolean){
+    this.basement.setValue(isBasment);
+    if(isBasment){
+      this.basementCompleted.setValue(1);
+    }else{
+      this.basementCompleted.setValue(0);
+    }
+  }
+
+  onSelectGarageSpots(spots:number){
+    if(spots > 0){
+      this.garage.setValue(spots);
+      this.otherGarage = false;
+    }else {
+      this.garage.setValue(-1);
+      this.otherGarage = true;
+    }
+  }
+
+  onClickNext(){
+    this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
+    this.mFirestoreService.saveSellerPropertyDetails(this.userUID,Object.assign({},this.sellerProperty));
+    this.mRouter.navigate(['/listing-time']);
+  }
+
+  onClickCreateAccount(){
+    this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
+    this.mRouter.navigate(['./create-account']);
+  }
+
 
   get streetAddress() {
     return this.mFormAddressFields.get('streetAddress');
@@ -218,44 +265,72 @@ export class FillInPropertyInfoPageComponent implements OnInit {
     return this.mFormAddressFields.get('zipCode');
   }
 
-  onSelectBathCount(bathCount:number){
-    if(bathCount >= 1){
-       this.sellerProperty.baths = bathCount;
-       this.otherBathCount = false;
-    }else{
-      this.sellerProperty.baths = null;
-      this.otherBathCount = true;
-    }
+  get livingSquareFeet(){
+    return this.mFormPropertyDetails.get('livingSquareFeet');
   }
 
-  onBasementExisting(isBasment:boolean){
-    this.sellerProperty.basement = isBasment;
-    if(isBasment){
-      this.sellerProperty.basement_completed = 1;
-    }else{
-      this.sellerProperty.basement_completed = 0;
-    }
+  get yearBuilt(){
+    return this.mFormPropertyDetails.get('yearBuilt');
   }
 
-  onSelectGarageSpots(spots:number){
-    if(spots > 0){
-      this.sellerProperty.garage = spots;
-      this.otherGarage = false;
-    }else {
-      this.sellerProperty.garage = null;
-      this.otherGarage = true;
-    }
+  get lotSize(){
+    return this.mFormPropertyDetails.get('lotSize');
   }
 
-  onClickNext(){
-    this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
-    this.mFirestoreService.saveSellerPropertyDetails(this.userUID,Object.assign({},this.sellerProperty));
-    this.mRouter.navigate(['/listing-time']);
+  get lotSizeUnit(){
+    return this.mFormPropertyDetails.get('lotSizeUnit');
   }
 
-  onClickCreateAccount(){
-    this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
-    this.mRouter.navigate(['./create-account']);
+  get beds(){
+    return this.mFormPropertyDetails.get('beds');
   }
 
+  get baths(){
+    return this.mFormPropertyDetails.get('baths');
+  }
+
+  get basement(){
+    return this.mFormPropertyDetails.get('basement');
+  }
+
+  get basementCompleted(){
+    return this.mFormPropertyDetails.get('basementCompleted');
+  }
+
+  get garage(){
+    return this.mFormPropertyDetails.get('garage');
+  }
+
+  get pool(){
+    return this.mFormPropertyDetails.get('pool');
+  }
+
+  get poolDescription(){
+    return this.mFormPropertyDetails.get('poolDescription');
+  }
+
+
+  get hotTub(){
+    return this.mFormPropertyDetails.get('hotTub');
+  }
+
+  get hotTubDescription(){
+    return this.mFormPropertyDetails.get('hotTubDescription');
+  }
+
+  get cooling(){
+    return this.mFormPropertyDetails.get('cooling');
+  }
+
+  get roofAge(){
+    return this.mFormPropertyDetails.get('roofAge');
+  }
+
+  get concernsHVAC(){
+    return this.mFormPropertyDetails.get('concernsHVAC');
+  }
+
+  get concernsOther(){
+    return this.mFormPropertyDetails.get('concernsOther');
+  }
 }

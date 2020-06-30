@@ -1,0 +1,90 @@
+<div class="property">
+    <div class="left-side">
+        <img class="property-image" [src]="pathPropertyImage" (click)="onPropertyClick(listing)" style="cursor: pointer" />
+        <div class="image-caption" (click)="onPropertyClick(listing)" style="cursor: pointer">
+            <div class="image-caption-header">
+                {{listing?.address.street}}
+            </div>
+            <div class="image-caption-sub-header">
+                {{listing?.address.city}},  {{listing?.address.state}}  {{listing?.address.zip_code}}
+            </div>
+        </div>
+        <div class="closing-countdown">
+            CLOSING COUNTDOWN
+        </div>
+        <div class="countdown-container">
+            <div class="time-container">
+                <div class="time-circle">
+                    <div class="time-number">{{countDownDay}}</div>
+                </div>
+                <div class="time-label">
+                    Days
+                </div>
+            </div>
+            <div class="time-container">
+                <div class="time-circle">
+                    <div class="time-number">{{countDownHour}}</div>
+                </div>
+                <div class="time-label">
+                    Hours
+                </div>
+            </div>
+            <div class="time-container">
+                <div class="time-circle">
+                    <div class="time-number">{{countDownMinute}}</div>
+                </div>
+                <div class="time-label">
+                    Minutes
+                </div>
+            </div>
+            <div class="time-container">
+                <div class="time-circle">
+                    <div class="time-number">{{countDownSecond}}</div>
+                </div>
+                <div class="time-label">
+                    Seconds
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="right-header">
+            <div class="highest-container">
+                <div class="highest-bid">Highest Bid:</div>
+                <div class="highest-bid-number">$0</div>
+            </div>
+            <div class="heart-container">
+                <img *ngIf="isHeartSelected == -1" class="heart" [src]="icHeartPathUnselected" />
+                <img *ngIf="isHeartSelected == 0" class="heart" [src]="icHeartPathUnselected" (click)="onClickHeart()" />
+                <img *ngIf="isHeartSelected == 1" class="heart" [src]="icHeartPathSelected"  (click)="onClickHeart()" />
+            </div>
+        </div>
+        <div class="container-data-rows">
+            <div class="data-row">
+                <img class="property-image-circle" src="../../../assets/img/total_living_area.png" />
+                <div class="date-value"> {{listing?.living_square_feet}} Sq Ft Living Area</div>
+            </div>
+            <div class="data-row">
+                <img class="property-image-circle" src="../../../assets/img/lot_size.png" />
+                <div class="date-value"> {{listing?.lot_size}} Acres</div>
+            </div>
+            <div class="data-row">
+                <img class="property-image-circle" src="../../../assets/img/Bedrooms.png" />
+                <div class="date-value"> {{listing?.beds}} Bedrooms</div>
+            </div>
+            <div class="data-row">
+                <img class="property-image-circle" src="../../../assets/img/bathroom.png" />
+                <div class="date-value"> {{listing?.baths}} Bathrooms</div>
+            </div>
+            <div class="data-row">
+                <img class="property-image-circle" src="../../../assets/img/Garage.png" />
+                <div class="date-value">Garage:  {{listing?.garage}}</div>
+            </div>
+            <div class="data-row">
+                <img class="property-image-circle" src="../../../assets/img/year_built.png" />
+                <div class="date-value">Year Built:  {{listing?.year}}</div>
+            </div>
+        </div>
+       
+    </div>
+</div>

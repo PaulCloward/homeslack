@@ -155,7 +155,7 @@ export class VerifyInfoPageComponent implements OnInit {
         this.editModeHotTub = true;
       }
 
-      if(this.sellerProperty.cooling_type){
+      if(this.sellerProperty.cooling){
         this.editModeCooling = false;
       } else{
         this.editModeCooling = true;
@@ -212,7 +212,7 @@ export class VerifyInfoPageComponent implements OnInit {
   }
 
 onClickCooling(coolingType:string){
-  this.sellerProperty.cooling_type = coolingType;
+  this.sellerProperty.cooling = coolingType;
   this.editModeCooling = false;
 }
 onClickGarageSize(carFitInGarage:number){

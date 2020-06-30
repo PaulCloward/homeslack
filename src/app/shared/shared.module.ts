@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,13 +13,18 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ShellComponent } from './shell/shell.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { NavbarShellComponent } from './navbar-shell/navbar-shell.component';
 
+import { StrictNumberOnlyDirective } from '../directives/StrictNumberOnlyDirective';
+
 const components = [
-  ShellComponent,
   FooterComponent,
   NavbarShellComponent
 ]
@@ -26,6 +32,8 @@ const components = [
 const modules = [
   CommonModule,
   RouterModule,
+  FormsModule,
+  ReactiveFormsModule,
   MatToolbarModule,
   MatIconModule,
   LayoutModule,
@@ -37,17 +45,22 @@ const modules = [
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSliderModule,
+  MatRadioModule,
+  MatDialogModule,
+  MatCheckboxModule
 ];
 
 @NgModule({
-  declarations: [...components, NavbarShellComponent],
+  declarations: [...components, NavbarShellComponent, StrictNumberOnlyDirective],
   imports: [
     ...modules
   ],
   exports: [
     ...modules,
-    ...components
+    ...components,
+    StrictNumberOnlyDirective
   ]
 })
 export class SharedModule { }

@@ -92,8 +92,7 @@
                     </div>
                     <div class="col-5">
                         <div class="label-property">Unit #</div>
-                        <input class="input-edit-property"
-                        type="text" maxlength="6" formControlName="unitNumber"/>
+                        <input class="input-edit-property" type="text" maxlength="6" formControlName="unitNumber" NumberOnly/>
                     </div>
                 </div>
                 <div class="row">
@@ -112,7 +111,7 @@
                             <button [hidden]="sellerProperty.address.state != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Select State
                             </button>
-                        <button [hidden]="sellerProperty.address.state == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button [hidden]="sellerProperty.address.state == '' || sellerProperty.address.state == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{sellerProperty.address.state}}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonState">
@@ -123,7 +122,7 @@
                     </div>
                     <div class="col">
                         <div class="label-property">Zip Code</div>
-                        <input [ngStyle]="{'border': (zipCode.invalid && zipCode.touched) ? '.5px solid red' : '.5px solid gray'}" class="input-edit-property" type="text" maxlength="5" formControlName="zipCode" />
+                        <input [ngStyle]="{'border': (zipCode.invalid && zipCode.touched) ? '.5px solid red' : '.5px solid gray'}" class="input-edit-property" type="text" maxlength="5" formControlName="zipCode" NumberOnly />
                         <div class="error-hint" *ngIf="zipCode.invalid && zipCode.touched">
                             Please enter a valid zip code
                         </div>
@@ -155,7 +154,7 @@
                                 Total Living Area
                             </div>
                             <div class="label-hint">Livable Sqft # in Home?</div>
-                            <input class="input-edit-property" type="text" maxlength="6" inputmode="numeric" pattern="[0-9]*" digitOnly  inputmode="numeric" pattern="[0-9]*" digitOnly   placeholder="Liveable Sqft #"/>
+                            <input class="input-edit-property" type="text" maxlength="6" formControlName="livingSquareFeet"  placeholder="Liveable Sqft #" NumberOnly/>
                         </div>
                     </div>
                 </div>
@@ -172,14 +171,14 @@
                             <!-- <input class="input-edit-property" formControlName="sellerProperty.year" type="number" placeholder="year" max="4"/> -->
 
                             <div class="dropdown">
-                                <button [hidden]="sellerProperty.year != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button [hidden]="yearBuilt.value == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Select Year
                                 </button>
-                              <button [hidden]="sellerProperty.year == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <button [hidden]="yearBuilt.value != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                  {{sellerProperty.year}} 
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonYear">
-                                <a class="dropdown-item" *ngFor="let year of arrayRange(171,2020)" (click)="sellerProperty.year = year">{{year}}</a>
+                                <a class="dropdown-item" *ngFor="let year of arrayRange(171,2020)" (click)="yearBuilt.setValue(year)">{{year}}</a>
                               </div>
     
                             </div>
@@ -197,19 +196,21 @@
                             </div>
                             <div class="label-hint">Total Size of Lot in Sqft or Acres</div>
                            
+                            <input *ngIf="lotSizeUnit.value != null && lotSizeUnit.value == 'sqft'" class="input-edit-property" formControlName="lotSize" type="text" maxlength="6" placeholder="lot size # sqft" NumberOnly/>
+                            <input *ngIf="lotSizeUnit.value != null && lotSizeUnit.value == 'acres'" class="input-edit-property" formControlName="lotSize" type="text" maxlength="6"   placeholder="lot size # acres" NumberOnly />
+
                             <div class="row" style="margin-top: 1em; margin-left: .2em">
                                 <div (click)="sellerProperty.lot_size_unit = 'sqft'" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : sellerProperty.lot_size_unit == 'sqft'}">
+                                    [ngClass]="{'btn-result-clicked' : lotSizeUnit.value != null && lotSizeUnit.value == 'sqft'}">
                                     Sqft
                                 </div>
                                 <div (click)="sellerProperty.lot_size_unit = 'acres'" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : sellerProperty.lot_size_unit == 'acres'}">
+                                    [ngClass]="{'btn-result-clicked' : lotSizeUnit.value != null && lotSizeUnit.value == 'acres'}">
                                     Acres
                                 </div>
                             </div>
 
-                            <input *ngIf="sellerProperty.lot_size_unit == 'sqft'" class="input-edit-property" formControlName="lotSize" type="text" maxlength="6" placeholder="lot size # sqft"/>
-                            <input *ngIf="sellerProperty.lot_size_unit == 'acres'" class="input-edit-property" formControlName="lotSize" type="text" maxlength="6"   placeholder="lot size # acres" />
+                            
                         </div>
                     </div>
                 </div>
@@ -228,30 +229,30 @@
                             </div>
                             <div class="label-hint">Finished Bedrooms in Home?</div>
                             <div class="dropdown">
-                            <button [hidden]="sellerProperty.beds != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button [hidden]="beds.value == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 # of beds
                             </button>
-                          <button [hidden]="sellerProperty.beds == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             {{sellerProperty.beds}} bed
+                          <button [hidden]="beds.value != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             {{beds.value}} bed
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBedroom">
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 1">1 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 2">2 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 3">3 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 4">4 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 5">5 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 6">6 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 7">7 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 8">8 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 9">9 Bed</a>
-                            <a class="dropdown-item" (click)="sellerProperty.beds = 10">10 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(1)">1 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(2)">2 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(3)">3 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(4)">4 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(5)">5 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(6)">6 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(7)">7 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(8)">8 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(9)">9 Bed</a>
+                            <a class="dropdown-item" (click)="beds.setValue(10)">10 Bed</a>
                             <!-- <a class="dropdown-item" (click)="otherBeds = true">Other</a> -->
                           </div>
 
                         </div>
                         <div class="row" *ngIf="otherBeds == true">
                             <div class="col-12">
-                               <input  class="input-edit-property" formControlName="beds" placeholder="# of Bedrooms..." type="text" maxlength="2"  />
+                               <input  class="input-edit-property" formControlName="beds" placeholder="# of Bedrooms..." type="text" maxlength="2"  NumberOnly/>
                            </div>
                         </div>
                     </div>
@@ -346,11 +347,11 @@
                             </div>
    
                             <div class="dropdown">
-                                <button [hidden]="sellerProperty.garage != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button [hidden]="garage.value == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                  Garage size
                                 </button>
-                              <button [hidden]="sellerProperty.garage == null" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonGarage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{sellerProperty.garage}} Car
+                              <button [hidden]="garage.value != null" class="btn btn-dropdown dropdown-toggle" type="button" id="dropdownMenuButtonGarage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ garage.value }} Car
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonGarage">
                                 <a class="dropdown-item" (click)="onSelectGarageSpots(1)">1 Car</a>
@@ -360,7 +361,7 @@
                                 <a class="dropdown-item" (click)="onSelectGarageSpots(-1)">Other</a>
                                 </div>
                             </div>
-                            <input *ngIf="otherGarage == true" class="input-edit-property" formControlName="garage" placeholder="Garage Spots..."  type="text" maxlength="2"/>
+                            <input *ngIf="otherGarage == true" class="input-edit-property" formControlName="garage" placeholder="Garage Spots..."  type="text" maxlength="2" NumberOnly/>
                         </div>
                     </div>
                 </div>
@@ -375,15 +376,15 @@
                             </div>
                             <div class="label-hint">Does House have Pool?</div>
                            <div class="row mt-2 btn-row-margin-left">
-                                <div (click)="sellerProperty.pool = false" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : sellerProperty.pool == false}">
+                                <div (click)="pool.setValue(false)" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : pool.value != null && pool.value == false}">
                                     No
                                 </div>
-                                <div (click)="sellerProperty.pool = true" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : sellerProperty.pool == true}">
+                                <div (click)="pool.setValue(true)" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : pool.value != null && pool.value == true}">
                                     Yes
                                 </div>
-                                <div *ngIf="sellerProperty.pool == true" style="width: 100%">
+                                <div *ngIf="pool.value != null && pool.value == true" style="width: 100%">
                                     <textarea class="input-edit-property" formControlName="poolDescription" placeholder="Describe Pool condition..." style="resize: none" type="text" maxlength="100"></textarea>
                                 </div>
                             </div>
@@ -401,15 +402,15 @@
                             </div>
                            <div class="label-hint">In-Ground Hot Tub?</div>
                             <div class="row mt-2 btn-row-margin-left">
-                                <div (click)="sellerProperty.hot_tub = false" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == false}">
+                                <div (click)="hotTub.setValue(false)" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : hotTub.value != null && hotTub.value == false}">
                                     No
                                 </div>
-                                <div (click)="sellerProperty.hot_tub = true" class="col-3 label-property-result btn-result"
-                                    [ngClass]="{'btn-result-clicked' : sellerProperty.hot_tub == true}">
+                                <div (click)="hotTub.setValue(true)" class="col-3 label-property-result btn-result"
+                                    [ngClass]="{'btn-result-clicked' : hotTub.value != null && hotTub.value == true}">
                                     Yes
                                 </div>
-                                <div *ngIf="sellerProperty.hot_tub == true" style="width: 100%">
+                                <div *ngIf="hotTub.value != null && hotTub.value == true" style="width: 100%">
                                     <textarea class="input-edit-property" formControlName="hotTubDescription" placeholder="Describe Hot Tub condition..." style="resize: none" type="text" maxlength="100"></textarea>
                                 </div>
                             </div>
@@ -433,19 +434,19 @@
                             </div>
                             <div class="label-hint">Home Cooling System Type?</div>
                             <div class="dropdown">
-                                <button [hidden]="sellerProperty.cooling_type != null" class="btn dropdown-toggle"  style="margin-top: .3em;" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button [hidden]="cooling.value == null" class="btn dropdown-toggle"  style="margin-top: .3em;" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Cooling type
                                   </button>
-                              <button [hidden]="sellerProperty.cooling_type == null"class="btn dropdown-toggle"  style="margin-top: .3em;" type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{sellerProperty.cooling_type}}
+                              <button [hidden]="cooling.value != null"class="btn dropdown-toggle"  style="margin-top: .3em;" type="button" id="dropdownMenuButtonCooling" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ cooling.value }}
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCooling">
-                                <a class="dropdown-item" (click)="sellerProperty.cooling_type = 'Central HVAC'">Central HVAC</a>
-                                <a class="dropdown-item" (click)="sellerProperty.cooling_type = 'Furnace & Swamp Cooler'">Furnace & Swamp Cooler</a>
-                                <a class="dropdown-item" (click)="sellerProperty.cooling_type = 'Swamp Cooler Only'">Swamp Cooler Only</a>
-                                <a class="dropdown-item" (click)="sellerProperty.cooling_type = 'Window Unit(s)'">Window Unit(s)</a>
-                                <a class="dropdown-item" (click)="sellerProperty.cooling_type = 'Furnace Only'">Furnace Only</a>
-                                <a class="dropdown-item" (click)="sellerProperty.cooling_type = 'None'">None</a>
+                                <a class="dropdown-item" (click)="cooling.setValue('Central HVAC')">Central HVAC</a>
+                                <a class="dropdown-item" (click)="cooling.setValue('Furnace & Swamp Cooler')">Furnace & Swamp Cooler</a>
+                                <a class="dropdown-item" (click)="cooling.setValue('Swamp Cooler Only')">Swamp Cooler Only</a>
+                                <a class="dropdown-item" (click)="cooling.setValue('Window Unit(s)')">Window Unit(s)</a>
+                                <a class="dropdown-item" (click)="cooling.setValue('Furnace Only')">Furnace Only</a>
+                                <a class="dropdown-item" (click)="cooling.setValue('None')">None</a>
                               </div>
                             </div>
                         </div>
@@ -457,18 +458,18 @@
                 <div class="col-12">
                     <div class="label-question">About How Old is the Roof<span class="question-mark">?</span></div>
                     <div class="dropdown" style="width: 16em !important">
-                        <button  [hidden]="sellerProperty.roof_age_range != null" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button  [hidden]="roofAge == null" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Roof age range
                           </button>
-                      <button  [hidden]="sellerProperty.roof_age_range == null" class="btn dropdown-toggle" type="button" id="dropdownMenuButtonRoof" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{sellerProperty.roof_age_range}}
-                      </button>
+                            <button  [hidden]="roofAge != null" class="btn dropdown-toggle" type="button" id="dropdownMenuButtonRoof" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{roofAge.value }}
+                            </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonRoof">
-                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '1 - 3 Years'">1 - 3 Years</a>
-                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '4 - 6 Years'">4 - 6 Years</a>
-                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '7 - 10 Years'">7 - 10 Years</a>
-                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '11 - 15 Years'">11 - 15 Years</a>
-                        <a class="dropdown-item" (click)="sellerProperty.roof_age_range = '16+ Years'">16+ Years</a>
+                        <a class="dropdown-item" (click)="roofAge.setValue('1 - 3 Years')">1 - 3 Years</a>
+                        <a class="dropdown-item" (click)="roofAge.setValue('4 - 6 Years')">4 - 6 Years</a>
+                        <a class="dropdown-item" (click)="roofAge.setValue('7 - 10 Years')">7 - 10 Years</a>
+                        <a class="dropdown-item" (click)="sroofAge.setValue('11 - 15 Years')">11 - 15 Years</a>
+                        <a class="dropdown-item" (click)="roofAge.setValue('16+ Years')">16+ Years</a>
                       </div>
                     </div>
                 </div>

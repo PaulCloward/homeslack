@@ -7,12 +7,10 @@
     overflow-y: scroll;
 }
 
-
-
 .container-body{
     display: grid;
-    grid-template-columns: 2fr 3fr;
-    padding: 4rem 8rem;
+    grid-template-columns: 35fr 65fr;
+    padding: 4rem;
 }
 
 .container-filters{
@@ -20,11 +18,13 @@
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 9px #00000073;
     opacity: 1;
+    margin-right: 26px;
 }
 
 .container-bids{
-    height: 100vh;
-    border: 1px solid red;
+    height: 1405px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .filter-header{
@@ -53,7 +53,7 @@
 
 .filter-reset{
     margin-left: auto;
-    margin-top: 10px;;
+    margin-top: 10px;
     margin-right: 28px;
     font-weight: bold;
     font-size: 23px - (23px * .2);
@@ -61,6 +61,12 @@
     letter-spacing: 2.3px;
     color: #888888;
     opacity: 1;
+    cursor: pointer;
+}
+
+.filter-reset:hover{
+    cursor: pointer;
+    color: #44C6F3;
 }
 
 .filter-label{
@@ -147,7 +153,25 @@ background: #555;
 }
   
 
+/** No CSS for this example */
+mat-slider {
+    width: 80%;
+    margin: 0em 10%;
+    color: blue;
+  }
 
+.slider-caption{
+    text-align: left;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: Century Gothic;
+    letter-spacing: 1.7px;
+    color: #2D2D2D;
+    opacity: 1;
+    margin-left: 10%;
+}
 
-
+mat-radio-button{
+  margin-left: 2em;
+}
 

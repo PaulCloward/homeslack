@@ -1,0 +1,84 @@
+
+<div class="popup-container">
+    <div [ngClass]="{'top-row-selectors': success, 'top-row-close': !success}">
+      
+      <div class="material-icons back" [hidden]="!success" (click)="success = false">
+        arrow_back
+      </div>
+
+      <span class="material-icons" (click)="onClose()">
+        close
+      </span>
+    </div>
+    <h3 [hidden]="success">Home <span style="color: #44C6F3">Bid</span></h3>
+    <h3 [hidden]="!success">Review <span style="color: #44C6F3">Bid</span></h3>
+    <div class="line-divider"></div>
+  
+      <form class="form-container" [formGroup]="mFormBid" [hidden]="success" (ngSubmit)="onReviewBid()">
+        
+        <mat-form-field appearance="outline">
+          <mat-label translate="ea6.design.menu.header.search">Company Name (Entity)</mat-label>
+          <input [formControl]="companyName" matInput />
+          <mat-error *ngIf="companyName.invalid && companyName.touched">company name is required</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Contact Name (First, Last)</mat-label>
+            <input [formControl]="contactName" matInput />
+            <mat-error *ngIf="contactName.invalid && contactName.touched">contact name is required</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input [formControl]="phone" matInput style="margin-bottom: 0 !important" />
+            <mat-error style="margin-top: 0 !important" *ngIf="phone.invalid && phone.touched">a valid phone number is required</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input [formControl]="email" matInput />
+            <mat-error *ngIf="email.invalid && email.touched">a valid email is required</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Bid Price</mat-label>
+            <input [formControl]="bid" matInput />
+            <mat-error *ngIf="bid.invalid && bid.touched">a bid is required</mat-error>
+        </mat-form-field>
+    
+    
+        <div class="btn-container" [hidden]="success">
+          <button [ngClass]="{'btn-disabled': mFormBid.invalid}" [disabled]="mFormBid.invalid">Review Bid</button>
+        </div>
+        
+         
+    
+    </form>
+
+    <section [hidden]="!success">
+
+      <h3>Company Name (Entity):</h3>
+      <h4>&nbsp;{{ companyName.value }}</h4>
+
+      <h3>Contact Name (First, Last):</h3>
+      <h4>&nbsp;{{ contactName.value }}</h4>
+
+      <h3>Phone Number:</h3>
+      <h4>&nbsp;{{ phone.value }}</h4>
+
+      <h3>Email:</h3>
+      <h4>&nbsp;{{ email.value }}</h4>
+
+      <h3>Bid Price:</h3>
+      <h4 style="margin-bottom: .5em">&nbsp;${{ bid.value }}</h4>
+
+      <label>By clicking "Place Bid" you are.....</label>
+
+      <div class="btn-container"  style="margin-top: 0;">
+        <button (click)="onPlaceBid()">Place Bid</button>
+      </div>
+    </section>
+
+    
+      
+ </div>

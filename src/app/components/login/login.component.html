@@ -39,9 +39,7 @@
         </div>
         
 
-        <input  *ngIf="myFormEmail.valid"  type="submit"
-          name="sign in" value="Sign In" class="btn-sign-in" 
-           (click)="login(email.value, password.value)" /> 
+        <button  *ngIf="myFormEmail.valid"  type="submit" name="sign in" class="btn-sign-in" (click)="login(email.value, password.value)" >Sign In</button> 
         
       </form>  
       
@@ -61,7 +59,7 @@
           <div style="position: relative;">
             <div class="label-back" style="display:inline-block" (click)="isStateResendEmail = false">Back to sign in</div>
 
-            <button [hidden]="!myFormResetPassword.valid" 
+            <button *ngIf="myFormResetPassword.valid" 
               style="display:inline-block"
               type="submit" name="Send" value="Send" class="btn-sign-in"
               >Send</button> 
@@ -80,8 +78,8 @@
       <div class="line-divider"></div>
 
       <div class="already-have-account-div">
-        Don't have a Homeface account? 
-        <span class="click-here" [routerLink]="['/create-account']">Create Account</span>
+        Don't have a Kuldasac account? 
+        <span class="click-here" (click)="onCreateAccount()">Create Account</span>
       </div>
     
 			

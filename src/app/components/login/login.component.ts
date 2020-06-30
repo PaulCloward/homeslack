@@ -43,11 +43,22 @@ export class LoginComponent implements OnInit {
   myFormEmail: FormGroup;
   myFormResetPassword: FormGroup;
 
-  constructor(private mAuthService: AuthenticationService, private router: Router, private mFormBuilder:FormBuilder) { 
+  mLoginType:string = null;
+
+
+  constructor(private mAuthService: AuthenticationService, private mRouter: Router, private mFormBuilder:FormBuilder) { 
   	    
   }
 
   ngOnInit() {
+  
+    this.mLoginType = window.history.state.data.route;
+
+    if(this.mLoginType == null){
+      this.mRouter.navigateByUrl('home');
+    }
+
+
     this.myFormEmail = this.mFormBuilder.group({
       email: ['', [
         Validators.required,
@@ -70,9 +81,18 @@ export class LoginComponent implements OnInit {
   login(){  
   	this.mAuthService.login(this.email.value,this.password.value)
   	  .subscribe(
-  		success => this.router.navigate(['/home']),
+  		success => this.mRouter.navigate(['/home']),
   		error => alert(error)
   		);
+  }
+
+  onCreateAccount(){
+    console.log(this.mLoginType);
+    if(this.mLoginType == "investor"){
+      this.mRouter.navigateByUrl('authentication');
+    }else {
+      this.mRouter.navigateByUrl('create-account');
+    }
   }
 
   get email() {

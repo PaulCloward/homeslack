@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowseListingsComponent } from './browse-listings/browse-listings.component';
 import { ListingsComponent } from './listings/listings.component';
+import { PropertyProfileComponent } from './property-profile/property-profile.component';
 const routes: Routes = [
   {
     path: '',
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'listings',
     component: ListingsComponent
+  },
+  {
+    path: 'property-profile',
+    component: PropertyProfileComponent
   }
 ];
 

@@ -1,12 +1,14 @@
 import { Component, OnInit, Input,ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import * as firebase from 'firebase/app';
 
 import { IInvestor } from '../../model/IInvestor';
 import { FirestoreService } from '../../services/firestore.service';
-import { PropertyDetails } from '../../class/PropertyDetails';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { IInvestorInformation } from '../../model/IInvestorInformation';
+import { IUserRoles } from '../../model/IUserRoles';
+import { ConfirmPasswordValidator } from '../../validators/confirm-password.validator';
 
 @Component({
   selector: 'app-investor-registration',
@@ -18,12 +20,16 @@ export class InvestorRegistrationComponent implements OnInit {
   mFormInvestorInformation: FormGroup;
   mInvestorInformation:IInvestor;
 
+  errorStatement:string = "";
+
   // Form state
   loading = false;
   success = false;
 
-  readonly mEmailPattern:string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  readonly mPhoneNumberPattern:string = "^(\+\d{1,3}[- ]?)?\d{10}$";
+  mEmailPattern:string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  mPhoneNumberPattern:string = "^(\+\d{1,3}[- ]?)?\d{10}$";
+
+  btnCompanyType:string = "Company Type";
 
   constructor(private mAuth:AngularFireAuth, private mFirestoreService: FirestoreService, private mRouter: Router, private mFormBuilder:FormBuilder) { }
 
@@ -33,17 +39,12 @@ export class InvestorRegistrationComponent implements OnInit {
       companyName: ['', [
         Validators.required
       ]],
-      firstName: ['', [
+      contactName: ['', [
         Validators.required
       ]],
-      lastName: ['', [
-        Validators.required
-      ]],
-      phoneNumber: ['', [ 
-        Validators.required,
-        // ValidationPhoneNumber.checkLimit(9,11),
-        Validators.pattern("^[0-9]+$")
-      ]],
+      phoneNumber: ['',  
+        [Validators.required,Validators.minLength(12), Validators.maxLength(12)]
+      ],
       email: ['', [
         Validators.required,
         Validators.email
@@ -63,55 +64,128 @@ export class InvestorRegistrationComponent implements OnInit {
       ssNumber: ['', [
        
       ]],
+      ein: ['', [
+       
+      ]],
+      updatesText: ['', [
+        Validators.required
+      ]],
+      updatesEmail: ['', [
+        Validators.required
+      ]],
       companyType: ['', [
         Validators.required
       ]],
       password: ['', [
         Validators.required,
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
- 
       ]],
       confirmPassword: ['', [
         Validators.required,
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
       ]]
-    }, {validator: this.checkPasswords });
+
+    }, { validator: ConfirmPasswordValidator.MatchPassword });
+
+
+    this.updatesEmail.setValue(false);
+    this.updatesText.setValue(false);
+  }
+
+  onClickCompanyType(companyType:string){
+    this.btnCompanyType = companyType;
+    this.companyType.setValue(companyType);
   }
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-  let pass = group.get('password').value;
-  let confirmPassword = group.get('confirmPassword').value;
+    let pass = group.get('password').value;
+    let confirmPassword = group.get('confirmPassword').value;
 
-  return pass === confirmPassword ? null : { notSame: true }     
-}
+    return pass === confirmPassword ? null : { notSame: true }     
+  }
 
-    async submitHandler() {
+    async createAccount() {
+
       this.loading = true;
+      this.errorStatement = "";
 
-      const formValue = this.mFormInvestorInformation.value;
-      console.log(formValue);
-      return;
+      let email:string = this.email.value;
+      let password:string = this.password.value;
 
-      try {
-        await this.mFirestoreService.onCreateInvestorSaveInformation("", formValue);
-        this.success = true;
-      } catch(err) {
-        console.error(err)
-      }
+     
+      let result = this.mAuth.auth.createUserWithEmailAndPassword(email, password);
+      result.then(success => {
+
+       // success.user.updatePhoneNumber(this.phoneNumber.value);
+
+        let uuid = success.user.uid;
+
+        let investorInformation:IInvestorInformation = {
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          my_uid: uuid,
+          company_name: this.companyName.value,
+          contact_name:this.contactName.value,
+          phone:this.phoneNumber.value,
+          email:this.email.value,
+          company_address:this.companyAddress.value,
+          suite:this.suite.value,
+          city:this.city.value,
+          zip_code:this.zipCode.value,
+          ein:this.ein.value,
+          social:this.ssNumber.value,
+          company_type:this.companyType.value,
+          updates_text:this.updatesText.value,
+          updates_email:this.updatesEmail.value,
+        };
+
+        this.mFirestoreService.saveInvestorInformation(uuid, investorInformation).then(success => {
+
+          let userRoles:IUserRoles = {
+            my_uid: uuid,
+            role: {
+              admin: false,
+              investor: true,
+              seller: false
+            }
+          }
+
+          this.mFirestoreService.saveUserRoles(uuid, userRoles).then(success => {
+            console.log("Successfully registered as an investor");
+            this.mRouter.navigateByUrl('/investor');
+          }).catch(error => {
+            console.log("Investor registration failed: " + error);
+          })
+    
+
+          // Clear form info
+          this.mFormInvestorInformation.reset();
+
+        }).catch(error => {
+          console.log("Was not able to save investor information: " + error);
+        });
+      }).catch(error => {
+        console.log("Was not able to create investor account: " + error);
+          console.log(error.message);
+      });
+
 
       this.loading = false;
+    }
+
+    clickSignIn(){
+      this.mRouter.navigateByUrl('login', {state: {data: {route: 'investor'}}});
+    }
+
+    onPhoneInput(e:any){
+      this.phoneNumber.setValue(this.phoneNumber.value.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3'));
     }
 
     get companyName() {
       return this.mFormInvestorInformation.get('companyName');
     }
 
-    get firstName() {
-      return this.mFormInvestorInformation.get('firstName');
-    }
-
-    get lastName() {
-      return this.mFormInvestorInformation.get('lastName');
+    get contactName() {
+      return this.mFormInvestorInformation.get('contactName');
     }
 
     get phoneNumber() {
@@ -158,4 +232,11 @@ export class InvestorRegistrationComponent implements OnInit {
       return this.mFormInvestorInformation.get('confirmPassword');
     }
 
+    get updatesEmail() {
+      return this.mFormInvestorInformation.get('updatesEmail');
+    }
+  
+    get updatesText() {
+      return this.mFormInvestorInformation.get('updatesText');
+    }
 }

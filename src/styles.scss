@@ -373,43 +373,79 @@ $custom-typography: mat-typography-config(
 
 @include mat-core($custom-typography);
 
-$custom-orange: (
-    50: #fff3e0,
-    100: #ffe0b2,
-    200: #ffcc80,
-    300: #ffb74d,
-    400: #ffa726,
-    500: #ff9800,
-    600: #fb8c00,
-    700: #f57c00,
-    800: #ef6c00,
-    900: #e65100,
-    A100: #ffd180,
-    A200: #ffab40,
-    A400: #ff9100,
-    A700: #ff6d00,
+
+$mdThemingProvider:(
+  50: #e9f8fe,
+  100: #c7eefb,
+  200: #a2e3f9,
+  300: #7cd7f7,
+  400: #60cff5,
+  500: #44c6f3,
+  600: #3ec0f1,
+  700: #35b9ef,
+  800: #2db1ed,
+  900: #1fa4ea,
+  A100: #ffffff,
+  A200: #edf8ff,
+  A400: #bae6ff,
+  A700: #a1dcff,
+
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+)
+);
+
+
+$mat-myapp-primary: (
+  50: #e6f0fc,
+  100: #c1d9f6,
+  200: #98bff1,
+  300: #6ea5eb,
+  400: #4f92e6,
+  500: #307fe2,
+  600: #2b77df,
+  700: #246cda,
+  800: #1e62d6,
+  900: #134fcf,
+  A100: #fefeff,
+  A200: #cbdaff,
+  A400: #98b5ff,
+  A700: #7fa3ff,
     contrast: (
-        50: $black-87-opacity,
-        100: $black-87-opacity,
-        200: $black-87-opacity,
-        300: $black-87-opacity,
-        400: $black-87-opacity,
-        500: white,
-        600: white,
-        700: white,
-        800: white,
-        900: white,
-        A100: $black-87-opacity,
-        A200: $black-87-opacity,
-        A400: $black-87-opacity,
-        A700: white,
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
     )
 );
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$firestarter-primary: mat-palette($custom-orange);
+$firestarter-primary: mat-palette($mdThemingProvider);
 $firestarter-accent: mat-palette($mat-green, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).

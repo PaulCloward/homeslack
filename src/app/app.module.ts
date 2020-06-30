@@ -7,6 +7,7 @@ import { PropertyFinderService } from './services/property-finder.service';
 import { SellerPropertyService } from './services/seller-property.service';
 import { PropertySearchCoreLogicService } from './services/property-search-core-logic.service';
 import { PropertySearchEstatedService } from './services/property-search-estated.service';
+import { PopupService } from './investor/services/popup.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -48,7 +49,6 @@ import { ViewPropertiesComponent } from './components/view-properties/view-prope
 import { SellerAccountComponent } from './components/seller-account/seller-account.component';
 import { SellerListedPropertyComponent } from './components/seller-listed-property/seller-listed-property.component';
 import { InvestorListedPropertyComponent } from './components/investor-listed-property/investor-listed-property.component';
-import { InvestorAccountComponent } from './components/investor-account/investor-account.component';
 import { FillInPropertyInfoPageComponent } from './components/fill-in-property-info-page/fill-in-property-info-page.component';
 import { ConfirmListingComponent } from './components/confirm-listing/confirm-listing.component';
 import { MyOffersComponent } from './components/my-offers/my-offers.component';
@@ -66,6 +66,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { LockComponent } from './components/lock/lock.component';
+import { PopupComponent } from './investor/popup/popup.component';
 
 import { AuthGuard } from './core/auth.guard';
 import { ListingTimeComponent } from './components/listing-time/listing-time.component';
@@ -79,7 +80,8 @@ import { UploaderComponent } from './components/uploader/uploader.component';
 import { UploadTaskComponent } from './components/uploader-task/uploader-task.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { SearchComponent } from './components/search/search.component';
-import { CreateAccountInvestorComponent } from './pages/create-account-investor/create-account-investor.component';
+import { AuthInvestorGuard } from './investor/auth-investor.guard';
+
 
 
 
@@ -96,20 +98,20 @@ export const customCurrencyMaskConfig = {
 };
 
 const appRoutes: Routes = [
-   {path: '', component: HomeComponent},
+  // {path: '', component: HomeComponent},
   // {path:'', redirectTo: 'image/upload', pathMatch:'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
+  {path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
+  {path: 'home2', component: HomeComponent},
   {path: 'verify-info-page', component: VerifyInfoPageComponent},
   {path: 'fill-in-property-info-page', component: FillInPropertyInfoPageComponent},
   {path: 'create-account', component: CreateaccountComponent},
-  {path: 'create-account-investor', component: CreateAccountInvestorComponent},
   {path: 'login', component: LoginComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'why-us', component: WhyUsComponent},
   {path: 'view-property', component: ViewPropertiesComponent},
   {path: 'seller-account', component: SellerAccountComponent},
   {path: 'seller-listings', component: SellerListedPropertyComponent},
-  {path: 'investor-account', component: InvestorAccountComponent},
   {path: 'confirm-listing', component: ConfirmListingComponent},
   {path: 'offers', component: MyOffersComponent},
   {path: 'expanded-property', component: ExpandedPropertyComponent},
@@ -134,7 +136,11 @@ const appRoutes: Routes = [
   {
     path: 'authentication',
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
-  },
+   },
+  // {
+  //   path: 'landing',
+  //   loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)
+  // }
 ]
 
 @NgModule({
@@ -154,7 +160,6 @@ const appRoutes: Routes = [
     SellerAccountComponent,
     SellerListedPropertyComponent,
     InvestorListedPropertyComponent,
-    InvestorAccountComponent,
     FillInPropertyInfoPageComponent,
     ConfirmListingComponent,
     MyOffersComponent,
@@ -175,8 +180,8 @@ const appRoutes: Routes = [
     UploaderComponent,
     UploadTaskComponent,
     ImageSliderComponent,
-    SearchComponent,
-    CreateAccountInvestorComponent
+    SearchComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -221,7 +226,8 @@ const appRoutes: Routes = [
     AuthenticationService, 
     SearchPropertyService,
     PropertySearchCoreLogicService,
-    PropertySearchEstatedService
+    PropertySearchEstatedService,
+    
   ],
   bootstrap: [AppComponent]
 })
