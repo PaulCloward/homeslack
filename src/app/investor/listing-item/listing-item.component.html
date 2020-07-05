@@ -1,60 +1,43 @@
-<!-- <div class="container-item">
-    <div class="item-image">
 
-    </div>
-    <div class="item-count-down">
 
-    </div>
-</div> -->
 <div class="gallery-container">
     <div class="container-item">
         <div class="gallery-item">
             <div class="image">
-                <img src="https://source.unsplash.com/1600x900/?house" alt="property">
+                <img style="opacity: .8;" src="https://source.unsplash.com/1600x900/?house" alt="property">
             </div>
-            <div [ngClass]="{'text': true, 'caption-priority': priority == 1}">
+            <img class="watch-heart" src="../../../assets/img/heart_red.png" (click)="onClickWatchHeart($event)" />
+        </div>
+        <div class="address-container">
+            <div class="left">
                 <div class="street-address">{{listing.address.street}}</div>
                 <div class="state-address">{{listing.address.city}}, {{listing.address.state}} {{listing.address.zip_code}}</div>
             </div>
-        </div>
-        <div class="image-details">
-            <div [ngClass]="{'label-details': true, 'label-priority': priority == 1}">
-                CLOSING COUNTDOWN
+            <div class="right">
+                <div class="bid-number">
+                    $534,023
+                </div>
+                <label>Highest bid</label>
             </div>
-            <div class="circle-row">
-                <div class="circle-column">
-                    <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
-                        {{countDownDay}}
-                    </div>
-                    <div class="circle-label">
-                        Days
-                    </div>
-                </div>
-                <div class="circle-column">
-                    <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
-                        {{countDownHour}}
-                    </div>
-                    <div class="circle-label">
-                        Hours
-                    </div>
-                </div>
-                <div class="circle-column">
-                    <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
-                        {{countDownMinute}}
-                    </div>
-                    <div class="circle-label">
-                        Minutes
-                    </div>
-                </div>
-                <div class="circle-column">
-                    <div [ngClass]="{'circle': true, 'circle-priority': priority == 1}">
-                        {{countDownSecond}}
-                    </div>
-                    <div class="circle-label">
-                        Seconds
-                    </div>
-                </div>
-            </div>
+            
         </div>
+       <div class="property-details">
+          
+           <img class="ic-bed" src="../../../assets/img/bedroom_blue.png" />
+            <div class="label-container">
+                <h5>Bedrooms</h5>
+                <h6>{{listing.beds}}</h6>
+            </div>
+           <img class="ic-bath" src="../../../assets/img/bathroom_blue.png" />
+           <div class="label-container">
+                <h5>Bathrooms</h5>
+                <h6>{{listing.baths}}</h6>
+            </div>
+           <img class="ic-house" src="../../../assets/img/house_blue.png" />
+           <div class="label-container">
+            <h5>Total living area</h5>
+            <h6>{{listing.living_square_feet}} sqft</h6>
+        </div>
+       </div>
     </div>
 </div>

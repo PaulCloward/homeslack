@@ -1,9 +1,21 @@
-.page-container{
-    
+
+@font-face {
+    font-family: 'trueno_bold';
+    src: url("../../../assets/fonts/trueno/TruenoBd.otf");
+}
+
+@font-face {
+    font-family: 'trueno_regular';
+    src: url("../../../assets/fonts/trueno/TruenoRg.otf");
+}
+
+@font-face {
+    font-family: 'trueno_light';
+    src: url("../../../assets/fonts/trueno/TruenoLt.otf");
 }
 
 .container-listings{
-    height: 110vh;
+    height: 100vh;
     overflow-y: scroll;
 }
 
@@ -82,10 +94,10 @@
 
 .column-label{
     font-weight: bold;
-    font-family: Century Gothic;
-    font-size: 28px - (28px * .2);
-    letter-spacing: 2.8px - (2.8px * .2);
-    color: #707070;
+    font-family: 'trueno_bold', sans-serif;
+    font-size: 50px - (50px * .2);
+    letter-spacing: 0px;
+    color: #2A2A2A;
     opacity: 1;
     width: 100%;
     text-align: center;
@@ -97,8 +109,8 @@
 }
 
 .column-offers-made{
-    border-left: 1px solid #707070;
-    border-right: 1px solid #707070;
+    border-left: 1px solid #44C6F3;
+    border-right: 1px solid #44C6F3;
 }
 
 .column-property-watch{

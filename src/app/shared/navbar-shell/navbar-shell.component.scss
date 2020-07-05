@@ -1,3 +1,20 @@
+
+@font-face {
+    font-family: 'trueno_bold';
+    src: url("../../../assets/fonts/trueno/TruenoBd.otf");
+}
+
+@font-face {
+    font-family: 'trueno_regular';
+    src: url("../../../assets/fonts/trueno/TruenoRg.otf");
+}
+
+@font-face {
+    font-family: 'trueno_light';
+    src: url("../../../assets/fonts/trueno/TruenoLt.otf");
+}
+
+
 *,
 *::before,
 *::after{
@@ -82,14 +99,16 @@ header{
 
 nav{
     width: 100%;
-    height: 5rem;
+    height: 117.5px - (117.5px * .2);
     font-family: Century Gothic, 'Roboto';
     font-weight: bold;
     line-height: 5rem;
     display: flex;
+    align-items: center;
     text-transform: uppercase;
     background-color: #fff;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+    border-bottom: .8px solid #C4C4C4;
+    opacity: 1;
     overflow: hidden;
 }
 
@@ -103,8 +122,11 @@ a{
 }
 
 .img-logo{
-    width: 200px;
+    width: 244px - (244px * .2);
+    height: 64px - (64px * .2);
+    margin-left: 43px - (43px * .2);
     outline: none;
+    cursor: pointer;
 }
 
 nav ul{
@@ -288,11 +310,44 @@ nav ul{
     font-family: Century Gothic, 'Roboto';
     font-weight: bold;
     font-size: 1em;
-    text-align: center;
-
-  
+    text-align: center
 }
-  
+
+
+.nav-link-invest{
+    font-family: 'trueno_regular', sans-serif;
+    width: 100%;
+    height: 100%;
+    font-size: 18px - (18px * .2);
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    color: #2A2A2A;
+    opacity: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.tab-invest-home{
+    margin-right: 40px - (40px * .2);
+}
+
+.tab-invest-listings{
+    margin-right: 33px - (33px * .2);
+}
+
+.tab-invest-why-us{
+    margin-right: 26px - (26px * .2);
+}
+
+.tab-invest-profile{
+
+    img{
+        width: 46px - (46px * .2);
+        height:  46px - (46px * .2);
+    }
+}
 
 @keyframes up {
     from{

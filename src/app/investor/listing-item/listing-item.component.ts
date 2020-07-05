@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PropertyDetails } from '../../class/PropertyDetails';
+import { AuthenticationService } from '../../services/authentication.service';
+import { FirestoreService } from '../../services/firestore.service';
 
 @Component({
   selector: 'app-listing-item',
@@ -8,6 +10,12 @@ import { PropertyDetails } from '../../class/PropertyDetails';
   styleUrls: ['./listing-item.component.scss']
 })
 export class ListingItemComponent implements OnInit {
+
+  readonly watchList:number = 0;
+  readonly offersMade:number = 1;
+  readonly underContract:number = 2;
+  @Input() listingType:number = this.watchList;
+
 
   @Input() listing: PropertyDetails;
   @Input() priority: number = 2;
@@ -17,13 +25,21 @@ export class ListingItemComponent implements OnInit {
   countDownMinute:any = "-";
   countDownSecond:any = "-";
 
-  constructor() { }
+  constructor(private mAuthService: AuthenticationService, private mFirestoreService: FirestoreService) { }
 
   ngOnInit() {
 
     setInterval(()=> {
       this.countdown();
     }, 1000);
+  }
+
+  onClickWatchHeart(){
+    event.stopPropagation();
+    console.log("Watch heart");
+    this.mAuthService.getUser().then(user => {
+      this.mFirestoreService.deletePropertFromInvestorWatchList(user.uid, this.listing);    
+    });
   }
 
 

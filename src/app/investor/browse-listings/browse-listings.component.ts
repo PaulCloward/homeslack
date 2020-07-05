@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FirestoreService } from '../../services/firestore.service';
 import { PropertyDetails } from '../../class/PropertyDetails';
@@ -11,6 +11,8 @@ import { PropertyViewService } from '../services/property-view.service';
   styleUrls: ['./browse-listings.component.scss']
 })
 export class BrowseListingsComponent implements OnInit {
+
+  
 
   priority1:number = 1;
   user:any;

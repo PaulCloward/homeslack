@@ -3,10 +3,10 @@
         <div class="bar"></div>
     </div>
     <div class="overlay"></div>
-    <nav style="z-index: 2000000;">
-        <a class="brand">
-            <img class="img-logo" routerLink="/home" src="../../../assets/img/logo_kuldasac.png" />
-        </a>
+    <nav style="z-index: 2000000;" [hidden]="isRouteInvestor()">
+        
+        <img class="img-logo" routerLink="/home" src="../../../assets/img/logo_kuldasac.png" />
+       
         <ul>
         <li class="nav-item">
             <a routerLink="/directory" [ngClass]="{'nav-link': !isNavDirectory(), 'nav-link-selected': isNavDirectory()}" data-text="Directory">Directory</a>
@@ -40,7 +40,34 @@
         </ul>
     </nav>
 
+
+    <nav style="z-index: 2000000;" [hidden]="!isRouteInvestor()">
+        
+        <img class="img-logo" routerLink="/home" src="../../../assets/img/logo_kuldasac.png" />
+   
+    <ul>
+    <li class="tab-invest-home">
+        <a routerLink="/directory" [ngClass]="{'nav-link-invest': !isNavDirectory(), 'nav-link-selected': isNavDirectory()}" data-text="HOME">HOME</a>
+    </li>
+    <li class="tab-invest-listings">
+        <a routerLink="/investor/market-listings" [ngClass]="{'nav-link-invest': !isRouteMarketListing(), 'nav-link-selected': isRouteMarketListing()}" data-text="LISTINGS">LISTINGS</a>
+    </li>
+    <li class="tab-invest-why-us">
+        <a routerLink="/why-us" [ngClass]="{'nav-link-invest': !isNavWhyUs(), 'nav-link-selected': isNavWhyUs()}" data-text="WHY US">WHY US</a>
+    </li>
+    
+
+    <li class="tab-invest-profile" *ngIf="(mAuth.authState | async)" (click)="onSignOut()">
+        <img src="../../../assets/img/ic_profile.png" />
+    </li>
+        <!-- DROPDOWN MENU -->
+    <li class="tab-invest-profile" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="!(mAuth.authState | async)">
+        <img src="../../../assets/img/ic_profile.png" />
+    </li>
+        
+    </ul>
+</nav>
+
       <!-- TRANSCLUSION -->
       <ng-content></ng-content>
 </header>
-

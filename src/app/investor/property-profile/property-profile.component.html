@@ -1,62 +1,59 @@
 <div class="page-container">
-    <div style="position: relative; width: 100%;">
-        <img src="../../../assets/img/investor_profile_header_1.png" />
-        <h1>PROPERTY PROFILE</h1>
-    </div>
-
     <section>
         <div class="container-gallery">
-            <div class="large-image">
-                <img src="../../../assets/img/home_demo_2.png" />
-                <div class="caption">
-                    <h5>{{mProperty.address.street}}</h5>
-                    <h6>{{mProperty.address.city}}, {{mProperty.address.state}} {{mProperty.address.zip_code}}</h6>
-                </div>
-            </div>
             <div class="small-image-column">
                 <img src="../../../assets/img/home_demo_3.png" />
                 <img src="../../../assets/img/home_demo_2.png" />
                 <img src="../../../assets/img/home_demo_1.png" />
             </div>
+            <div class="large-image">
+                <img src="../../../assets/img/home_demo_2.png" />
+            </div>
+        </div>
+    </section>
+    <section class="detail-section">
+        <div class="address-container">
+            <h5>{{mProperty.address.street}}</h5>
+            <h6>{{mProperty.address.city}}, {{mProperty.address.state}} {{mProperty.address.zip_code}}</h6>
         </div>
         <div class="container-data-column">
-            <div class="data-row">
+            <!-- <div class="data-row">
                 <img src="../../../assets/img/ic_money.png" />
                 <div class="data-row-column">
                     <h3>Highest Bid</h3>
                     <h4>${{highestBid}}</h4>
                 </div>
-            </div>
-            <div class="data-row">
+            </div> -->
+            <!-- <div class="data-row">
                 <img src="../../../assets/img/ic_hash.png" />
-                <div class="data-row-column">
+                <div class="data-row-column">07
                     <h3>Bidders</h3>
                     <h4>{{bidders}}</h4>
                 </div>
-            </div>
+            </div> -->
             <div class="data-row">
-                <img src="../../../assets/img/total_living_area.png" />
+                <img class="ic-house" src="../../../assets/img/house_blue.png" />
                 <div class="data-row-column">
-                    <h3>Living Area</h3>
+                    <h3>Total Living Area</h3>
                     <h4>{{mProperty.living_square_feet}}</h4>
                 </div>
             </div>
             <div class="data-row">
-                <img src="../../../assets/img/lot_size.png" />
+                <img class="ic-lot-size" src="../../../assets/img/lot_size_blue.png" />
                 <div class="data-row-column">
                     <h3>Lot Size</h3>
                     <h4>{{mProperty.lot_size}}</h4>
                 </div>
             </div>
             <div class="data-row">
-                <img src="../../../assets/img/Bedrooms.png" />
+                <img class="ic-beds" src="../../../assets/img/bedroom_blue.png" />
                 <div class="data-row-column">
                     <h3>Bedrooms</h3>
                     <h4>{{mProperty.beds}}</h4>
                 </div>
             </div>
             <div class="data-row">
-                <img src="../../../assets/img/bathroom.png" />
+                <img class="ic-baths" src="../../../assets/img/bathroom_blue.png" />
                 <div class="data-row-column">
                     <h3>Bathrooms</h3>
                     <h4>{{mProperty.baths}}</h4>
@@ -65,21 +62,21 @@
         </div>
         <div class="container-data-column">
             <div class="data-row">
-                <img src="../../../assets/img/year_built.png" />
+                <img class="ic-year" src="../../../assets/img/calendar_blue.png" />
                 <div class="data-row-column">
                     <h3>Year Built</h3>
                     <h4>{{mProperty.year}}</h4>
                 </div>
             </div>
             <div class="data-row">
-                <img src="../../../assets/img/Garage.png" />
+                <img class="ic-garage" src="../../../assets/img/garabage_blue.png" />
                 <div class="data-row-column">
                     <h3>Garage</h3>
                     <h4>{{mProperty.garage}}</h4>
                 </div>
             </div>
             <div class="data-row">
-                <img src="../../../assets/img/Basement.png" />
+                <img class="ic-basement" src="../../../assets/img/basement_blue.png" />
                 <div class="data-row-column">
                     <h3>Basement</h3>
                     <h4 *ngIf="mProperty == null || mProperty.basement == null || mProperty.basement == false">No</h4>
@@ -87,7 +84,7 @@
                 </div>
             </div>
             <div class="data-row">
-                <img src="../../../assets/img/hot_tub.png" />
+                <img class="ic-hot-tub" src="../../../assets/img/hot_tub.png" />
                 <div class="data-row-column">
                     <h3>Hot Tub</h3>
                     <h4 *ngIf="mProperty == null || mProperty.hot_tub == null || mProperty.hot_tub == false">No</h4>
@@ -95,7 +92,7 @@
                 </div>
             </div>
             <div class="data-row">
-                <img src="../../../assets/img/Pool.png" />
+                <img class="ic-pool" src="../../../assets/img/pool_blue.png" />
                 <div class="data-row-column">
                     <h3>Pool</h3>
                     <h4 *ngIf="mProperty == null || mProperty.pool == null || mProperty.pool == false">No</h4>
@@ -103,7 +100,7 @@
                 </div>
             </div>
             <div class="data-row">
-                <img src="../../../assets/img/Cooling.png" />
+                <img class="ic-cooling" src="../../../assets/img/cooling_blue.png" />
                 <div class="data-row-column">
                     <h3>Cooling</h3>
                     <h4>{{mProperty.cooling}}</h4>
@@ -112,7 +109,7 @@
         </div>
     </section>
 
-    <footer>
+    <!-- <footer>
         <div class="btn-container">
             <button  (click)="openDialog('Kuldasac','Paul Cloward',
             'PaulClowardcs12@gmail.com', '+18019718548',
@@ -177,7 +174,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
     
 
     <app-footer></app-footer>

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BrowseListingsComponent } from './browse-listings/browse-listings.component';
 import { ListingsComponent } from './listings/listings.component';
 import { PropertyProfileComponent } from './property-profile/property-profile.component';
+import { MarketListingsComponent } from './market-listings/market-listings.component';
 const routes: Routes = [
   {
     path: '',
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'listings',
     component: ListingsComponent
+  },
+  {
+    path: 'market-listings',
+    component: MarketListingsComponent
   },
   {
     path: 'property-profile',

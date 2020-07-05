@@ -24,6 +24,7 @@ import { NavbarShellComponent } from './navbar-shell/navbar-shell.component';
 
 import { StrictNumberOnlyDirective } from '../directives/StrictNumberOnlyDirective';
 
+
 const components = [
   FooterComponent,
   NavbarShellComponent
@@ -53,7 +54,7 @@ const modules = [
 ];
 
 @NgModule({
-  declarations: [...components, NavbarShellComponent, StrictNumberOnlyDirective],
+  declarations: [...components, StrictNumberOnlyDirective],
   imports: [
     ...modules
   ],

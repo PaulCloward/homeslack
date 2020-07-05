@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CustomValidators } from 'ng2-validation';
 import { FormGroup, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +15,7 @@ export class AppComponent {
           field: new FormControl('', CustomValidators.max(20))
       });
   }
+
 }
 
 

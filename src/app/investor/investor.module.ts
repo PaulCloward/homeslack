@@ -11,9 +11,18 @@ import { PropertyProfileComponent } from './property-profile/property-profile.co
 import { PopupService } from './services/popup.service';
 import { PropertyViewService } from './services/property-view.service';
 import { PopupComponent } from './popup/popup.component';
+import { MarketListingsComponent } from './market-listings/market-listings.component';
 
 @NgModule({
-  declarations: [BrowseListingsComponent, ListingItemComponent, ListingsComponent, PropertyItemComponent, PropertyProfileComponent, PopupComponent],
+  declarations: [
+    BrowseListingsComponent, 
+    ListingItemComponent, 
+    ListingsComponent, 
+    PropertyItemComponent, 
+    PropertyProfileComponent,
+     PopupComponent, 
+     MarketListingsComponent
+    ],
   exports: [],
   imports: [
     CommonModule,

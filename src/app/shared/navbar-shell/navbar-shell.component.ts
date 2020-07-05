@@ -18,11 +18,13 @@ selector(s){
 
   ngOnInit() {
     //document.getElementById('my-row').querySelector<HTMLInputElement>('.myClass').value
-    document.querySelector<HTMLInputElement>(".menu").addEventListener('click', function (){
-        this.classList.toggle('open');
-        document.querySelector<HTMLInputElement>('header').classList.toggle('open');
-        document.querySelector<HTMLInputElement>('.overlay').classList.toggle('open');
-    });
+    if(!this.isRouteInvestor()){
+      document.querySelector<HTMLInputElement>(".menu").addEventListener('click', function (){
+          this.classList.toggle('open');
+          document.querySelector<HTMLInputElement>('header').classList.toggle('open');
+          document.querySelector<HTMLInputElement>('.overlay').classList.toggle('open');
+      });
+    }
   }
 
   onSignOut(){
@@ -53,6 +55,17 @@ selector(s){
   isNavContact(){
     return this.mRouter.url == '/contact';
   }
+
+  
+  isRouteInvestor(){
+    return this.mRouter.url == '/investor' ||  this.mRouter.url == '/investor/browse-listings' ||  this.mRouter.url == '/investor/market-listings' ||
+     this.mRouter.url == '/investor/listings' ||  this.mRouter.url == '/investor/property-profile';
+  }
+
+  isRouteMarketListing(){
+    return this.mRouter.url == '/investor/market-listings';
+  }
+
 
 
 

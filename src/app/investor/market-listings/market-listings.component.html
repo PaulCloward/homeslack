@@ -1,0 +1,111 @@
+<h1>Listings</h1>
+<div class="line-seperator"></div>
+<div class="main-container">
+    <div class="filter-container">
+        <div class="top-container">
+            <div class="top-row">
+                <label>Filters</label>
+                <button (click)="onReset()">Reset filters</button>
+            </div>
+            <div class="input-container">
+                <span class="material-icons">
+                    search
+                </span>
+                <input type="text" placeholder="Street, City, State..." value="inputAddress" [(ngModel)]="inputAddress" maxlength="600" />
+            </div>
+            
+        </div>
+        <div class="bottom-filter-container">
+
+            <div class="container-property-type">
+                <label>Property Type</label>
+                <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="filterPropertyType">
+                    
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="1">
+                        Single Family Residential
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="2">
+                        Townhouse
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="3">
+                        Condominium
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="4">
+                        Manufactured Home
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+    
+            <div class="container-bedrooms">
+                <label>Bedrooms</label>
+                <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="filterBedCount">
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="1">
+                        1 Bed
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="2">
+                        2 Bed
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="3">
+                        3 Bed
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="4">
+                        4+ Bed
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="container-bathrooms">
+                <label>Bathrooms</label>
+                <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="filterBathCount">
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="1">
+                        1 Bath
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="2">
+                        2 Bath
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="3">
+                        3 Bath
+                    </mat-radio-button>
+                    <br/>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="4">
+                        4+ Bath
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="total-area-row">
+                <div  type="text" class="min-size-container">
+                    <label>Min. Size</label>
+                    <input  [(ngModel)]="minSize" placeholder="1,0000 sqft" NumberOnly />
+                </div>
+                <div class="max-size-container">
+                    <label>Max. Size</label>
+                    <input  [(ngModel)]="maxSize" type="text" placeholder="5,0000 sqft" NumberOnly />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="listings-container">
+        <div *ngFor="let listing of mListings">
+            <app-listing-item *ngIf="getFilterOutcome(listing)" [listing]="listing" listingType="0" (click)="onPropertyClick(listing)"></app-listing-item>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
