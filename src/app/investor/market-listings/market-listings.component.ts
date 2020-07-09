@@ -50,7 +50,6 @@ export class MarketListingsComponent implements OnInit {
     this.getPropertyListings();
 
     this.mAuthService.getUser().then(user => {
-      user = user;
 
       if(user){
         this.mFirestoreService.getInvestorWatchList(user.uid).subscribe(watchList => {

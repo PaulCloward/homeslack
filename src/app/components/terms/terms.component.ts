@@ -14,7 +14,7 @@ export class TermsComponent implements OnInit {
   }
 
   onBack(){
-    this.mRouter.navigate(['/create-account']);
+    this.mRouter.navigate(['/authentication/seller-register']);
   }
 
 }

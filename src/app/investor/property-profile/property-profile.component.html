@@ -1,181 +1,177 @@
 <div class="page-container">
-    <section>
-        <div class="container-gallery">
+    <section class="container-gallery">
+      
             <div class="small-image-column">
-                <img src="../../../assets/img/home_demo_3.png" />
-                <img src="../../../assets/img/home_demo_2.png" />
-                <img src="../../../assets/img/home_demo_1.png" />
+                <img src="../../../assets/img/map_capture.png" />
+                <img src="../../../assets/img/home_example.png" />
+                <div style="position: relative;">
+                    <div class="more-photos">
+                        <span class="material-icons more-photos-icons">
+                            camera_alt
+                        </span>
+                        10
+                    </div>
+                    <img style="background: #343434E6; filter: brightness(30%)" src="../../../assets/img/home_demo_1.png" />
+                </div>
+                
             </div>
             <div class="large-image">
-                <img src="../../../assets/img/home_demo_2.png" />
+                <img src="../../../assets/img/home_1.png" />
+
+                <section class="detail-section">
+                    <div class="address-container">
+                        <h5>{{mProperty.address.street}}</h5>
+                        <h6>{{mProperty.address.city}}, {{mProperty.address.state}} {{mProperty.address.zip_code}}</h6>
+                    </div>
+                   
+                    <div class="container-data-column">
+                        <div class="details-row">
+                            <div class="detail-column">
+                                <div class="data-row">
+                                    <img class="ic-house" src="../../../assets/img/house_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Total Living Area</h3>
+                                        <h4>{{mProperty.living_square_feet}}</h4>
+                                    </div>
+                                </div>
+                                <div class="data-row">
+                                    <img class="ic-beds" src="../../../assets/img/bedroom_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Bedrooms</h3>
+                                        <h4>{{mProperty.beds}}</h4>
+                                    </div>
+                                </div>
+                                <div class="data-row">
+                                    <img class="ic-pool" src="../../../assets/img/pool_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Pool</h3>
+                                        <h4 *ngIf="mProperty == null || mProperty.pool == null || mProperty.pool == false">No</h4>
+                                        <h4 *ngIf="mProperty.pool && mProperty.pool == true">Yes</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail-column">
+                                <div class="data-row">
+                                    <img class="ic-year" src="../../../assets/img/calendar_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Year Built</h3>
+                                        <h4>{{mProperty.year}}</h4>
+                                    </div>
+                                </div>
+
+                                <div class="data-row">
+                                    <img class="ic-baths" src="../../../assets/img/bathroom_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Bathrooms</h3>
+                                        <h4>{{mProperty.baths}}</h4>
+                                    </div>
+                                </div>
+
+                                <div class="data-row">
+                                    <span class="material-icons ic-hot-tub">
+                                        hot_tub
+                                     </span>
+                                    
+                                    <div class="data-row-column">
+                                        <h3>Hot Tub</h3>
+                                        <h4 *ngIf="mProperty == null || mProperty.hot_tub == null || mProperty.hot_tub == false">No</h4>
+                                        <h4 *ngIf="mProperty.hot_tub == true">Yes</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                            <div class="detail-column">
+                                <div class="data-row">
+                                    <img class="ic-lot-size" src="../../../assets/img/lot_size_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Lot Size</h3>
+                                        <h4>{{mProperty.lot_size}}</h4>
+                                    </div>
+                                </div>
+
+                                <div class="data-row">
+                                    <img class="ic-basement" src="../../../assets/img/basement_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Basement</h3>
+                                        <h4 *ngIf="mProperty == null || mProperty.basement == null || mProperty.basement == false">No</h4>
+                                        <h4 *ngIf="mProperty.basement == true">Yes</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail-column">
+                                <div class="data-row">
+                                    <img class="ic-cooling" src="../../../assets/img/cooling_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Cooling</h3>
+                                        <h4>{{mProperty.cooling}}</h4>
+                                    </div>
+                                </div>
+
+                                <div class="data-row">
+                                    <img class="ic-garage" src="../../../assets/img/garabage_blue.png" />
+                                    <div class="data-row-column">
+                                        <h3>Garage</h3>
+                                        <h4>{{mProperty.garage}}</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
+            <div class="bid-column">
+                <div class="top-bid">
+                    Top bid
+                </div>
+               <div class="bid-display">
+                   <img src="../../../assets/img/ic_cash.png" />
+
+                  
+                   <label> ${{highestBid}} </label>
+               </div>
+
+               <div class="stats-row">
+                <h5>{{propertyBids}}</h5> <h6>Bids</h6>  <h5>{{propertyFavored}}</h5> <h6>Favored</h6>
+               </div>
+
+               <div class="line-divider"></div>
+
+               <div class="btn-container">
+                    <button class="btn-make-offer"  (click)="openNav()">Make Offer</button>
+                </div>
+
+                <div class="gray-box">
+                    CLOSING
+                </div>
+
+                <div class="stats-row">
+                    <h5>{{closingDays}}</h5> <h6>Days</h6> <h5>{{closingHours}}</h5> <h6>Hours</h6>  <h5>{{closingMinutes}}</h5> <h6>Minutes</h6>
+                </div>
+
+                <div class="line-divider"></div>
+
+                <div class="gray-box">
+                    LISTED
+                </div>
+
+                <div class="stats-row">
+                    <h5>{{listedDays}}</h5> <h6>Days</h6>  <h5>{{listedHours}}</h5> <h6>Hours</h6>  <h5>{{listedMinutes}}</h5> <h6>Minutes</h6>
+                </div>
+            </div>
     </section>
-    <section class="detail-section">
-        <div class="address-container">
-            <h5>{{mProperty.address.street}}</h5>
-            <h6>{{mProperty.address.city}}, {{mProperty.address.state}} {{mProperty.address.zip_code}}</h6>
-        </div>
-        <div class="container-data-column">
-            <!-- <div class="data-row">
-                <img src="../../../assets/img/ic_money.png" />
-                <div class="data-row-column">
-                    <h3>Highest Bid</h3>
-                    <h4>${{highestBid}}</h4>
-                </div>
-            </div> -->
-            <!-- <div class="data-row">
-                <img src="../../../assets/img/ic_hash.png" />
-                <div class="data-row-column">07
-                    <h3>Bidders</h3>
-                    <h4>{{bidders}}</h4>
-                </div>
-            </div> -->
-            <div class="data-row">
-                <img class="ic-house" src="../../../assets/img/house_blue.png" />
-                <div class="data-row-column">
-                    <h3>Total Living Area</h3>
-                    <h4>{{mProperty.living_square_feet}}</h4>
-                </div>
+    <section>
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" style="z-index: 5;" class="closebtn" (click)="closeNav()">&times;</a>
+            <div class="overlay-content">
+              <app-popup></app-popup>
             </div>
-            <div class="data-row">
-                <img class="ic-lot-size" src="../../../assets/img/lot_size_blue.png" />
-                <div class="data-row-column">
-                    <h3>Lot Size</h3>
-                    <h4>{{mProperty.lot_size}}</h4>
-                </div>
-            </div>
-            <div class="data-row">
-                <img class="ic-beds" src="../../../assets/img/bedroom_blue.png" />
-                <div class="data-row-column">
-                    <h3>Bedrooms</h3>
-                    <h4>{{mProperty.beds}}</h4>
-                </div>
-            </div>
-            <div class="data-row">
-                <img class="ic-baths" src="../../../assets/img/bathroom_blue.png" />
-                <div class="data-row-column">
-                    <h3>Bathrooms</h3>
-                    <h4>{{mProperty.baths}}</h4>
-                </div>
-            </div>
-        </div>
-        <div class="container-data-column">
-            <div class="data-row">
-                <img class="ic-year" src="../../../assets/img/calendar_blue.png" />
-                <div class="data-row-column">
-                    <h3>Year Built</h3>
-                    <h4>{{mProperty.year}}</h4>
-                </div>
-            </div>
-            <div class="data-row">
-                <img class="ic-garage" src="../../../assets/img/garabage_blue.png" />
-                <div class="data-row-column">
-                    <h3>Garage</h3>
-                    <h4>{{mProperty.garage}}</h4>
-                </div>
-            </div>
-            <div class="data-row">
-                <img class="ic-basement" src="../../../assets/img/basement_blue.png" />
-                <div class="data-row-column">
-                    <h3>Basement</h3>
-                    <h4 *ngIf="mProperty == null || mProperty.basement == null || mProperty.basement == false">No</h4>
-                    <h4 *ngIf="mProperty.basement == true">Yes</h4>
-                </div>
-            </div>
-            <div class="data-row">
-                <img class="ic-hot-tub" src="../../../assets/img/hot_tub.png" />
-                <div class="data-row-column">
-                    <h3>Hot Tub</h3>
-                    <h4 *ngIf="mProperty == null || mProperty.hot_tub == null || mProperty.hot_tub == false">No</h4>
-                    <h4 *ngIf="mProperty.hot_tub == true">Yes</h4>
-                </div>
-            </div>
-            <div class="data-row">
-                <img class="ic-pool" src="../../../assets/img/pool_blue.png" />
-                <div class="data-row-column">
-                    <h3>Pool</h3>
-                    <h4 *ngIf="mProperty == null || mProperty.pool == null || mProperty.pool == false">No</h4>
-                    <h4 *ngIf="mProperty.pool && mProperty.pool == true">Yes</h4>
-                </div>
-            </div>
-            <div class="data-row">
-                <img class="ic-cooling" src="../../../assets/img/cooling_blue.png" />
-                <div class="data-row-column">
-                    <h3>Cooling</h3>
-                    <h4>{{mProperty.cooling}}</h4>
-                </div>
-            </div>
-        </div>
+          </div>
     </section>
 
-    <!-- <footer>
-        <div class="btn-container">
-            <button  (click)="openDialog('Kuldasac','Paul Cloward',
-            'PaulClowardcs12@gmail.com', '+18019718548',
-            100000)">Make Offer</button>
-        </div>
-
-        <div class="container-countdown">
-            <h3>CLOSING COUNTDOWN</h3>
-            <div class="circle-container">
-                <div class="column">
-                    <div class="circle">
-                        {{countDownDay}}
-                    </div>
-                    <label>Days</label>
-                </div>
-                <div class="column">
-                    <div class="circle">
-                        {{countDownHour}}
-                    </div>
-                    <label>Hours</label>
-                </div>
-                <div class="column">
-                    <div class="circle">
-                        {{countDownMinute}}
-                    </div>
-                    <label>Minutes</label>
-                </div>
-                <div class="column">
-                    <div class="circle">
-                        {{countDownSecond}}
-                    </div>
-                    <label>Seconds</label>
-                </div>
-            </div>
-        </div>
-        <div class="container-countdown">
-            <h3>LISTED ON KULDASAC FOR</h3>
-            <div class="circle-container">
-                <div class="column">
-                    <div class="circle">
-                        23
-                    </div>
-                    <label>Days</label>
-                </div>
-                <div class="column">
-                    <div class="circle">
-                        23
-                    </div>
-                    <label>Hours</label>
-                </div>
-                <div class="column">
-                    <div class="circle">
-                        23
-                    </div>
-                    <label>Minutes</label>
-                </div>
-                <div class="column">
-                    <div class="circle">
-                        23
-                    </div>
-                    <label>Seconds</label>
-                </div>
-            </div>
-        </div>
-    </footer> -->
-    
 
     <app-footer></app-footer>
 </div>

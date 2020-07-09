@@ -1,85 +1,68 @@
 <div class="container-fluid top-image-container" >
     <div class="row" >
       <div class="col-12">
-        <img src="../../../assets/img/header_investor_create_account.png" class="img-under-nav"/>
-        <div class="row">
-          <div class="col-12 top-header-title-container">
-            <div class="top-header-title"><span class="top-header-title-bold">INVESTOR</span> <span class="top-header-title-light"> CREATE ACCOUNT</span></div>
-          </div>
-        </div>
+        <img src="../../../assets/img/banner_create_account.png" class="img-under-nav"/>
       </div>
     </div>
 </div>
 
-<div class="label-welcome-to-Kuldasac">
-    <span class="welcome-to">Welcome to</span><span class="Kuldasac"> Kuldasac</span> 
-</div>
+<h1>
+    Create account
+</h1>
 <div class="line-divider">
 </div>
 
 <form class="form-container" [formGroup]="mFormInvestorInformation" (ngSubmit)="createAccount()">
     
 
-  <mat-form-field appearance="outline" class="container-input">
-      <mat-label translate="ea6.design.menu.header.search">Company Name</mat-label>
-      <input type="text" formControlName="companyName" matInput />
-      <mat-error *ngIf="companyName.invalid && companyName.touched">company name is required</mat-error>
-    </mat-form-field>
+  <div> 
+      <label [hidden]="companyName.valid || !companyName.touched">company name is required</label>
+      <input type="text" formControlName="companyName" placeholder="Company name (entity)..." matInput />
+  </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-        <mat-label>Contact Name (First, Last)</mat-label>
-        <input type="text" formControlName="contactName" matInput />
-        <mat-error *ngIf="contactName.invalid && contactName.touched">contact name is required</mat-error>
-    </mat-form-field>
+    <div>
+      <label [hidden]="contactName.valid || !contactName.touched">contact name is required</label>
+      <input type="text" formControlName="contactName" placeholder="Contact name (first, last)..." matInput />
+    </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-        <mat-label>Phone Number</mat-label>
-        <input type="text" maxlength="12" formControlName="phoneNumber" matInput NumberOnly (keyup)="onPhoneInput(event)"/>
-        <mat-error *ngIf="phoneNumber.invalid && phoneNumber.touched">a valid phone number is required</mat-error>
-    </mat-form-field>
+    <div>
+      <label [hidden]="phoneNumber.valid || !phoneNumber.touched">a valid phone number is required</label>
+        <input type="text" maxlength="12" placeholder="Phone..." formControlName="phoneNumber" matInput NumberOnly (keyup)="onPhoneInput(event)"/>
+    </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-        <mat-label>Email</mat-label>
-        <input type="email"  formControlName="email" matInput />
-        <mat-error *ngIf="email.invalid && email.touched">please enter a valid email</mat-error>
-    </mat-form-field>
+    <div>
+      <mat-error [hidden]="email.valid || !email.touched">please enter a valid email</mat-error>
+        <input type="email"  formControlName="email" placeholder="Email/login......" matInput />
+    </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-        <mat-label>Company Address</mat-label>
-        <input type="text"  formControlName="companyAddress" matInput />
-        <mat-error *ngIf="companyAddress.invalid && companyAddress.touched">please enter a company address</mat-error>
-    </mat-form-field>
+    <div>
+      <mat-error *ngIf="companyAddress.invalid && companyAddress.touched">please enter a company address</mat-error>
+        <input type="text"  formControlName="companyAddress" placeholder="Company address..." matInput />
+    </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-        <mat-label>Suite #</mat-label>
-        <input type="text"  formControlName="suite" maxlength="5" matInput NumberOnly />
-        
-    </mat-form-field>
+    <div>
+        <input type="text"  formControlName="suite" maxlength="5" placeholder="Suite..." matInput NumberOnly />
+    </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-        <mat-label>City</mat-label>
-        <input type="text"  formControlName="city" matInput />
-        <mat-error *ngIf="city.invalid && city.touched">please enter a valid city</mat-error>
-    </mat-form-field>
+    <div>
+      <mat-error *ngIf="city.invalid && city.touched">please enter a valid city</mat-error>
+        <input type="text"  formControlName="city" matInput placeholder="City..." />
+    </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-      <mat-label>Zip Code</mat-label>
-        
-        <input type="text"  formControlName="zipCode" maxlength="6" matInput NumberOnly/>
+    <div>
       <mat-error *ngIf="zipCode.invalid && zipCode.touched">please enter a valid zip code</mat-error>
-  </mat-form-field>
+      <input type="text"  formControlName="zipCode" maxlength="6" placeholder="Zip..." matInput NumberOnly/>
+  </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-        <mat-label>Social Security #</mat-label>
-        <input type="text" formControlName="ssNumber" maxlength="9" matInput NumberOnly />
-        <mat-error *ngIf="ssNumber.invalid && ssNumber.touched">please enter a valid social security #</mat-error>
-    </mat-form-field>
+    <div>
+      <mat-error *ngIf="ssNumber.invalid && ssNumber.touched">please enter a valid social security #</mat-error>
+        <input type="text" formControlName="ssNumber" placeholder="Social Security #..." maxlength="9" matInput NumberOnly />
+    </div>
 
-    <mat-form-field appearance="outline" class="container-input">
-      <mat-label>EIN #</mat-label>
-      <input type="text" formControlName="ein" maxlength="9" matInput NumberOnly />
+    <div>
       <mat-error *ngIf="ein.invalid && ein.touched">please enter a valid ein #</mat-error>
-    </mat-form-field>
+      <input type="text" formControlName="ein" placeholder="EIN #..." maxlength="9" matInput NumberOnly />
+    </div>
   
       <div class="dropdown">
           <button class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,46 +89,34 @@
       </div>
 
 
-      <mat-form-field appearance="outline"class="container-input" >
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
+      <div>
         <mat-error *ngIf="password.invalid && password.touched">enter a valid password (6 characters or more)</mat-error>
-      </mat-form-field>
+        <input matInput type="password" formControlName="password" placeholder="Password...">
+      </div>
 
-      <mat-form-field appearance="outline" class="container-input">
-        <mat-label>Confirm your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'"  formControlName="confirmPassword">
-        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
+      <div>
         <mat-error *ngIf="confirmPassword.invalid && confirmPassword.touched">passwords must be valid and match</mat-error>
-      </mat-form-field>
-
-      <div class="container-checkboxes">
-        
-          <section class="example-section">
-            <mat-checkbox class="example-margin" color="primary"  formControlName="updatesEmail">Receive status updates via email</mat-checkbox>
-          </section>
-           <section class="example-section">
-            <mat-checkbox class="example-margin" color="primary"  formControlName="updatesText">Receive status updates via text</mat-checkbox>
-          </section>
+        <input matInput type="password"  formControlName="confirmPassword" placeholder="Re-enter password...">
       </div>
 
-      <label class="label-agreement">By creating an account, you are agreeing with the Kuldasac <span style="color: #44C6F3; cursor: pointer;">Terms</span></label>
+     <div class="checkbox-container">
+      Receive status updates via text
+     </div>
+
+     <div class="checkbox-container">
+      Receive status updates via email
+     </div>
+
+      <label>By creating an account, you are agreeing with the Kuldasac <span style="color: #44C6F3; cursor: pointer;">Terms</span></label>
   
-      <div class="container-btn-register">
-        <button type="submit" [ngClass]="{'btn-register':mFormInvestorInformation.valid, 'btn-disabled': mFormInvestorInformation.invalid}"  [disabled]="mFormInvestorInformation.invalid">Create Account</button>
-      </div>
       
-  
+      <button type="submit"  [disabled]="mFormInvestorInformation.invalid">Create Account</button>
 
 </form>
 
-<div class="line-divider-bottom"></div>
+<div class="line-divider" style="margin-top: 55px; margin-bottom: 0;"></div>
 
-<label class="already-have-account">Already have an account? <span class="sign-in" (click)="clickSignIn()">Sign in</span></label>
-<br><br><br><br><br><br><br>
+
+<h2>Already have an account?</h2>
+<h3 (click)="clickSignIn()">Sign in</h3>
 <app-footer></app-footer>

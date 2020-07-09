@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { InvestorRegistrationComponent } from './investor-registration/investor-registration.component';
+import { SellerRegistrationComponent } from './seller-registration/seller-registration.component';
+import { InvestorLoginComponent } from './investor-login/investor-login.component';
+import { SellerLoginComponent } from './seller-login/seller-login.component';
 
 
 const routes: Routes = [
@@ -11,6 +14,18 @@ const routes: Routes = [
   {
     path: 'investor-register',
     component: InvestorRegistrationComponent
+  },
+  {
+    path: 'seller-register',
+    component: SellerRegistrationComponent
+  },
+  {
+    path: 'investor-login',
+    component: InvestorLoginComponent
+  },
+  {
+    path: 'seller-login',
+    component: SellerLoginComponent
   }
 ];
 

@@ -34,7 +34,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { VerifyInfoPageComponent } from './components/verify-info-page/verify-info-page.component';
 import { AgmCoreModule } from '@agm/core';
-import { CreateaccountComponent } from './components/createaccount/createaccount.component';
 import { LoginComponent } from './components/login/login.component';
 import { FlashMessageComponent } from './components/flash-message/flash-message.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -81,6 +80,7 @@ import { UploadTaskComponent } from './components/uploader-task/uploader-task.co
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { SearchComponent } from './components/search/search.component';
 import { AuthInvestorGuard } from './investor/auth-investor.guard';
+import { AuthSellerGuard } from './seller/auth-seller.guard';
 
 
 
@@ -106,7 +106,8 @@ const appRoutes: Routes = [
   {path: 'verify-info-page', component: VerifyInfoPageComponent},
   // {path: 'fill-in-property-info-page', component: FillInPropertyInfoPageComponent},
   {path: 'fill-in-property-info-page', loadChildren: () => import('./fill-property-details/fill-property-details.module').then(m => m.FillPropertyDetailsModule)},
-  {path: 'create-account', component: CreateaccountComponent},
+  {path: 'create-account', 
+  loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)},
   {path: 'login', component: LoginComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'why-us', component: WhyUsComponent},
@@ -126,18 +127,25 @@ const appRoutes: Routes = [
       { path:'upload', component: ImageComponent},
       { path:'list', component:ImageListComponent}
     ] 
-  }, {
+  },
+   {
     path: 'photos',
     loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule)
   },
   {
     path: 'investor',
-    loadChildren: () => import('./investor/investor.module').then(m => m.InvestorModule)
+    loadChildren: () => import('./investor/investor.module').then(m => m.InvestorModule),
+    canActivate: [AuthInvestorGuard]
   }, 
+  {
+    path: 'seller',
+    loadChildren: () => import('./seller/seller.module').then(m => m.SellerModule),
+    canActivate: [AuthSellerGuard]
+  },
   {
     path: 'authentication',
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
-   },
+   }
   // {
   //   path: 'landing',
   //   loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)
@@ -149,7 +157,6 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     VerifyInfoPageComponent,
-    CreateaccountComponent,
     LoginComponent,
     FlashMessageComponent,
     NavbarComponent,

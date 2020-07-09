@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PropertyDetails } from '../../class/PropertyDetails';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FirestoreService } from '../../services/firestore.service';
+import { PropertyViewService } from '../services/property-view.service';
 
 @Component({
   selector: 'app-listing-item',
@@ -11,12 +12,10 @@ import { FirestoreService } from '../../services/firestore.service';
 })
 export class ListingItemComponent implements OnInit {
 
-  readonly watchList:number = 0;
-  readonly offersMade:number = 1;
-  readonly underContract:number = 2;
+  watchList:number = 0;
+  offersMade:number = 1;
+  underContract:number = 2;
   @Input() listingType:number = this.watchList;
-
-
   @Input() listing: PropertyDetails;
   @Input() priority: number = 2;
   
@@ -25,23 +24,45 @@ export class ListingItemComponent implements OnInit {
   countDownMinute:any = "-";
   countDownSecond:any = "-";
 
-  constructor(private mAuthService: AuthenticationService, private mFirestoreService: FirestoreService) { }
+  highestBid:number = 0;
+
+  isHeartSelected:number = -1;
+  
+  icHeartPathUnselected:string = '../../../assets/img/ic_heart_gray.png';
+  icHeartPathSelected:string = '../../../assets/img/ic_heart_red.png';
+
+  constructor(private mAuthService: AuthenticationService, private mFirestoreService: FirestoreService, private mPropertyViewService: PropertyViewService) { }
 
   ngOnInit() {
+
+    this.mPropertyViewService.getWatchListAddresses().subscribe(addresses => {
+      if(addresses == null || !addresses.includes(this.listing.address.street)){
+        this.isHeartSelected = 0;
+      }else {
+        this.isHeartSelected = 1;
+      }
+    })
 
     setInterval(()=> {
       this.countdown();
     }, 1000);
   }
 
-  onClickWatchHeart(){
-    event.stopPropagation();
-    console.log("Watch heart");
-    this.mAuthService.getUser().then(user => {
-      this.mFirestoreService.deletePropertFromInvestorWatchList(user.uid, this.listing);    
-    });
-  }
+  onClickHeart(event){
 
+    event.stopPropagation();
+
+    if(this.isHeartSelected == 0){
+     this.mAuthService.getUser().then(user => {
+       this.mFirestoreService.addPropertyToInvestorWatchList(user.uid, this.listing);    
+     });
+     }else if(this.isHeartSelected == 1){
+       this.mAuthService.getUser().then(user => {
+         this.mFirestoreService.deletePropertFromInvestorWatchList(user.uid, this.listing);    
+       });
+     }
+     
+   }
 
   public countdown(){
     let now = new Date();

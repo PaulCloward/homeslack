@@ -1,21 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BrowseListingsComponent } from './browse-listings/browse-listings.component';
-import { ListingsComponent } from './listings/listings.component';
 import { PropertyProfileComponent } from './property-profile/property-profile.component';
 import { MarketListingsComponent } from './market-listings/market-listings.component';
+import { MonitorPropertiesComponent } from './monitor-properties/monitor-properties.component';
 const routes: Routes = [
   {
     path: '',
-    component: BrowseListingsComponent
+    component: MonitorPropertiesComponent
   },
   {
-    path: 'browse-listings',
-    component: BrowseListingsComponent
-  },
-  {
-    path: 'listings',
-    component: ListingsComponent
+    path: 'monitor-listings',
+    component: MonitorPropertiesComponent
   },
   {
     path: 'market-listings',

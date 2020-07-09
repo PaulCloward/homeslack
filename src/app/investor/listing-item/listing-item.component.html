@@ -1,12 +1,17 @@
 
 
-<div class="gallery-container">
-    <div class="container-item">
+
+<div class="container-item">
         <div class="gallery-item">
             <div class="image">
                 <img style="opacity: .8;" src="https://source.unsplash.com/1600x900/?house" alt="property">
             </div>
-            <img class="watch-heart" src="../../../assets/img/heart_red.png" (click)="onClickWatchHeart($event)" />
+            <div class="heart-container">
+                <img *ngIf="isHeartSelected == -1" class="heart" [src]="icHeartPathUnselected" />
+                <img *ngIf="isHeartSelected == 0" class="heart" [src]="icHeartPathUnselected" (click)="onClickHeart($event)" />
+                <img *ngIf="isHeartSelected == 1" class="heart" [src]="icHeartPathSelected"  (click)="onClickHeart($event)" />
+            </div>
+            
         </div>
         <div class="address-container">
             <div class="left">
@@ -15,7 +20,7 @@
             </div>
             <div class="right">
                 <div class="bid-number">
-                    $534,023
+                    ${{highestBid}}
                 </div>
                 <label>Highest bid</label>
             </div>
@@ -39,5 +44,4 @@
             <h6>{{listing.living_square_feet}} sqft</h6>
         </div>
        </div>
-    </div>
 </div>

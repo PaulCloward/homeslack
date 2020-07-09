@@ -173,7 +173,7 @@ export class VerifyInfoPageComponent implements OnInit {
 
   onClickCreateAccount(){
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
-    this.mRouter.navigate(['./create-account']);
+    this.mRouter.navigate(['/authentication/seller-register']);
   }
 
   onClickBasement(basementExists:boolean){

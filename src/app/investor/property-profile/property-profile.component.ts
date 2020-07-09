@@ -14,13 +14,24 @@ export class PropertyProfileComponent implements OnInit, OnDestroy {
   highestBid:number = 0;
   bidders:number = 0;
 
+  closingDays:number = 0;
+  closingHours:number = 0;
+  closingMinutes:number = 0;
+
+  listedDays:number = 0;
+  listedHours:number = 0;
+  listedMinutes:number = 0;
+
   countDownDay:any = '-';
   countDownHour:any = '-';
   countDownMinute:any = '-';
   countDownSecond:any = '-';
 
+  propertyBids:number = 0;
+  propertyFavored:number = 0;
+
   public result: any;
-  constructor(public dialogService: PopupService, private mPropertyViewService: PropertyViewService, private mRouter: Router) {}
+  constructor(private mPropertyViewService: PropertyViewService, private mRouter: Router) {}
 
 
   ngOnInit() {
@@ -34,20 +45,12 @@ export class PropertyProfileComponent implements OnInit, OnDestroy {
 
    this.mPropertyViewService.getViewPropertyData().subscribe(property => {
      if(property != null){
-       console.log(property);
        this.mProperty = property;
      }else{
-       this.mRouter.navigateByUrl('investor/listings');
+       this.mRouter.navigateByUrl('investor/market-listings');
      }
-   })
-  
+   });
   } 
-
-  public openDialog() {
-    this.dialogService
-      .showDialog(this.mProperty)
-      .subscribe(res => this.result = res);
-  }
 
   public countdown(){
     let now = new Date();
@@ -75,6 +78,14 @@ export class PropertyProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     
+  }
+
+  openNav() {
+    document.getElementById("myNav").style.width = "100%";
+  }
+  
+  closeNav() {
+    document.getElementById("myNav").style.width = "0%";
   }
 
 }

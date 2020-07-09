@@ -1,13 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FirestoreService } from '../../services/firestore.service';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-
 
 @Component({
   selector: 'app-popup',
@@ -24,10 +17,10 @@ export class PopupComponent implements OnInit {
   mEmailPattern:string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   mPhoneNumberPattern:string = "^(\+\d{1,3}[- ]?)?\d{10}$";
   
-  constructor(private mFirestoreService: FirestoreService, private mFormBuilder:FormBuilder, public dialogRef: MatDialogRef<PopupComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(private mFirestoreService: FirestoreService, private mFormBuilder:FormBuilder) {}
 
   ngOnInit(): void {
-    this.dialogRef.addPanelClass('popup-container');
+    //this.dialogRef.addPanelClass('popup-container');
 
     this.mFormBid = this.mFormBuilder.group({
       companyName: ['', [
@@ -52,12 +45,12 @@ export class PopupComponent implements OnInit {
   }
 
   onClose(){
-    this.dialogRef.close();
+   
   }
   
 
   onNoClick(): void {
-    this.dialogRef.close();
+    
   }
 
   onReviewBid(){
@@ -66,7 +59,7 @@ export class PopupComponent implements OnInit {
 
   onPlaceBid(){
     //this.mFirestoreService.addPropertyToInvestorOfferMadeList( ,)
-    this.dialogRef.close();
+    
   }
 
   get companyName() {

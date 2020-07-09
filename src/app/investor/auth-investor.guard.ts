@@ -26,21 +26,21 @@ export class AuthInvestorGuard implements CanActivate {
     const loggedIn = !!user;
 
     if (!loggedIn) {
-        this.snack.authError('Investor');
+        this.snack.authError('Investor err 1');
         return false;
     }
 
     const roles = await this.mAuthService.getRoles();
 
     if (roles == null) {
-      this.snack.authError('investor');
+      this.snack.authError('investor err2');
       return false;
   }
 
     console.log(roles.role.investor);
     console.log(roles.role.admin);
     if(roles == null || (roles.role.investor == false && roles.role.admin == false)){
-      this.snack.authError('investor');
+      this.snack.authError('investor err3');
       return false;
     }
 

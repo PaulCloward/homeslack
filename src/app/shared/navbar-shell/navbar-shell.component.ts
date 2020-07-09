@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { FirestoreService } from '../../services/firestore.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar-shell',
   templateUrl: './navbar-shell.component.html',
   styleUrls: ['./navbar-shell.component.scss']
 })
-export class NavbarShellComponent implements OnInit {
+export class NavbarShellComponent implements OnInit, OnDestroy {
 
+  mSubscriptionAuth:Subscription;
+  mSubscriptionUserRoles:Subscription;
   
-selector(s){
-  return document.querySelector<HTMLInputElement>(s);
-}
+  selector(s){
+    return document.querySelector<HTMLInputElement>(s);
+  }
 
-  constructor(public mRouter:Router, private mAuth:AngularFireAuth) { }
+  constructor(public mRouter:Router, private mAuth:AngularFireAuth, private mFirestoreService: FirestoreService) { }
 
   ngOnInit() {
     //document.getElementById('my-row').querySelector<HTMLInputElement>('.myClass').value
@@ -25,6 +29,41 @@ selector(s){
           document.querySelector<HTMLInputElement>('.overlay').classList.toggle('open');
       });
     }
+
+    this.mSubscriptionAuth = this.mAuth.authState.subscribe(user => {
+      if(user != null){
+        this.getUserRoles(user.uid);
+      }
+    })
+
+  }
+
+  ngOnDestroy():void{
+    if(this.mSubscriptionUserRoles){
+      this.mSubscriptionAuth.unsubscribe();
+    }
+  }
+
+  getUserRoles(uuid:string){
+
+    if(this.mSubscriptionUserRoles){
+      this.mSubscriptionAuth.unsubscribe();
+    }
+
+    this.mFirestoreService.getUserRoles(uuid).subscribe(userRoles => {
+      
+      if(userRoles == null){
+        return;
+      }
+
+      if(userRoles.role.seller == true){
+
+      }else if(userRoles.role.investor == true){
+        
+      }else if(userRoles.role.admin == true){
+        
+      }
+    });
   }
 
   onSignOut(){
@@ -58,12 +97,24 @@ selector(s){
 
   
   isRouteInvestor(){
-    return this.mRouter.url == '/investor' ||  this.mRouter.url == '/investor/browse-listings' ||  this.mRouter.url == '/investor/market-listings' ||
-     this.mRouter.url == '/investor/listings' ||  this.mRouter.url == '/investor/property-profile';
+    return this.mRouter.url == '/investor' ||  this.mRouter.url == '/investor/monitor-listings' ||  this.mRouter.url == '/investor/market-listings' ||
+      this.mRouter.url == '/investor/property-profile';
+  }
+
+  isRouteInvestorProfile(){
+    return this.mRouter.url == '/investor' ||  this.mRouter.url == '/investor/monitor-listings';
   }
 
   isRouteMarketListing(){
     return this.mRouter.url == '/investor/market-listings';
+  }
+
+  isRoutePropertyProfile(){
+    return this.mRouter.url == '/investor/property-profile';
+  }
+
+  isRouteHome(){
+    return this.mRouter.url == '/' || this.mRouter.url == '/home';
   }
 
 

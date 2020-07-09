@@ -30,7 +30,7 @@ html{
 header{
     width: 100%;
     height: 100vh;
-    background-color: #fff;
+    background-color: none;
     position: relative;
 }
 
@@ -49,7 +49,7 @@ header{
     position: fixed;
     top: 1rem;
     right: 1rem;
-    background-color: #fff;
+    background-color:none;
     z-index: 999;
     border-radius: 3px;
     cursor: pointer;
@@ -81,7 +81,7 @@ header{
 }
 
 .open .bar{
-    background-color: transparent;
+    background-color: none;
 }
 
 .open .bar::before{
@@ -106,10 +106,24 @@ nav{
     display: flex;
     align-items: center;
     text-transform: uppercase;
-    background-color: #fff;
+    background-color: white;
     border-bottom: .8px solid #C4C4C4;
     opacity: 1;
     overflow: hidden;
+    z-index: 50000;
+
+}
+
+.transparent-background{
+    position: absolute;
+    top: 0;
+    border-bottom: none;
+    background-color: none !important;
+}
+
+.white-background{
+    border-bottom: .8px solid #C4C4C4;
+    background-color: white !important;
 }
 
 a{
@@ -132,30 +146,40 @@ a{
 nav ul{
     display: flex;
     margin-left: auto;
-    margin-right: 4rem;
     list-style: none;
+    padding-right: 2em;
 }
 
 .nav-link-selected{
-    font-size: 1em;
-    background-color: #44C6F3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: .4em;
+    
+    font-family: 'trueno_regular', sans-serif;
+    width: 100%;
+    height: 87%;
+    font-size: 18px - (18px * .2);
+    font-weight: 400;
+    letter-spacing: 1.8px;
     color: white;
-    margin-right: 2rem;
-    padding: 0 1rem;
-    display: block;
-    position: relative;
+    opacity: 1;
+    background-color: #44C6F3;
 }
 
-.nav-link{
-    font-size: 1em;
-    color: #44C6F3;
-    margin-right: 2rem;
-    padding: 0 1rem;
-    display: block;
-    position: relative;
-    transform-style: preserve-3d;
-    transform-origin: top;
-    transition: transform 650ms cubic-bezier(0.55, 0.55, 0.675, 0.19);
+.nav-link-invest{
+    font-family: 'trueno_regular', sans-serif;
+    width: 100%;
+    height: 100%;
+    font-size: 18px - (18px * .2);
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    color: #2A2A2A;
+    opacity: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-link:hover{
@@ -313,35 +337,23 @@ nav ul{
     text-align: center
 }
 
+.tab-invest-home, .tab-invest-listings, .tab-invest-why-us, .tab-invest-profile{
+    width: 120px;
+    margin: 0 auto;
+    border: none;
+    outline: none;  
+    cursor: pointer;
+}
 
-.nav-link-invest{
-    font-family: 'trueno_regular', sans-serif;
-    width: 100%;
+
+
+.tab-invest-profile{
+
     height: 100%;
-    font-size: 18px - (18px * .2);
-    font-weight: 400;
-    letter-spacing: 1.8px;
-    color: #2A2A2A;
-    opacity: 1;
-
     display: flex;
     align-items: center;
     justify-content: center;
-}
- 
-.tab-invest-home{
-    margin-right: 40px - (40px * .2);
-}
-
-.tab-invest-listings{
-    margin-right: 33px - (33px * .2);
-}
-
-.tab-invest-why-us{
-    margin-right: 26px - (26px * .2);
-}
-
-.tab-invest-profile{
+    
 
     img{
         width: 46px - (46px * .2);
@@ -426,7 +438,7 @@ nav ul{
         color: white;
         margin-right: 0;
         padding: 1rem 0;
-       
+        
     }
     
     .nav-link{

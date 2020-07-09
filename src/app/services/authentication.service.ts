@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Observable, from as observableFrom, BehaviorSubject } from 'rxjs';
+import { Observable, from as observableFrom, BehaviorSubject, of } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { IUserRoles } from '../model/IUserRoles';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,22 @@ export class AuthenticationService {
   user$ = this.firebaseUser.asObservable();
   userRoles$: Observable<IUserRoles>;
 
-  constructor(private mAngularAuth:AngularFireAuth, private mRouter:Router) { }
+  constructor(private mAngularAuth:AngularFireAuth, private mRouter:Router, private mAngularFirestore: AngularFirestore) {
+
+    this.userRoles$ = this.mAngularAuth.authState
+        .switchMap(user => {
+          this.changeLoggedInUser(user);
+          if (user) {
+            return this.mAngularFirestore.doc<IUserRoles>(`user_roles_list/${user.uid}`).valueChanges();
+          } else {
+            return of(null);
+          }
+        })
+   }
+
+   changeLoggedInUser(patient: any) {
+    this.firebaseUser.next(patient);
+  }
 
   getUser(): Promise<any> {
     return this.mAngularAuth.authState.pipe(first()).toPromise();

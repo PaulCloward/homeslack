@@ -5,8 +5,11 @@ import { InvestorRegistrationComponent } from './investor-registration/investor-
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { SellerRegistrationComponent } from './seller-registration/seller-registration.component';
+import { SellerLoginComponent } from './seller-login/seller-login.component';
+import { InvestorLoginComponent } from './investor-login/investor-login.component';
 @NgModule({
-  declarations: [InvestorRegistrationComponent],
+  declarations: [InvestorRegistrationComponent, SellerRegistrationComponent, SellerLoginComponent, InvestorLoginComponent],
   imports: [
     CommonModule,
     AuthenticationRoutingModule, 
