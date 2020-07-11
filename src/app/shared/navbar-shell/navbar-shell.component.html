@@ -41,10 +41,19 @@
     <li class="tab-invest-home"  [ngClass]="{'nav-link-invest': !isNavDirectory(), 'nav-link-selected': isNavDirectory()}"  routerLink="/directory">
         DIRECTORY
     </li>
-    <li class="tab-invest-home" routerLink="/investor" [ngClass]="{'nav-link-invest': !isRouteInvestorProfile() && !isRouteHome(), 'nav-link-selected': isRouteInvestorProfile() || isRouteHome()}">
-        HOME
+    <!-- Signed Out Home Tab -->
+    <li class="tab-invest-home" routerLink="/home" *ngIf="mRole == null" [ngClass]="{'nav-link-invest': !isRouteHome(),'nav-link-selected': isRouteHome()}">
+        HOME 
     </li>
-    <li class="tab-invest-listings"  routerLink="/investor/market-listings" [ngClass]="{'nav-link-invest': !isRouteMarketListing(), 'nav-link-selected': (isRouteMarketListing() || isRoutePropertyProfile())}">
+    <!-- Signed Out Seller Tab -->
+    <li class="tab-invest-home" routerLink="/seller" *ngIf="mRole != null && mRole == 'seller'" [ngClass]="{'nav-link-invest': !isRouteInvestorProfile() && !isRouteHome(), 'nav-link-selected': isRouteInvestorProfile()}">
+        HOME 
+    </li>
+    <!-- Signed Out Investor Tab -->
+    <li class="tab-invest-home" routerLink="/investor" *ngIf="mRole != null && mRole == 'investor'" [ngClass]="{'nav-link-invest': !isRouteInvestorProfile(), 'nav-link-selected': isRouteInvestorProfile()}">
+        HOME 
+    </li>
+    <li class="tab-invest-listings" *ngIf="mRole != null && mRole == 'investor'"  routerLink="/investor/market-listings" [ngClass]="{'nav-link-invest': !isRouteMarketListing(), 'nav-link-selected': (isRouteMarketListing() || isRoutePropertyProfile())}">
         LISTINGS
     </li>
     <li class="tab-invest-why-us" [ngClass]="{'nav-link-invest': !isNavWhyUs(), 'nav-link-selected': isNavWhyUs()}" routerLink="/why-us">

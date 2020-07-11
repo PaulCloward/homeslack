@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AuthenticationService } from '../../services/authentication.service';
+import { FirestoreService } from '../../services/firestore.service';
+import { Subscription } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +37,9 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
+  mSubscriptionUserRoles:Subscription;
+  mSubscriptionAuth:Subscription;
+
   isStateResendEmail:boolean = false;
   newPasswordEmail:string = "";
   errorStatement:string = "";
@@ -45,8 +51,10 @@ export class LoginComponent implements OnInit {
 
   mLoginType:string = null;
 
+  mRole:String;
 
-  constructor(private mAuthService: AuthenticationService, private mRouter: Router, private mFormBuilder:FormBuilder) { 
+
+  constructor(private mAuthService: AuthenticationService, private mAuth: AngularFireAuth ,private mRouter: Router, private mFormBuilder:FormBuilder, private mFirestoreService: FirestoreService) { 
   	    
   }
 
@@ -76,14 +84,54 @@ export class LoginComponent implements OnInit {
         Validators.email
       ]]
     });
+
+
+    // if(this.mSubscriptionAuth){
+    //   this.mSubscriptionAuth.unsubscribe();
+    // }
+
+    // this.mSubscriptionAuth = this.mAuth.authState.subscribe(user => {
+    //  if(user){
+    //   this.getUserRole(user.uid);
+    //  }
+     
+      
+    // });
   }
 
   login(){  
   	this.mAuthService.login(this.email.value,this.password.value)
   	  .subscribe(
-  		success => this.mRouter.navigate(['/home']),
+  		success => console.log("signed in"),
   		error => alert(error)
   		);
+  }
+
+  getUserRole(uid){
+   
+    
+    if(this.mSubscriptionUserRoles){
+      this.mSubscriptionUserRoles.unsubscribe();
+    }
+
+    this.mSubscriptionUserRoles = this.mFirestoreService.getUserRoles(uid).subscribe(userRoles => {
+      
+      if(userRoles == null){
+        this.mRole = null;
+        return;
+      }
+
+      if(userRoles.role.seller == true){
+        this.mRouter.navigateByUrl('seller');
+      }else if(userRoles.role.investor == true){
+        this.mRouter.navigateByUrl('investor/property-profile');
+      }else if(userRoles.role.admin == true){
+        this.mRole = 'admin';
+      }else{
+        this.mRole = null;
+      }
+
+    });
   }
 
   onCreateAccount(){

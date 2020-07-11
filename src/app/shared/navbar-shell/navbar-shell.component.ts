@@ -13,6 +13,7 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
 
   mSubscriptionAuth:Subscription;
   mSubscriptionUserRoles:Subscription;
+  mRole:String = null;
   
   selector(s){
     return document.querySelector<HTMLInputElement>(s);
@@ -30,16 +31,24 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
       });
     }
 
+    if(this.mSubscriptionAuth){
+      this.mSubscriptionAuth.unsubscribe();
+    }
+
     this.mSubscriptionAuth = this.mAuth.authState.subscribe(user => {
-      if(user != null){
-        this.getUserRoles(user.uid);
-      }
-    })
+     if(user){
+      this.getUserRoles(user.uid);
+     }
+    });
 
   }
 
   ngOnDestroy():void{
     if(this.mSubscriptionUserRoles){
+      this.mSubscriptionUserRoles.unsubscribe();
+    }
+
+    if(this.mSubscriptionAuth){
       this.mSubscriptionAuth.unsubscribe();
     }
   }
@@ -53,15 +62,20 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
     this.mFirestoreService.getUserRoles(uuid).subscribe(userRoles => {
       
       if(userRoles == null){
+        this.mRole = null;
         return;
       }
 
       if(userRoles.role.seller == true){
-
+        this.mRole = 'seller';
+        this.mRouter.navigateByUrl('seller');
       }else if(userRoles.role.investor == true){
-        
+        this.mRole = 'investor';
+        this.mRouter.navigateByUrl('investor/property-profile');
       }else if(userRoles.role.admin == true){
-        
+        this.mRole = 'admin';
+      }else{
+        this.mRole = null;
       }
     });
   }
@@ -69,6 +83,7 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
   onSignOut(){
     this.mAuth.auth.signOut().then(()=> {
       this.mRouter.navigateByUrl('home');
+      this.mRole = null;
     })
     .catch(error => {
       console.log("Not able to sign out: " + error);
@@ -76,6 +91,8 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
   }
 
   onSignIn(userType:string){
+
+    
     if(userType == 'investor'){
       this.mRouter.navigateByUrl('login', {state: {data: {route: 'investor'}}});
     }else {
