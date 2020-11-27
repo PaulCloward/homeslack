@@ -43,7 +43,7 @@
        
         <section *ngIf="myFormEmail.invalid">
           <div matTooltipPosition="above" [matTooltip]="signInMessageHint">
-              <button type="button">Sign In</button>
+              <button id="btn-disabled" type="button">Sign In</button>
           </div>
          
         </section>
@@ -70,10 +70,8 @@
           <div style="position: relative;">
             <div class="label-back" style="display:inline-block" (click)="isStateResendEmail = false">Back to sign in</div>
 
-            <button *ngIf="myFormResetPassword.valid" 
-              style="display:inline-block"
-              type="submit" name="Send" value="Send" class="btn-sign-in"
-              >Send</button> 
+            <button *ngIf="myFormResetPassword.valid" style="display:inline-block"
+              type="submit" name="Send" value="Send" class="btn-sign-in">Send</button> 
 
               <div style="width: 100%; text-align: right;" *ngIf="!myFormResetPassword.valid">
                 <div style="display: inline-block;" matTooltipPosition="above" [matTooltip]="sendForNewPasswordHint">

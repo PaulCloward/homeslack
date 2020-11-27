@@ -34,7 +34,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FlashMessageComponent } from './components/flash-message/flash-message.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -90,7 +89,6 @@ const appRoutes: Routes = [
   // {path:'', redirectTo: 'image/upload', pathMatch:'full'},
  
   {path: 'login', component: LoginComponent},
-  {path: 'contact', component: ContactComponent},
   {path: 'seller-account', component: SellerAccountComponent},
   {path: 'seller-listings', component: SellerListedPropertyComponent},
   {path: 'offers', component: MyOffersComponent},
@@ -140,6 +138,10 @@ const appRoutes: Routes = [
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
    },
    {
+    path: 'contact',
+    loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+   },
+   {
      path: 'why-us',
      loadChildren: () => import('./why-us/why-us.module').then(m => m.WhyUsModule)
     },
@@ -171,7 +173,6 @@ const appRoutes: Routes = [
     LoginComponent,
     FlashMessageComponent,
     NavbarComponent,
-    ContactComponent,
     DropZoneDirective,
     FileSizePipe,
     SellerAccountComponent,

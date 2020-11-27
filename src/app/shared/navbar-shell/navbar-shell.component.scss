@@ -351,11 +351,32 @@ nav ul{
     align-items: center;
     justify-content: center;
     
+    div{
+        border-radius: 100%;
+        background-color: #44C6F3;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height:  50px;
+        cursor: pointer;
+        
 
-    img{
-        width: 46px - (46px * .2);
-        height:  46px - (46px * .2);
+        img, .material-icons{
+            font-size: 30px;
+            color: white;
+        }
+
+       
+
     }
+
+    div:hover{
+        color: #556470 !important;
+    }
+
+   
 }
 
 @keyframes up {

@@ -1,3 +1,20 @@
+
+@font-face {
+  font-family: 'trueno_bold';
+  src: url("./assets/fonts/trueno/TruenoBd.otf");
+}
+
+@font-face {
+  font-family: 'trueno_regular';
+  src: url("./assets/fonts/trueno/TruenoRg.otf");
+}
+
+@font-face {
+  font-family: 'trueno_light';
+  src: url("./assets/fonts/trueno/TruenoLt.otf");
+}
+
+
 .time-line-row{
   position: absolute;
   bottom: -(102px - (102px * .2));

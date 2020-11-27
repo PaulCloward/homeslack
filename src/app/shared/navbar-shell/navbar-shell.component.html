@@ -36,7 +36,12 @@
     </li>
 
     <li class="tab-invest-profile"  mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu" *ngIf="(mAuth.authState | async)">
-        <img src="../../../assets/img/ic_profile.png" />
+        <div>
+            <!-- <img src="../../../assets/img/ic_profile.png" /> -->
+            <span class="material-icons">
+                person
+            </span>
+        </div>
     </li>
     <mat-menu #menu2="matMenu">
         <div class="dropdown-item" mat-menu-item (click)="onSignOut()">
