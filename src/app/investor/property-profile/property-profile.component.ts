@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PopupService } from '../services/popup.service';
 import { PropertyViewService } from '../services/property-view.service';
 import { Router } from '@angular/router';
+import { PropertyDetails } from '../../class/PropertyDetails';
 
 @Component({
   selector: 'app-property-profile',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PropertyProfileComponent implements OnInit, OnDestroy {
 
-  mProperty:any;
+  mProperty:PropertyDetails;
   highestBid:number = 0;
   bidders:number = 0;
 
@@ -85,6 +85,7 @@ export class PropertyProfileComponent implements OnInit, OnDestroy {
   }
   
   closeNav() {
+    
     document.getElementById("myNav").style.width = "0%";
   }
 

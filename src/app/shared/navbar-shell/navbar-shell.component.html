@@ -3,75 +3,48 @@
         <div class="bar"></div>
     </div>
     <div class="overlay"></div>
-    <!-- [hidden]="isRouteInvestor() -->
-    <!-- <nav style="z-index: 2000000;" [hidden]="true">
-        
-        <img class="img-logo" routerLink="/home" src="../../../assets/img/logo_kuldasac.png" />
-       
-        <ul>
-        <li class="nav-item">
-            <a routerLink="/directory" [ngClass]="{'nav-link': !isNavDirectory(), 'nav-link-selected': isNavDirectory()}" data-text="Directory">Directory</a>
-        </li>
-        <li class="nav-item">
-            <a routerLink="/contact" [ngClass]="{'nav-link': !isNavContact(), 'nav-link-selected': isNavContact()}" data-text="Contact">Contact</a>
-        </li>
-        <li class="nav-item">
-            <a routerLink="/why-us" [ngClass]="{'nav-link': !isNavWhyUs(), 'nav-link-selected': isNavWhyUs()}" data-text="Why Us">Why Us</a>
-        </li>
-        
-
-        <li class="nav-item nav-link-sign" *ngIf="(mAuth.authState | async)" (click)="onSignOut()">
-            <a style="color: #000" data-text="Sign Out">SIGN OUT</a>
-        </li>
-            
-        <button class="btn-sign-in" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="!(mAuth.authState | async)">
-            <a data-text="Sign In">SIGN IN</a>
-        </button>
-        
-     
-
-            
-        </ul>
-    </nav> -->
-
-<!-- hidden]="!isRouteInvestor()"  -->
+  
     <nav style="z-index: 4;" [ngClass]="{'transparent-background' : isRouteHome(), 'white-background': !isRouteHome()}">
         <img class="img-logo" routerLink="/home" src="../../../assets/img/logo_kuldasac.png" />
     <ul style="height: 100% !important;">
-    <li class="tab-invest-home"  [ngClass]="{'nav-link-invest': !isNavDirectory(), 'nav-link-selected': isNavDirectory()}"  routerLink="/directory">
-        DIRECTORY
+    <li class="tab-invest-home" style="margin-right: 1.5em"  [ngClass]="{'nav-link-invest': !isNavDirectory(), 'nav-link-selected': isNavDirectory()}"  routerLink="/directory">
+        OLD PAGES
+    </li>
+    <li class="tab-invest-home"  [ngClass]="{'nav-link-invest': !isNavNewDirectory(), 'nav-link-selected': isNavNewDirectory()}"  routerLink="/directory-new">
+        NEW PAGES
     </li>
     <!-- Signed Out Home Tab -->
     <li class="tab-invest-home" routerLink="/home" *ngIf="mRole == null" [ngClass]="{'nav-link-invest': !isRouteHome(),'nav-link-selected': isRouteHome()}">
         HOME 
     </li>
     <!-- Signed Out Seller Tab -->
-    <li class="tab-invest-home" routerLink="/seller" *ngIf="mRole != null && mRole == 'seller'" [ngClass]="{'nav-link-invest': !isRouteInvestorProfile() && !isRouteHome(), 'nav-link-selected': isRouteInvestorProfile()}">
+    <li class="tab-invest-home" routerLink="/seller" *ngIf="mRole != null && mRole == 'seller'" [ngClass]="{'nav-link-invest': !isRouteSellerProfile(), 'nav-link-selected': isRouteSellerProfile()}">
         HOME 
     </li>
     <!-- Signed Out Investor Tab -->
     <li class="tab-invest-home" routerLink="/investor" *ngIf="mRole != null && mRole == 'investor'" [ngClass]="{'nav-link-invest': !isRouteInvestorProfile(), 'nav-link-selected': isRouteInvestorProfile()}">
         HOME 
     </li>
-    <li class="tab-invest-listings" *ngIf="mRole != null && mRole == 'investor'"  routerLink="/investor/market-listings" [ngClass]="{'nav-link-invest': !isRouteMarketListing(), 'nav-link-selected': (isRouteMarketListing() || isRoutePropertyProfile())}">
+    <li class="tab-invest-listings" *ngIf="mRole != null && mRole == 'investor'"  routerLink="/investor/market-listings" [ngClass]="{'nav-link-invest': !isRouteMarketListing(), 'nav-link-selected': isRouteMarketListing()}">
         LISTINGS
     </li>
     <li class="tab-invest-why-us" [ngClass]="{'nav-link-invest': !isNavWhyUs(), 'nav-link-selected': isNavWhyUs()}" routerLink="/why-us">
         WHY US
     </li>
+    <li class="tab-invest-profile" [ngClass]="{'nav-link-invest': !isRouteSignIn(), 'nav-link-selected': isRouteSignIn()}" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="!(mAuth.authState | async)">
+        SIGN IN
+    </li>
+
     <li class="tab-invest-profile"  mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu" *ngIf="(mAuth.authState | async)">
         <img src="../../../assets/img/ic_profile.png" />
     </li>
-
     <mat-menu #menu2="matMenu">
         <div class="dropdown-item" mat-menu-item (click)="onSignOut()">
             SIGN OUT
         </div>
       </mat-menu>
        
-    <li class="tab-invest-profile" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="!(mAuth.authState | async)">
-        SIGN IN
-    </li>
+   
 
     <mat-menu #menu="matMenu">
         <div class="dropdown-item" mat-menu-item (click)="onSignIn('seller')">

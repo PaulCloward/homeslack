@@ -27,7 +27,7 @@ import { MatSelectModule} from '@angular/material/select';
 import { MatButtonModule} from '@angular/material/button';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatTooltipModule } from '@angular/material/tooltip'
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
@@ -44,7 +44,6 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SharedModule } from './shared/shared.module';
 
-import { ViewPropertiesComponent } from './components/view-properties/view-properties.component';
 import { SellerAccountComponent } from './components/seller-account/seller-account.component';
 import { SellerListedPropertyComponent } from './components/seller-listed-property/seller-listed-property.component';
 import { InvestorListedPropertyComponent } from './components/investor-listed-property/investor-listed-property.component';
@@ -85,6 +84,7 @@ import { AuthSellerGuard } from './seller/auth-seller.guard';
 
 
 
+
 export const customCurrencyMaskConfig = {
   align: "left",
   allowNegative: false,
@@ -98,20 +98,19 @@ export const customCurrencyMaskConfig = {
 };
 
 const appRoutes: Routes = [
-  // {path: '', component: HomeComponent},
+  {path: 'home-old', component: HomeComponent},
   // {path:'', redirectTo: 'image/upload', pathMatch:'full'},
   {path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   {path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   {path: 'home2', component: HomeComponent},
   {path: 'verify-info-page', component: VerifyInfoPageComponent},
-  // {path: 'fill-in-property-info-page', component: FillInPropertyInfoPageComponent},
+  {path: 'fill-in-property-info-page-old', component: FillInPropertyInfoPageComponent},
   {path: 'fill-in-property-info-page', loadChildren: () => import('./fill-property-details/fill-property-details.module').then(m => m.FillPropertyDetailsModule)},
   {path: 'create-account', 
   loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)},
   {path: 'login', component: LoginComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'why-us', component: WhyUsComponent},
-  {path: 'view-property', component: ViewPropertiesComponent},
+  {path: 'why-us-old', component: WhyUsComponent},
   {path: 'seller-account', component: SellerAccountComponent},
   {path: 'seller-listings', component: SellerListedPropertyComponent},
   {path: 'confirm-listing', component: ConfirmListingComponent},
@@ -145,11 +144,15 @@ const appRoutes: Routes = [
   {
     path: 'authentication',
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
-   }
-  // {
-  //   path: 'landing',
-  //   loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)
-  // }
+   },
+   {
+     path: 'why-us',
+     loadChildren: () => import('./why-us/why-us.module').then(m => m.WhyUsModule)
+    },
+    {
+      path: 'directory-new',
+      loadChildren: () => import('./directory-new/directory-new.module').then(m => m.DirectoryNewModule)
+    }
 ]
 
 @NgModule({
@@ -164,7 +167,6 @@ const appRoutes: Routes = [
     WhyUsComponent,
     DropZoneDirective,
     FileSizePipe,
-    ViewPropertiesComponent,
     SellerAccountComponent,
     SellerListedPropertyComponent,
     InvestorListedPropertyComponent,
@@ -207,7 +209,7 @@ const appRoutes: Routes = [
       libraries: ["places"]
     }),
     FormsModule,
-    NgbModule.forRoot(),
+    NgbModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     BrowserAnimationsModule,

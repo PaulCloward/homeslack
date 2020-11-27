@@ -282,7 +282,7 @@ export class HomeComponent implements OnInit {
           console.log("Place: " + place);
 
           if(place == null || place.address_components == null){
-            this.mRouter.navigateByUrl('fill-in-property-info-page');
+            this.mRouter.navigateByUrl('fill-in-property-info-page-old');
            }
 
           console.log(place);

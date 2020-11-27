@@ -26,7 +26,7 @@ export class SellerRegistrationComponent implements OnInit {
     isUpdatedByEmail:boolean = false;
     
     mSellerPropertyDetails:PropertyDetails;
-    myFormContact: FormGroup;
+    mFormSellerInformation: FormGroup;
     mSellerContactInfo:Seller;
     
     @Input() alertMessage:string;
@@ -43,7 +43,7 @@ export class SellerRegistrationComponent implements OnInit {
       let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
       let phoneNumberPattern = "^(\+\d{1,3}[- ]?)?\d{10}$";
   
-      this.myFormContact = this.mFormBuilder.group({
+      this.mFormSellerInformation = this.mFormBuilder.group({
         firstName: ['', [
           Validators.required
         ]],
@@ -54,7 +54,7 @@ export class SellerRegistrationComponent implements OnInit {
           Validators.required,
           Validators.email
         ]],
-        phone: ['', [
+        phoneNumber: ['', [
           Validators.required,
           Validators.minLength(12),
           Validators.maxLength(12)
@@ -79,13 +79,6 @@ export class SellerRegistrationComponent implements OnInit {
       this.updatesText.setValue(false);
   
       this.mSellerContactInfo = new Seller();
-  
-      this.myFormContact.valueChanges.subscribe(contactForm => {
-        this.mSellerContactInfo.first_name = contactForm.firstName;
-        this.mSellerContactInfo.last_name = contactForm.lastName;
-        this.mSellerContactInfo.email = contactForm.email;
-        this.mSellerContactInfo.phone = contactForm.phone;
-      });
     }
   
     checkPasswords(group: FormGroup) { // here we have the 'passwords' group
@@ -99,7 +92,7 @@ export class SellerRegistrationComponent implements OnInit {
   
       this.mSellerContactInfo.created_account_timestamp = firebase.firestore.FieldValue.serverTimestamp();
   
-      this.mAuth.auth.createUserWithEmailAndPassword(this.myFormContact.value.email, this.myFormContact.value.password).then(user => {
+      this.mAuth.auth.createUserWithEmailAndPassword(this.mFormSellerInformation.value.email, this.mFormSellerInformation.value.password).then(user => {
         if(user != null){
           this.userID = user.user.uid;
           this.mFirestoreService.saveSellerContactInformation(this.userID,Object.assign({},this.mSellerContactInfo));
@@ -133,7 +126,7 @@ export class SellerRegistrationComponent implements OnInit {
           my_uid: uuid,
           first_name: this.firstName.value,
           last_name:this.lastName.value,
-          phone:this.phone.value,
+          phoneNumber:this.phoneNumber.value,
           email:this.email.value,
           updates_text:this.updatesText.value,
           updates_email:this.updatesEmail.value,
@@ -154,7 +147,7 @@ export class SellerRegistrationComponent implements OnInit {
             console.log("Successfully registered as an seller");
   
             // Clear form info
-          this.myFormContact.reset();
+          this.mFormSellerInformation.reset();
             this.mRouter.navigateByUrl('/listing-time');
           }).catch(error => {
             console.log("Seller registration failed: " + error);
@@ -180,40 +173,44 @@ export class SellerRegistrationComponent implements OnInit {
     }
   
     onPhoneInput(e:any){ 
-      this.phone.setValue(this.phone.value.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3'));
+      this.phoneNumber.setValue(this.phoneNumber.value.replace(/(\d{3})\-?(\d{3})\-?(\d{4})/,'$1-$2-$3'));
+    }
+
+    clickSignIn(){
+      this.mRouter.navigateByUrl('authentication/seller-login');
     }
   
     /*Reactive Form Methods*/
     get firstName() {
-      return this.myFormContact.get('firstName');
+      return this.mFormSellerInformation.get('firstName');
     }
   
     get lastName() {
-      return this.myFormContact.get('lastName');
+      return this.mFormSellerInformation.get('lastName');
     }
   
     get email() {
-      return this.myFormContact.get('email');
+      return this.mFormSellerInformation.get('email');
     }
   
-    get phone() {
-      return this.myFormContact.get('phone');
+    get phoneNumber() {
+      return this.mFormSellerInformation.get('phoneNumber');
     }
   
     get updatesEmail() {
-      return this.myFormContact.get('updatesEmail');
+      return this.mFormSellerInformation.get('updatesEmail');
     }
   
     get updatesText() {
-      return this.myFormContact.get('updatesText');
+      return this.mFormSellerInformation.get('updatesText');
     }
   
     get password() {
-      return this.myFormContact.get('password');
+      return this.mFormSellerInformation.get('password');
     }
   
     get confirmPassword() {
-      return this.myFormContact.get('confirmPassword');
+      return this.mFormSellerInformation.get('confirmPassword');
     }
   
   

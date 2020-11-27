@@ -94,9 +94,9 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
 
     
     if(userType == 'investor'){
-      this.mRouter.navigateByUrl('login', {state: {data: {route: 'investor'}}});
+      this.mRouter.navigateByUrl('authentication/investor-login');
     }else {
-      this.mRouter.navigateByUrl('login', {state: {data: {route: 'seller'}}});
+      this.mRouter.navigateByUrl('authentication/seller-login');
     }
   }
 
@@ -105,7 +105,7 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
   }
 
   isNavWhyUs(){
-    return this.mRouter.url == '/why-us';
+    return this.mRouter.url == '/why-us' || this.mRouter.url == '/why-us/why-us';
   }
 
   isNavContact(){
@@ -119,7 +119,7 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
   }
 
   isRouteInvestorProfile(){
-    return this.mRouter.url == '/investor' ||  this.mRouter.url == '/investor/monitor-listings';
+    return this.mRouter.url == '/investor';
   }
 
   isRouteMarketListing(){
@@ -134,7 +134,15 @@ export class NavbarShellComponent implements OnInit, OnDestroy {
     return this.mRouter.url == '/' || this.mRouter.url == '/home';
   }
 
+  isRouteSellerProfile(){
+    return this.mRouter.url == '/seller' ||  this.mRouter.url == '/seller/seller-profile';
+  }
 
+  isRouteSignIn(){
+    return this.mRouter.url == '/authentication/seller-login' ||  this.mRouter.url == '/authentication/investor-login';
+  }
 
-
+  isNavNewDirectory(){
+    return this.mRouter.url == '/directory-new' || this.mRouter.url == '/directory-new/directory-new';
+  }
 }

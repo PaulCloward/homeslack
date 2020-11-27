@@ -15,7 +15,7 @@ export class SnackService {
       duration: 5000
     }).afterDismissed().pipe(
       tap(_ =>
-      this.router.navigate(['/authentication'])
+      this.router.navigate(['/home'])
       )
     )
     .subscribe();
@@ -24,7 +24,7 @@ export class SnackService {
       .onAction()
       .pipe(
         tap(_ =>
-          this.router.navigate(['/authentication'])
+          this.router.navigate(['/home'])
         )
       )
       .subscribe();

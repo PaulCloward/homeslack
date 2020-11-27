@@ -21,43 +21,153 @@
     </div>
     <h1>Property Details</h1>
     <div class="main-container">
-        <form>
+        <form  [formGroup]="mFormAddressFields">
             <div class="input-container">
                
-                <input class="large" placeholder="Enter your address..." />
-                <input class="small" placeholder="Unit #..." />
+                <input type="text" maxlength="250" class="large" placeholder="Enter your address..." />
+                <input class="small" maxlength="6" placeholder="Unit #..." NumberOnly />
             </div>
 
             <div class="input-container">
-                <input class="medium" placeholder="City..." />
-                <input class="small" placeholder="State..." />
-                <input class="small" placeholder="Zip Code..." />
+                <input type="text" maxlength="250" class="medium"  placeholder="City..." />
+                <!-- <input type="button" class="small" placeholder="State..." /> -->
+                <!-- <div class="dropdown">
+                    <button *ngIf="state.value == null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select State
+                    </button>
+                    <button *ngIf="state.value != null" class="btn btn-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{state.value}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonState">
+                            <a class="dropdown-item" *ngFor="let s of statesInAmericaArray" (click)="state.setValue(s)">{{s}}</a>
+                    </div>
+
+                </div> -->
+                <div class="button-container" style="width: 180px">
+                    <button type="button" mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu">
+                        <div class="button-placeholder" *ngIf="state.value == null">State...</div> 
+                        <div *ngIf="state.value != null">{{state.value}}</div> 
+                    </button>
+                </div>
+                <mat-menu class="mat-menu-content" #menu2="matMenu">
+                    <div *ngFor="let s of statesInAmericaArray" mat-menu-item class="menu-item" (click)="state.setValue(s)">
+                      {{s}}
+                    </div>
+                </mat-menu>
+
+                <input type="text" maxlength="5"  class="small" placeholder="Zip Code..." NumberOnly />
             </div>
 
             <div class="line-seperator">
-
             </div>
 
             <div class="input-container">
-                <input class="mid" placeholder="Total Living Area..." />
-                <input class="mid" placeholder="Year Built..." />
-                <input class="mid" placeholder="Lot Size..." />
+                <div class="mid">
+                    <img class="ic-house" src="../../../assets/img/house_blue.png"  matTooltip="{{totalLivingAreaHint}}"/>
+                    <input type="text" maxlength="6" placeholder="Total Living Area..." NumberOnly />
+                </div>
+                 <div class="mid">
+                    <img class="ic-year" src="../../../assets/img/calendar_blue.png" matTooltip="{{yearBuildHint}}" />            
+                    <div class="button-container">
+                        <button type="button"  mat-icon-button [matMenuTriggerFor]="menu4" aria-label="Example icon-button with a menu">
+                            <div class="button-placeholder" *ngIf="yearBuilt.value == null">Year Built...</div> 
+                            <div *ngIf="yearBuilt.value != null">{{yearBuilt.value}}</div> 
+                        </button>
+                    </div>
+                    <mat-menu class="mat-menu-content" #menu4="matMenu">
+                        <div *ngFor="let year of yearArray" mat-menu-item class="menu-item" (click)="yearBuilt.setValue(year)">
+                        {{year}}
+                        </div>
+                    </mat-menu>
+                </div> 
+                <div class="mid">
+                    <img class="ic-lot-size" src="../../../assets/img/lot_size_blue.png" />
+                    <input type="text" maxlength="6"  placeholder="Lot Size..." NumberOnly  matTooltip="{{lotSizeHint}}" />
+                </div>
             </div>
 
             <div class="input-container">
-                <input class="mid" placeholder="Bedrooms..." />
-                <input class="mid" placeholder="Bathrooms..." />
-                <input class="mid" placeholder="Basement..." />
+                 <div class="mid">
+                    <img class="ic-beds" src="../../../assets/img/bedroom_blue.png"  matTooltip="{{bedroomsHint}}" />
+                    
+                 
+                    <div class="button-container">
+                        <button type="button"  mat-icon-button [matMenuTriggerFor]="menu3" aria-label="Example icon-button with a menu">
+                            <div class="button-placeholder" *ngIf="beds.value == null">Beds...</div> 
+                            <div *ngIf="beds.value != null">{{beds.value}} beds</div> 
+                        </button>
+                    </div>
+                    <mat-menu class="mat-menu-content" #menu3="matMenu">
+                        <div *ngFor="let bed of bedArray" mat-menu-item class="menu-item" (click)="beds.setValue(bed)">
+                        {{bed}} beds
+                        </div>
+                    </mat-menu>
+                </div>
+                <div class="mid">
+                    <img class="ic-baths" src="../../../assets/img/bathroom_blue.png"  matTooltip="{{bathroomsHint}}" />
+                    <div class="button-container">
+                        <button type="button"  mat-icon-button [matMenuTriggerFor]="menu5" aria-label="Example icon-button with a menu">
+                            <div class="button-placeholder" *ngIf="baths.value == null">Baths...</div> 
+                            <div *ngIf="baths.value != null && baths.value != -1">{{baths.value}} baths</div> 
+                        </button>
+                    </div>
+                    <mat-menu class="mat-menu-content" #menu5="matMenu">
+                        <div *ngFor="let bath of bathroomArray" mat-menu-item class="menu-item" (click)="onSelectBathCount(bath)">
+                        {{ bath }} baths
+                        </div>
+                    </mat-menu>
+                    <input *ngIf="otherBathCount" formControl="baths" type="text" maxlength="2" placeholder="bath count..." />
+                </div>
+                <div class="mid">
+                    <img class="ic-basement" src="../../../assets/img/basement_blue.png" matTooltip="{{basementHint}}" />
+                    <input  placeholder="Basement..." />
+                </div> 
             </div>
 
             <div class="input-container">
-                <input class="mid" placeholder="Garage..." />
-                <input class="mid" placeholder="Pool..." />
-                <input class="mid" placeholder="Hot Tub..." />
+                <div class="mid">
+                    <img class="ic-garage" src="../../../assets/img/garabage_blue.png" matTooltip="{{garageHint}}" />
+                    <div class="button-container">
+                        <button type="button"  mat-icon-button [matMenuTriggerFor]="menu8" aria-label="Example icon-button with a menu">
+                            <div class="button-placeholder" *ngIf="garage.value == null">Garage Size...</div> 
+                            <div *ngIf="garage.value != null && garage.value != -1">{{garage.value}} Car</div> 
+                        </button>
+                    </div>
+                    <mat-menu class="mat-menu-content" #menu8="matMenu">
+                        <div *ngFor="let garageSize of garageArray" mat-menu-item class="menu-item" (click)="garage.setValue(garageSize)">
+                        {{ garageSize }} car
+                        </div>
+                    </mat-menu>
+                </div>
+                <div class="mid">
+                    <img class="ic-pool" src="../../../assets/img/pool_blue.png" matTooltip="{{poolHint}}" />
+                     <input type="button" placeholder="Pool..." />
+                </div>
+                <div class="mid">
+                    <span class="material-icons ic-hot-tub" matTooltip="{{hotTubHint}}">
+                        hot_tub
+                     </span>
+                    <input type="button" placeholder="Hot Tub..." />
+                </div> 
             </div>
 
+          
+
             <div class="input-container">
-                <input class="mid" placeholder="Cooling..." />
+                <div class="mid">
+                    <img class="ic-cooling" src="../../../assets/img/cooling_blue.png" matTooltip="{{coolingHint}}" />
+                    <div class="button-container">
+                        <button type="button"  mat-icon-button [matMenuTriggerFor]="menu6" aria-label="Example icon-button with a menu">
+                            <div class="button-placeholder" *ngIf="cooling.value == null">Cooling...</div> 
+                            <div *ngIf="cooling.value != null && cooling.value != -1">{{cooling.value}}</div> 
+                        </button>
+                    </div>
+                    <mat-menu class="mat-menu-content" #menu6="matMenu">
+                        <div *ngFor="let cool of coolingArray" mat-menu-item class="menu-item" (click)="cooling.setValue(cool)">
+                        {{ cool }} 
+                        </div>
+                    </mat-menu>
+                </div>
             </div>
             <br>
         </form>
@@ -65,11 +175,11 @@
     <div class="blue-container">
         <form>
             <label>About how old is the roof?</label>
-            <input placeholder="Roof age range..." />
+            <input type="button" placeholder="Roof age range..." />
             <label>Any HVAC, plumbing, electrical, or roofing issues?</label>
-            <input placeholder="HVAC, plumbing, electrical, or roofing issues..." />
+            <input type="text" maxlength="350" placeholder="HVAC, plumbing, electrical, or roofing issues..." />
             <label>Any other concerns you can tell us?</label>
-            <input placeholder="Other concerns..." />
+            <input type="text" maxlength="350" placeholder="Other concerns..." />
         </form>
     </div>
     <div class="create-container">
@@ -78,7 +188,7 @@
             information to start the process of<br/> 
             selling your home.
         </h3>
-        <button>Create account</button>
+        <button (click)="onCreateAccount()">Create account</button>
         <h6>Need help? Call 801-580-4435 to reach our <br> hotline with questions.</h6>
     </div>
     <app-footer></app-footer>

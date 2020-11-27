@@ -65,8 +65,6 @@ export class UploadPhotosComponent implements OnInit, OnDestroy {
           }
         );
 
-      }else{
-        this.mRouter.navigateByUrl('login');
       }
     });
   }

@@ -49,8 +49,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private mAngularFireAuth:AngularFireAuth, private mRouter: Router, private mSellerPropertyService: SellerPropertyService,private mAuthService: AuthenticationService,
                   private mapsAPILoader: MapsAPILoader, private mPropertyFinderService:PropertySearchEstatedService) {
-
-
   }
 
   onKeyDown(event: any) {

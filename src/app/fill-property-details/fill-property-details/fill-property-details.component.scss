@@ -88,21 +88,134 @@ h1{
         .input-container{
             display: flex;
             flex-direction: row;
+            align-items: center;
             width: 100%;
             justify-content: space-between;
+            margin-bottom: 20px - (20px * .2);
+
+
+                
+            .mid{
+                position: relative;
+                width: 32%;
+                height: 70px - (70px * .2);
+             
+                
+
+                .ic-house, .ic-year, .ic-lot-size, .ic-pool, .ic-hot-tub, .ic-cooling, .ic-baths, .ic-basement, .ic-beds, .ic-garage{
+                    position: absolute;
+                    left: 12px - (12px * .2);
+                    z-index: 2;
+                    cursor: pointer;
+                }
+
+                .ic-house{
+                    top: 24px - (24px * .2);
+                    width: 25px - (25px * .2);
+                    height: 25px - (25px * .2); 
+                }
+
+                
+                .ic-year{
+                    top: 26.7px - (26.7px * .2);
+                    width: 26px - (26px * .2);
+                    height: 25px - (25px * .2);
+                }
+
+                .ic-lot-size{
+                    top: 27.6px - (27.6px * .2);
+                    width: 25px - (25px * .2);
+                    height: 23px - (23px * .2);
+                }
+                
+                .ic-pool{
+                    top: 24.6px - (24.6px * .2);
+                    width: 27px - (27px * .2);
+                    height: 25px - (25px * .2);
+                }
+
+                .ic-hot-tub{
+                    top: 20px - (20px * .2);
+                    width: 19px - (19px * .2);
+                    height: 18px - (18px * .2);
+                    color: #44C6F3;
+                }
+
+                .ic-cooling{
+                    top: 27.2px - (27.2px * .2);
+                    width: 20px - (20px * .2);
+                    height: 19px - (19px * .2);
+                }
+                
+                .ic-basement{
+                    top: 25.7px - (25.7px * .2);
+                    width: 19px - (19px * .2);
+                    height: 19px - (19px * .2);
+                }
+                
+                .ic-beds{
+                    top: 28px - (28px * .2);
+                    width: 26px - (26px * .2);
+                    height: 22px - (22px * .2);
+                }
+
+                .ic-baths{
+                    top: 24px - (24px * .2);
+                    width: 24px - (24px * .2);
+                    height: 25px - (25px * .2);
+                }
+
+                .ic-garage{
+                    top: 22px - (22px * .2);
+                    width: 25px - (25px * .2);
+                    height: 26px - (26px * .2);
+                }
+
+
+                input{
+         
+                    width: 100%;
+                    height: 100%;
+                    background: #F2F2F2 0% 0% no-repeat padding-box;
+                    border-radius: 11px - (11px * .2);
+                    opacity: 1;
+                    border: none;
+                    outline: none;
+                    padding-left: 46px - (46px * .2);
+                 
+                }
+
+            }
+
+            
+
+           
         }
 
-        input{
-            
+      
+
+        input, button{
+         
+            width: 100%;
             height: 70px - (70px * .2);
             background: #F2F2F2 0% 0% no-repeat padding-box;
             border-radius: 11px - (11px * .2);
             opacity: 1;
             border: none;
             outline: none;
-            padding-left: 28px - (28px * .2);
+            padding-left: 46px - (46px * .2);
             margin-bottom: 20px - (20px * .2);
         }
+
+        mat-menu{
+            height: 5em !important;
+            
+        }
+
+        .menu-block{
+            height: 5em !important;
+        }
+        
 
         .large{
             width: 70%;
@@ -120,9 +233,6 @@ h1{
             width: 28%;
         }
 
-        .mid{
-            width: 32%;
-        }
 
         ::placeholder{
             text-align: left;
@@ -167,7 +277,7 @@ h1{
             letter-spacing: 0px;
             color: #2A2A2A;
             opacity: 1;
-            margin-bottom: 11px - (11px * .2);
+            margin-bottom: 5px - (5px * .2);
         }
 
         input{
@@ -178,7 +288,7 @@ h1{
             border-radius: 11px - (11px * .2);
             opacity: 1;
             padding-left: 28px - (28px * .2);
-
+            outline: none;
             margin-bottom: 20px - (20px * .2);
         }
 
@@ -241,7 +351,10 @@ h1{
         opacity: 1;
         border: none;
         outline: none;
+    }
 
+    button:hover{
+        opacity: .8;
     }
 
     h6{
@@ -257,4 +370,169 @@ h1{
         color: #2A2A2A;
         opacity: 1;
     }
+}
+
+
+
+
+
+
+.dropdown{
+    margin-left: -.5em;
+    position: relative;
+    display: inline-block;
+    width: 28%;
+}
+
+.btn-dropdown{
+    width: 28%;
+    text-align: left;
+    margin-top: .2em;
+}
+
+.dropdown-toggle{
+    margin-left: -1;
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown-toggle::after {
+    text-align: right;
+    float: right;
+    /*Chrome IE fix*/
+    margin-top: 10px;
+}
+
+.dropdown-menu{
+    /* display: none;
+    position: absolute; */
+    top: 36px;
+    background-color: #fff;
+    min-width: 100%;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 5;
+    overflow-y: scroll;
+    max-height: 10em;
+
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    /* display: block; */
+  }
+
+  .dropdown-menu a:hover {
+    background-color: rgb(68, 197, 242);
+    color:white;
+    cursor: pointer;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #d0d0d0;
+  }
+
+
+  .total-area-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 36px - (36px * .2);
+
+  
+
+    input, button{
+         //width: 157px - (157px * .2);
+        height: 44px - (44px * .2);
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border: .8px solid #2A2A2A;
+        outline: none;
+        border-radius: 11px - (11px * .2);
+        opacity: 1;
+        padding-left: 28px - (28px * .2);
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+    }
+}
+
+
+
+.listings-container{
+margin-left: 34px - (34px * .2);
+width: 1036px - (1036px * .2);
+height: 1243px - (1243px * .2);
+overflow-y: scroll;
+padding: 0;
+
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: 397px - (397px * .2);
+row-gap: 26px - (26px * .2);
+column-gap: 50px - (50px * .2);
+}
+
+
+
+.button-placeholder{
+    text-align: left;
+    font-weight: 400;
+    font-family: 'trueno_regular', sans-serif;
+    font-size: 16px - (16px * .2);
+    letter-spacing: 0px;
+    color: #9F9F9F;
+    opacity: 1;
+}
+
+
+.button-container{
+position: relative;
+ width: 100%;
+ display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: flex-start;
+
+    button{
+        display: flex; 
+        flex-direction: row;
+        justify-content: flex-start; 
+        align-items: center;
+    }
+}
+
+.button-dark-arrow{
+position: absolute; 
+top: 11px - (11px * .2);
+right: 11px - (11px * .2);
+z-index: 1000;
+cursor: pointer;
+}
+
+.button-circle-blue-arrow{
+position: absolute; 
+top: 11px - (11px * .2);
+right: 11px - (11px * .2);
+z-index: 1000;
+cursor: pointer;
+width: 36px - (36px * .2);
+height: 36px - (36px * .2);
+//transform: matrix(-1, 0, 0, -1, 0, 0);
+}
+
+
+.input-auth-button:focus{
+background: #EAF2FC 0% 0% no-repeat padding-box;
+//  border: .8px solid #307FE2;
+}
+
+
+.mat-menu-content {
+height: 16em !important;
+width: 160px - (160px * .2);
+overflow-y: none;
+overflow-x: none;
 }

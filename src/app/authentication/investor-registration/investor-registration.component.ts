@@ -173,7 +173,7 @@ export class InvestorRegistrationComponent implements OnInit {
     }
 
     clickSignIn(){
-      this.mRouter.navigateByUrl('login', {state: {data: {route: 'investor'}}});
+      this.mRouter.navigateByUrl('authentication/investor-login');
     }
 
     onPhoneInput(e:any){

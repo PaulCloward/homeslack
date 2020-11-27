@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewPropertiesComponent } from './view-properties.component';
+import { WhyUsComponent } from './why-us.component';
 
-describe('ViewPropertiesComponent', () => {
-  let component: ViewPropertiesComponent;
-  let fixture: ComponentFixture<ViewPropertiesComponent>;
+describe('WhyUsComponent', () => {
+  let component: WhyUsComponent;
+  let fixture: ComponentFixture<WhyUsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewPropertiesComponent ]
+      declarations: [ WhyUsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewPropertiesComponent);
+    fixture = TestBed.createComponent(WhyUsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

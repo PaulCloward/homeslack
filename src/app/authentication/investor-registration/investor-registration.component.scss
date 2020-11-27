@@ -218,19 +218,13 @@ h2{
 }
 
 h3{
-  width: 100%;
   text-align: center;
-  line-height: 1em;
-  text-align: center;
+  text-decoration: underline;
+  letter-spacing: 0px;
+  color: #44C6F3;
   font-family: 'trueno_bold', sans-serif;
   font-weight: bold;
   font-size: 43px - (43px * .2);
-  letter-spacing: 0px;
-  color: #44C6F3;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 95px - (95px * .2);
   cursor: pointer;
 }

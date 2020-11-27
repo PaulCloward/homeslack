@@ -16,6 +16,7 @@ export class MonitorPropertiesComponent implements OnInit {
   user:any;
 
   mWatchList:PropertyDetails[];
+  mOfferList:PropertyDetails[];
 
   mInvestorInformation:any;
 
@@ -31,6 +32,11 @@ export class MonitorPropertiesComponent implements OnInit {
           console.log("watchlist: " +  watchList);
           this.mWatchList = watchList.watch_list; 
         });
+
+        this.mFirestoreService.getInvestorOffersMadeList(user.uid).subscribe(offerList => {
+          console.log("offerList: " +  offerList);
+          this.mOfferList = offerList.offers_made; 
+        })
 
         this.mFirestoreService.getInvestorInformation(user.uid).subscribe(investorInfo => {
           console.log("investor information: " +  investorInfo);

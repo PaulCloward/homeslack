@@ -20,8 +20,8 @@
 
                 <section class="detail-section">
                     <div class="address-container">
-                        <h5>{{mProperty.address.street}}</h5>
-                        <h6>{{mProperty.address.city}}, {{mProperty.address.state}} {{mProperty.address.zip_code}}</h6>
+                        <h5>{{mProperty?.address?.street}}</h5>
+                        <h6>{{mProperty?.address.city}}, {{mProperty?.address?.state}} {{mProperty?.address?.zip_code}}</h6>
                     </div>
                    
                     <div class="container-data-column">
@@ -31,22 +31,22 @@
                                     <img class="ic-house" src="../../../assets/img/house_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Total Living Area</h3>
-                                        <h4>{{mProperty.living_square_feet}}</h4>
+                                        <h4>{{mProperty?.living_square_feet}}</h4>
                                     </div>
                                 </div>
                                 <div class="data-row">
                                     <img class="ic-beds" src="../../../assets/img/bedroom_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Bedrooms</h3>
-                                        <h4>{{mProperty.beds}}</h4>
+                                        <h4>{{mProperty?.beds}}</h4>
                                     </div>
                                 </div>
                                 <div class="data-row">
                                     <img class="ic-pool" src="../../../assets/img/pool_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Pool</h3>
-                                        <h4 *ngIf="mProperty == null || mProperty.pool == null || mProperty.pool == false">No</h4>
-                                        <h4 *ngIf="mProperty.pool && mProperty.pool == true">Yes</h4>
+                                        <h4 *ngIf="mProperty == null || mProperty?.pool == null || mProperty?.pool == false">No</h4>
+                                        <h4 *ngIf="mProperty?.pool && mProperty?.pool == true">Yes</h4>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                     <img class="ic-year" src="../../../assets/img/calendar_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Year Built</h3>
-                                        <h4>{{mProperty.year}}</h4>
+                                        <h4>{{mProperty?.year}}</h4>
                                     </div>
                                 </div>
 
@@ -64,7 +64,7 @@
                                     <img class="ic-baths" src="../../../assets/img/bathroom_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Bathrooms</h3>
-                                        <h4>{{mProperty.baths}}</h4>
+                                        <h4>{{mProperty?.baths}}</h4>
                                     </div>
                                 </div>
 
@@ -75,8 +75,8 @@
                                     
                                     <div class="data-row-column">
                                         <h3>Hot Tub</h3>
-                                        <h4 *ngIf="mProperty == null || mProperty.hot_tub == null || mProperty.hot_tub == false">No</h4>
-                                        <h4 *ngIf="mProperty.hot_tub == true">Yes</h4>
+                                        <h4 *ngIf="mProperty == null || mProperty?.hot_tub == null || mProperty?.hot_tub == false">No</h4>
+                                        <h4 *ngIf="mProperty?.hot_tub == true">Yes</h4>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                     <img class="ic-lot-size" src="../../../assets/img/lot_size_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Lot Size</h3>
-                                        <h4>{{mProperty.lot_size}}</h4>
+                                        <h4>{{mProperty?.lot_size}}</h4>
                                     </div>
                                 </div>
 
@@ -95,8 +95,8 @@
                                     <img class="ic-basement" src="../../../assets/img/basement_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Basement</h3>
-                                        <h4 *ngIf="mProperty == null || mProperty.basement == null || mProperty.basement == false">No</h4>
-                                        <h4 *ngIf="mProperty.basement == true">Yes</h4>
+                                        <h4 *ngIf="mProperty == null || mProperty?.basement == null || mProperty?.basement == false">No</h4>
+                                        <h4 *ngIf="mProperty?.basement == true">Yes</h4>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                     <img class="ic-cooling" src="../../../assets/img/cooling_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Cooling</h3>
-                                        <h4>{{mProperty.cooling}}</h4>
+                                        <h4>{{mProperty?.cooling}}</h4>
                                     </div>
                                 </div>
 
@@ -114,7 +114,7 @@
                                     <img class="ic-garage" src="../../../assets/img/garabage_blue.png" />
                                     <div class="data-row-column">
                                         <h3>Garage</h3>
-                                        <h4>{{mProperty.garage}}</h4>
+                                        <h4>{{mProperty?.garage}}</h4>
                                     </div>
                                 </div>
 
@@ -167,7 +167,7 @@
         <div id="myNav" class="overlay">
             <a href="javascript:void(0)" style="z-index: 5;" class="closebtn" (click)="closeNav()">&times;</a>
             <div class="overlay-content">
-              <app-popup></app-popup>
+              <app-popup [property]="mProperty"></app-popup>
             </div>
           </div>
     </section>

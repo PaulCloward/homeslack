@@ -26,8 +26,8 @@
         <div class="column-offers-made" style="margin: 0 auto;">
             
             <div class="container-listings">
-                <div *ngFor="let listing of mWatchList">
-                    <app-listing-item [listing]="listing" listingType="0" (click)="onPropertyClick(listing)"></app-listing-item>
+                <div *ngFor="let listing of mOfferList">
+                    <app-listing-item [listing]="listing" listingType="1" (click)="onPropertyClick(listing)"></app-listing-item>
                 </div>
             </div>
         </div>

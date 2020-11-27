@@ -3,7 +3,7 @@ export interface ISellerInformation{
     my_uid:string;
     first_name:string;
 	last_name:string;
-	phone:string;
+	phoneNumber:string;
 	email:string;
     updates_text:boolean;
     updates_email:boolean;

@@ -1,1 +1,102 @@
-<p>seller-login works!</p>
+<div class="container-fluid top-image-container" >
+    <div class="row" >
+      <div class="col-12">
+        <img src="../../../assets/img/banner_create_account.png" class="img-under-nav"/>
+      </div>
+    </div>
+</div>
+<h1>
+  Sign in
+</h1>
+<div class="line-divider">
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-6 offset-3" style="padding: 2em 0em;">
+    
+      <form class="custom-form" [formGroup]="myFormEmail"  [hidden]="isStateResendEmail" (ngSubmit)="login(email.value, password.value)">
+        <section>
+            <input  class="input-auth" placeholder="Email..." maxlength="60" formControlName="email" autocomplete="off">
+        
+            <div class="error-hint" *ngIf="email.invalid && email.touched">
+                A valid email is required
+            </div>
+        </section>
+       
+        <section>
+        <input  class="input-auth" placeholder="Password..."  maxlength="60" type="password" formControlName="password" autocomplete="new-password">
+         
+          <div class="error-hint" *ngIf="password.invalid && password.touched">
+              Password needs a minimum of 5 characters
+          </div>
+
+        </section>
+        <section>
+            <div class="error-statement" *ngIf="errorStatement !== ''" >
+                {{errorStatement}}
+            </div>
+        </section>
+    
+        <section>
+            <label class="forgot-label" [hidden]="isStateResendEmail">Forgot your username or password? <span (click)="isStateResendEmail = true">Click Here</span></label>
+        </section>
+       
+        <section *ngIf="myFormEmail.invalid">
+          <div matTooltipPosition="above" [matTooltip]="signInMessageHint">
+              <button type="button">Sign In</button>
+          </div>
+         
+        </section>
+        
+        <section *ngIf="myFormEmail.valid">
+            <button type="submit">Sign In</button> 
+        </section>
+        
+      </form>  
+      
+      
+      
+      <form class="custom-form" [formGroup]="myFormResetPassword" *ngIf="isStateResendEmail">
+        <div class="new-password-container" >
+          <div class="label-new-password">Send new password to email</div>
+      
+          <input [ngStyle]="{'border': (emailForNewPassword.invalid && emailForNewPassword.touched) ? '.5px solid red' : '.5px solid gray'}"  class="input-auth" placeholder="Email" maxlength="60" formControlName="emailForNewPassword" autocomplete="off"
+          style="margin-top: 0 !important" type="text"
+          maxlength="140" />
+          <div class="error-hint" *ngIf="emailForNewPassword.invalid && emailForNewPassword.touched">
+              Your email does not look right
+          </div>
+
+          <div style="position: relative;">
+            <div class="label-back" style="display:inline-block" (click)="isStateResendEmail = false">Back to sign in</div>
+
+            <button *ngIf="myFormResetPassword.valid" 
+              style="display:inline-block"
+              type="submit" name="Send" value="Send" class="btn-sign-in"
+              >Send</button> 
+
+              <div style="width: 100%; text-align: right;" *ngIf="!myFormResetPassword.valid">
+                <div style="display: inline-block;" matTooltipPosition="above" [matTooltip]="sendForNewPasswordHint">
+                    <input [disabled]="true" type="submit" name="send" value="Send" class="btn-sign-in-default" />
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </form>
+			
+      
+      <div class="line-divider" style="margin: 55px auto !important;"></div>
+
+  
+        <h2>
+            Don't have a Kuldasac account? 
+        </h2>
+      
+        <h3 (click)="onCreateAccount()">Create Account</h3>
+  
+			
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FirestoreService } from '../../services/firestore.service';
 import { Router } from '@angular/router';
 import { PropertyViewService } from '../services/property-view.service';
@@ -8,7 +8,8 @@ import { PropertyDetails } from '../../class/PropertyDetails';
 @Component({
   selector: 'app-market-listings',
   templateUrl: './market-listings.component.html',
-  styleUrls: ['./market-listings.component.scss']
+  styleUrls: ['./market-listings.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MarketListingsComponent implements OnInit {
 
@@ -27,19 +28,45 @@ export class MarketListingsComponent implements OnInit {
   currentBathCount:number = -1;
   bathCountArray:boolean[] = [];
 
-  minSize:string = '';
-  maxSize:string = '';
+  minSize:String;
+  maxSize:String;
 
   mListings:any;
   mWatchList:PropertyDetails[];
 
   mWatchAddresses:string[] = [];
 
+  minSquareFeetArray:string[] = [];
+  maxSquareFeetArray:string[] = [];
+
+  initSquareFeetArrays(){
+
+    this.minSquareFeetArray.push('any');
+    this.maxSquareFeetArray.push('any');
+
+    let i = 500;
+    while(i <= 3000){
+      this.minSquareFeetArray.push(String(i));
+      this.maxSquareFeetArray.push(String(i));
+      i += 250;
+    }
+
+    this.minSquareFeetArray.push('3500');
+    this.maxSquareFeetArray.push('3500');
+    this.minSquareFeetArray.push('4000');
+    this.maxSquareFeetArray.push('4000');
+    this.minSquareFeetArray.push('5000');
+    this.maxSquareFeetArray.push('5000');
+    this.minSquareFeetArray.push('7500');
+    this.maxSquareFeetArray.push('7500');
+  }
+  
   
   constructor(private mAuthService:AuthenticationService, private mFirestoreService:FirestoreService, private mRouter: Router, private mPropertyViewService:PropertyViewService) { }
 
   ngOnInit() {
 
+    this.initSquareFeetArrays();
 
     this.bathCountArray.push(this.filterBathCountOne);
     this.bathCountArray.push(this.filterBathCountTwo);
@@ -74,8 +101,22 @@ export class MarketListingsComponent implements OnInit {
     this.filterBedCount = 0;
     this.filterBathCount = 0;
     this.filterPropertyType = 0;
-    this.minSize = '';
-    this.maxSize = '';
+    this.minSize = null;
+    this.maxSize = null;
+  }
+
+  onSelectMinSize(size:String){
+    if(size != 'any'){
+      size += " sqft";
+    }
+    this.minSize = size;
+  }
+
+  onSelectMaxSize(size:String){
+    if(size != 'any'){
+      size += " sqft";
+    }
+    this.maxSize = size;
   }
 
   getPropertyListings(){

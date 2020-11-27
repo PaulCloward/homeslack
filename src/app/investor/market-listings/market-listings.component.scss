@@ -89,6 +89,9 @@ h1{
                     outline: none;
                     border: none;
                     cursor: pointer;
+                  
+
+                    
                 }
             }
             
@@ -181,24 +184,32 @@ h1{
                 flex-direction: row;
                 justify-content: space-between;
                 margin-bottom: 36px - (36px * .2);
-
-                .min-size-container{
+                
+                .min-size-container, .max-size-container{
                     display: flex;
                     flex-direction: column;
+                    margin: 0;
                 }
 
                 .max-size-container{
-                    display: flex;
-                    flex-direction: column;
+                    margin-left: auto;
                 }
+               
 
-                input{
+                input, button{
                     width: 157px - (157px * .2);
                     height: 44px - (44px * .2);
                     background: #FFFFFF 0% 0% no-repeat padding-box;
                     border: .8px solid #2A2A2A;
+                    outline: none;
                     border-radius: 11px - (11px * .2);
                     opacity: 1;
+                    padding-left: 28px - (28px * .2);
+
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
                 }
             }
 
@@ -245,3 +256,40 @@ h1{
 
 
 
+.button-container{
+    position: relative;
+    width: 346px - (346px * .2);
+}
+
+.button-dark-arrow{
+    position: absolute; 
+    top: 11px - (11px * .2);
+    right: 11px - (11px * .2);
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.button-circle-blue-arrow{
+    position: absolute; 
+    top: 11px - (11px * .2);
+    right: 11px - (11px * .2);
+    z-index: 1000;
+    cursor: pointer;
+    width: 36px - (36px * .2);
+    height: 36px - (36px * .2);
+    //transform: matrix(-1, 0, 0, -1, 0, 0);
+}
+
+
+.input-auth-button:focus{
+    background: #EAF2FC 0% 0% no-repeat padding-box;
+  //  border: .8px solid #307FE2;
+}
+
+
+.mat-menu-content {
+    height: 16em !important;
+     width: 160px - (160px * .2);
+     overflow-y: none;
+     overflow-x: none;
+}

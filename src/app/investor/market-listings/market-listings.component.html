@@ -90,16 +90,38 @@
                     </mat-radio-button>
                 </mat-radio-group>
             </div>
+       
             <div class="total-area-row">
-                <div  type="text" class="min-size-container">
+                <div class="min-size-container">
                     <label>Min. Size</label>
-                    <input  [(ngModel)]="minSize" placeholder="1,0000 sqft" NumberOnly />
+                    <button type="button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                
+                        <div *ngIf="minSize == null">any</div> 
+                        <div *ngIf="minSize != null">{{minSize}}</div> 
+                    </button>
                 </div>
-                <div class="max-size-container">
+                <mat-menu class="mat-menu-content" #menu="matMenu">
+                    <div *ngFor="let size of minSquareFeetArray" mat-menu-item class="menu-item" (click)="onSelectMinSize(size)">
+                      {{size}}
+                    </div>
+                  </mat-menu>
+
+                  <div class="max-size-container">
                     <label>Max. Size</label>
-                    <input  [(ngModel)]="maxSize" type="text" placeholder="5,0000 sqft" NumberOnly />
+                    <button type="button" mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu">
+                
+                        <div *ngIf="maxSize == null">any</div> 
+                        <div *ngIf="maxSize != null">{{maxSize}}</div> 
+                    </button>
                 </div>
+                <mat-menu class="mat-menu-content" #menu2="matMenu">
+                    <div *ngFor="let size of maxSquareFeetArray" mat-menu-item class="menu-item" (click)="onSelectMaxSize(size)">
+                      {{size}}
+                    </div>
+                  </mat-menu>
             </div>
+
+           
         </div>
     </div>
     <div class="listings-container">

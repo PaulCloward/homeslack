@@ -4,7 +4,7 @@
     <h3 [hidden]="!success">ReviewBid</h3>
     <div class="line-divider"></div>
   
-      <form class="form-container" [formGroup]="mFormBid" [hidden]="success" (ngSubmit)="onReviewBid()">
+      <form class="form-container" [formGroup]="mFormBid" [hidden]="success" (ngSubmit)="onPlaceBid()">
         
         <div>
           <input [formControl]="companyName" matInput type="text" placeholder="Company name (entity)..." />
@@ -33,39 +33,13 @@
     
     
      
-          <button>Review bid</button>
+          <button >Place bid</button>
        
         
          
     
     </form>
-
-    <section [hidden]="!success">
-
-      <h3>Company name (entity):</h3>
-      <h4>&nbsp;{{ companyName.value }}</h4>
-
-      <h3>Contact name (first, last):</h3>
-      <h4>&nbsp;{{ contactName.value }}</h4>
-
-      <h3>phone...</h3>
-      <h4>&nbsp;{{ phone.value }}</h4>
-
-      <h3>email...</h3>
-      <h4>&nbsp;{{ email.value }}</h4>
-
-      <h3>Bid price...</h3>
-      <h4 style="margin-bottom: .5em">&nbsp;${{ bid.value }}</h4>
-
-      <label>By clicking "Place Bid" you are.....</label>
-
-      <div class="btn-container"  style="margin-top: 0;">
-        <button (click)="onPlaceBid()">Place Bid</button>
-      </div>
-    </section>
-
-    
-      
+  
  </div>
 
  <br><br>

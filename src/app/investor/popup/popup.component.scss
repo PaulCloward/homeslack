@@ -91,6 +91,10 @@ form{
       margin: 0 auto;
       border: none;
       outline: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
   
@@ -117,6 +121,10 @@ form{
     color: #FFFFFF !important;
     opacity: 1;
     
+  }
+
+  button:hover{
+    opacity: .8;
   }
   
   .btn-disabled{

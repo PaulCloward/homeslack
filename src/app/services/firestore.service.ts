@@ -121,6 +121,8 @@ export class FirestoreService {
     return this.mAngularFirestore.collection(this.KEY_PROPERTY_INDIVIDUAL_SELLER).doc(uuid).valueChanges();
   }
 
+  
+
   addPropertyToInvestorWatchList(uuid:string, propertyDetails:PropertyDetails){
     this.mAngularFirestore.collection(this.KEY_INVESTOR_WATCH_LIST).doc(uuid).update({
       watch_list: firebase.firestore.FieldValue.arrayUnion(propertyDetails)
