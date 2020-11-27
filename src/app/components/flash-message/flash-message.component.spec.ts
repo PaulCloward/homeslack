@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FlashMessageComponent } from './flash-message.component';
 
@@ -6,7 +6,7 @@ describe('FlashMessageComponent', () => {
   let component: FlashMessageComponent;
   let fixture: ComponentFixture<FlashMessageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FlashMessageComponent ]
     })

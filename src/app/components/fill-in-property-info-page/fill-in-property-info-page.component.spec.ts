@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FillInPropertyInfoPageComponent } from './fill-in-property-info-page.component';
 
@@ -6,7 +6,7 @@ describe('FillInPropertyInfoPageComponent', () => {
   let component: FillInPropertyInfoPageComponent;
   let fixture: ComponentFixture<FillInPropertyInfoPageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FillInPropertyInfoPageComponent ]
     })
