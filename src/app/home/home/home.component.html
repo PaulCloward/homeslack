@@ -9,7 +9,14 @@
                 <img class="ic-house" src="../../../assets/img/house_blue.png" />
                 <input placeholder="Enter your address..." #search [formControl]="searchControl" 
                  (keydown)="onKeyDown($event)"/>
-                <button (click)="onClickSearchArrow()">Find Home</button>
+                <div (click)="onClickSearchArrow()">
+                    <ul> 
+                        <li>
+                            Find Home
+                            <span></span><span></span><span></span><span></span>
+                        </li>
+                    </ul>
+                </div>
             </div>
            
         </div>

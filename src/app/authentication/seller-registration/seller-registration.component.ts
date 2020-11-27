@@ -97,7 +97,7 @@ export class SellerRegistrationComponent implements OnInit {
           this.userID = user.user.uid;
           this.mFirestoreService.saveSellerContactInformation(this.userID,Object.assign({},this.mSellerContactInfo));
           this.mFirestoreService.saveSellerPropertyDetails(this.userID,Object.assign({}, this.mSellerPropertyDetails));
-          this.mRouter.navigate(['./listing-time']);    
+          this.mRouter.navigate(['./timeframe']);    
         }
       }).catch(error => {
         error => this.alertMessage = error;
@@ -148,7 +148,7 @@ export class SellerRegistrationComponent implements OnInit {
   
             // Clear form info
           this.mFormSellerInformation.reset();
-            this.mRouter.navigateByUrl('/listing-time');
+            this.mRouter.navigateByUrl('/timeframe');
           }).catch(error => {
             console.log("Seller registration failed: " + error);
           })

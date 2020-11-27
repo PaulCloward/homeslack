@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { HomeService } from './services/home.service';
 import { SearchPropertyService } from './services/search-property.service';
-import { PropertyFinderService } from './services/property-finder.service';
 import { SellerPropertyService } from './services/seller-property.service';
 import { PropertySearchCoreLogicService } from './services/property-search-core-logic.service';
 import { PropertySearchEstatedService } from './services/property-search-estated.service';
@@ -17,7 +16,7 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import { HttpModule } from '@angular/http';
 import { FileSizePipe } from './file-size.pipe';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { CommonModule } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -31,14 +30,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { VerifyInfoPageComponent } from './components/verify-info-page/verify-info-page.component';
-import { AgmCoreModule } from '@agm/core';
+
 import { LoginComponent } from './components/login/login.component';
 import { FlashMessageComponent } from './components/flash-message/flash-message.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { WhyUsComponent } from './components/why-us/why-us.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -47,40 +43,33 @@ import { SharedModule } from './shared/shared.module';
 import { SellerAccountComponent } from './components/seller-account/seller-account.component';
 import { SellerListedPropertyComponent } from './components/seller-listed-property/seller-listed-property.component';
 import { InvestorListedPropertyComponent } from './components/investor-listed-property/investor-listed-property.component';
-import { FillInPropertyInfoPageComponent } from './components/fill-in-property-info-page/fill-in-property-info-page.component';
-import { ConfirmListingComponent } from './components/confirm-listing/confirm-listing.component';
 import { MyOffersComponent } from './components/my-offers/my-offers.component';
 import { OfferItemComponent } from './components/offer-item/offer-item.component';
 import { ExpandedPropertyComponent } from './components/expanded-property/expanded-property.component';
 import { DirectoryComponent } from './components/directory/directory.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { InboxMessageComponent } from './components/inbox-message/inbox-message.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { ImagesComponent } from './components/images/images.component';
 import { ImageComponent } from './components/images/image/image.component';
 import { ImageListComponent } from './components/images/image-list/image-list.component';
-import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { LockComponent } from './components/lock/lock.component';
-import { PopupComponent } from './investor/popup/popup.component';
+
 
 import { AuthGuard } from './core/auth.guard';
 import { ListingTimeComponent } from './components/listing-time/listing-time.component';
-import { NgbDatePipe } from './pipes/ngb-date.pipe';
 
 import { NgxCurrencyModule } from "ngx-currency";
 import { ImageService } from './services/image.service';
 import { AuthenticationService } from './services/authentication.service';
-import { UploadPhotosComponent } from './components/upload-photos/upload-photos.component';
 import { UploaderComponent } from './components/uploader/uploader.component';
-import { UploadTaskComponent } from './components/uploader-task/uploader-task.component';
-import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+
+
 import { SearchComponent } from './components/search/search.component';
 import { AuthInvestorGuard } from './investor/auth-investor.guard';
 import { AuthSellerGuard } from './seller/auth-seller.guard';
-
 
 
 
@@ -98,34 +87,39 @@ export const customCurrencyMaskConfig = {
 };
 
 const appRoutes: Routes = [
-  {path: 'home-old', component: HomeComponent},
   // {path:'', redirectTo: 'image/upload', pathMatch:'full'},
-  {path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
-  {path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
-  {path: 'home2', component: HomeComponent},
-  {path: 'verify-info-page', component: VerifyInfoPageComponent},
-  {path: 'fill-in-property-info-page-old', component: FillInPropertyInfoPageComponent},
-  {path: 'fill-in-property-info-page', loadChildren: () => import('./fill-property-details/fill-property-details.module').then(m => m.FillPropertyDetailsModule)},
-  {path: 'create-account', 
-  loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)},
+ 
   {path: 'login', component: LoginComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'why-us-old', component: WhyUsComponent},
   {path: 'seller-account', component: SellerAccountComponent},
   {path: 'seller-listings', component: SellerListedPropertyComponent},
-  {path: 'confirm-listing', component: ConfirmListingComponent},
   {path: 'offers', component: MyOffersComponent},
   {path: 'expanded-property', component: ExpandedPropertyComponent},
   {path: 'directory', component: DirectoryComponent},
   {path: 'inbox', component: InboxComponent},
   { path: 'listing-time', component: ListingTimeComponent},
   { path: 'terms', component: TermsComponent},
-  { path: 'upload-photos', component: UploadPhotosComponent},
   { path: 'uploader', component: UploaderComponent},
   { path: 'images', component:ImagesComponent, children:[
       { path:'upload', component: ImageComponent},
       { path:'list', component:ImageListComponent}
     ] 
+  },
+  {
+    path: '',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'home', 
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'timeframe',
+    loadChildren: () => import('./timeframe/timeframe.module').then(m => m.TimeframeModule)
+  },
+  {
+    path: 'upload-photos',
+    loadChildren: () => import('./upload-photos/upload-photos.module').then(m => m.UploadPhotosModule)
   },
    {
     path: 'photos',
@@ -152,26 +146,37 @@ const appRoutes: Routes = [
     {
       path: 'directory-new',
       loadChildren: () => import('./directory-new/directory-new.module').then(m => m.DirectoryNewModule)
-    }
+    },
+    { 
+       path: 'verify-property',
+       loadChildren: () => import('./verify-property/verify-property.module').then(m => m.VerifyPropertyModule)
+    },
+    {
+      path: 'fill-in-property-info-page',
+      loadChildren: () => import('./fill-property-details/fill-property-details.module').then(m => m.FillPropertyDetailsModule)
+    },
+    {
+      path: 'create-account', 
+      loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
+    },
+    {
+      path: 'record-home', 
+      loadChildren: () => import('./record-home/record-home.module').then(m => m.RecordHomeModule)
+    },
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    VerifyInfoPageComponent,
     LoginComponent,
     FlashMessageComponent,
     NavbarComponent,
     ContactComponent,
-    WhyUsComponent,
     DropZoneDirective,
     FileSizePipe,
     SellerAccountComponent,
     SellerListedPropertyComponent,
     InvestorListedPropertyComponent,
-    FillInPropertyInfoPageComponent,
-    ConfirmListingComponent,
     MyOffersComponent,
     OfferItemComponent,
     ExpandedPropertyComponent,
@@ -180,17 +185,13 @@ const appRoutes: Routes = [
     InboxMessageComponent,
     LockComponent,
     ListingTimeComponent,
-    NgbDatePipe,
     // FooterComponent,
     TermsComponent,
     ImageComponent,
     ImagesComponent,
     ImageListComponent,
-    UploadPhotosComponent,
     UploaderComponent,
-    UploadTaskComponent,
-    ImageSliderComponent,
-    SearchComponent
+    SearchComponent,
     
   ],
   imports: [
@@ -204,12 +205,7 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireFunctionsModule,
     HttpModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAqIGTMDUu1dMCaKr3eyt5XgNqUCOCTNFc',
-      libraries: ["places"]
-    }),
     FormsModule,
-    NgbModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     BrowserAnimationsModule,
@@ -231,7 +227,6 @@ const appRoutes: Routes = [
     HomeService, 
     AuthGuard, 
     ImageService, 
-    PropertyFinderService,
     SellerPropertyService, 
     AuthenticationService, 
     SearchPropertyService,

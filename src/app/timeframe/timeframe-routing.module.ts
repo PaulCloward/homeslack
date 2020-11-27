@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { VerifyPropertyComponent } from './verify-property/verify-property.component';
-
-
+import { TimeframeComponent } from '../timeframe/timeframe/timeframe.component';
 
 const routes: Routes = [
   {
-    path: '', component: VerifyPropertyComponent
+    path: '', component: TimeframeComponent
   }
 ];
 
@@ -14,4 +12,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class VerifyPropertyRoutingModule { }
+export class TimeframeRoutingModule { }

@@ -201,6 +201,10 @@ export class FillPropertyDetailsComponent implements OnInit {
       // });
   }
 
+  navigatePage(path:string){
+    this.mRouter.navigateByUrl(path);
+  }
+
   initYearArray(){
     let i = 2020;
     while(i >= 1950){
@@ -277,7 +281,7 @@ export class FillPropertyDetailsComponent implements OnInit {
   onClickNext(){
     this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.sellerProperty);
     this.mFirestoreService.saveSellerPropertyDetails(this.userUID,Object.assign({},this.sellerProperty));
-    this.mRouter.navigate(['/listing-time']);
+    this.mRouter.navigate(['/timeframe']);
   }
 
   onClickCreateAccount(){

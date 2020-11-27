@@ -1,0 +1,107 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.1/TweenMax.min.js"> </script>
+
+<div class="page-container">
+   
+    <div style="position: relative; width: 100%">
+      <img src="../../../assets/img/banner_image_upload.png" />
+      <div class="time-line-row">
+          <div class="item-previous" (click)="navigatePage('home')">
+              <img class="ic-magnify" src="../../../assets/img/magnify_white.png" />
+          </div>
+          <div class="item-previous">
+              <img class="ic-question" src="../../../assets/img/question_white.png" />
+          </div>
+          <div class="item-previous">
+              <img class="ic-clock" src="../../../assets/img/clock_white.png" />
+          </div>
+          <div class="item">
+              <img class="ic-camera" src="../../../assets/img/camera_blue.png" />
+          </div>
+          <div class="item">
+              <img class="ic-check" src="../../../assets/img/check_blue.png" />
+          </div>
+      </div>
+  </div>
+  <h1>Upload Photos</h1>
+
+
+<div class="main-container">
+    <div class="col-8 offset-2">
+        <div class="label-upload-photos">
+            The pictures uploaded will be used by investors to assess the condition of your property.      
+            Investors are willing to pay more for homes that have detailed pictures. It's best to include the good and the bad.
+        </div>
+        <ol>
+            <li class="tip-item">Hold your camera steady</li>
+            <li class="tip-item">Good lighting</li>
+            <li class="tip-item">Take horizontal photos (landscape) </li>
+            <li class="tip-item">Minimum of 10 photos</li> 
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+        
+    <div class="dropzone-image-container">
+        <img [ngClass]="{'dropzone-background-image': isHovering == null || isHovering == false, 
+    'dropzone-background-image-hovered': isHovering}" src="../../../assets/img/taking_photo_blue.jpg" />
+        <div class="left-image-overlay-text">
+            <div class="container-dropzone"
+        dropzone
+        (hovered)="toggleHover($event)"
+        (dropped)="onDrop($event)"
+        [class.hovering]="isHovering">
+            <div class="container-add-labels">
+                
+                <div class="label-drag-add-drop">Drag and Drop photos here</div>
+                <div class="label-or">or</div>
+                
+            
+                <label class="custom-file-upload">
+                    <input type="file" multiple="multiple" accept="image/*" (change)="onDrop($event.target.files)"/>
+                    Select Photo(s) <i class="material-icons icon-upload">cloud_upload</i>
+                </label>
+                <div style="display: flex; align-items: center; margin-top: .5em; justify-content: center;">
+                    <div class="at-least" *ngIf="mImageList != null && mImageList.length >= 10">
+                        Feel free to move on or keep adding photos
+                        <br>
+                        {{ mImageList.length }} photos uploaded 
+                    </div>
+                    <div class="at-least" *ngIf="mImageList != null && mImageList.length < 10">
+                        {{ 10 - mImageList.length }} more photos needed
+                    </div>
+                    <div class="at-least" *ngIf="mImageList == null">
+                        {{ 10 }} more photos needed
+                    </div>
+                    <i class="material-icons icon-photo">collections</i>
+                </div>
+            </div>
+        </div>
+        </div> 
+    </div>
+</div>
+
+                
+<div class="row" style="margin-top: 4em;">
+    <div class="col-10 offset-1"> 
+        <app-image-slider [images]="mImageList"></app-image-slider>
+    </div>
+</div>
+        
+                
+<div *ngFor="let file of mFiles">
+    <upload-task [file]="file"></upload-task>
+</div>
+
+<div class="row">
+    <div class="col-10 offset-1"> 
+        <div class="container-btn-next">
+            <button *ngIf="(10 - mImageList.length) <= 0"  class="btn-next" (click)="clickNextPage()">Next</button>
+            <button *ngIf="(10 - mImageList.length) > 0" class="btn-next-disabled" (click)="clickNextPage()" matTooltipPosition="above" matTooltip="Need to upload at least 10 photes before proceeding">Next</button>
+        </div>
+    </div>
+</div>
+            
+</div>
+  
+<app-footer></app-footer>

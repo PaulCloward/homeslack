@@ -124,7 +124,7 @@ export class HomeComponent implements OnInit {
       this.initializePropertyDetailsAttom(data);
 
       this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.mSellerProperty);
-      this.mRouter.navigate(['./verify-info-page']);
+      this.mRouter.navigate(['./verify-property']);
     }
 
 
@@ -179,7 +179,7 @@ export class HomeComponent implements OnInit {
       }
 
       this.mSellerPropertyService.updateSellerPropertyDetailsSource(this.mSellerProperty);
-      this.mRouter.navigate(['./verify-info-page']);
+      this.mRouter.navigate(['./verify-property']);
     }
 
     collectAddressDetailsAttom(data){
