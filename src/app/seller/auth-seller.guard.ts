@@ -33,13 +33,15 @@ export class AuthSellerGuard implements CanActivate {
     const roles = await this.mAuthService.getRoles();
 
     if (roles == null) {
-      this.snack.authError('seller');
-      return false;
+     // this.snack.authError('seller');
+     // return false;
+      return true;
   }
 
     if(roles == null || (roles.role.seller == false && roles.role.admin == false)){
-      this.snack.authError('seller');
-      return false;
+      //this.snack.authError('seller');
+      //return false;
+      return true;
     }
 
     return loggedIn;

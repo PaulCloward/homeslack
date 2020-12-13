@@ -116,6 +116,10 @@
                 background: #44C6F3 0% 0% no-repeat padding-box;
                 cursor: pointer;
             }
+
+            div:hover{
+                border-radius: 0.5em;
+            }
         
 
             div ul {
@@ -135,7 +139,7 @@
                 font-weight: 400;
                 font-size: 21px - (21px * .2);
                 letter-spacing: 0px;
-                border: 0.3em solid #44C6F3;
+                border: 0.1em solid #44C6F3;
                 border-radius: 0.5em;
                 width: 100%;
                 height: 100%;
@@ -201,9 +205,86 @@
     flex-direction: row;
     justify-content: center;;
     width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
     background-color: #F3F3F3;
-    padding-top: 123px - (123px * .2);
-    padding-bottom: 123px - (123px * .2);
+    padding-top: 225px;
+    padding-bottom: 225px;
+
+    .card-container {
+        display: inline-block;
+        margin: 0 auto;
+        padding: 0 12px;
+        perspective: 900px;
+        text-align: center;
+    }
+    .card2 {
+      position: relative;
+      width: 300px;
+      height: 375px;
+      transition: all 0.6s ease;
+      transform-style: preserve-3d;
+    }
+    .front, .back {
+        position: absolute;
+        background: white;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 360px;
+        border-radius: 5px;
+        color: white;
+        box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.3), 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+        backface-visibility: hidden;
+      }
+      .front {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        label{
+            margin: (28px - (28px * .2)) 0;
+            font-family: 'trueno_regular', sans-serif;
+            font-weight: 400;
+            font-size: 51px - (51px * .2);
+            letter-spacing: 0px;
+            color: #2A2A2A;
+            opacity: 1;
+        }
+
+        .computer{
+            width: 150px - (150px * .2);
+            margin: 0 auto;
+        }
+
+      }
+      .back {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ul{
+            li{
+                text-align: center;
+                letter-spacing: 0px;
+                color: #2A2A2A;
+                opacity: 1;
+                text-align: center;
+                font-family: 'trueno_regular', sans-serif;
+                font-weight: 400;
+                font-size: 29px - (29px * .2);
+                line-height: 1.1em;
+            }
+        }
+      }
+      .card-container:hover .card2 {
+        transform: rotateY(180deg);
+      }
+      .back {
+        transform: rotateY(180deg);
+      }
+
+
     .card{
     
         width: 369px - (369px * .2);
@@ -246,12 +327,12 @@
     }
 
     .computer{
-        width: 125px - (125px * .2);
+        width: 150px - (150px * .2);
         margin: 0 auto;
     }
 
     .cash{
-        width: 148px - (148px * .2);
+        width: 155px - (155px * .2);
         margin: 0 auto;
     }
     

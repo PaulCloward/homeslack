@@ -233,7 +233,6 @@ const appRoutes: Routes = [
     SearchPropertyService,
     PropertySearchCoreLogicService,
     PropertySearchEstatedService,
-    
   ],
   bootstrap: [AppComponent]
 })

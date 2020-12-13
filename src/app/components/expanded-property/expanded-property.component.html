@@ -79,7 +79,7 @@
                                 Total Living Area
                             </div>
                             <div class="label-property-result" *ngIf="mSellerPropertyDetails">
-                                {{mSellerPropertyDetails.living_square_feet}} Square Feet
+                                {{mSellerPropertyDetails?.living_square_feet}} Square Feet
                             </div>
                            
                         </div>
@@ -93,7 +93,7 @@
                                 Year Build 
                             </div>
                             <div class="label-property-result"  *ngIf="mSellerPropertyDetails">
-                                {{mSellerPropertyDetails.year}}
+                                {{mSellerPropertyDetails?.year}}
                             </div>
                             
                         </div>
@@ -107,7 +107,7 @@
                                 Lot Size
                             </div>
                             <div class="label-property-result"  *ngIf="mSellerPropertyDetails">
-                                {{mSellerPropertyDetails.lot_size}}&nbsp;Square Feet
+                                {{mSellerPropertyDetails?.lot_size}}&nbsp;Square Feet
                             </div>
                            
                         </div>
@@ -124,7 +124,7 @@
                             <div class="label-property">
                                 Bedrooms 
                             </div>
-                            <div class="label-property-result"  *ngIf="mSellerPropertyDetails">{{mSellerPropertyDetails.beds}}</div>
+                            <div class="label-property-result"  *ngIf="mSellerPropertyDetails">{{mSellerPropertyDetails?.beds}}</div>
                             
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                         <div class="label-property">
                             Bathrooms 
                         </div>
-                        <div class="label-property-result"  *ngIf="mSellerPropertyDetails">{{mSellerPropertyDetails.baths}}</div>
+                        <div class="label-property-result"  *ngIf="mSellerPropertyDetails">{{mSellerPropertyDetails?.baths}}</div>
                        
                         </div>
                     </div>
@@ -148,10 +148,13 @@
                             <div class="label-property">
                                 Basement 
                             </div>
-                            <div *ngIf="mSellerPropertyDetails && mSellerPropertyDetails.basement == false" class="label-property-result">
+                            <div *ngIf="mSellerPropertyDetails?.basement == false" class="label-property-result">
                                 None
                             </div>
-                            <div *ngIf="mSellerPropertyDetails.basement_completed" class="label-property-result">
+                            <div *ngIf="mSellerPropertyDetails?.basement == true" class="label-property-result">
+                                Yes
+                            </div>
+                            <div *ngIf="mSellerPropertyDetails?.basement_completed" class="label-property-result">
                                 {{mSellerPropertyDetails.basement_completed}}%&nbsp;Finished
                             </div>
                            

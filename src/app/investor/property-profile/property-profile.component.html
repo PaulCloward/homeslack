@@ -123,7 +123,7 @@
                     </div>
                 </section>
             </div>
-            <div class="bid-column">
+            <div class="bid-column" style="border: 1px solid red;">
                 <div class="top-bid">
                     Top bid
                 </div>
@@ -148,8 +148,27 @@
                     CLOSING
                 </div>
 
-                <div class="stats-row">
-                    <h5>{{closingDays}}</h5> <h6>Days</h6> <h5>{{closingHours}}</h5> <h6>Hours</h6>  <h5>{{closingMinutes}}</h5> <h6>Minutes</h6>
+                <div class="stats-row" *ngIf="closingDistance > 0">
+                    <div>
+                        <h5>{{closingDays}}</h5> 
+                        <h6>Days</h6>
+                    </div>  
+                    <div>
+                        <h5>{{closingHours}}</h5> 
+                        <h6>Hours</h6> 
+                    </div>
+                    <div>
+                        <h5>{{closingMinutes}}</h5> 
+                        <h6>Minutes</h6>
+                    </div>   
+                    <div>
+                        <h5>{{closingSeconds}}</h5> 
+                        <h6>Seconds</h6>
+                    </div>
+                </div>
+
+                <div class="stats-row" *ngIf="closingDistance <= 0">
+                    Expired
                 </div>
 
                 <div class="line-divider"></div>
@@ -158,8 +177,27 @@
                     LISTED
                 </div>
 
-                <div class="stats-row">
-                    <h5>{{listedDays}}</h5> <h6>Days</h6>  <h5>{{listedHours}}</h5> <h6>Hours</h6>  <h5>{{listedMinutes}}</h5> <h6>Minutes</h6>
+                <div class="stats-row" *ngIf="listedDistance > 0">
+                    <div>
+                        <h5>{{listedDays}}</h5> 
+                        <h6>Days</h6>
+                    </div>  
+                    <div>
+                        <h5>{{listedHours}}</h5> 
+                        <h6>Hours</h6> 
+                    </div>
+                    <div>
+                        <h5>{{listedMinutes}}</h5> 
+                        <h6>Minutes</h6>
+                    </div>   
+                    <div>
+                        <h5>{{listedSeconds}}</h5> 
+                        <h6>Seconds</h6>
+                    </div>
+                </div>
+
+                <div class="stats-row" *ngIf="listedDistance <= 0">
+                    Expired
                 </div>
             </div>
     </section>

@@ -1,18 +1,4 @@
 
-@font-face {
-    font-family: 'trueno_bold';
-    src: url("../../../assets/fonts/trueno/TruenoBd.otf");
-}
-
-@font-face {
-    font-family: 'trueno_regular';
-    src: url("../../../assets/fonts/trueno/TruenoRg.otf");
-}
-
-@font-face {
-    font-family: 'trueno_light';
-    src: url("../../../assets/fonts/trueno/TruenoLt.otf");
-}
 
 h1{
     position: absolute;
@@ -244,34 +230,42 @@ footer{
         .stats-row{
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+
+            div{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+
+                h5{
+                    height: 29px - (29px * .2);
+                    font-family: 'trueno_regular';
+                    font-weight: 400;
+                    font-size: 24px - (24px * .2);
+                    letter-spacing: 0px;
+                    color: #2A2A2A;
+                    margin-right: 2px;
+                }
+        
+                h6{
+                    height: 29px - (29px * .2);
+                    font-family: 'trueno_regular';
+                    font-weight: 400;
+                    font-size: 16px - (16px * .2);
+                    letter-spacing: 0px;
+                    color: #9F9F9F;
+                    margin-top: 12px - (12px * .2);
+                   
+                }
+            }
         }
 
-        h5{
-            height: 29px - (29px * .2);
-            font-family: 'trueno_regular';
-            font-weight: 400;
-            font-size: 24px - (24px * .2);
-            letter-spacing: 0px;
-            color: #2A2A2A;
-            margin-right: 2px;
-        }
-
-        h6{
-            height: 29px - (29px * .2);
-            font-family: 'trueno_regular';
-            font-weight: 400;
-            font-size: 16px - (16px * .2);
-            letter-spacing: 0px;
-            color: #9F9F9F;
-            margin-top: 12px - (12px * .2);
-            margin-right: 26px - (26px * .2);
-        }
+     
 
         .top-bid{
             width: 369px - (369px * .2);
-            height: 84px - (84px * .2);
             background: #44C6F3 0% 0% no-repeat padding-box;
             border-radius: 11px - (11px * .2);
             opacity: 1;
